@@ -2,11 +2,8 @@
 
 ![The NAISS logo](logo/naiss_logo_inverted.png)
 
-This course introduces a NAISS course template.
-
-???- question "Want a video of a guided tour?"
-
-    See [this video on YouTube](https://youtu.be/rDnDASXmkdc)
+Wondering how LLMs work?  
+![The NAISS logo](img/jensen_meme.jpg)
 
 ???- question "Are there courses that use this template?"
 

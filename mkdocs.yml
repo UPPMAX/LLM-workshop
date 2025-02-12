@@ -1,13 +1,22 @@
-site_name: NAISS course template
-repo_url: https://github.com/UPPMAX/naiss_course_template
+site_name: LLM Workshop
+repo_url: https://github.com/UPPMAX/LLM-workshop
 
 nav:
   - Start: index.md
   - Course dates: course_dates.md
   - Schedule: schedule.md
-  - Sessions:
-    - How to setup the rendering of the website: sessions/how_to_setup_website_rendering/README.md
-    - How to fix the spelling errors: sessions/how_to_fix_spelling_errors/README.md
+  - Day 1:
+    - Introduction: day1/introduction.md
+  - Day 2:
+    - Data Pipelines: day2/data_pipelines.md
+    - How to setup the rendering of the website: day2/how_to_setup_website_rendering/README.md
+    - How to fix the spelling errors: day2/how_to_fix_spelling_errors/README.md
+    - RAG: day2/rag.md
+  - Day 3:
+    - Prompt Engineering: day3/prompt_engineering.md
+    - Fine-tuning: day3/fine_tuning.md
+    - How to setup the rendering of the website: day3/how_to_setup_website_rendering/README.md
+    - How to fix the spelling errors: day3/how_to_fix_spelling_errors/README.md
 
 theme:
   name: material

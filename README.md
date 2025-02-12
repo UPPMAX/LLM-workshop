@@ -9,7 +9,7 @@
 
 <!-- markdownlint-enable MD013 -->
 
-- [Go to the nicely rendered site](https://uppmax.github.io/naiss_course_template/)
+
 
 ## Files used by continuous integration scripts
 
