@@ -1,4 +1,4 @@
-# Welcome to a NAISS course template
+# Welcome to a NAISS LLM Workshop
 
 ![The NAISS logo](logo/naiss_logo_inverted.png)
 
