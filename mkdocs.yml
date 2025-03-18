@@ -17,6 +17,7 @@ nav:
     - Tools and Reasoning: day/tools.md
     - Fine-tuning: day3/fine_tuning.md
     - Hyperparameter tuning: day3/hyperparameter_tuning.md
+    - Evaluating LLMs: day3/evaluation_metrics.md
     - How to setup the rendering of the website: day3/how_to_setup_website_rendering/README.md
     - How to fix the spelling errors: day3/how_to_fix_spelling_errors/README.md
 
