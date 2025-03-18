@@ -16,6 +16,7 @@ nav:
     - Prompt Engineering: day3/prompt_engineering.md
     - Tools and Reasoning: day/tools.md
     - Fine-tuning: day3/fine_tuning.md
+    - Hyperparameter tuning: day3/hyperparameter_tuning.md
     - How to setup the rendering of the website: day3/how_to_setup_website_rendering/README.md
     - How to fix the spelling errors: day3/how_to_fix_spelling_errors/README.md
 
