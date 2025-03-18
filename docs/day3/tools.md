@@ -1,0 +1,14 @@
+# Tools and reasoning
+- Overview of tools and function calling, examples
+    - Claude plays pokemon
+    - Web search
+    - Code execution (perhaps not include this)
+    - Database queries
+    - Image generation
+- What is needed to set something like this up?
+- Excercise: Set-up tool use through prompting (or have an already tuned model?)
+- Reasoning
+    - Chain of thought / Tree of thought https://www.promptingguide.ai/techniques/tot
+    - DeepSeek-R1 style reasoning
+- What is needed to set something like this up?
+- Excercise: Set-up ToT through prompting
