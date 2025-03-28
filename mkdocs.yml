@@ -15,7 +15,7 @@ nav:
     - RAG: day2/rag.md
   - Day 3:
     - Prompt Engineering: day3/prompt_engineering.md
-    - Tools and Reasoning: day/tools.md
+    - Tools and Reasoning: day3/tools.md
     - Fine-tuning: day3/fine_tuning.md
     - Hyperparameter tuning: day3/hyperparameter_tuning.md
     - Evaluating LLMs: day3/evaluation_metrics.md
