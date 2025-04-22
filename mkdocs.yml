@@ -8,6 +8,7 @@ nav:
   - Day 1:
     - Introduction: day1/introduction.md
     - Quantization and number fomats: day1/quant_formats.md
+    - LLM performance: day1/gpus_and_performance.md
   - Day 2:
     - Data Pipelines: day2/data_pipelines.md
     - How to setup the rendering of the website: day2/how_to_setup_website_rendering/README.md
