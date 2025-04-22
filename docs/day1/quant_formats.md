@@ -1,5 +1,15 @@
 # Quantization and number formats
 
+## Formats of LLM models
+
+- pth/tf: "raw" ML library formats
+- ggml: older format
+- gguf: developed by llama cpp author
+- safetensors: by huggingface
+- llamafile: by mozilla, single-file format
+
+## LLM naming convention
+
 A common LLM model can be identified by the following sections of its name.
 
 - Name-version: `Llama-3.3`
