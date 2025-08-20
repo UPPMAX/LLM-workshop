@@ -21,6 +21,7 @@ Day 1
 | GPUs and performance | TDB | Yunqi | 
 
 Day 2  
+
 | Item | Time | Instructor |
 |---|---|---|
 | Datapipeline | TDB | Jayant |
@@ -31,6 +32,7 @@ Day 2
 
 
 Day 3  
+
 | Item | Time | Instructor |
 |---|---|---|
 | Prompt engineering | TDB | Jayant |
