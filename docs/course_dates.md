@@ -9,8 +9,6 @@ tags:
 
 # Course dates
 
-# Course dates
-
 
 Week|Date                     |Times    |Item
 ----|-------------------------|---------|-------
