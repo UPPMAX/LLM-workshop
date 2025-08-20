@@ -1,6 +1,6 @@
 ---
 hide:
-  - toc
+  - navigation
 ---
 
 # Welcome to a NAISS LLM Workshop
