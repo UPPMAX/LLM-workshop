@@ -1,4 +1,6 @@
 ---
+hide:
+  - toc
 tags:
   - schedule
   - timetable
@@ -45,11 +47,3 @@ Day 3
 * HyperParameter tuning @VRehnberg  
 
 * Evaluation metrics @VRehnberg  
-
-## Final schedule
-
- Time       | Topic
-------------|-----------------------------------------------------------------
-09:00-10:00 | [How to setup the rendering of the website](day1/how_to_setup_website_rendering/README.md)
-10:00-10:15 | Break
-10:15-11:00 | [How to fix the spelling errors](day1/how_to_fix_spelling_errors/README.md)
