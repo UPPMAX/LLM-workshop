@@ -6,44 +6,35 @@ tags:
   - timetable
 ---
 
-# Schedule
-**19-21 November**  
-
 ## Tentative schedule
 
-~3 days ≃ 18 h  
+~6hr/day including breaks and lunch
+
 Day 1  
 
-* Overview of the landscape and proper resources @VRehnberg  
-
-* Brief introduction to public LLMs (GPT, Llama...) @jayanty  
-
-* Accessing LLMs / Quick inference @chiajunghsu / @yqshao  
-
-* LLM format specifics @yqshao  
-
-* GPUs and performance @yqshao  
+| Item | Time | Instructor |
+|---|---|---|
+| Overview of the landscape and proper resources | TDB | Viktor |
+| Brief introduction to public LLMs (GPT, Llama...) | TDB | Jayant | 
+| Accessing LLMs / Quick inference | TDB | Chia-Jung / Yunqi | 
+| LLM format specifics | TDB | Yunqi |
+| GPUs and performance | TDB | Yunqi | 
 
 Day 2  
+| Item | Time | Instructor |
+|---|---|---|
+| Datapipeline | TDB | Jayant |
+| How to quantize (and other tools?) | TDB | Chia-Jung |
+| Model parallelism | TDB | Yunqi |
+| Multi-modalities | TDB | Chia-Jung |
+| RAG | TDB | Jayant |
 
-* Datapipeline @jayanty  
-
-* How to quantize (and other tools?) @chiajunghsu  
-
-* Model parallelism @yqshao  
-
-* Multi-modalities @chiajunghsu  
-
-* RAG @jayanty  
 
 Day 3  
-
-* Prompt engineering @jayanty  
-
-* Tools, chain/tree-of-thought, @VRehnberg  
-
-* Finetuning, RL @jayanty  
-
-* HyperParameter tuning @VRehnberg  
-
-* Evaluation metrics @VRehnberg  
+| Item | Time | Instructor |
+|---|---|---|
+| Prompt engineering | TDB | Jayant |
+| Tools, chain/tree-of-thought | TDB | Viktor |
+| Finetuning, RL | TDB | Jayant |
+| HyperParameter tuning | TDB | Viktor |
+| Evaluation metrics | TDB | Viktor |
