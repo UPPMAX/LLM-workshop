@@ -7,8 +7,9 @@ nav:
   - Schedule: schedule.md
   # - Day 1:
   #   - Introduction: day1/introduction.md
+  #   - Publicly available LLMs: day1/public_llms.md
   #   - Accessing LLM: day1/access_llm.md
-  #   - Quantization and number fomats: day1/quant_formats.md
+  #   - Quantization and number formats: day1/quant_formats.md
   #   - LLM performance: day1/gpus_and_performance.md
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md

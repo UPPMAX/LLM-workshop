@@ -15,7 +15,7 @@ Day 1
 | Item | Time | Instructor |
 |---|---|---|
 | Overview of the landscape and proper resources | TDB | Viktor |
-| Brief introduction to public LLMs (GPT, Llama...) | TDB | Jayant | 
+| Brief introduction to public LLMs | TDB | Jayant | 
 | Accessing LLMs / Quick inference | TDB | Chia-Jung / Yunqi | 
 | LLM format specifics | TDB | Yunqi |
 | GPUs and performance | TDB | Yunqi | 
