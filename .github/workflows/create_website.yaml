@@ -25,6 +25,8 @@ jobs:
           # Set-up revealjs
           DOC_ROOT="docs"
           slidedir="/slides"
+          pwd
+          tree
           pandoc "${DOC_ROOT}/day1/introduction.md" \
             --standalone \
             --slide-level=3 \
