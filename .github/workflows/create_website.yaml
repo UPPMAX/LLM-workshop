@@ -32,7 +32,7 @@ jobs:
               -t revealjs \
               -V "revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5.2.1" \
               -V "theme=white" \
-              --css "${SITE_ROOT}/slides/slides.css"
+              --css "${SITE_ROOT}/stylesheets/slides.css"
           done
       - name: Deploy website
         run: mkdocs gh-deploy --force
