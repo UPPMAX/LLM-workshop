@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Alvis"
+title: "LLM Workshop - Introduction"
 author: "NAISS"
 date: 2025-09-30
 fontsize: 10pt
