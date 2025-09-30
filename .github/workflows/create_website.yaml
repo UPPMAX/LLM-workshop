@@ -24,17 +24,15 @@ jobs:
         run: |
           # Set-up revealjs
           DOC_ROOT="docs"
-          SITE_ROOT="LLM-workshop"
-          pwd
-          tree
-          pandoc "${DOC_ROOT}/day1/introduction.md" \
-            --standalone \
-            --slide-level=3 \
-            -t revealjs \
-            -V "revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5.2.1" \
-            -V "theme=white" \
-            --css "${SITE_ROOT}/slides/slides.css" \
-            -o "${DOC_ROOT}/slides/introduction.html"
-
+          SITE_ROOT="/LLM-workshop"
+          for f in "${DOC_ROOT}/"{day1/introduction.md} do
+            pandoc "${f}" -o "${f%.md}.html"\
+              --standalone \
+              --slide-level=3 \
+              -t revealjs \
+              -V "revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5.2.1" \
+              -V "theme=white" \
+              --css "${SITE_ROOT}/slides/slides.css"
+          done
       - name: Deploy website
         run: mkdocs gh-deploy --force
