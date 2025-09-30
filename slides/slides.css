@@ -1,0 +1,40 @@
+/* NAISS additions to white theme */
+:root {
+  --r-heading1-size: 1.6em;
+  --r-heading2-size: 1.3em;
+}
+
+.reveal-viewport {
+  background-image: url("/slides/NAISS-black-1600.png");
+  background-position: bottom 10px left 10px;
+  background-size: 20em;
+  background-repeat: no-repeat;
+}
+
+.reveal {
+  font-size: 28px;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #333;
+}
+
+.reveal h1 {
+  font-size: 1.6em;
+  font-size: 1.3em;
+}
+
+.reveal iframe {
+  max-width: 65%;
+}
+
+.reveal section img {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}

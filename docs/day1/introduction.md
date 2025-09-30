@@ -1,12 +1,16 @@
 ---
+title: "Introduction to Alvis"
+author: "NAISS"
+date: 2025-09-30
+fontsize: 10pt
 tags:
   - Introduction
 ---
 
-# Introduction
+## Introduction
 TODO
 
-## Overview of the landscape
+### Overview of the landscape
 - Start by talking about the current up-swing in interest
 - Take a step back and give a bit of the history:
     - [Darthmout Summer Research Project](http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf)(can be skipped)
@@ -27,5 +31,3 @@ TODO
 - Conclusion of introduction
     - Briefly sketch what runs in background of chatbots on websites (or if using APIs) (bakom kulisserna)
     - "This part is what we'll be learning today"
-
-## Brief Introduction to public LLMs

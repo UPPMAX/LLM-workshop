@@ -15,7 +15,24 @@ jobs:
           python-version: 3.x
 
       - name: Install dependencies
-        run: pip install -r requirements.txt natsort
+        run: |
+          pip install -r requirements.txt natsort
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Build slides
+        run: |
+          # Set-up revealjs
+          DOC_ROOT="docs"
+          slidedir="/slides"
+          pandoc "${DOC_ROOT}/day1/introduction.md" \
+            --standalone \
+            --slide-level=3 \
+            -t revealjs \
+            -V "revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5.2.1" \
+            -V "theme=white" \
+            --css "${slidedir}/slides.css" \
+            -o "${DOC_ROOT}/${slidedir}/introduction.html"
 
       - name: Deploy website
         run: mkdocs gh-deploy --force
