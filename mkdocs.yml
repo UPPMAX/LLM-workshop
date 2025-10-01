@@ -49,6 +49,7 @@ theme:
     - content.tabs.link
     - content.action.edit
     - content.action.view
+    - content.footnote.tooltips
 
 markdown_extensions:
   - toc:

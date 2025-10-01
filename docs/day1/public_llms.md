@@ -6,18 +6,34 @@ tags:
 
 # Brief introduction to publicly available LLMs
 
-LLMs come in wide-range of "openness":
+???- info "Learning outcomes"
 
-| Category                     | Inference Availability | Fine-Tuning Availability | Access Method           | Typical License / Restrictions     | Examples                          |
-|------------------------------|-------------------------|---------------------------|-------------------------|------------------------------------|-----------------------------------|
-| **Closed / Proprietary**     | ✅ (via API only)       | ⚠️ Limited (via API only, if offered) | API (no weights)       | Proprietary, no weights shared     | GPT-4, Claude, Gemini             |
-| **Open-Weight**              | ✅ (local & hosted)     | ✅ (local fine-tuning)     | Download weights        | Mixed (permissive or research-only)| LLaMA, Mistral, Falcon            |
-| **Open-Source (Full Stack)** | ✅ (local & hosted)     | ✅ (local fine-tuning, full retraining possible) | Code + weights + data | Permissive open-source (e.g., Apache 2.0, MIT) | BLOOM, GPT-NeoX, Pythia           |
-| **Hybrid (Weights + API)**   | ✅ (both API & local)   | ✅ (local fine-tuning, sometimes API too) | Both API & weights     | Depends (permissive or research-only) | Hugging Face-hosted LLaMA/Mistral |
-| **Partially Open**           | ✅ (depends: API or small released model) | ⚠️ Sometimes (e.g., only on smaller versions) | Weights-only or partial release | Often research/non-commercial     | LLaMA-2 (restricted), OPT         |
-| **Community Reproduced**     | ✅ (local & hosted)     | ✅ (local fine-tuning)     | Weights + open infra    | Usually permissive                 | Alpaca, OpenAssistant, RedPajama  |
-| **Frontier / Controlled-Access** | ✅ (heavily gated, API only) | ❌ (no fine-tuning allowed) | Invite-only API         | Strict safety & research controls  | GPT-4 (Research Access Program), Gemini Ultra |
+    - To understand the different categories that LLM comes in
+    - To know which matrices to look at for your particular usecase
 
+## Arena
+
+<figure markdown="span">
+  ![Open vs Closed Models](./figures/open-vs-close.png){ width="700" }
+  <figcaption>Narrowing performance gap on MMLU benchmark (Apr 2022 - Aug 2024) with human domain experts at 89.8%</figcaption>
+</figure>
+
+Open-weight models are catching up with closed source models steadily[^1]. However, creating high-quality benchmarks is an active area of research as the existing ones are beginning to plateau. 
+
+## Categories 
+
+* LLMs come in wide-range of "openness".
+* Public != Open.
+* “Publicly Available” means that the model checkpoints can be publicly accessible (terms can still apply) while “Closed Source” means the opposite.
+
+
+| Category (ordered by openness) | Weights available? | Inference | Fine‑tuning | Redistribute weights / derivatives | Typical license | Examples |
+|--------------------------------|--------------------|-----------|------------|------------------------------------|-----------------|----------|
+| **Open Source (OSI‑compatible)** | ✅ Full | ✅ | ✅ | ✅ | Apache‑2.0 / MIT | Mistral 7B ; OLMo 2 ; Alpaca |
+| **Open Weights (restricted / gated)** | ✅ Full | ✅ | ⚠️ License‑bound (e.g., research‑only / carve‑outs) | ❌ Usually not allowed | Custom terms (Llama / Gemma / RAIL) | Llama 3 (Meta Llama 3 Community License); Gemma 2 (Gemma Terms of Use); BLOOM (OpenRAIL) |
+| **Adapter‑only / Delta releases** | ⚠️ Partial (adapters/deltas) | ✅ (after applying) | ✅ (adapters) | ✅ Adapters (base license applies) | Mixed | LoRA adapters over a base model |
+| **Proprietary API + FT** | ❌ | ⚠️ API-only | ⚠️ API‑only (no weights export) | ❌ | Vendor ToS | OpenAI (GPT‑4.1, o4‑mini FT/RFT); Cohere (Command R/R+ FT); Anthropic (Claude 3 Haiku FT via Bedrock) |
+| **Proprietary API‑only** | ❌ | ⚠️ API-only | ❌ | ❌ | Vendor ToS | Google Gemini API|
 
 
 ## Leaderboard
@@ -29,7 +45,7 @@ Focus on a small set of comparable metrics (most appear on the Open LLM Leaderbo
 
 Core capability benchmarks (higher is better unless noted)
 
-- MMLU: general academic/world knowledge
+- MMLU-Pro[^2]: general academic/world knowledge 
 - GSM8K: grade‑school math reasoning
 - BBH / ARC / HellaSwag / Winogrande: reasoning & commonsense
 - HumanEval / MBPP: code synthesis
@@ -78,3 +94,6 @@ Rule of thumb
 - Long-context analysis: prioritize extended context (e.g., 128K) over marginally higher MMLU.
 
 Document your chosen metrics + hardware profile for reproducibility.
+
+[^1]: The path forward for large language models in medicine is open. [Nature](https://www.nature.com/articles/s41746-024-01344-w)
+[^2]: MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark. [Arxiv](https://arxiv.org/pdf/2406.01574)
