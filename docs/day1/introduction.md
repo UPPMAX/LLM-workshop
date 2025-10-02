@@ -32,3 +32,82 @@ TODO
 - Conclusion of introduction
     - Briefly sketch what runs in background of chatbots on websites (or if using APIs) (bakom kulisserna)
     - "This part is what we'll be learning today"
+
+## History of AI
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4215_RC01/embed_loader.js"></script>
+<script type="text/javascript">
+trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=AI","guestPath":"https://trends.google.com:443/trends/embed/"});
+</script>
+- How has AI developed over time?
+
+### AI as a term is coined
+> We propose that **a 2-month, 10-man study of artificial intelligence** be carried out during the summer of 1956 at Dartmouth College in Hanover, New Hampshire. [...] An attempt will be made to find how to **make machines use language, form abstractions and concepts, solve kinds of problems now reserved for humans, and improve themselves**. We think that a significant advance can be made in one or more of these problems if a carefully selected group of scientists work on it together for a summer.
+
+- [Darthmout Summer Research Project](http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf)(can be skipped)
+
+### Early NLP &ndash; 1956-1966
+![Rule based NLP pipeline](../figures/nlp_pipeline_rules.svg)
+
+- Rule based, lots of manual effort
+- Lots of LISP
+- Used for:
+    - Information retrieval
+    - Basic chat-bots e.g. [Eliza](https://en.wikipedia.org/wiki/ELIZA)
+    - Limited translation systems
+
+### AI Winter I &ndash; 1974-1980
+
+- NLP Winter started even earlier
+
+![Wintery landscape](../figures/winter.svg)
+
+### Statistical NLP &ndash; 1980s
+![Statistical NLP pipeline](../figures/nlp_pipeline_stats.svg)
+
+- Using statistics of the corpus
+- Bag-of-words, N-grams
+
+### AI Winter II &ndash; 1990s, early 2000s
+- The word "AI" is **not** a buzzword
+- Research continues under other names
+
+### Deep Learning -- 2012-
+![Embedding words for Deep Learning](../figures/nlp_pipeline_deep.svg)
+- 2012: AlexNet has less than 25% error on ImageNet challenge
+- 2018: Transformer architecture ([Attention Is All You Need](https://doi.org/10.48550/arXiv.1706.03762))
+- 2019: [GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) released. Surprisingly good.
+- 2020: [GPT-3](https://doi.org/10.48550/arXiv.2005.14165) released. Surprisingly still improving.
+- 2023: ChatGPT (GPT-3.5) released. General public notices.
+
+## Compute and AI
+- What has changed?
+<iframe src="https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+### Compute use over time
+<iframe src="https://ourworldindata.org/grapher/exponential-growth-of-computation-in-the-training-of-notable-ai-systems?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+### What was new with ChatGPT?
+- Base models are pure language models
+- Chat models are:
+    - Instruct tuned (supervised)
+    - Reinforcement Learning with Human Feedback
+
+### RLHF
+![RLHF diagram](rlhf_diagram.webp)
+- Enables RL when no clear scoring function available
+- Much less human input than pure supervised learning
+
+### Further scaling
+![3 scaling laws, pre, post and test-time](figures/3-Scaling-Laws-Chart-scaled.png)
+
+
+
+    - (Something about scaling test time compute?)
+- Brief intro to hardware (might fit better later)?
+    - Alvis
+    - GPUs slow but parallel
+    - Multi-GPU
+    - Batch queue system
+- Conclusion of introduction
+    - Briefly sketch what runs in background of chatbots on websites (or if using APIs) (bakom kulisserna)
+    - "This part is what we'll be learning today"
