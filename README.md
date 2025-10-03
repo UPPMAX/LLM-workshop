@@ -1,4 +1,4 @@
-# NAISS course template
+# NAISS LLM Workshop
 
 <!-- markdownlint-disable MD013 --><!-- Badges cannot be split up over lines, hence will break 80 characters per line -->
 
@@ -8,6 +8,13 @@
 [![Create website](https://github.com/UPPMAX/naiss_course_template/actions/workflows/create_website.yaml/badge.svg?branch=main)](https://github.com/UPPMAX/naiss_course_template/actions/workflows/create_website.yaml)
 
 <!-- markdownlint-enable MD013 -->
+
+## For the learners
+
+1. This course requires basic knowledge in Linux command line, Python programming, and Machine Learning.
+2. It is aimed at researchers who are interested in learning about LLM ecosystem and run their models on NAISS infrastructure.
+3. If you would like to see some content included in this for future iterations of the course, please open an Issue on Github or contact the course organizers via [NAISS support](https://supr.naiss.se/support/)
+
 
 ## Files used by continuous integration scripts
 
