@@ -27,7 +27,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - [Darthmout Summer Research Project](http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf)(can be skipped)
 
 ### Early NLP &ndash; 1956-1966
-![Rule based NLP pipeline](../figures/nlp_pipeline_rules.svg)
+![Rule based NLP pipeline](figures/nlp_pipeline_rules.svg)
 
 - Rule based, lots of manual effort
 - Lots of LISP
@@ -40,10 +40,10 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 - NLP Winter started even earlier
 
-![Wintery landscape](../figures/winter.svg)
+![Wintery landscape](figures/winter.svg)
 
 ### Statistical NLP &ndash; 1980s
-![Statistical NLP pipeline](../figures/nlp_pipeline_stats.svg)
+![Statistical NLP pipeline](figures/nlp_pipeline_stats.svg)
 
 - Using statistics of the corpus
 - Bag-of-words, N-grams
@@ -53,7 +53,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - Research continues under other names
 
 ### Deep Learning -- 2012-
-![Embedding words for Deep Learning](../figures/nlp_pipeline_deep.svg)
+![Embedding words for Deep Learning](figures/nlp_pipeline_deep.svg)
 - 2012: [AlexNet](https://doi.org/10.1145/3065386) has less than 25% error on ImageNet challenge
 - 2018: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
 - 2019: [GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) released. Surprisingly good.
