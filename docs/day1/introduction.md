@@ -54,6 +54,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ### Deep Learning -- 2012-
 <img src="(figures/nlp_pipeline_deep.svg" alt="Embedding words for Deep Learning">
+
 - 2012: [AlexNet](https://doi.org/10.1145/3065386) has less than 25% error on ImageNet challenge
 - 2018: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
 - 2019: [GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) released. Surprisingly good.
@@ -62,10 +63,12 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ## Compute and AI
 - What has changed? [The bitter lesson](https://en.wikipedia.org/wiki/Bitter_lesson)
+
 <iframe src="https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
 
 ### Compute use over time
 <iframe src="https://ourworldindata.org/grapher/exponential-growth-of-computation-in-the-training-of-notable-ai-systems?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
 - [Compute](https://ourworldindata.org/scaling-up-ai#compute-scaling-up-computational-resources), but also [data](https://ourworldindata.org/scaling-up-ai#data-scaling-up-the-training-data), [architecture](https://ourworldindata.org/scaling-up-ai#data-scaling-up-the-training-data) and [algorithms](https://epoch.ai/blog/algorithmic-progress-in-language-models)
 
 ### What was new with ChatGPT?
@@ -76,6 +79,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ### RLHF
 <img src="(figures/rlhf_diagram.webp" alt="RLHF diagram">
+
 - Enables RL when no clear scoring function available
 - Much less human input than pure supervised learning
 
