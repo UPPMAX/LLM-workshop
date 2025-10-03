@@ -75,7 +75,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-![RLHF diagram](rlhf_diagram.webp)
+![RLHF diagram](figures/rlhf_diagram.webp)
 - Enables RL when no clear scoring function available
 - Much less human input than pure supervised learning
 
