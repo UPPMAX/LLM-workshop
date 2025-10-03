@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="592"
+   height="102.59375"
+   version="1.1"
+   id="svg42735"
+   sodipodi:docname="nlp_pipeline_deep.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs42739">
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-3" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-6" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-0" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-36" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-1" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-02" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="117.98695"
+       height="20.145289"
+       id="rect44934-7" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="127.58241"
+       height="46.664602"
+       id="rect44934-2" />
+    <style
+       id="style126528">
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="98.58579"
+       height="31.767964"
+       id="rect44934-9" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="98.585793"
+       height="31.767963"
+       id="rect44934-9-7" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-63" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview42737"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="3.5153309"
+     inkscape:cx="391.71277"
+     inkscape:cy="65.427696"
+     inkscape:window-width="3840"
+     inkscape:window-height="2082"
+     inkscape:window-x="0"
+     inkscape:window-y="41"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg42735" />
+  <!-- Headings -->
+  <text
+     x="51"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42707">Input</text>
+  <text
+     x="211"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42709">Representation</text>
+  <text
+     x="381"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42711">Processing</text>
+  <text
+     x="541"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42713">Output</text>
+  <!-- Input Box -->
+  <rect
+     x="1"
+     y="21.59375"
+     width="100"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#d3d3d3;stroke:#000000;stroke-width:2"
+     id="rect42715" />
+  <!-- Arrow to Representation -->
+  <line
+     x1="101"
+     y1="61.59375"
+     x2="141"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42717" />
+  <polygon
+     points="150,75 150,65 160,70 "
+     style="fill:#000000"
+     id="polygon42719"
+     transform="translate(-9,-8.40625)" />
+  <!-- Representation Box -->
+  <rect
+     x="151"
+     y="21.59375"
+     width="120"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2"
+     id="rect42721" />
+  <!-- Arrow to Processing -->
+  <line
+     x1="271"
+     y1="61.59375"
+     x2="311"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42723" />
+  <polygon
+     points="320,75 320,65 330,70 "
+     style="fill:#000000"
+     id="polygon42725"
+     transform="translate(-9,-8.40625)" />
+  <!-- Processing Box -->
+  <rect
+     x="321"
+     y="21.59375"
+     width="120"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2"
+     id="rect42727" />
+  <!-- Arrow to Output -->
+  <line
+     x1="441"
+     y1="61.59375"
+     x2="481"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42729" />
+  <polygon
+     points="490,75 490,65 500,70 "
+     style="fill:#000000"
+     id="polygon42731"
+     transform="translate(-9,-8.40625)" />
+  <!-- Output Box -->
+  <rect
+     x="491"
+     y="21.59375"
+     width="100"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#d3d3d3;stroke:#000000;stroke-width:2"
+     id="rect42733" />
+  <text
+     xml:space="preserve"
+     id="text44932"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(-5.7543142,-0.12145844)"><tspan
+       x="19.441406"
+       y="58.644501"
+       id="tspan191636"><tspan
+   style="fill:#0000ff"
+   id="tspan191630">The</tspan> <tspan
+   style="fill:#f00000"
+   id="tspan191632">cat</tspan> <tspan
+   style="fill:#3c3c3c"
+   id="tspan191634">sat</tspan> </tspan><tspan
+       x="19.441406"
+       y="75.311127"
+       id="tspan191642"><tspan
+   style="fill:#00f000"
+   id="tspan191638">on</tspan> <tspan
+   style="fill:#0000ff"
+   id="tspan191640">the</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     id="text44932-20"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-63);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(483.32447,2.5671679)"><tspan
+       x="19.441406"
+       y="58.644501"
+       id="tspan191644">cat sat on </tspan><tspan
+       x="19.441406"
+       y="75.311127"
+       id="tspan191646">the mat</tspan></text>
+  <text
+     xml:space="preserve"
+     id="text44932-4"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-9);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(476.20809,21.643985)" />
+  <text
+     xml:space="preserve"
+     id="text44932-0"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-36);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(460.59176,0.3764919)" />
+  <text
+     xml:space="preserve"
+     id="text44932-8"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-1);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(406.6055,-61.562799)" />
+  <text
+     xml:space="preserve"
+     id="text44932-3"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-02);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(489.96142,-9.4508344)" />
+  <text
+     xml:space="preserve"
+     id="text44932-2"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-6);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(153.45607,-0.482339)" />
+  <text
+     xml:space="preserve"
+     id="text44932-5"
+     style="font-style:normal;font-weight:normal;font-size:12.2678px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-3);fill:#000000;fill-opacity:1;stroke:none"
+     transform="matrix(1.1812496,0,0,1,145.43861,-1.6087762)" />
+  <rect
+     id="_Transparent_Rectangle_"
+     data-name="&lt;Transparent Rectangle&gt;"
+     class="cls-1"
+     width="118.76288"
+     height="118.76288"
+     x="386.37723"
+     y="-199.07932"
+     style="stroke-width:3.71134" />
+  <g
+     id="g150671"
+     transform="matrix(0.40990407,0,0,0.40990407,7.9586269,100.94812)">
+    <path
+       d="m 569.91347,-79.492439 v 7.010188 h -94.63754 l -3.50509,-3.505094 v -94.637535 h 7.01019 v 91.132441 z"
+       id="path148485"
+       style="fill:#000000;stroke-width:7.01019" />
+    <path
+       d="m 435.49473,-26.517842 -5.30064,-4.587588 41.31125,-47.732272 3.77059,6.355451 z"
+       id="path148485-0"
+       style="fill:#000000;stroke-width:5.72539"
+       sodipodi:nodetypes="ccccc" />
+    <rect
+       x="499.51288"
+       y="-137.08342"
+       width="14.020375"
+       height="14.020375"
+       id="rect148487"
+       style="fill:#f00000;fill-opacity:1;stroke-width:7.01019" />
+    <rect
+       x="548.88287"
+       y="-114.54337"
+       width="14.020375"
+       height="14.020375"
+       id="rect148489"
+       style="fill:#00f000;fill-opacity:1;stroke-width:7.01019" />
+    <rect
+       x="427.00555"
+       y="-112.33686"
+       width="14.020375"
+       height="14.020375"
+       id="rect148491"
+       style="fill:#3c3c3c;fill-opacity:1;stroke-width:7.01019" />
+    <rect
+       x="487.19998"
+       y="-64.391693"
+       width="14.020375"
+       height="14.020375"
+       id="rect148493"
+       style="fill:#0000ff;fill-opacity:1;stroke-width:7.01019" />
+  </g>
+  <g
+     id="g175116"
+     transform="matrix(2.4446826,0,0,2.4446826,352.92805,32.228995)">
+    <path
+       d="m 20.5,9 a 3.49,3.49 0 0 0 -3.45,3 h -1.1 A 2.49,2.49 0 0 0 11.554,10.948 L 8.878,9.731 12.021,5.506 a 2.458,2.458 0 0 0 2.98,-0.019 L 17.339,8 H 16 v 1 h 3 V 6 H 18 V 7.243 L 15.664,4.731 A 2.473,2.473 0 0 0 16,3.5 a 2.5,2.5 0 0 0 -5,0 2.474,2.474 0 0 0 0.343,1.243 L 7.947,9.308 4.955,7.947 A 2.404,2.404 0 0 0 4.794,6.509 L 8.498,5.124 8.058,6.495 9,6.828 10,4 7.172,3 6.838,3.943 7.848,4.3 4.189,5.668 A 2.498,2.498 0 1 0 3.507,9.785 l 2.085,2.688 -2.053,2.76 a 2.5,2.5 0 1 0 0.87,3.864 L 7.893,20.684 6.838,21.057 7.172,22 10,21 9,18.172 8.057,18.505 8.492,19.859 4.884,18.214 A 2.471,2.471 0 0 0 5,17.5 2.5,2.5 0 0 0 4.942,16.973 l 3.053,-1.405 3.476,4.48 a 2.498,2.498 0 1 0 4.113,0.075 L 18,17.707 V 19 h 1 v -3 h -3 v 1 h 1.293 l -2.416,2.416 A 2.466,2.466 0 0 0 12.21,19.369 l -3.283,-4.23 2.554,-1.176 A 2.494,2.494 0 0 0 15.95,13 h 1.1 A 3.493,3.493 0 1 0 20.5,9 Z m -7,-7 A 1.5,1.5 0 1 1 12,3.5 1.502,1.502 0 0 1 13.5,2 Z m 0,18 A 1.5,1.5 0 1 1 12,21.5 1.502,1.502 0 0 1 13.5,20 Z M 1,7.5 A 1.5,1.5 0 1 1 3.457,8.645 L 3.313,8.757 A 1.496,1.496 0 0 1 1,7.5 Z M 4.32,9.203 A 2.507,2.507 0 0 0 4.584,8.877 L 7.336,10.128 6.212,11.64 Z M 2.5,19 A 1.5,1.5 0 1 1 4,17.5 1.502,1.502 0 0 1 2.5,19 Z M 4.537,16.059 A 2.518,2.518 0 0 0 4.344,15.825 l 1.885,-2.532 1.136,1.464 z M 8.297,14.328 6.849,12.46 8.269,10.552 11.1,11.84 a 2.29,2.29 0 0 0 -0.033,1.213 z M 13.5,14 A 1.5,1.5 0 1 1 15,12.5 1.502,1.502 0 0 1 13.5,14 Z m 7,1 A 2.5,2.5 0 1 1 23,12.5 2.502,2.502 0 0 1 20.5,15 Z M 22,12.5 A 1.5,1.5 0 1 1 20.5,11 1.502,1.502 0 0 1 22,12.5 Z"
+       id="path175104" />
+    <path
+       fill="none"
+       d="M 0,0 H 24 V 24 H 0 Z"
+       id="path175106" />
+  </g>
+</svg>
