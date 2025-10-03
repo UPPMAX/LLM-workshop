@@ -27,7 +27,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - [Darthmout Summer Research Project](http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf)(can be skipped)
 
 ### Early NLP &ndash; 1956-1966
-<img src="(figures/nlp_pipeline_rules.svg" alt="Rule based NLP pipeline">
+<img src="(figures/nlp_pipeline_rules.svg" alt="Rule based NLP pipeline"/>
 
 - Rule based, lots of manual effort
 - Lots of LISP
@@ -40,10 +40,10 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 - NLP Winter started even earlier
 
-<img src="(figures/winter.svg" alt="Wintery landscape">
+<img src="(figures/winter.svg" alt="Wintery landscape"/>
 
 ### Statistical NLP &ndash; 1980s
-<img src="(figures/nlp_pipeline_stats.svg" alt="Statistical NLP pipeline">
+<img src="(figures/nlp_pipeline_stats.svg" alt="Statistical NLP pipeline"/>
 
 - Using statistics of the corpus
 - Bag-of-words, N-grams
@@ -53,7 +53,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - Research continues under other names
 
 ### Deep Learning -- 2012-
-<img src="(figures/nlp_pipeline_deep.svg" alt="Embedding words for Deep Learning">
+<img src="(figures/nlp_pipeline_deep.svg" alt="Embedding words for Deep Learning"/>
 
 - 2012: [AlexNet](https://doi.org/10.1145/3065386) has less than 25% error on ImageNet challenge
 - 2018: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
@@ -78,13 +78,13 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-<img src="(figures/rlhf_diagram.webp" alt="RLHF diagram">
+<img src="(figures/rlhf_diagram.webp" alt="RLHF diagram"/>
 
 - Enables RL when no clear scoring function available
 - Much less human input than pure supervised learning
 
 ### Further scaling
-<img src="(figures/3-Scaling-Laws-Chart-scaled.png" alt="3 scaling laws, pre, post and test-time">
+<img src="(figures/3-Scaling-Laws-Chart-scaled.png" alt="3 scaling laws, pre, post and test-time"/>
 
 ## Ethics and issues
 - Societal concerns
@@ -115,7 +115,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - Misaligned leadership
     - Sam Altman, Elon Musk 
 - Superintelligence
-    - [<img src="(figures/ifanyonebuildsit_bookcover.png" alt="If anyone builds it everyone dies, book cover">](https://ifanyonebuildsit.com/)
+    - [<img src="(figures/ifanyonebuildsit_bookcover.png" alt="If anyone builds it everyone dies, book cover"/>](https://ifanyonebuildsit.com/)
 
 ## Introduction to the hardware for this workshop
 - Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
