@@ -14,11 +14,13 @@ jobs:
         with:
           python-version: 3.x
 
+      - uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '3.1.11'
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt natsort
-          #sudo apt-get update
-          sudo apt-get install -y pandoc
 
       - name: Build slides
         run: |
