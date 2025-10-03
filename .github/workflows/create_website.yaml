@@ -27,6 +27,7 @@ jobs:
           SITE_ROOT="/LLM-workshop"
           for f in "${DOC_ROOT}/day1/introduction.md"; do
             pandoc "${f}" -o "${f%.md}-slides.html"\
+              -f markdown-implicit_figures \
               --standalone \
               --slide-level=3 \
               -t revealjs \
