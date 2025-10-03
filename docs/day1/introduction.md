@@ -109,7 +109,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ### Misalignment
 - RLHF is only a step in the right direction
-    - <https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research?utm_campaign=post_share&utm_source=link>
+    - <https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research>
 - Goodhart's law
     - <https://doi.org/10.48550/arXiv.1803.04585>
 - Misaligned leadership
