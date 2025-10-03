@@ -19,6 +19,7 @@ icon: simple/openstreetmap
 <script type="text/javascript">
 trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=AI","guestPath":"https://trends.google.com:443/trends/embed/"});
 </script>
+
 - How has AI developed over time?
 
 ### AI as a term is coined
@@ -59,7 +60,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - 2018: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
 - 2019: [GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) released. Surprisingly good.
 - 2020: [GPT-3](https://doi.org/10.48550/arXiv.2005.14165) released. Surprisingly still improving.
-- 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/?utm_source=chatgpt.com). General public starts to take notice.
+- 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/). General public starts to take notice.
 
 ## Compute and AI
 - What has changed? [The bitter lesson](https://en.wikipedia.org/wiki/Bitter_lesson)
@@ -78,13 +79,13 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-![RLHF diagram](figures/rlhf_diagram.webp)
+![RLHF diagram](figures/rlhf_diagram.webp){ style="max-width: 1232px; height: auto;" }
 
 - Enables RL when no clear scoring function available
-- Much less human input than pure supervised learning
+- Relatively little human input needed
 
 ### Further scaling
-![3 scaling laws, pre, post and test-time](figures/3-Scaling-Laws-Chart-scaled.png)
+[![3 scaling laws, pre, post and test-time](figures/3-Scaling-Laws-Chart-scaled.png)](https://blogs.nvidia.com/blog/ai-scaling-laws/)
 
 ## Ethics and issues
 - Societal concerns
@@ -96,26 +97,24 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - Confident falsehood and sycophancy
 - Copyright & IP issues
 - Distribution of wealth and the job market
-    - <https://openai.com/index/gdpval/>
+    - E.g. [GDPval](https://openai.com/index/gdpval/) benchmark
 - Climate footprint
-    - <https://www.nature.com/articles/s41598-024-54271-x>
-    - <https://en.wikipedia.org/wiki/Jevons_paradox>
+    - Word for word comparisson, [AI is cheaper](https://www.nature.com/articles/s41598-024-54271-x)
+    - But, AI can generate a lot more text (rel. [Jevons paradox](https://en.wikipedia.org/wiki/Jevons_paradox)
 
 ### Misuse concerns
-- Mass spear phishing
+- Mass spear phishing, disinformation campaigns, ...
 - Cyberattacks
+    - [Finding](https://thehackernews.com/2024/11/googles-ai-tool-big-sleep-finds-zero.html) and exploiting vulnerabilities
 - Enabling bad actors
-    - <https://www.nature.com/articles/s42256-022-00465-9>
+    - [Dual use of artificial-intelligence-powered drug discovery](https://doi.org/10.1038/s42256-022-00465-9)
 
 ### Misalignment
-- RLHF is only a step in the right direction
-    - <https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research>
-- Goodhart's law
-    - <https://doi.org/10.48550/arXiv.1803.04585>
+- RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) in the right direction
+- [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership
     - Sam Altman, Elon Musk 
-- Superintelligence
-    - [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/)
+- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/){ style="max-height: 20px; width: auto;" }
 
 ## Introduction to the hardware for this workshop
 - Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
