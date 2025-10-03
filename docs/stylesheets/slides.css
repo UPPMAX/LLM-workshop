@@ -16,6 +16,7 @@
     box-shadow: none;
 }
 
+/* By default all titles are all-caps, don't want that */
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -24,3 +25,15 @@
 .reveal h6 {
   text-transform: none;
 }
+
+/* Change how blockquotes look */
+.reveal blockquote {
+  font-size: 0.7em;
+  font-style: italic;
+  color: #555;              /* softer text color */
+  border-left: 4px solid #888;
+  padding-left: 1em;
+  background: none;         /* remove default background */
+  box-shadow: none;         /* remove shadow if theme adds one */
+}
+
