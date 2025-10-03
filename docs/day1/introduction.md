@@ -100,14 +100,38 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 ### Further scaling
 ![3 scaling laws, pre, post and test-time](figures/3-Scaling-Laws-Chart-scaled.png)
 
+## Ethics and issues
+- Societal concerns
+    - Perpetuated bias
+    - Confident falsehood and sycophancy
+    - Copyright & IP issues
+    - Distribution of wealth and the job market
+        - https://openai.com/index/gdpval/
+    - Climate footprint
+        - https://www.nature.com/articles/s41598-024-54271-x
+        - https://en.wikipedia.org/wiki/Jevons_paradox
+- Misuse
+    - Mass spear phishing
+    - Cyberthreats
+    - Enabling bad actors
+        - https://www.nature.com/articles/s42256-022-00465-9
+- Misalignment
+    - RLHF is only a step in the right direction
+        - https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research?utm_campaign=post_share&utm_source=link
+    - Goodhart's law
+        - https://doi.org/10.48550/arXiv.1803.04585
+    - Misaligned leadership
+        - Sam Altman, Elon Musk, 
+    - Superintelligence
+        - [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/)
 
+## Introduction to the hardware for this workshop
+- Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
+- The Alvis system
+- GPUs as compute accelerator
+- Multi-GPU
+- Containers
+- Batch queue system
 
-    - (Something about scaling test time compute?)
-- Brief intro to hardware (might fit better later)?
-    - Alvis
-    - GPUs slow but parallel
-    - Multi-GPU
-    - Batch queue system
-- Conclusion of introduction
-    - Briefly sketch what runs in background of chatbots on websites (or if using APIs) (bakom kulisserna)
-    - "This part is what we'll be learning today"
+## Excercise
+- Submitting a job TODO
