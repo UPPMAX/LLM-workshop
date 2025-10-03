@@ -1,6 +1,7 @@
 ---
 tags:
   - Inference
+icon: fontawesome/solid/bolt
 ---
 
 # Accessing LLMs

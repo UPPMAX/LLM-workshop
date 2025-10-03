@@ -1,3 +1,8 @@
+---
+title: Quantization and number formats
+icon: octicons/file-binary-24
+---
+
 # Quantization and number formats
 
 ## Formats of LLM models

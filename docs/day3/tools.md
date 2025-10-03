@@ -1,3 +1,8 @@
+---
+title: Tools and Reasoning
+icon: fontawesome/solid/diagram-project
+---
+
 # Tools and reasoning (Should this just focus on MCPs instead?)
 - Overview of tools and function calling, examples
     - Claude plays pokemon

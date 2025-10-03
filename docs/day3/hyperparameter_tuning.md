@@ -1,3 +1,8 @@
+---
+title: Hyperparameter Tuning
+icon: fontawesome/solid/sliders
+---
+
 # Hyperparameter tuning
 - What could be tuned?
 - Overview of basic tuning techniques:

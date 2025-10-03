@@ -1,3 +1,7 @@
+---
+icon:  simple/nvidia
+---
+
 # Performance of LLM models
 
 ## Factors influencing LLM performance

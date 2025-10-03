@@ -4,6 +4,7 @@ tags:
   - fine-tuning
   - lora
   - qlora
+icon: octicons/tools-16
 ---
 
 # Fine-Tuning

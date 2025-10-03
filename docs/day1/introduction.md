@@ -5,6 +5,7 @@ date: 2025-09-30
 fontsize: 10pt
 tags:
   - Introduction
+icon: simple/openstreetmap
 ---
 
 ## Introduction
