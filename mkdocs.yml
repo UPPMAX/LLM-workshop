@@ -5,25 +5,25 @@ nav:
   - "Start": index.md
   - "Course dates": course_dates.md
   - "Schedule": schedule.md
-#  - Day 1:
-#    - Introduction: day1/introduction.md
-#    - Publicly available LLMs: day1/public_llms.md
-#    - Accessing LLM: day1/access_llm.md
-#    - Quantization and number formats: day1/quant_formats.md
-#    - LLM performance: day1/gpus_and_performance.md
-#  - Day 2:
-#    - Data Pipelines: day2/data_pipelines.md
-#    - How to setup the rendering of the website: day2/how_to_setup_website_rendering/README.md
-#    - How to fix the spelling errors: day2/how_to_fix_spelling_errors/README.md
-#    - RAG: day2/rag.md
-#  - Day 3:
-#    - Prompt Engineering: day3/prompt_engineering.md
-#    - Tools and Reasoning: day3/tools.md
-#    - Fine-tuning: day3/fine_tuning.md
-#    - Hyperparameter tuning: day3/hyperparameter_tuning.md
-#    - Evaluating LLMs: day3/evaluation_metrics.md
-#    - How to setup the rendering of the website: day3/how_to_setup_website_rendering/README.md
-#    - How to fix the spelling errors: day3/how_to_fix_spelling_errors/README.md
+  # - Day 1:
+  #   - Introduction: day1/introduction.md
+  #   - Publicly available LLMs: day1/public_llms.md
+  #   - Accessing LLM: day1/access_llm.md
+  #   - Quantization and number formats: day1/quant_formats.md
+  #   - LLM performance: day1/gpus_and_performance.md
+  # - Day 2:
+  #   - Data Pipelines: day2/data_pipelines.md
+  #   - How to setup the rendering of the website: day2/how_to_setup_website_rendering/README.md
+  #   - How to fix the spelling errors: day2/how_to_fix_spelling_errors/README.md
+  #   - RAG: day2/rag.md
+  # - Day 3:
+  #   - Prompt Engineering: day3/prompt_engineering.md
+  #   - Tools and Reasoning: day3/tools.md
+  #   - Fine-tuning: day3/fine_tuning.md
+  #   - Hyperparameter tuning: day3/hyperparameter_tuning.md
+  #   - Evaluating LLMs: day3/evaluation_metrics.md
+  #   - How to setup the rendering of the website: day3/how_to_setup_website_rendering/README.md
+  #   - How to fix the spelling errors: day3/how_to_fix_spelling_errors/README.md
 
 theme:
   name: material

@@ -18,10 +18,10 @@ icon: material/earth
 
 <figure markdown="span">
   ![Open vs Closed Models](./figures/open-vs-close.png){ width="700" }
-  <figcaption>Narrowing performance gap on MMLU benchmark (Apr 2022 - Aug 2024) with human domain experts at 89.8%</figcaption>
+  <figcaption>Narrowing performance gap on MMLU benchmark (Apr 2022 - July 2025) with human domain experts at 89.8%</figcaption>
 </figure>
 
-Open-weight models are catching up with closed source models steadily[^1]. However, creating high-quality benchmarks is an active area of research as the existing ones are beginning to plateau. 
+Open-weight models are catching up with closed source models steadily[^1][^9]. However, creating high-quality benchmarks is an active area of research as the existing ones are beginning to plateau. 
 
 ## Categories 
 
@@ -101,3 +101,4 @@ Core capability benchmarks (higher is better unless noted)
 [^6]: MATH: Measuring Mathematical Problem Solving With the MATH Dataset. [arXiv](https://arxiv.org/abs/2311.12022)
 [^7]: BBH: Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them. [arXiv](https://arxiv.org/abs/2210.09261)
 [^8]: IFEval: Instruction-Following Evaluation for Large Language Models. [arXiv](https://arxiv.org/abs/2311.07911)
+[^9]: Closed-source vs. open-weight models [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7378380957889904640/)
