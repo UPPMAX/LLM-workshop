@@ -14,7 +14,6 @@ icon: material/earth
 
 ## Arena
 
-!!!- question "How does the current landscape look like?"
 
 <figure markdown="span">
   ![Open vs Closed Models](./figures/open-vs-close.png){ width="700" }
@@ -40,7 +39,13 @@ Open-weight models are catching up with closed source models steadily[^1]. Howev
 
 
 ## Leaderboard
-[Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/)
+[:hugging: Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/)
+
+<iframe src="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+Other notable leaderboards:
+ - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models) 
+ - [LMArena](https://huggingface.co/spaces/AI-Lab-ML/LMArena) (focus on open-weight models)
 
 ## Benchmarks to consider
 

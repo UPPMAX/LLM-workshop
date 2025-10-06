@@ -2,10 +2,10 @@ site_name: LLM Workshop
 repo_url: https://github.com/UPPMAX/LLM-workshop
 
 nav:
-  - "Start": index.md
+#  - "Start": index.md
   - "Course dates": course_dates.md
   - "Schedule": schedule.md
-#  - Day 1:
+  - Day 1:
 #    - Introduction: day1/introduction.md
 #    - Publicly available LLMs: day1/public_llms.md
 #    - Accessing LLM: day1/access_llm.md
@@ -84,6 +84,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://www.naiss.se/
+      name: NAISS
 
 extra_javascript:
   - javascripts/mathjax.js
