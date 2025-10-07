@@ -32,10 +32,10 @@ jobs:
               -f markdown-implicit_figures \
               --standalone \
               --slide-level=3 \
+              --mathjax \
               -t revealjs \
               -V "revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5.2.1" \
               -V "theme=white" \
-              -V mathjax \
               --css "${SITE_ROOT}/stylesheets/slides.css"
           done
       - name: Deploy website
