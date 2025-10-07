@@ -8,7 +8,7 @@ tags:
 icon: simple/openstreetmap
 ---
 
-## Introduction
+## Overview
 - History of AI
 - Compute and AI
 - Ethics and concerns
@@ -69,7 +69,7 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
-$$\mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}}\right)V$$
+$$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}}\right)V $$
 - Self-attention: $Q = X W_Q$, $K = X W_K$ and $V = X W_V$
 - Cross-attention: $Q = X_\mathrm{dec} W_Q$, $K = X_\mathrm{enc} W_K$ and $V = X_\mathrm{enc} W_V$
 - In decoder, self-attention is masks future tokens
