@@ -53,14 +53,27 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - The word "AI" is **not** a buzzword
 - Research continues under other names
 
-### Deep Learning -- 2012-
+### Deep Learning &ndash; 2012-
 ![Embedding words for Deep Learning](figures/nlp_pipeline_deep.svg)
 
 - 2012: [AlexNet](https://doi.org/10.1145/3065386) has less than 25% error on ImageNet challenge
-- 2018: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
+- 2017: Transformer architecture ([Attention Is All You Need](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf), [retrospectic](https://doi.org/10.1145/3065386))
 - 2019: [GPT-2](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) released. Surprisingly good.
 - 2020: [GPT-3](https://doi.org/10.48550/arXiv.2005.14165) released. Surprisingly still improving.
 - 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/). General public starts to take notice.
+
+### Deep Learning &ndash; Transformer architecture
+![Transformer architecture](figures/Transformer_full_architecture)
+
+- No recurrent connections, thus more parallelizable
+
+### Deep Learning &ndash; Attention mechanism
+- Scaled Dot-Product Attention
+$$\mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}}\right)V$$
+- Self-attention: $Q = X W_Q$, $K = X W_K$ and $V = X W_V$
+- Cross-attention: $Q = X_\mathrm{dec} W_Q$, $K = X_\mathrm{enc} W_K$ and $V = X_\mathrm{enc} W_V$
+- In decoder, self-attention is masks future tokens
+- Autoregressive pure text LLMs are typically decoder only
 
 ## Compute and AI
 - What has changed? [The bitter lesson](https://en.wikipedia.org/wiki/Bitter_lesson)
