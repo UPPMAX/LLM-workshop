@@ -97,7 +97,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-![RLHF diagram](figures/rlhf_diagram.webp){ style="max-width: 1232px; height: auto;" }
+![RLHF diagram](figures/rlhf_diagram.webp){: style="max-width: 1232px; height: auto;" }
 
 - Enables RL when no clear scoring function available
 - Relatively little human input needed
@@ -132,19 +132,57 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership
     - Sam Altman, Elon Musk 
-- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/){ style="max-height: 20px; width: auto;" }
+- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/){: style="height: 40px; width: auto;" }
 
 ## Introduction to the hardware for this workshop
 - Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
-- The Alvis system
+- Compute clusters
 - GPUs as compute accelerator
 - Multi-GPU
 - Containers
 - Batch queue system
 
-## Introduction Conclusion
-- Briefly sketch what runs in background of chatbots on websites (or if using APIs) (bakom kulisserna)
-- "This part is what we'll be learning today"
+### Compute clusters
+![Generic compute cluster diagram](figures/generic_cluster.svg)
+
+### The compute node
+![Generic compute node with GPUs](figures/generic_gpu_node.svg){: style="max-width: 60%; width: auto;" }
+
+- Speed-up by parallelization
+- Feeding data to GPU memory (VRAM) often bottleneck
+
+### Software
+- Default software environment intentionally sparse
+- Use modules or containers to run software
+- (Follow our [recommendations](https://www.c3se.chalmers.se/documentation/module_system/python/) when installing Python packages)
+- We will use containers in this course
+
+### Software &ndash; containers
+- Apptainer containers
+- ([Building containers](https://www.c3se.chalmers.se/documentation/miscellaneous/containers/#building-containers))
+- A single file for your software and all dependencies
+```bash
+apptainer exec your_container.sif python your_code.py
+```
+
+### SLURM
+- Batch queueing system
+- Queue and running jobs `squeue [--me]`
+- Previous jobs `sacct`
+- Submit jobs `sbatch <JOBSCRIPT>`
+
+### SLURM workflow &ndash; Preparing job
+
+### SLURM workflow &ndash; Submitting job to queue
+
+### SLURM workflow &ndash; Job starts
+
+## Summary of Introduction
+- Compute a key component to the success of LLMs
+- Use and development of AI is not without its issues
+- The hardware you can access
+- Containers for accessing software
+- SLURM batch queue system for running things on the cluster
 
 ## Excercise
 - Submitting a job TODO
