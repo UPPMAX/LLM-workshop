@@ -43,9 +43,9 @@ Open-weight models are catching up with closed source models steadily[^1][^9]. H
 
 <iframe src="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
 
-Other notable leaderboards:
- - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models) 
- - [LMArena](https://huggingface.co/spaces/AI-Lab-ML/LMArena) (focus on open-weight models)
+Other notable leaderboards:  
+ - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models by Stanford)  
+ - [LMArena](http://lmarena.ai/leaderboard) (focus on open-weight models by UC Berkeley)
 
 ## Benchmarks to consider
 
