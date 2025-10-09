@@ -159,8 +159,9 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 
 ### Software &ndash; containers
 - Apptainer containers
-- ([Building containers](https://www.c3se.chalmers.se/documentation/miscellaneous/containers/#building-containers))
 - A single file for your software and all dependencies
+- ([Building containers](https://www.c3se.chalmers.se/documentation/miscellaneous/containers/#building-containers))
+- Running software in a container
 ```bash
 apptainer exec your_container.sif python your_code.py
 ```
