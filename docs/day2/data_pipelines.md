@@ -12,6 +12,9 @@ icon: octicons/workflow-16
 
 Well-designed data pipelines determine LLM quality, safety, and training throughput.
 
+https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
+https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining
+
 ## Pre-training Pipelines
 
 Goal: assemble large, diverse, governed corpora and feed tokens efficiently to trainers.
