@@ -27,7 +27,13 @@ jobs:
           # Set-up revealjs
           DOC_ROOT="docs"
           SITE_ROOT="/LLM-workshop"
-          for f in "${DOC_ROOT}/day1/introduction.md"; do
+          slides=(
+            "${DOC_ROOT}/day1/introduction.md"
+            "${DOC_ROOT}/day1/llm_hardware.md"
+            "${DOC_ROOT}/day1/llm_formats.md"
+          )
+          for f in ${slides[@]};
+          do
             pandoc "${f}" -o "${f%.md}-slides.html"\
               -f markdown-implicit_figures \
               --standalone \
