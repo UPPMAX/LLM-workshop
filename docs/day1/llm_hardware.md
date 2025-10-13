@@ -12,7 +12,7 @@ icon: octicons/file-binary-24
 
 ### Neural networks
 
-<img src="./figures/neural_network_training.png" style="max-height: 300px;"/>
+<img src="figures/neural_network_training.png" style="max-height: 300px;"/>
 
 - Learn patterns by adjusting parameters (weights);
 - Training = prediction → differentiation → update;
