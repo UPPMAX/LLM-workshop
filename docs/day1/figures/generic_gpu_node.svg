@@ -7,39 +7,8 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg201926"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="generic_gpu_node.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview201928"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:object-paths="true"
-     inkscape:snap-midpoints="true"
-     inkscape:snap-smooth-nodes="true"
-     inkscape:snap-intersection-paths="true"
-     inkscape:snap-object-midpoints="true"
-     inkscape:snap-center="true"
-     inkscape:snap-text-baseline="true"
-     inkscape:snap-global="false"
-     inkscape:zoom="0.75401295"
-     inkscape:cx="753.30272"
-     inkscape:cy="157.82222"
-     inkscape:window-width="2560"
-     inkscape:window-height="1362"
-     inkscape:window-x="0"
-     inkscape:window-y="41"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs201923">
     <rect
@@ -80,8 +49,6 @@
        id="rect252922-7-2-3" />
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1">
     <rect
        style="fill:#e1ffce;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:2, 1"
@@ -105,7 +72,7 @@
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect245522);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.584104"><tspan
          x="-382.68555"
          y="276.02344"
-         id="tspan271217">Memory</tspan></text>
+         id="tspan4262">Memory</tspan></text>
     <rect
        style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-linecap:square;stroke-dasharray:1.99999, 0.999999"
        id="rect246750"
@@ -119,7 +86,6 @@
        x="58.811073"
        y="71.096489"
        id="text249218"><tspan
-         sodipodi:role="line"
          id="tspan249216"
          style="stroke-width:0.264583"
          x="58.811073"
@@ -137,7 +103,6 @@
        x="58.811073"
        y="51.361504"
        id="text249218-4"><tspan
-         sodipodi:role="line"
          id="tspan249216-3"
          style="stroke-width:0.264583"
          x="58.811073"
@@ -155,7 +120,6 @@
        x="86.966179"
        y="71.096489"
        id="text249218-49"><tspan
-         sodipodi:role="line"
          id="tspan249216-2"
          style="stroke-width:0.264583"
          x="86.966179"
@@ -173,7 +137,6 @@
        x="86.966179"
        y="51.361504"
        id="text249218-4-6"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8"
          style="stroke-width:0.264583"
          x="86.966179"
@@ -191,7 +154,6 @@
        x="115.12126"
        y="71.096489"
        id="text249218-49-2"><tspan
-         sodipodi:role="line"
          id="tspan249216-2-6"
          style="stroke-width:0.264583"
          x="115.12126"
@@ -209,7 +171,6 @@
        x="115.12126"
        y="51.361504"
        id="text249218-4-6-4"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8-9"
          style="stroke-width:0.264583"
          x="115.12126"
@@ -227,7 +188,6 @@
        x="143.27632"
        y="71.096489"
        id="text249218-49-0"><tspan
-         sodipodi:role="line"
          id="tspan249216-2-4"
          style="stroke-width:0.264583"
          x="143.27632"
@@ -245,7 +205,6 @@
        x="143.27632"
        y="51.361504"
        id="text249218-4-6-7"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8-1"
          style="stroke-width:0.264583"
          x="143.27632"
@@ -263,7 +222,6 @@
        x="178.3757"
        y="71.096489"
        id="text249218-2"><tspan
-         sodipodi:role="line"
          id="tspan249216-7"
          style="stroke-width:0.264583"
          x="178.3757"
@@ -281,7 +239,6 @@
        x="178.3757"
        y="51.361504"
        id="text249218-4-2"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-6"
          style="stroke-width:0.264583"
          x="178.3757"
@@ -299,7 +256,6 @@
        x="206.53081"
        y="71.096489"
        id="text249218-49-06"><tspan
-         sodipodi:role="line"
          id="tspan249216-2-1"
          style="stroke-width:0.264583"
          x="206.53081"
@@ -317,7 +273,6 @@
        x="206.53081"
        y="51.361504"
        id="text249218-4-6-9"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8-4"
          style="stroke-width:0.264583"
          x="206.53081"
@@ -335,7 +290,6 @@
        x="234.68593"
        y="71.096489"
        id="text249218-49-2-0"><tspan
-         sodipodi:role="line"
          id="tspan249216-2-6-9"
          style="stroke-width:0.264583"
          x="234.68593"
@@ -353,7 +307,6 @@
        x="234.68593"
        y="51.361504"
        id="text249218-4-6-4-7"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8-9-7"
          style="stroke-width:0.264583"
          x="234.68593"
@@ -371,7 +324,6 @@
        x="262.841"
        y="71.096489"
        id="text249218-49-0-1"><tspan
-         sodipodi:role="line"
          id="tspan249216-2-4-5"
          style="stroke-width:0.264583"
          x="262.841"
@@ -389,7 +341,6 @@
        x="262.841"
        y="51.361504"
        id="text249218-4-6-7-7"><tspan
-         sodipodi:role="line"
          id="tspan249216-3-8-1-7"
          style="stroke-width:0.264583"
          x="262.841"
@@ -419,7 +370,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan271219">GPU</tspan></text>
+           id="tspan4264">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7"
@@ -4030,7 +3981,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan271221">GPU</tspan></text>
+           id="tspan4266">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8"
@@ -7641,7 +7592,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan271223">GPU</tspan></text>
+           id="tspan4268">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8-5"
@@ -11252,7 +11203,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7-2-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan271225">GPU</tspan></text>
+           id="tspan4270">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8-5-5"
