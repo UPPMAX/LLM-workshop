@@ -31,7 +31,7 @@ quantization methods.
 - `Llama-3.3`: model (architecture)
 - `70B`: size / number of parameters
 - `Instruct`: fine-tuning
-- `AWQ-INT4`: quantization style
+- `AWQ-INT4`: quantization
 - `GGUF`: model format
 
 <aside class="notes">
@@ -44,80 +44,94 @@ models might give significant speed up.
 
 </asisde>
 
-### **file-formats** of LLMs
+### File-formats of LLMs
 
-- pth/tf: "raw" ML library formats
-- ggml: older format
-- gguf: developed by llama cpp author
-- safetensors: by huggingface
-- llamafile: by mozilla, single-file format
+<img src="figures/gguf.png" style="max-height: 500px;"/>
+
+The gguf file fomat (image from [huggingface](https://huggingface.co/docs/hub/gguf))
+
+<aside class="notes">
+
+LLM models commonly consists of metadata, and the tensor themselves.
+
+</asisde>
+
+### Common formats of LLMs
+
+- bin/pth/tf: "raw" ML library formats;
+- safetensors: used by huggingfacs;
+- ggml/gguf: developed by llama.cpp (supports many qunatization formats);
+- llamafile: by mozilla, single-file format, executable.
+
+You can find detailed model information for some model formats,
+[example](https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf).
 
 <aside class="notes">
 
 Models are published on different formats and they are optimized for different
-usages, raw formats used by ML formats might need to be converted to the
-inference engine. Newer formats that are memory-mapped, which are especially
-useful for [disk offloading].
+usages. They can be converted to one another but has different purposes.
+
+raw formats used by ML formats might be handy for re-training. Some of them
+contain pickled data so might execute arbitrary code (unsafe).
+
+Newer formats like GGUF/safetensors are suitable for common model architectures
+(different engines will support them if the architecture is known). They are
+memory-mapped, which are especially useful for [disk offloading].
 
 [disk offloading]: https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.disk_offload
 
 </asisde>
 
-### Things to think about:
+### Look for the following
 
-- What models to use?
-- Where do I train/run the model?
-  + enough GPU?
-  + 
-  + GPU support my quantiztion?
-- Efficiency of loading.
-
-<aside class="notes">
-Most people publish models on 
-
-</asisde>
+- Quantization method;
+- Number format;
+- Hardware compatibility hints.
 
 ## Formats of numbers
 
 ### Why do we care?
 
+- Quantization allow you to run larger models;
+- It might also eliminate expensive communication;
 - ML tolerates lower numerical precision;
 - Number formats also determines "distributioin of information";
 
-<aside class="notes">
+### Number formats
 
-ML applications tend to tolerate numerical precision, and might benefit from a difference
-exponent/mantissa layout. So a number of different alternative formats have been developed for
-them. 
+![](figures/float16.png)
 
-</aside>
+### Floating point formats - cont. 1
 
-### Floating point formats
+![](figures/number-format.svg)
+
+### Floating point formats - cont. 2
+
+![](figures/number-ranges.png)
 
 
-### Floating point formats (cont.)
+### Hardware Compatibility
 
-|                 | hardware accel.    | note                                             |
-|-----------------|--------------------|--------------------------------------------------|
-| fp16/32/64      | most gpus          | Standard IEEE 754 floating point formats         |
-| fp8 (E4M3/E5M2) | hardware dependent | Recent IEEE 754 format, different versions exist |
-| bf16            | most gpus          | Google's floating point format                   |
-| tf32            | nvidia-gpus        | Designed for use with tensorcores on Nvidia GPUs |
-| nf4             |                    |                                                  |
-| int4            |                    |                                                  |
-| int8            |                    |                                                  |
+|                             | hardware accel. | note        |
+|-----------------------------|-----------------|-------------|
+| fp16/32/64                  | most gpus       | IEEE 754    |
+| fp8 [(E4M3/E5M2)][onnx-fp8] | hooper          | Recent IEEE |
+| bf16                        | most gpus       | Google's    |
+| tf32                        | nvidia-gpus     | Nvidia      |
+| int4/8                      | most GPUs       |             |
 
-[^3]: [Data types support][amd-fp-formats] by AMD RocM.
+[onnx-fp8]: https://onnx.ai/onnx/technical/float8.html
+
+
+See also [Data types support][amd-fp-formats] by AMD RocM.
+
 [amd-fp-formats]: https://rocm.docs.amd.com/en/latest/reference/precision-support.html
 
 <aside class="notes">
 
 Floating point number generally follows a IEEE standard format. However, details
 like the representation of negative zeros (NZ) and infinite values might be
-different.[^1]
-
-[^1]: [Notes on on fp8 support][onnx-fp8] by ONNX.
-[onnx-fp8]: https://onnx.ai/onnx/technical/float8.html
+different.
 
 </aside>
 
@@ -126,79 +140,156 @@ different.[^1]
 - ML tasks favor a larger proportion of exponents;
 - [Google's bf16] (same range as fp32, less mantissa);
 - training usually done in fp32/16;
+- int4/8 is good for inference (on older GPUs).
 
 [Google's bf16]: https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus
 
 ## Quantization methods
 
-### Terminologies
+### Quantization target
 
-- Techniques:
-  + PTQ (Post-Training Quantization)
-  + QAT (Quantization-Aware Training)
-- Distribution
-  + (A)symmetric quantization
-  + (Non-)uniform quantization
+![](figures/mixed_precision_hopper.jpg)
 
-[Visual guide to quantization][visual-guide] by Maarten Grootendorst.
-[visual-guide]: https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
-
-### Post-training quantization methods
-
-- SmoothQuant
-- GPTQ
-- AutoAWQ
-
-For a comparison of number formats see [vLLM guide].
-
-[vLLM guide]: https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md
++ Weight/activation/mixed percision (w8a16);
++ KV-cache;
++ Non-uniform;
 
 <aside class="notes">
 
-The major differences between PTQ methods are the need for calibration dataset,
-target number formats (which relates to GPU compatibility) and as a result the
-loss of accuracy.
+weights is usually the first thing to quantize, it is also the most supported
+way of quantizing the model. Depending on the hardware, it might or might not
+support converting the tensors between precision or doing tensor operations
+natively.
+
+For instance, FP8 is not officially support on Ampere GPUs (A40 and A100). While
+there exist implementations that makes [w8a16][vllm-fp8] operations available,
+quantizating KV cache to FP8 currently [need hardware
+support](https://discuss.vllm.ai/t/kv-cache-quantizing/749).
+
+[vllm-fp8]: https://docs.vllm.ai/en/v0.5.2/quantization/fp8.html
+
+Models can also been quantized
+[non-uniformly](https://docs.vllm.ai/projects/llm-compressor/en/latest/examples/quantization_non_uniform/)
 
 </aside>
 
-### Quantization aware training
+### (A)symmetric qunatization
+
+![](figures/quantization_symmetry.webp)
+
+- linear transformation;
+- depend on original range;
+- position of zero.
+
+<aside class="notes">
+
+One important aspect when quantizing the models is the distribution of the
+model, the easiest way is to simply scale the parameters by a factor.
+
+To minimize loss of precision, we could map the parameters according to the
+max/min values of the parameter, rather than the number-format range. There, we
+need to choose whether we shift the zero point in the transform (but introduces
+complexity in computation).
+
+</aside>
+
+
+### Clipping
+
+![](figures/clipping.webp)
+
+<aside class="notes">
+
+we can also choose to clip out the outlier to same more precision.
+
+</aside>
+
+
+### Calibration for weight quantization
+
+<aside class="notes">
+
+For parameters of the model We can simply quantize them, since we know their
+distribution. But given some small dataset but we can also improved the accuracy
+but estimating how important each parameter it. A popular way to do that is the
+GPTQ method.
+
+</aside>
+
+![](figures/gptq.webp)
+
+Illustration of GPTQ method, where quantization are done to minimize the error,
+weighed by according to the inverse Hessian (sensitivity).
+
+
+### Calibration for activation qunatization
+
+![](figures/dynamic_calibration.webp)
+
+Can be dynamic or static.
+
+<aside class="notes">
+
+To also quantize the activation function, we need to estimate the range of
+activation, that has to be done by passing data to the model and collect
+minima/maximi. We can do that either dynamically (during inference) or
+statically (with a calibration set).
+
+</aside>
+
+### Post-training quantization methods (PTQ)
+
+- Weights and/or activation;
+- Calibration/accuracy trade off;
+- Not detailed here: sparsification.
+
+![](figures/sparse-matrix.png)
 
 
 <aside class="notes">
 
-Difference between QAT and PAT is that a full training (with back-propogation
-at the training accuracy) is done ()
-
-</aside>
-
-### Quantization formats
-
-- AWQ
-- GPTQ
-- Marlin (GPTQ/AWQ/FP8)
-- INT8 (W8A8)
-- FP8 (W8A8)
-- BitBLAS
-- ...
-
-Quantization adds another dimension to the formats of LLM models;
-be careful with both hardware and software compatibility.
-
-### Sparsification
-
-Models may also be diversified to (example with [llm-compressor]), 
-some GPUs also support efficient evaluation of sparse ;
+Models may also be sparsified to reduce the required computation, this is
+commonly known as weight pruning. But some GPUs also support efficient
+evaluation of sparse matrices if the sparsity follow certain pattern (example
+with [llm-compressor]);
 
 [llm-compressor]: https://github.com/vllm-project/llm-compressor/blob/main/examples/sparse_2of4_quantization_fp8/README.md
 
-	
-### Evaluation of quantization results
+So far we covered mostly the so-called PTQ method when we do/can not run the
+training (for a complete list with compatibility see [vLLM guide]).
 
+[vLLM guide]: https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md
 
-Useful benchmarks:
+</aside>
 
-- [derek135/quantization-benchmarks](https://huggingface.co/datasets/derekl35/quantization-benchmarks)
-- 
+### Quantization aware training (QAT)
+
+- Introduce quantization error during training;
+
+<img src="figures/qat.webp" style="max-height: 100px;"/>
+<img src="figures/qat_back.webp" style="max-height: 300px;"/>
+
+<aside class="notes">
+
+But we can also get higher accuracy by using the Quantization aware training
+(QAT) method. There we do the training and perform the
+quantization/dequantization; which this the first thing we gain is that we can
+actually optimize the quantization parameters as part of the training process.
+
+</aside>
+
+### Quantization aware training (QAT) - cont.
+
+![](figures/qat_theory.webp)
+
+<aside class="notes">
+
+The reason why it might work better, is that by introducing the quantization
+error in the training process, we force the model to land in a local minima
+where it is less sensitive to model parameters. So even the original model
+performs worth, the quantized model works better
+
+</aside>
 
 
 ## Summary
@@ -209,3 +300,9 @@ Useful benchmarks:
 + Find the right model/format/qunatization;
 + Quantize if needed;
 + Look up/run benchmarks.
+
+### Other useful links
+
+Benchmarks:
+
+- [derek135/quantization-benchmarks](https://huggingface.co/datasets/derekl35/quantization-benchmarks)
