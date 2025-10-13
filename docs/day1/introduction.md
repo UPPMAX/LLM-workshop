@@ -168,15 +168,24 @@ apptainer exec your_container.sif python your_code.py
 
 ### SLURM
 - Batch queueing system
-- Queue and running jobs `squeue [--me]`
-- Previous jobs `sacct`
-- Submit jobs `sbatch <JOBSCRIPT>`
+- Allocates resources in a fair and effective manner
+- Resources are finite so expect queue times occasionally
 
 ### SLURM workflow &ndash; Preparing job
+![Work on login node](figures/generic_cluster_work_on_login.svg)
 
 ### SLURM workflow &ndash; Submitting job to queue
+![Submitting a job](figures/generic_cluster_jobsubmission.svg)
 
 ### SLURM workflow &ndash; Job starts
+![Job starts](figures/generic_cluster_jobsubmission.svg)
+
+### Partial command overview
+- View queued and running jobs `squeue [--me]`
+- View previous jobs `sacct`
+- Submit jobs `sbatch <JOBSCRIPT>`
+- Cancel queued or running jobs `scancel <JOBID>`
+- More complete overview at [SLURM documentation](https://slurm.schedmd.com/quickstart.html#commands) and [Alvis intro](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/#job-command-overview)
 
 ## Summary of Introduction
 - Compute a key component to the success of LLMs
