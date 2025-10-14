@@ -68,8 +68,11 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 <div style="flex:1;">
 No recurrent connections, thus more parallelizable.
 </div>
+
 <div style="flex:1; text-align:center;">
-![Transformer architecture](figures/Transformer_full_architecture.png){: style="max-height: 530px" }
+  <img src="figures/Transformer_full_architecture.png"
+       alt="Transformer architecture"
+       style="max-height:530px; width:auto;">
 </div>
 </div>
 
