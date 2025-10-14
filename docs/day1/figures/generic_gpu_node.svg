@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="274.15256mm"
+   height="130.16466mm"
+   viewBox="0 0 274.15256 130.16466"
    version="1.1"
    id="svg201926"
    xmlns="http://www.w3.org/2000/svg"
@@ -12,16 +12,16 @@
   <defs
      id="defs201923">
     <rect
-       x="-353.25242"
-       y="328.5561"
-       width="159.48417"
-       height="68.594014"
+       x="-353.25241"
+       y="328.55609"
+       width="159.48418"
+       height="68.594017"
        id="rect252922" />
     <rect
        x="-382.68542"
-       y="240.63267"
-       width="532.8907"
-       height="168.17803"
+       y="240.63268"
+       width="532.89069"
+       height="168.17802"
        id="rect245522" />
     <rect
        x="350.10437"
@@ -49,7 +49,8 @@
        id="rect252922-7-2-3" />
   </defs>
   <g
-     id="layer1">
+     id="layer1"
+     transform="translate(-36.015274,-28.950761)">
     <rect
        style="fill:#e1ffce;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-dasharray:2, 1"
        id="rect202009"
@@ -72,7 +73,7 @@
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect245522);fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.584104"><tspan
          x="-382.68555"
          y="276.02344"
-         id="tspan4262">Memory</tspan></text>
+         id="tspan5096">Memory</tspan></text>
     <rect
        style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-linecap:square;stroke-dasharray:1.99999, 0.999999"
        id="rect246750"
@@ -370,7 +371,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan4264">GPU</tspan></text>
+           id="tspan5098">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7"
@@ -3981,7 +3982,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan4266">GPU</tspan></text>
+           id="tspan5100">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8"
@@ -7592,7 +7593,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7-2);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan4268">GPU</tspan></text>
+           id="tspan5102">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8-5"
@@ -11203,7 +11204,7 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect252922-7-2-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
            x="-353.25195"
            y="363.94727"
-           id="tspan4270">GPU</tspan></text>
+           id="tspan5104">GPU</tspan></text>
       <rect
          style="fill:#aaffee;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:square;stroke-dasharray:1.99999, 1"
          id="rect246750-8-7-8-5-5"
