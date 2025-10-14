@@ -70,7 +70,7 @@ No recurrent connections, thus more parallelizable.
 </div>
 
 <div style="flex:1; text-align:center;">
-  <img src="figures/Transformer_full_architecture.png"
+  <img src="../figures/Transformer_full_architecture.png"
        alt="Transformer architecture"
        style="max-height:530px; width:auto;">
 </div>
