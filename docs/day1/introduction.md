@@ -63,9 +63,15 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/). General public starts to take notice.
 
 ### Deep Learning &ndash; Transformer architecture
-+------------------------------------------------------------------------------------------------------+----------------------------------------------------+
-| ![Transformer architecture](figures/Transformer_full_architecture.png){: style="max-height: 530px" } | No recurrent connections, thus more parallelizable |
-+------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+<!-- Use flex for multiple columns -->
+<div style="display:flex; align-items:center; gap:1em;">
+<div style="flex:1;">
+No recurrent connections, thus more parallelizable.
+</div>
+<div style="flex:1; text-align:center;">
+![Transformer architecture](figures/Transformer_full_architecture.png){: style="max-height: 530px" }
+</div>
+</div>
 
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
