@@ -63,9 +63,9 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/). General public starts to take notice.
 
 ### Deep Learning &ndash; Transformer architecture
-![Transformer architecture](figures/Transformer_full_architecture.png)
-
-- No recurrent connections, thus more parallelizable
++------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+| ![Transformer architecture](figures/Transformer_full_architecture.png){: style="max-height: 530px" } | No recurrent connections, thus more parallelizable |
++------------------------------------------------------------------------------------------------------+----------------------------------------------------+
 
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
@@ -132,7 +132,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership
     - Sam Altman, Elon Musk 
-- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png)](https://ifanyonebuildsit.com/){: style="height: 40px; width: auto;" }
+- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png){: style="height: 40px; width: auto;" }](https://ifanyonebuildsit.com/)
 
 ## Introduction to the hardware for this workshop
 - Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
