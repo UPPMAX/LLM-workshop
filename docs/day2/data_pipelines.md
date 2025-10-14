@@ -10,30 +10,57 @@ icon: octicons/workflow-16
 
     - Understand the key coponents of data pipelines for LLMs  
 
-Well-designed data pipelines determine LLM quality, safety, and training throughput.
+![Data meme](./figures/data_meme.jpg){ align=right width=300 }
+
+- Well-designed data pipelines determine LLM quality, safety, and training throughput.
+
+- Success of all frontier models like GPT-5 relies heavily on quality data and costructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have.
 
 https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
 https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining
 
-## Pre-training Pipelines
+## Pre-training
 
-Goal: assemble large, diverse, governed corpora and feed tokens efficiently to trainers.
+**Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model.
 
-- Data sourcing and licensing: web crawl, books, code, academic; PII and copyright governance.
+[Raw data](https://raw.githubusercontent.com/stanford-cs336/spring2025-lectures/refs/heads/main/var/sample-documents.txt), is often messy and unsuitable for learning linguistic semantics. It typically exists in diverse formats like HTML, PDFs, spreadsheets etc, requiring extensive preprocessing to make it usable for training. Challenge lies in preserving the content and structure during this lossy process of data cleaning.
 
-- Normalization and detection: language ID, Unicode cleanup, boilerplate removal, doc boundaries.
+<div class="annotate" markdown>
 
-- Deduplication: exact and near-dup (MinHash/SimHash); mitigate contamination and overfitting.
+- Data acquisition and licensing (1)
 
-- Quality filtering: heuristic/classifier filters (toxicity, spam), quality scoring, temperature sampling.
+- Content extraction, normalization and detection (2)
 
-- Tokenization and packing: train vocab (BPE/Unigram), pre-tokenize, pack sequences respecting EOD.
+- Deduplication (3)
 
-- Mixtures and sampling: domain/language balance, curriculum, up/down-sampling.
+- Quality filtering, decontamination (4)
 
-- Storage and sharding: Arrow/Parquet/WebDataset, deterministic sharding, resume-safe streaming.
+- Tokenization and training (5)
 
-- Decontamination and observability: remove overlaps with evals; versioning, lineage, dashboards.
+- Mixture building and sampling (6)
+
+- Storage and sharding (7)
+
+- Training and observability (8)
+
+- Continuous Evaluation (9)
+
+- Data governance and ethics (10)
+
+</div>
+
+1. web crawl, books, Github code, academic papers. PII and copyright governance.  
+Web crawl : [CC](https://commoncrawl.org/overview) 
+2. language ID, Unicode cleanup, boilerplate removal, doc boundaries.  
+Language classifiers: [GlotLID](https://github.com/cisnlp/GlotLID), [Fasttext](https://github.com/facebookresearch/fastText)
+3. exact and near-dup (MinHash/SimHash); mitigate contamination and overfitting.
+4. heuristic/classifier filters (toxicity, spam), quality scoring, temperature sampling.
+5. train vocab (BPE/Unigram), pre-tokenize, pack sequences respecting EOD.
+6. domain/language balance, curriculum, up/down-sampling.
+7. Arrow/Parquet/WebDataset, deterministic sharding, resume-safe streaming.
+8. remove overlaps with evals; versioning, lineage, dashboards.
+9. something 
+10. something
 
 References (arXiv):
 
@@ -47,9 +74,9 @@ References (arXiv):
 
 - T5/C4: https://arxiv.org/abs/1910.10683
 
-## Post-training Pipelines
+## Post-training
 
-Goal: align base LMs via supervised fine-tuning and preference optimization.
+**Goal**: Align base LLMs via supervised fine-tuning and preference optimization.
 
 - SFT data curation: instruction–response pairs, multi-turn formatting, style and tool-use coverage.
 
@@ -75,3 +102,5 @@ References (arXiv):
 
 - RRHF: https://arxiv.org/abs/2304.05302
 
+Data processing libraries: 
+- https://github.com/huggingface/datatrove/

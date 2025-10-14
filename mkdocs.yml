@@ -3,8 +3,8 @@ repo_url: https://github.com/UPPMAX/LLM-workshop
 
 nav:
 #  - "Start": index.md
-  - "Course dates": course_dates.md
-  - "Schedule": schedule.md
+  # - "Course dates": course_dates.md
+  # - "Schedule": schedule.md
   # - Day 1:
   #   - Introduction: day1/introduction.md
   #   - Publicly available LLMs: day1/public_llms.md
@@ -13,8 +13,6 @@ nav:
   #   - LLM formats: day1/llm_formats.md
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md
-  #   - How to setup the rendering of the website: day2/how_to_setup_website_rendering/README.md
-  #   - How to fix the spelling errors: day2/how_to_fix_spelling_errors/README.md
   #   - RAG: day2/rag.md
   # - Day 3:
   #   - Prompt Engineering: day3/prompt_engineering.md
@@ -34,6 +32,8 @@ theme:
   logo: logo/naiss_logo_white.png
   palette:
     primary: indigo
+  icon: 
+    annotation: material/plus-circle
 
   features:
     - toc.integrate
