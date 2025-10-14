@@ -196,7 +196,7 @@ apptainer exec your_container.sif python your_code.py
 
 ## Excercise
 - Submitting a job TODO
-    - OoD or CLI or both?
+    - OoD or CLI or both? Both!
     - git clone, getting data
     - Try out container (optionally build)
     - Prepare jobscript
