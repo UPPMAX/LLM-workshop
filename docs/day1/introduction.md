@@ -79,10 +79,10 @@ No recurrent connections, thus more parallelizable.
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
 $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}}\right)V $$
-- Self-attention: $Q = X W_Q$, $K = X W_K$ and $V = X W_V$
 - Cross-attention: $Q = X_\mathrm{dec} W_Q$, $K = X_\mathrm{enc} W_K$ and $V = X_\mathrm{enc} W_V$
-- In decoder, self-attention is masks future tokens
-- Autoregressive pure text LLMs are typically decoder only
+- Self-attention: Same $X$ used for all matrices
+- In decoder, self-attention masks future tokens
+- Autoregressive pure text LLMs are often decoder only
 
 ## Compute and AI
 - What has changed?
@@ -204,9 +204,8 @@ apptainer exec your_container.sif python your_code.py
 - SLURM batch queue system for running things on the cluster
 
 ## Excercise
-- Submitting a job TODO
-    - OoD or CLI or both? Both!
-    - git clone, getting data
-    - Try out container (optionally build)
-    - Prepare jobscript
-    - sbatch (something like a prepared vllm script (+ curl?))
+1. Finish [prerequisites](../../prerequisites.md)
+2. Navigate to your instance of `LLM-workshop`
+3. Do a `git pull` to get the latest changes
+4. Launch an interactive session through <https://alvis.c3se.chalmers.se/>
+5. Modify and then submit `LLM-workshop/excercises/introduction/hello-llms.sh` TODO
