@@ -8,6 +8,23 @@ tags:
 icon: simple/openstreetmap
 ---
 
+<style>
+img.thumbnail {
+  height: 40px;
+  width: auto;
+}
+
+img.transformer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-height: 530px;
+  width: auto;
+  object-fit: contain;
+  z-index: -1;   /* send behind text */
+}
+</style>
+
 ## Overview
 - History of AI
 - Compute and AI
@@ -64,17 +81,9 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 
 ### Deep Learning &ndash; Transformer architecture
 <!-- Use flex for multiple columns -->
-<div style="display:flex; align-items:center; gap:1em;">
-<div style="flex:1;">
 No recurrent connections, thus more parallelizable.
-</div>
 
-<div style="flex:1; text-align:center;">
-  <img src="../figures/Transformer_full_architecture.png"
-       alt="Transformer architecture"
-       style="max-height:530px; width:auto;">
-</div>
-</div>
+![Transformer architecture](figures/Transformer_full_architecture.png)
 
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
@@ -141,7 +150,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership
     - Sam Altman, Elon Musk 
-- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png){: style="height: 40px; width: auto;" }](https://ifanyonebuildsit.com/)
+- Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png){.thumbnail}](https://ifanyonebuildsit.com/)
 
 ## Introduction to the hardware for this workshop
 - Main reference: [Alvis introduction material](https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/)
