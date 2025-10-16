@@ -8,22 +8,6 @@ tags:
 icon: simple/openstreetmap
 ---
 
-<style>
-img.thumbnail {
-  height: 40px;
-  width: auto;
-}
-
-img.transformer {
-  position: absolute;
-  right: 0;
-  top: 0;
-  max-height: 530px;
-  width: auto;
-  object-fit: contain;
-  z-index: -1;   /* send behind text */
-}
-</style>
 
 ## Overview
 - History of AI
@@ -80,10 +64,20 @@ trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI
 - 2022: ChatGPT (GPT-3.5) [released](https://openai.com/index/chatgpt/). General public starts to take notice.
 
 ### Deep Learning &ndash; Transformer architecture
-<!-- Use flex for multiple columns -->
-No recurrent connections, thus more parallelizable.
+<section style="text-align: left; margin-left: 5em">
+No recurrent connections,  
+thus more parallelizable.
+</section>
 
-![Transformer architecture](figures/Transformer_full_architecture.png)
+<style>
+img.transformer {
+  float: right;
+  max-height: 600px;
+  width: auto;
+  transform: translateY(-5em)
+}
+</style>
+![Transformer architecture](figures/Transformer_full_architecture.png){.transformer}
 
 ### Deep Learning &ndash; Attention mechanism
 - Scaled Dot-Product Attention
@@ -91,7 +85,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 - Cross-attention: $Q = X_\mathrm{dec} W_Q$, $K = X_\mathrm{enc} W_K$ and $V = X_\mathrm{enc} W_V$
 - Self-attention: Same $X$ used for all matrices
 - In decoder, self-attention masks future tokens
-- Autoregressive pure text LLMs are often decoder only
+- Autoregressive unimodal LLMs usually decoder only
 
 ## Compute and AI
 - What has changed?
@@ -115,7 +109,13 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-![RLHF diagram](figures/rlhf_diagram.webp){: style="max-width: 1232px; height: auto;" }
+<style>
+img.rlhf_diagram {
+  max-width: 1232px;
+  height: auto;
+}
+</style>
+![RLHF diagram](figures/rlhf_diagram.webp){.rlhf_diagram}
 
 - Enables RL when no clear scoring function available
 - Relatively little human input needed
@@ -146,10 +146,20 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
     - [Dual use of artificial-intelligence-powered drug discovery](https://doi.org/10.1038/s42256-022-00465-9)
 
 ### Misalignment
+<style>
+img.thumbnail {
+  max-height: 200px;
+  width: auto;
+  vertical-align: top;
+  margin-left: 0.5em;
+  transform: translateY(-0.5ch);
+}
+</style>
+
 - RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) in the right direction
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership
-    - Sam Altman, Elon Musk 
+    - What future are they aiming for?
 - Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png){.thumbnail}](https://ifanyonebuildsit.com/)
 
 ## Introduction to the hardware for this workshop
@@ -164,7 +174,13 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 ![Generic compute cluster diagram](figures/generic_cluster.svg)
 
 ### The compute node
-![Generic compute node with GPUs](figures/generic_gpu_node.svg){: style="max-width: 60%; width: auto;" }
+<style>
+img.generic_gpu_node {
+  max-width: 60%;
+  height: auto;
+}
+</style>
+![Generic compute node with GPUs](figures/generic_gpu_node.svg){.generic_gpu_node}
 
 - Speed-up by parallelization
 - Feeding data to GPU memory (VRAM) often bottleneck
@@ -213,7 +229,7 @@ apptainer exec your_container.sif python your_code.py
 - SLURM batch queue system for running things on the cluster
 
 ## Excercise
-1. Finish [prerequisites](../../prerequisites.md)
+1. Finish [prerequisites](../prerequisites.md)
 2. Navigate to your instance of `LLM-workshop`
 3. Do a `git pull` to get the latest changes
 4. Launch an interactive session through <https://alvis.c3se.chalmers.se/>
