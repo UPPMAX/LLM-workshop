@@ -56,15 +56,18 @@ Language classifiers: [GlotLID](https://github.com/cisnlp/GlotLID), [Fasttext](h
 3. exact and near-dup (MinHash/SimHash); mitigate contamination and overfitting.
 4. heuristic/classifier filters (toxicity, spam), quality scoring, temperature sampling.
 5. train vocab (BPE/Unigram), pre-tokenize, pack sequences respecting EOD.
+Tokenization: [HF Tokenizers](https://huggingface.co/docs/tokenizers/en/index), 
 6. domain/language balance, curriculum, up/down-sampling.
 7. Arrow/Parquet/WebDataset, deterministic sharding, resume-safe streaming.
-8. remove overlaps with evals; versioning, lineage, dashboards.
-9. something 
-10. something
+Arrow: [HF Datasets](https://huggingface.co/docs/datasets/about_arrow)
+8. Remove overlaps with evals; versioning, lineage, dashboards.
+Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/trainer)
+9. benchmark language understanding, reasoning, QA etc. Bias, stereotype, toxicity and answer safety checks.
+10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
 References (arXiv):
 
-- The Pile: https://arxiv.org/abs/2101.00027
+- The Pile: https://arxiv.org/abs/2101.00027  
 
 - CCNet: https://arxiv.org/abs/1911.00359
 
@@ -72,7 +75,17 @@ References (arXiv):
 
 - Dolma: https://arxiv.org/abs/2306.07196
 
-- T5/C4: https://arxiv.org/abs/1910.10683
+- T5/C4: https://arxiv.org/abs/1910.
+
+- End-to-end Data preprocessing libraries: 
+  https://github.com/huggingface/datatrove/
+  https://github.com/NVIDIA-NeMo/Curator
+  https://github.com/webdataset/webdataset
+
+- Classic NLP data preprocessing libararies:
+  https://github.com/explosion/spaCy
+  https://github.com/nltk/nltk
+  https://github.com/stanfordnlp/stanza
 
 ## Post-training
 
@@ -102,5 +115,6 @@ References (arXiv):
 
 - RRHF: https://arxiv.org/abs/2304.05302
 
-Data processing libraries: 
-- https://github.com/huggingface/datatrove/
+
+post-processing libraries:
+tokenizations; https://huggingface.co/docs/transformers/fast_tokenizers
