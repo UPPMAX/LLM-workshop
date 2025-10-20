@@ -3,23 +3,23 @@ repo_url: https://github.com/UPPMAX/LLM-workshop
 
 nav:
 #  - "Start": index.md
-  - "Course dates": course_dates.md
-  - "Schedule": schedule.md
-  - Day 1:
-    - Introduction: day1/introduction.md
-    - Publicly available LLMs: day1/public_llms.md
-    - Accessing LLM: day1/access_llm.md
-    - LLM and hardware: day1/llm_hardware.md
-    - LLM formats: day1/llm_formats.md
-  - Day 2:
-    - Data Pipelines: day2/data_pipelines.md
-    - RAG: day2/rag.md
-  - Day 3:
-    - Prompt Engineering: day3/prompt_engineering.md
-    - Tools and Reasoning: day3/tools.md
-    - Fine-tuning: day3/fine_tuning.md
-    - Hyperparameter tuning: day3/hyperparameter_tuning.md
-    - Evaluating LLMs: day3/evaluation_metrics.md
+  # - "Course dates": course_dates.md
+  # - "Schedule": schedule.md
+  # - Day 1:
+  #   - Introduction: day1/introduction.md
+  #   - Publicly available LLMs: day1/public_llms.md
+  #   - Accessing LLM: day1/access_llm.md
+  #   - LLM and hardware: day1/llm_hardware.md
+  #   - LLM formats: day1/llm_formats.md
+  # - Day 2:
+  #   - Data Pipelines: day2/data_pipelines.md
+  #   - RAG: day2/rag.md
+  # - Day 3:
+  #   - Prompt Engineering: day3/prompt_engineering.md
+  #   - Tools and Reasoning: day3/tools.md
+  #   - Fine-tuning: day3/fine_tuning.md
+  #   - Hyperparameter tuning: day3/hyperparameter_tuning.md
+  #   - Evaluating LLMs: day3/evaluation_metrics.md
 
 theme:
   name: material
