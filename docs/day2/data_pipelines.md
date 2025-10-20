@@ -65,27 +65,27 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 9. benchmark language understanding, reasoning, QA etc. Bias, stereotype, toxicity and answer safety checks.
 10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
-References (arXiv):
+???- info "Resources"
 
-- The Pile: https://arxiv.org/abs/2101.00027  
+    - LLM papers on data and data pipelines:
 
-- CCNet: https://arxiv.org/abs/1911.00359
+        - [The Pile: An 800GB Dataset of Diverse Text for Language Modeling](https://arxiv.org/abs/2101.00027)
+        - [CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data](https://arxiv.org/abs/1911.00359)
+        - [The RefinedWeb Dataset for Falcon LLM: Outperforming Curated Corpora with Web Data, and Web Data Only](https://arxiv.org/abs/2306.01116)
+        - [Dolma: an Open Corpus of Three Trillion Tokens for Language Model Pretraining Research](https://arxiv.org/abs/2306.07196)
+        - [RedPajama: an Open Dataset for Training Large Language Models](https://arxiv.org/pdf/2411.12372)
+ 
+    - End-to-end Data preprocessing libraries:
+        - [HF datatrove](https://github.com/huggingface/datatrove/)
+        - [Nvidia Curator](https://github.com/NVIDIA-NeMo/Curator)
+        - [Webdataste](https://github.com/webdataset/webdataset)
 
-- RefinedWeb: https://arxiv.org/abs/2306.01116
+    - Classic NLP data preprocessing libararies:
+        - [Explosion spaCy](https://github.com/explosion/spaCy)
+        - [NLTK](https://github.com/nltk/nltk)
+        - [StanfordNLP Stanza](https://github.com/stanfordnlp/stanza)
 
-- Dolma: https://arxiv.org/abs/2306.07196
 
-- T5/C4: https://arxiv.org/abs/1910.
-
-- End-to-end Data preprocessing libraries: 
-  https://github.com/huggingface/datatrove/
-  https://github.com/NVIDIA-NeMo/Curator
-  https://github.com/webdataset/webdataset
-
-- Classic NLP data preprocessing libararies:
-  https://github.com/explosion/spaCy
-  https://github.com/nltk/nltk
-  https://github.com/stanfordnlp/stanza
 
 ## Post-training
 
