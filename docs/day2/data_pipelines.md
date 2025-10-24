@@ -8,7 +8,8 @@ icon: octicons/workflow-16
 
 ???- info "Learning outcomes"
 
-    - Understand the key coponents of data pipelines for LLMs  
+    - Understand the key components of data pipelines for LLMs  
+    - Perform data preparation for a pre-training task
 
 ![Data meme](./figures/data_meme.jpg){ align=right width=300 }
 
@@ -16,12 +17,9 @@ icon: octicons/workflow-16
 
 - Success of all frontier models like GPT-5 relies heavily on quality data and costructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have.
 
-https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
-https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining
-
 ## Pre-training
 
-**Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model.
+**Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model to learn general-purpose representations.
 
 [Raw data](https://raw.githubusercontent.com/stanford-cs336/spring2025-lectures/refs/heads/main/var/sample-documents.txt), is often messy and unsuitable for learning linguistic semantics. It typically exists in diverse formats like HTML, PDFs, spreadsheets etc, requiring extensive preprocessing to make it usable for training. Challenge lies in preserving the content and structure during this lossy process of data cleaning.
 
@@ -65,6 +63,10 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 9. benchmark language understanding, reasoning, QA etc. Bias, stereotype, toxicity and answer safety checks.
 10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
+<iframe src="https://github.com/huggingface/datatrove/blob/main/examples/fineweb.py" seamless width="90%" height="400" name="SELFHTML_in_a_box"></iframe>
+
+
+
 ???- info "Resources"
 
     - LLM papers on data and data pipelines:
@@ -78,7 +80,7 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
     - End-to-end Data preprocessing libraries:
         - [HF datatrove](https://github.com/huggingface/datatrove/)
         - [Nvidia Curator](https://github.com/NVIDIA-NeMo/Curator)
-        - [Webdataste](https://github.com/webdataset/webdataset)
+        - [Webdataset](https://github.com/webdataset/webdataset)
 
     - Classic NLP data preprocessing libararies:
         - [Explosion spaCy](https://github.com/explosion/spaCy)
@@ -89,32 +91,38 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 
 ## Post-training
 
-**Goal**: Align base LLMs via supervised fine-tuning and preference optimization.
+**Goal**: Align base LLMs to new tasks or improve its existing abilities in chat-based dialogs, structured tasks or domain-specific data.
 
-- SFT data curation: instruction–response pairs, multi-turn formatting, style and tool-use coverage.
+This aligning is done via supervised fine-tuning and preference optimization (reward modelling or RLHF/RLAIF).
 
-- Preference data: pairwise rankings (human or AI feedback), rubric design, rater QA.
+<div class="annotate" markdown>
 
-- Optimization: reward modeling + RLHF (PPO) or preference-only methods (DPO, RRHF).
+- Collection and cleaning (1)
 
-- Safety and policy: Constitutional prompts, red-teaming, filters, decontamination of evals.
+- Curation (2)
 
-- Mixtures and iteration: SFT + preferences + safety data; synthetic data (Self-Instruct); versioned loops.
+- Transformation (3)
 
-References (arXiv):
+- Validation (4)
 
-- InstructGPT (RLHF): https://arxiv.org/abs/2203.02155
+</div>
 
-- Constitutional AI: https://arxiv.org/abs/2212.08073
+1. Instruction–response pairs, multi-turn formatting style and tool-use coverage. Synthetic data generation.  
+2. PII filtering and annotation by humans or AI. Ranking and scoring by humans or smaller models for Reward modelling. Deduplication.  
+3. Tokenization, formatting into chat templates, sharding and packing for effecient GPU training.  
+Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_tokenizers)
+4. Schema validataion (e.g. via pydantic), quality checks, benchmarking and collecting stats.
 
-- DPO: https://arxiv.org/abs/2305.18290
+???- info "Resources"
 
-- LIMA: https://arxiv.org/abs/2305.11206
+    - LLM papers on data and data pipelines:
 
-- Self-Instruct: https://arxiv.org/abs/2212.10560
+        - [Training language models to follow instructions with human feedback](https://arxiv.org/abs/2203.02155)
+        - [Direct Preference Optimization: Your Language Model is Secretly a Reward Model](https://arxiv.org/abs/2305.18290)
+        - [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073)
+        - [LIMA: Less Is More for Alignment](https://arxiv.org/abs/2305.11206)
+        - [Self-Instruct: Aligning Language Models with Self-Generated Instructions](https://arxiv.org/abs/2212.10560)
 
-- RRHF: https://arxiv.org/abs/2304.05302
 
-
-post-processing libraries:
-tokenizations; https://huggingface.co/docs/transformers/fast_tokenizers
+https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
+https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining
