@@ -150,9 +150,9 @@ different.
 
 ![](figures/mixed_precision_hopper.jpg)
 
-+ Weight/activation/mixed percision (w8a16);
-+ KV-cache;
-+ Non-uniform;
+- Weight/activation/mixed percision (w8a16);
+- KV-cache;
+- Non-uniform;
 
 <aside class="notes" markdown="1">
 
