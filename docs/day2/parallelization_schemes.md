@@ -8,7 +8,7 @@ icon: octicons/stack-24
 - Parallelization is necessary;
 - Good vs. bad parallelization.
 
-## Parallelization strategies
+## Strategies
 
 ### Data parallelism (DP)
 
@@ -77,12 +77,12 @@ icon: octicons/stack-24
 
 - For really large models one need to combine the technique;
 
-## Parallelization 
+## Implementations
 
 ### Distributed computing - MPI
 
 ```python
-# just one script
+# just a simple script
 ...
 hvd.init()
 model = Model(...)
