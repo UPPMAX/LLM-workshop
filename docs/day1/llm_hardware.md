@@ -12,13 +12,13 @@ icon: octicons/file-binary-24
 
 ### Neural networks
 
-<img src="figures/neural_network_training.png" style="max-height: 300px;"/>
+![](figures/neural_network_training.png){ style="height:360px"}
 
 - Learn patterns by adjusting parameters (weights);
 - Training = prediction → differentiation → update;
 - So far: mini-batch & optimizer & big → good.
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
  Neural networks are building blocks of modern machine learning applications,
  the principle is simple, just like your regular gradient descent, you:
@@ -49,12 +49,12 @@ icon: octicons/file-binary-24
 
 ### Transformer
 
-![](figures/transformer_vs_rnn.png)
+![](figures/transformer_vs_rnn.png){ style="height:360px" }
 
 - Transformer computes *relationships* between tokens (attention);
 - tokens can be processed in parallel
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
  Transformers is an innovation that makes a training a large language model
  practical.  Unlike RNNs or LSTMs, they do not rely on a hidden state that is
@@ -74,7 +74,7 @@ icon: octicons/file-binary-24
 
 ### Training of LLMs
 
-<img src="./figures/neural_network_training.png" style="max-height: 300px;"/>
+![](./figures/neural_network_training.png){ style="height:350px;" }
 
 - Just neural networkes that can be parallelized more efficiently;
 
@@ -89,15 +89,15 @@ icon: octicons/file-binary-24
 
 ### Fine-tuninig of LLMs
 
-<img src="./figures/fine_tuning.png" style="max-height: 300px;"/>
+![](./figures/fine_tuning.png){ style="height:360px" }
 
 - With specialized data (instruct, chat, etc);
 - Less memory usage by "freezing parameters"
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
-Once a base model is trained, we usually fine-tune it on specific data (instruct,
-chat, etc.).
+Once a base model is trained, we usually fine-tune it on specific data
+(instruct, chat, etc.).
 
 From a computation point of view, fine-tuning is really the same task as
 training, but you we can use some tricks to reduce the resource we need.
@@ -111,13 +111,13 @@ backward path we just have the two low-rank matrices.
 
 ### Inference of LLMs
 
-![](figures/prefill_vs_decode.png)
+![](figures/prefill_vs_decode.png){ style="height:360px" }
 
 - GPT-style inference: *pre-filling* and *decoding*;
 - Pre-filling: process the input prompt in parallel;
 - Decoding: generate new tokens one-by-one, using cached results.
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Inference will need much less memory than training as we only need the forward
 pass. But this is actually an interesting aspect of LLMs as compared to other
@@ -138,7 +138,7 @@ decoding?
 
 ### Optimize caches for inference
 
-<img src="./figures/paged_attention.gif" style="max-height: 250px;"/>
+![](./figures/paged_attention.gif){ style="height:360px" }
 
 - KV cache:
   + paged attention: indexed blockes of caches;
@@ -150,7 +150,7 @@ more in-depth discussion of the technique where that visualization is from:
 
 [paged attention from first principles]: https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm/
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 For this reason many effort in improving inference of LLMs has been put on
 improving efficiency of memory accessing patterns and reducing the memory
@@ -182,14 +182,14 @@ examples and techniques in the blog linked.
 
 ### HPC clusters
 
-<img src="./figures/hpc_cluster.png" style="max-height: 300px;"/>
+![](./figures/hpc_cluster.png){ style="height:360px" }
 
 
 - Racked computer nodes;
 - Parallel network storage;
 - Infiniband/RoCE networking;
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 HPC are designed for parallel computing; the hardware is
 good at handing:
@@ -218,7 +218,7 @@ good at handing:
 <!-- - _\*\*Up to a factor of two faster with -->
 <!--   [sparsity](https://developer.nvidia.com/blog/accelerating-inference-with-sparsity-using-ampere-and-tensorrt/)._ -->
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Alvis was build for AI research, so it's equipped with latest (at the time) GPU
 acceleration cards. They are capable of doing fast floating point operations
@@ -228,7 +228,7 @@ in reduced precision (see next section).
 
 ### Alvis hardware - network & storage
 
-<img src="./figures/gpu_direct.png" style="max-height: 300px;"/>
+![](./figures/gpu_direct.png){ style="height:200px" }
 
 - Fast storage: [WEKA file system];
 - Infiniband: 100Gbit (A100 nodes);
@@ -236,7 +236,7 @@ in reduced precision (see next section).
 
 [WEKA file system]: https://docs.weka.io/weka-system-overview/about/weka-system-functionality-features
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Not only so, Alvis is also equipped with fast storage system backed by flash
 storage; on the most powerful nodes (4xA100 GPUs) infiniband network that goes
@@ -261,7 +261,7 @@ if you want to optimize you inference tasks for real.
 - Quantized models to fit larger models;
 - Parallelize the model across GPUs or nodes;
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Supercomputers allow us to run larger LLMs because of not only the more powerful
 nodes, but also the nodes are connected with fast internet connection. But we
@@ -289,7 +289,7 @@ the
 
 ### Tools to gain information
 
-<img src="./figures/grafana.png" style="max-height: 300px;"/>
+![](./figures/grafana.png){ style="height:360px" }
 
 
 - grafana (network utilization, temp disk);
@@ -298,9 +298,6 @@ the
 
 See details in C3SE documentation.
 
-<aside class="notes">
-
-</aside>
 
 ## Summary
 
@@ -323,7 +320,4 @@ See details in C3SE documentation.
 [prediction memory]: https://huggingface.co/spaces/nanotron/predict_memory
 [hardware specifications]: https://www.c3se.chalmers.se/about/Alvis/#gpu-hardware-details
 [monitoring tools]: https://www.c3se.chalmers.se/documentation/submitting_jobs/monitoring/
-
-<!-- [^1] -->
-<!-- [^1]: doi:10.48550/arXiv.2307.15778 -->
 

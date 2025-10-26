@@ -35,7 +35,7 @@ jobs:
           for f in ${slides[@]};
           do
             pandoc "${f}" -o "${f%.md}-slides.html"\
-              -f markdown-implicit_figures \
+              -f markdown+link_attributes-implicit_figures \
               --standalone \
               --slide-level=3 \
               --mathjax \

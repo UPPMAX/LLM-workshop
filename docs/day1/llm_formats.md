@@ -14,9 +14,9 @@ icon: octicons/file-binary-24
 
 ### So you want to use a LLM model
 
-<img src="./figures/hf-search-models.png" alt="my caption" style="maxheight: 90%;"/>
+![](figures/hf-search-models.png){ style="height=360px" }
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 It is common for LLMs to be quantized after training. The quantization of
 LLMs is relevant to the model's compatibility with different implementations, as
@@ -34,7 +34,7 @@ quantization methods.
 - `AWQ-INT4`: quantization
 - `GGUF`: model format
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Models architecture and size are often the first consideration when working on
 LLM.  But equally important are the format of models and the quantization
@@ -42,15 +42,15 @@ method. Modern acceleration devices cater for the lower precision need of
 machine learning models, depending on the device you want to run on, quantized
 models might give significant speed up.
 
-</asisde>
+</aside>
 
 ### File-formats of LLMs
 
-<img src="figures/gguf.png" style="max-height: 500px;"/>
+![](figures/gguf.png){ style="max-height:360px" }
 
 The gguf file fomat (image from [huggingface](https://huggingface.co/docs/hub/gguf))
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 LLM models commonly consists of metadata, and the tensor themselves.
 
@@ -66,7 +66,7 @@ LLM models commonly consists of metadata, and the tensor themselves.
 You can find detailed model information for some model formats,
 [example](https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf).
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Models are published on different formats and they are optimized for different
 usages. They can be converted to one another but has different purposes.
@@ -80,7 +80,7 @@ memory-mapped, which are especially useful for [disk offloading].
 
 [disk offloading]: https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.disk_offload
 
-</asisde>
+</aside>
 
 ### Look for the following
 
@@ -127,7 +127,7 @@ See also [Data types support][amd-fp-formats] by AMD RocM.
 
 [amd-fp-formats]: https://rocm.docs.amd.com/en/latest/reference/precision-support.html
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Floating point number generally follows a IEEE standard format. However, details
 like the representation of negative zeros (NZ) and infinite values might be
@@ -154,7 +154,7 @@ different.
 + KV-cache;
 + Non-uniform;
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 weights is usually the first thing to quantize, it is also the most supported
 way of quantizing the model. Depending on the hardware, it might or might not
@@ -181,7 +181,7 @@ Models can also been quantized
 - depend on original range;
 - position of zero.
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 One important aspect when quantizing the models is the distribution of the
 model, the easiest way is to simply scale the parameters by a factor.
@@ -198,7 +198,7 @@ complexity in computation).
 
 ![](figures/clipping.webp)
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 we can also choose to clip out the outlier to same more precision.
 
@@ -207,7 +207,7 @@ we can also choose to clip out the outlier to same more precision.
 
 ### Calibration for weight quantization
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 For parameters of the model We can simply quantize them, since we know their
 distribution. But given some small dataset but we can also improved the accuracy
@@ -228,7 +228,7 @@ weighed by according to the inverse Hessian (sensitivity).
 
 Can be dynamic or static.
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 To also quantize the activation function, we need to estimate the range of
 activation, that has to be done by passing data to the model and collect
@@ -246,7 +246,7 @@ statically (with a calibration set).
 ![](figures/sparse-matrix.png)
 
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 Models may also be sparsified to reduce the required computation, this is
 commonly known as weight pruning. But some GPUs also support efficient
@@ -264,12 +264,12 @@ training (for a complete list with compatibility see [vLLM guide]).
 
 ### Quantization aware training (QAT)
 
-- Introduce quantization error during training;
+QAT introduce quantization error during training;
 
-<img src="figures/qat.webp" style="max-height: 100px;"/>
-<img src="figures/qat_back.webp" style="max-height: 300px;"/>
+![](figures/qat.webp){ style="max-height:100px;" }
+![](figures/qat_back.webp){ style="max-height:300px;" }
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 But we can also get higher accuracy by using the Quantization aware training
 (QAT) method. There we do the training and perform the
@@ -282,7 +282,7 @@ actually optimize the quantization parameters as part of the training process.
 
 ![](figures/qat_theory.webp)
 
-<aside class="notes">
+<aside class="notes" markdown="1">
 
 The reason why it might work better, is that by introducing the quantization
 error in the training process, we force the model to land in a local minima
