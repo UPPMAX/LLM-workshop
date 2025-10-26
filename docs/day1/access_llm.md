@@ -4,11 +4,9 @@ tags:
 icon: fontawesome/solid/bolt
 ---
 
-# Accessing LLMs
+# Quick Start to Access LLMs
 
-## Quick start
-
-### LM Studio
+## LM Studio
 
 [LM Studio](https://lmstudio.ai/) is a desktop app for developing and
 experimenting with LLMs. It has a friendly user interface and suitable for
@@ -24,7 +22,7 @@ We have deployed it on Alvis, you can find it in `Menu > C3SE > LM Studio`.
 ![lmstudio1](figures/lmstudio1.png)
 ![lmstudio2](figures/lmstudio2.png)
 
-#### Basic inference
+### Basic inference
 
 Once you start LM studio, it brings you to a chat window. On top of the chat
 window, you can see a drop-down list allowing you to select/download models.
@@ -48,10 +46,10 @@ models and start a chat.
 ![lmstudio6](figures/lmstudio6.png)
 ![lmstudio7](figures/lmstudio7.png)
 
-#### HTTP server
+### OpenAI-Compatible API Server
 
-Besides of the chat window, LM Studio also supports OpenAI compatible server
-to handl HTTP requests. The server can also be launched from the GUI by 
+Besides of the chat window, LM Studio also supports OpenAI compatible API
+server to handle HTTP requests. The server can be launched from the GUI by 
 toggling the option in Developer tab in the sidebar. Once you start the server,
 you can send HTTP requests to the listed endpoints. 
 
@@ -124,7 +122,7 @@ $ curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/j
 
 More information can be found in the [official document](https://lmstudio.ai/docs/app/api/endpoints/openai)
 
-#### Command line tools
+### Command line tools
 
 Once you have ever stared LM studio, it automatically installs a command line
 tool into you home directory: `~/.lmstudio/bin/lms`. With the tool, you can do
@@ -179,7 +177,7 @@ Identifier: llama-3.3-70b-instruct
   • Architecture: Llama
 ```
 
-#### Advanced settings
+### Advanced settings
 
 In LM Studio GUI, you can find advanced setting in the Developer tab. You can
 set the `temperature`, `top K`, `top P` values, etc in the inference setting.
@@ -189,13 +187,109 @@ cache, etc.
 ![lmstudio9](figures/lmstudio9.png)
 ![lmstudio10](figures/lmstudio10.png)
 
-### vLLM
+## [vLLM](https://github.com/vllm-project/vllm)
 
-- Offline inference
-- HTTP server
+> vLLM is a fast and easy-to-use library for LLM inference and serving.
 
-### Others
+vLLM itself doesn't have a GUI interface, but it is efficient for LLM inference
+and allow users to load LLMs to multiple GPU and multiple nodes. It can scale
+well on clusters like Alvis.
 
+There are two main entrypoints in vLLM, OpenAI-Compatible API Server and LLM
+class. The former one is implemented by the `AsyncLLMEngine` class while the
+latter one is based on `LLMEngine` class.
+
+### OpenAI-Compatible API Server
+A typical way to use it is using the command line to serve models in
+OpenAI-compatible API servers. For example:
+
+```console
+$ vllm serve openai/gpt-oss-20b --port 8000 --async-scheduling --quantization mxfp4
+```
+will serve `gpt-oss-20b` model on `http://localhost:8000`.
+
+More arguments can be found
+[here](https://docs.vllm.ai/en/latest/configuration/engine_args.html) or in
+`vllm serve --help`.
+
+Once the vLLM server get launched successfully. The following APIs are
+available:
+
+```
+/v1/models, Methods: GET
+/v1/responses, Methods: POST
+/v1/responses/{response_id}, Methods: GET
+/v1/responses/{response_id}/cancel, Methods: POST
+/v1/chat/completions, Methods: POST
+/v1/completions, Methods: POST
+/v1/embeddings, Methods: POST
+/v1/score, Methods: POST
+/v1/audio/transcriptions, Methods: POST
+/v1/audio/translations, Methods: POST
+/v1/rerank, Methods: POST
+/v2/rerank, Methods: POST
+```
+
+You also get some APIs from vLLM itself such as:
+
+```
+/openapi.json, Methods: HEAD, GET
+/docs, Methods: HEAD, GET
+/health, Methods: GET
+/tokenize, Methods: POST
+/detokenize, Methods: POST
+...
+```
+
+### Offline inference (LLM class)
+As a python package, vLLM also provide `LLM` python class, which can be
+imported into python scripts and load models to do inference. For example:
+
+```python
+from vllm import LLM
+
+# Initialize the vLLM engine.
+llm = LLM(model="facebook/opt-125m")
+```
+
+The LLM class can accept many
+[arguments](https://docs.vllm.ai/en/latest/api/vllm/index.html#vllm.LLM) and
+most of them are shared with the available arguments for `vllm serve`. However,
+some features are limited in `AsyncLLMEngine`, such as pipeline parallelism,
+and not supported in LLM class.
+
+Once a LLM instance is created, users can call the methods such as `chat` and
+`generate` as calling APIs in OpenAI-Compatible API server. Here is an example:
+
+```python
+from vllm import LLM, SamplingParams
+
+sampling_params = SamplingParams(
+    temperature=0.6,
+    max_tokens=128,
+    top_p=0.9,
+)
+
+messages = [
+    {"role": "user", "content": "Why is the sky blue?"},
+]
+
+llm = LLM(
+    model="openai/gpt-oss-20b",
+    tensor_parallel_size=4,
+    quantization="mxfp4"
+)
+
+output = llm.chat(messages, sampling_params, use_tqdm=False)
+print(output[0].outputs[0].text)
+```
+
+More examples can be found in
+[vLLM document](https://docs.vllm.ai/en/latest/models/generative_models.html).
+
+## Other Tools
+
+- Transformer
 - ollama + open webui
 
 
