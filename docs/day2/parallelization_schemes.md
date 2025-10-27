@@ -28,7 +28,7 @@ icon: octicons/stack-24
 
 ### Sharding in DP
 
-![](figures/dp_overlap1.svg){ style="height:360px;" }
+![](figures/dp_sharding.gif){ style="height:360px;" }
 
 - Sharding reduces memory usage.
 
