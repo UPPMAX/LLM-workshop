@@ -63,8 +63,14 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 9. benchmark language understanding, reasoning, QA etc. Bias, stereotype, toxicity and answer safety checks.
 10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
-<iframe src="https://github.com/huggingface/datatrove/blob/main/examples/fineweb.py" seamless width="90%" height="400" name="SELFHTML_in_a_box"></iframe>
 
+???- info "Full reproduction of the FineWeb dataset"
+
+    ```python title="fineweb.py"
+
+    --8<-- "https://raw.githubusercontent.com/huggingface/datatrove/refs/heads/main/examples/fineweb.py"
+
+    ```
 
 
 ???- info "Resources"

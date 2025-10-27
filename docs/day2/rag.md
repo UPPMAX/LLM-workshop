@@ -7,7 +7,70 @@ icon: material/database-search
 
 # RAG
 
-## Basics
+???- info "Learning outcomes"
+
+    - Understand the key components of RAG applications
+    - Perform a simple RAG task 
+
+![RAG meme](./figures/rag_is_dead.jpg){ align=right width=300 }
+
+* LLMs are not trained on your personal data or fairly recent data.
+
+* Retrieval-Augmented Generation can help provide richer and accurate responses based on external knowledge.
+
+* They incur significantly lower computation cost compared to long-context LLMs
+
+## Stages in RAG
+
+<div class="annotate" markdown>
+
+* **Loading**: Loading/Parsing data from source and creating well-formatted _Documents_ with metadata. (1)
+
+* **Indexing**: Creating data structure for easy querying of data. Create embeddings. (2)
+
+* **Storing**: Storing _Documents_, metadata and embeddings in a persistant manner (Ex. Vector Stores). (3)
+
+* **Querying**: Retrieving relavent _Documents_ for a user _Query_ and feeding it to LLM for added context. (4)
+
+* **Evaluation**: Trace inspection, meterics, comparisons to test if full pipeline gives desired results. (5)
+
+</div>
+
+1. LlamaIndex ex.: BaseReader class  
+LangChain ex.: DocumentLoader class
+```mermaid
+flowchart LR
+  A[Text/image + metadata] --> B[Chunking/Splitting] --> C[Document]
+```
+
+2. LlamaIndex ex.: VectorStoreIndex class  
+LangChain ex.: 
+```mermaid
+flowchart LR
+  A[Document] --> B[Embeddings]
+```
+
+3. LlamaIndex ex.: StorageContext  
+LangChain ex.: VectorStore
+```mermaid
+flowchart LR
+  A[Document] --> C[Vector Store/Storage Context]
+  B[Embeddings] --> C
+```
+
+4. LlamaIndex ex.: RetrieverQueryEngine class  
+LangChain ex.: Retriever class  
+```mermaid
+flowchart LR
+  A[Vector Store/Storage Context] --> D[LLM + tools]
+  B[Query] --> D
+  C[Prompt] --> D
+  D --> E[Response]
+```
+
+
+5. LlamaIndex ex.: LLM-Evaluator  
+LangChain ex.: LangSmith, QAEvalChain
 
 * Document loading/parsing: also includes metadata
 * Document spliting
@@ -19,10 +82,41 @@ icon: material/database-search
 
 https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction
 
+
+???- info "Resources"
+
+    - Recommended papers on RAG:
+
+        - [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+        - [REALM: Retrieval-Augmented Language Model Pre-Training](https://arxiv.org/pdf/2002.08909)
+        - [Dense Passage Retrieval for Open-Domain Question Answering](https://aclanthology.org/2020.emnlp-main.550)
+        - [Improving language models by retrieving from trillions of tokens](https://arxiv.org/abs/2112.04426)
+
+!!!- info "When and when not to use RAG"
+
+    <div class="annotate" markdown>
+
+    * It was found[^1] that RAG lags behing Long-Context LLMs in the following scenarios: (1)
+        * Query requiring multi-step reasoning.
+        * General queries to which embeddings model does not perform well.
+        * Long and complex queries.
+        * Implicit queries requiring the reader to connect the dots.
+
+    * Way easier than just fine-tuning on personal data.
+    * Allows smaller models with shorter context memory to be on par with larger models. Therefore, saving compute and memory cost on GPUs.  
+
+    </div>  
+    
+    1. ![RAG failure reasons](./figures/rag_failures.png)  
+
 ## Agentic RAG
 
 * Router
 * Tool calling
 * Multistep reasoning with tools
 
+
+
 https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesson/yd6nd/introduction
+
+[^1]: Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach [arXiv](https://arxiv.org/html/2407.16833v1)

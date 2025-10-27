@@ -97,6 +97,8 @@ Core capability benchmarks (higher is better unless noted)
 
     ⚪ = not a primary benchmark for that org (either not reported or only mentioned indirectly)
 
+So what models for look for, while we do our research spanning couple of years? 
+- Look for Chinese model makers. This year has been there's.
 
 
 [^1]: The path forward for large language models in medicine is open. [Nature](https://www.nature.com/articles/s41746-024-01344-w)
