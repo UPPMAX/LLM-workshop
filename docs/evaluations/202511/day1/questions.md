@@ -1,8 +1,5 @@
 Pre and post course survey quetions per schedule item:
 * Overview of the landscape and proper resources
-    * I can navigate inside NAISS project dirs
-    * I can launch interactive sessions
-    * I can submit batch scripts
     * I understand the overall architecture of Alvis compute cluster
     * I know some history and origins of current generative model with attention mechanism
 * Brief introduction to public LLMs
@@ -21,3 +18,15 @@ Pre and post course survey quetions per schedule item:
     * I know commonly used formats in which LLMs are saved on disk
     * I can interpret quantization types in LLMs
     * I know which GPU to go for which type of quantization
+ 
+Pre course survey questions only:
+* I can navigate inside NAISS project dirs
+* I can launch interactive sessions
+* I can submit batch scripts
+* I can build and use containers
+* I can work (create/activate/modify) with a python virtual env
+* I can code in Python: beginner, intermediate, proficient
+* I have used ML/DL frameworks and libraries (TF/PyTorch/JAX/HF etc.): Yes, No, Not sure
+
+Post course survey questions only: 
+* I would recommend this workshop to others : Yes, No, Not sure
