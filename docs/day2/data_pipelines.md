@@ -15,11 +15,15 @@ icon: octicons/workflow-16
 
 - Well-designed data pipelines determine LLM quality, safety, and training throughput.
 
-- Success of all frontier models like GPT-5 relies heavily on quality data and costructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have.
+- Success of all frontier models like GPT-5 relies heavily on quality data and constructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have. 
+
+!!!- quote "[Smol LLM](https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook#smollm3-1) training team"
+
+    From our experience, and though it might disappoint architecture enthusiasts, the biggest performance gains usually come from data curation.
 
 ## Pre-training
 
-**Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model to learn general-purpose representations.
+**Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model to learn general-purpose representations. LLM learns in self-supervised fashion.
 
 [Raw data](https://raw.githubusercontent.com/stanford-cs336/spring2025-lectures/refs/heads/main/var/sample-documents.txt), is often messy and unsuitable for learning linguistic semantics. It typically exists in diverse formats like HTML, PDFs, spreadsheets etc, requiring extensive preprocessing to make it usable for training. Challenge lies in preserving the content and structure during this lossy process of data cleaning.
 
