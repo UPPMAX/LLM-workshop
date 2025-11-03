@@ -13,6 +13,7 @@ nav:
   #   - LLM formats: day1/llm_formats.md
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md
+  #   - Quantization: day2/quantization.ipynb
   #   - Parallelization: day2/parallelization_schemes.md
   #   - RAG: day2/rag.md
   # - Day 3:
@@ -49,6 +50,11 @@ theme:
     - content.action.edit
     - content.action.view
     - content.footnote.tooltips
+
+plugins:
+  - mkdocs-jupyter:
+      include_requirejs: true
+      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
 
 markdown_extensions:
   - toc:
