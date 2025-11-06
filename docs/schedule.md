@@ -37,6 +37,6 @@ Day 3
 |------------------------------------------------------------------|------|------------|
 | :octicons-pencil-16: Prompt engineering                          | TDB  | Jayant     |
 | :fontawesome-solid-diagram-project: Tools, chain/tree-of-thought | TDB  | Viktor     |
-| :octicons-tools-16: Finetuning, RL                               | TDB  | Jayant     |
+| :octicons-tools-16: Post-training                                | TDB  | Jayant     |
 | :fontawesome-solid-sliders: HyperParameter tuning                | TDB  | Viktor     |
 | :octicons-graph-16: Evaluation metrics                           | TDB  | Viktor     |

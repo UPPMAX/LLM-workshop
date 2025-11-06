@@ -2,7 +2,7 @@ site_name: LLM Workshop
 repo_url: https://github.com/UPPMAX/LLM-workshop
 
 nav:
-#  - "Start": index.md
+  - "Start": index.md
   - "Course dates": course_dates.md
   - "Schedule": schedule.md
   - "Glossary": glossary.md
@@ -14,13 +14,11 @@ nav:
   #   - LLM formats: day1/llm_formats.md
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md
-  #   - Quantization: day2/quantization.ipynb
-  #   - Parallelization: day2/parallelization_schemes.md
   #   - RAG: day2/rag.md
   # - Day 3:
   #   - Prompt Engineering: day3/prompt_engineering.md
   #   - Tools and Reasoning: day3/tools.md
-  #   - Fine-tuning: day3/fine_tuning.md
+  #   - Post-training: day3/post_training.md
   #   - Hyperparameter tuning: day3/hyperparameter_tuning.md
   #   - Evaluating LLMs: day3/evaluation_metrics.md
 
@@ -47,6 +45,7 @@ theme:
     - search.suggest
     - content.code.annotate
     - content.code.copy
+    - content.code.select
     - content.tabs.link
     - content.action.edit
     - content.action.view
@@ -72,7 +71,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      url_download: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.superfences:

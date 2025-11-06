@@ -21,7 +21,7 @@ icon: octicons/workflow-16
 
     From our experience, and though it might disappoint architecture enthusiasts, the biggest performance gains usually come from data curation.
 
-## Pre-training
+## Pre-training 📊
 
 **Goal:** Assemble large, diverse, governed corpora and feed tokens efficiently to the model to learn general-purpose representations. LLM learns in self-supervised fashion.
 
@@ -77,7 +77,7 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
     ```
 
 
-???- info "Resources"
+???- info "Resources 📚"
 
     - LLM papers on data and data pipelines:
 
@@ -99,7 +99,7 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 
 
 
-## Post-training
+## Post-training 🎯
 
 **Goal**: Align base LLMs to new tasks or improve its existing abilities in chat-based dialogs, structured tasks or domain-specific data.
 
@@ -123,7 +123,7 @@ This aligning is done via supervised fine-tuning and preference optimization (re
 Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_tokenizers)
 4. Schema validataion (e.g. via pydantic), quality checks, benchmarking and collecting stats.
 
-???- info "Resources"
+???- info "Resources 📚"
 
     - LLM papers on data and data pipelines:
 
