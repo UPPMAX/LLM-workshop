@@ -1,0 +1,697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Brief introduction to publicly available LLMs - LLM Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#brief-introduction-to-publicly-available-llms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LLM Workshop" class="md-header__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Brief introduction to publicly available LLMs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_dates/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course dates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../schedule/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Schedule
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LLM Workshop" class="md-nav__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    LLM Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_dates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course dates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/UPPMAX/LLM-workshop/edit/master/docs/day1/public_llms.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/LLM-workshop/raw/master/docs/day1/public_llms.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="brief-introduction-to-publicly-available-llms">Brief introduction to publicly available LLMs<a class="headerlink" href="#brief-introduction-to-publicly-available-llms" title="Anchor link to this section for reference">&para;</a></h1>
+<details class="- info">
+<summary>Learning outcomes</summary>
+<ul>
+<li>To understand the different categories that LLM comes in</li>
+<li>To know which matrices to look at for your particular usecase</li>
+</ul>
+</details>
+<h2 id="arena">Arena<a class="headerlink" href="#arena" title="Anchor link to this section for reference">&para;</a></h2>
+<figure>
+  <img alt="Open vs Closed Models" src="../figures/open-vs-close.png" width="700" />
+<br />
+<figcaption>Narrowing performance gap on MMLU benchmark (Apr 2022 - July 2025) with human domain experts at 89.8%</figcaption>
+</figure>
+<p>Open-weight models are catching up with closed source models steadily<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:9"><a class="footnote-ref" href="#fn:9">8</a></sup>. However, creating high-quality benchmarks is an active area of research as the existing ones are beginning to plateau. </p>
+<h2 id="categories">Categories<a class="headerlink" href="#categories" title="Anchor link to this section for reference">&para;</a></h2>
+<ul>
+<li>LLMs come in wide-range of "openness".</li>
+<li>Public != Open.</li>
+<li>“Publicly Available” means that the model checkpoints can be publicly accessible (terms can still apply) while “Closed Source” means the opposite.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Category (ordered by openness)</th>
+<th>Weights available?</th>
+<th>Inference</th>
+<th>Fine‑tuning</th>
+<th>Redistribute weights / derivatives</th>
+<th>Typical license</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open Source (OSI‑compatible)</strong></td>
+<td>✅ Full</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Apache‑2.0 / MIT</td>
+<td>Mistral 7B ; OLMo 2 ; Alpaca</td>
+</tr>
+<tr>
+<td><strong>Open Weights (restricted / gated)</strong></td>
+<td>✅ Full</td>
+<td>✅</td>
+<td>⚠️ License‑bound (e.g., research‑only / carve‑outs)</td>
+<td>❌ Usually not allowed</td>
+<td>Custom terms (Llama / Gemma / RAIL)</td>
+<td>Llama 3 (Meta Llama 3 Community License); Gemma 2 (Gemma Terms of Use); BLOOM (OpenRAIL)</td>
+</tr>
+<tr>
+<td><strong>Adapter‑only / Delta releases</strong></td>
+<td>⚠️ Partial (adapters/deltas)</td>
+<td>✅ (after applying)</td>
+<td>✅ (adapters)</td>
+<td>✅ Adapters (base license applies)</td>
+<td>Mixed</td>
+<td>LoRA adapters over a base model</td>
+</tr>
+<tr>
+<td><strong>Proprietary API + FT</strong></td>
+<td>❌</td>
+<td>⚠️ API-only</td>
+<td>⚠️ API‑only (no weights export)</td>
+<td>❌</td>
+<td>Vendor ToS</td>
+<td>OpenAI (GPT‑4.1, o4‑mini FT/RFT); Cohere (Command R/R+ FT); Anthropic (Claude 3 Haiku FT via Bedrock)</td>
+</tr>
+<tr>
+<td><strong>Proprietary API‑only</strong></td>
+<td>❌</td>
+<td>⚠️ API-only</td>
+<td>❌</td>
+<td>❌</td>
+<td>Vendor ToS</td>
+<td>Google Gemini API</td>
+</tr>
+</tbody>
+</table>
+<h2 id="leaderboard">Leaderboard<a class="headerlink" href="#leaderboard" title="Anchor link to this section for reference">&para;</a></h2>
+<p><a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f917.svg" title=":hugging:" /> Open LLM Leaderboard</a></p>
+<iframe src="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+<p>Other notable leaderboards:<br />
+ - <a href="https://crfm.stanford.edu/helm/latest/">HELM</a> (Holistic Evaluation of Language Models by Stanford)<br />
+ - <a href="http://lmarena.ai/leaderboard">LMArena</a> (focus on open-weight models by UC Berkeley)</p>
+<h2 id="benchmarks-to-consider">Benchmarks to consider<a class="headerlink" href="#benchmarks-to-consider" title="Anchor link to this section for reference">&para;</a></h2>
+<p>Focus on a small set of comparable metrics (most appear on the Open LLM Leaderboard or model cards):</p>
+<p>Core capability benchmarks (higher is better unless noted)</p>
+<ul>
+<li>MMLU-Pro<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>: general academic/world knowledge </li>
+<li>GPQA<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">3</a></sup>: Q&amp;A dataset designed by domain experts (PhD-level))</li>
+<li>MuSR<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">4</a></sup>: Reasoning with very long contexts (up to 100K tokens)</li>
+<li>MATH<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">5</a></sup>: high-school competition math problems</li>
+<li>IFEval<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">7</a></sup>: Testing ability to strictly follow instructions</li>
+<li>BBH<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">6</a></sup>: reasoning &amp; commonsense</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Benchmarks (examples)</th>
+<th>Orgs with open weights that report them</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>General academic / world knowledge</strong></td>
+<td>MMLU, MMLU-Pro, CMMLU</td>
+<td>Meta (LLaMA), Mistral, Cohere, DeepSeek</td>
+</tr>
+<tr>
+<td><strong>Domain expert level</strong></td>
+<td>GPQA, CEval, CMMLU</td>
+<td>Meta (LLaMA papers mention expert subsets), Cohere (Command evals), DeepSeek (reports CEval/CMMLU/GPQA)</td>
+</tr>
+<tr>
+<td><strong>Reasoning with long context</strong></td>
+<td>MuSR, LongBench / long-context evals</td>
+<td>Mistral (Mixtral with long context, reported evals), DeepSeek (long-context benchmarks in tech report)</td>
+</tr>
+<tr>
+<td><strong>High-school competition / advanced math</strong></td>
+<td>GSM8K, MATH, AIME</td>
+<td>Meta (MATH, GSM8K), Mistral (GSM8K, MATH), Cohere (GSM8K), DeepSeek (MATH, GSM8K, AIME)</td>
+</tr>
+<tr>
+<td><strong>Instruction following / alignment</strong></td>
+<td>IFEval, instruction eval suites</td>
+<td>Meta (instruction-tuned LLaMA), Cohere (Command-R+ evals), DeepSeek (instruction following evals)</td>
+</tr>
+<tr>
+<td><strong>Reasoning &amp; commonsense</strong></td>
+<td>BBH, HellaSwag, Winogrande, PiQA, ARC, DROP</td>
+<td>Meta (HellaSwag, BBH), Mistral (HellaSwag, Winogrande), Cohere (commonsense evals), DeepSeek (HellaSwag, BBH, PiQA, Winogrande, ARC, DROP)</td>
+</tr>
+<tr>
+<td><strong>Code completion &amp; debugging</strong></td>
+<td>HumanEval, MBPP, LeetCode, Codeforces</td>
+<td>Meta (HumanEval), Mistral (HumanEval, MBPP), Cohere (HumanEval, MBPP), DeepSeek (HumanEval, MBPP, LeetCode)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Mulitlingual and multimodal benchmarks are not covered here in detail.</p>
+<details class="- info">
+<summary>Detailed benchmark coverage per open-weight model provider</summary>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th style="text-align: center;">Meta (LLaMA)</th>
+<th style="text-align: center;">Mistral</th>
+<th style="text-align: center;">Cohere (Command-R+)</th>
+<th style="text-align: center;">DeepSeek</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MMLU / MMLU-Pro / CMMLU</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>GPQA / CEval (expert Q&amp;A)</strong></td>
+<td style="text-align: center;">⚪ (GPQA subsets in papers)</td>
+<td style="text-align: center;">⚪ (less common)</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>MuSR / LongBench / long-context evals</strong></td>
+<td style="text-align: center;">⚪ (not main focus, context ≤32k)</td>
+<td style="text-align: center;">✅ (Mixtral-8x22B long context)</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>GSM8K (math word problems)</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>MATH (competition-level)</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>AIME (advanced math)</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>IFEval / Instruction evals</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>BBH (BigBench Hard)</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>HellaSwag</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Winogrande</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>PiQA</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>ARC (AI2 Reasoning Challenge)</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>DROP (reading comp / commonsense)</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>HumanEval (code completion)</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>MBPP (Python problems)</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>LeetCode / Codeforces evals</strong></td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">⚪</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<p>✅ = reported officially in model card / tech report / benchmarks page</p>
+<p>⚪ = not a primary benchmark for that org (either not reported or only mentioned indirectly)</p>
+</details>
+<p>So what models for look for, while we do our research spanning couple of years? 
+- Look for Chinese model makers. This year has been there's.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The path forward for large language models in medicine is open. <a href="https://www.nature.com/articles/s41746-024-01344-w">Nature</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark. <a href="https://arxiv.org/pdf/2406.01574">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>GPQA: A High-Quality Dataset for Evaluating Question Answering in Specialized Domains. <a href="https://arxiv.org/abs/2311.12022">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>MuSR: A Benchmark for Evaluating Mathematical Understanding and Symbolic Reasoning in Large Language Models. <a href="https://arxiv.org/abs/2405.12324">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>MATH: Measuring Mathematical Problem Solving With the MATH Dataset. <a href="https://arxiv.org/abs/2311.12022">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>BBH: Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them. <a href="https://arxiv.org/abs/2210.09261">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>IFEval: Instruction-Following Evaluation for Large Language Models. <a href="https://arxiv.org/abs/2311.07911">arXiv</a>&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Closed-source vs. open-weight models <a href="https://www.linkedin.com/feed/update/urn:li:activity:7378380957889904640/">LinkedIn</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.naiss.se/" target="_blank" rel="noopener" title="NAISS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["toc.integrate", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.expand", "search.suggest", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.action.edit", "content.action.view", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
