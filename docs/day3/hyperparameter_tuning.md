@@ -34,7 +34,7 @@ icon: fontawesome/solid/sliders
 
 ### Bayesian methods
 - Update beliefs based on observations
-- In theory mathematically optimal
+- In theory optimal
 - In practice, choice of distributions very constrained
     - [Conjugate priors](https://www.johndcook.com/CompendiumOfConjugatePriors.pdf)
     - Fixed hyperhyperparameters
@@ -73,23 +73,32 @@ $$
     - (On Alvis: More likely to hit AssocGrpBillingRunMinutes limit)
 
 ### Overhead and job-size: Short and small
-<!-- Add image/gantt -->
+![Overhead and small jobs](figures/slurm_gantt_small.svg)
+- For small tasks overhead can be noticeable
 
 ### Overhead and job-size: Medium length
-<!-- Add image/gantt -->
+![Overhead and small jobs](figures/slurm_gantt_medium.svg)
+- When overhead is large, combine tasks
 
 ### Overhead and job-size: Big and wide
-<!-- Add image/gantt -->
+![Overhead and small jobs](figures/slurm_gantt_big.svg)
+- Long and/or wide jobs are hard to schedule
+- If you can run a multi-GPU job as several single-GPU jobs, do so
 
 ### Sequential evaluation
-- One job at the time
-<!-- Add image/gantt -->
+![Sequential jobs](figures/slurm_gantt_sequential.svg)
+- One job at the time, no parallelisation
 
 ### Batch evaluation
-<!-- Add image/gantt -->
+![Sequential jobs](figures/slurm_gantt_batch.svg)
+- Worse parameter selection than sequential
+- Runs in parallel
+- Possibly long time between batches
 
 ### Asynchronous workers
-<!-- Add image/gantt -->
+![Sequential jobs](figures/slurm_gantt_asynchronous.svg)
+- Worse parameter selection than sequential
+- Best parallelisation
 
 ## Hyperparameters
 - Model architecture
@@ -122,11 +131,24 @@ $$
 - What are good start values?
 - How some variables interacti with each other.
 
+### Flat prior
+- $p(\theta) \propto 1$
+- In practice a uniform distribution
+- When you're uncertain about exact place in a  range
+<!-- Add plot of pdf -->
+
+### Reciprocal prior
+- $p(\theta) \propto 1/\theta$
+- In practice a loguniform distribution
+- When you're uncertain about order of magnitude
+<!-- Add plot of pdf -->
+
 ## Types of metrics
 - Evaluation: loss, accuracy, ...
 - Speed: seq/s, ...
 - Compute budget: GPU-h
 - Memory use: GB
+- Multi-objectives and/or constraints
 
 ## Excercises
 - Job-arrays and random search
