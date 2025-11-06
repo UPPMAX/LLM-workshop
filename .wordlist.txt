@@ -72,3 +72,15 @@ APIs
 BERT
 AlexNet
 ImageNet
+CoT
+ReAct
+MCP
+MoE
+Deduplication
+Decontamination
+BPE
+Perplexity
+Infiniband
+DPO
+MinHash
+SimHash
