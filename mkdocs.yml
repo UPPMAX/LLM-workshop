@@ -5,6 +5,7 @@ nav:
 #  - "Start": index.md
   - "Course dates": course_dates.md
   - "Schedule": schedule.md
+  - "Glossary": glossary.md
   # - Day 1:
   #   - Introduction: day1/introduction.md
   #   - Publicly available LLMs: day1/public_llms.md
