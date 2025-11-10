@@ -18,6 +18,7 @@ Pre and post course survey quetions per schedule item:
     * I know commonly used formats in which LLMs are saved on disk
     * I can interpret quantization types in LLMs
     * I know which GPU to go for which type of quantization
+* Is there anything you would like to see less or more in the future LLM workshop? Or do you have any general feedback?: Textbox
  
 Pre course survey questions only:
 * I can navigate inside NAISS project dirs
@@ -30,3 +31,4 @@ Pre course survey questions only:
 
 Post course survey questions only: 
 * I would recommend this workshop to others : Yes, No, Not sure
+  
