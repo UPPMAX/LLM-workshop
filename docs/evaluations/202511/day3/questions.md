@@ -14,6 +14,7 @@ Pre and post course survey quetions per schedule item:
 * Evaluation metrics
     * I broadly know which evaluation metrics to evaluate on for my task
     * I can evaluate my finetuned LLM
+* Is there anything you would like to see less or more in the future LLM workshop? Or do you have any general feedback?: Textbox
 
 Pre course survey questions only:
 * I can navigate inside NAISS project dirs
