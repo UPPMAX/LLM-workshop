@@ -14,7 +14,7 @@ nav:
   #   - LLM formats: day1/llm_formats.md
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md
-  #   - Quantization: day2/quantization.ipynb
+  #   - ' 〰️ Quantization': day2/quantization.ipynb
   #   - RAG: day2/rag.md
   # - Day 3:
   #   - Prompt Engineering: day3/prompt_engineering.md
@@ -56,6 +56,7 @@ plugins:
   - mkdocs-jupyter:
       include_requirejs: true
       custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
+      ignore_h1_titles: true
 
 markdown_extensions:
   - toc:
