@@ -29,6 +29,7 @@ jobs:
           SITE_ROOT="/LLM-workshop"
           slides=(
             "${DOC_ROOT}/day1/introduction.md"
+            "${DOC_ROOT}/day1/access_llm.md"
             "${DOC_ROOT}/day1/llm_hardware.md"
             "${DOC_ROOT}/day1/llm_formats.md"
             "${DOC_ROOT}/day2/parallelization_schemes.md"

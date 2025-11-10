@@ -1,12 +1,17 @@
 ---
+title: Quick Start to Access LLMs
 tags:
   - Inference
 icon: fontawesome/solid/bolt
 ---
 
-# Quick Start to Access LLMs
-
 ## LM Studio
+
+### LM Studio on Alvis
+
+![lmstudio1](figures/lmstudio1.png)
+
+<aside class="notes" markdown="1">
 
 [LM Studio](https://lmstudio.ai/) is a desktop app for developing and
 experimenting with LLMs. It has a friendly user interface and suitable for
@@ -19,43 +24,63 @@ We have deployed it on Alvis, you can find it in `Menu > C3SE > LM Studio`.
     LM Studio supports limited file format and may not scale well on clusters.
     Don't use it for productive work.
 
-![lmstudio1](figures/lmstudio1.png)
+</aside>
+
+### LM Studio desktop app
+
 ![lmstudio2](figures/lmstudio2.png)
 
-### Basic inference
+### Chat interface
 
+<aside class="notes" markdown="1">
 Once you start LM studio, it brings you to a chat window. On top of the chat
 window, you can see a drop-down list allowing you to select/download models.
+</aside>
 
 ![lmstudio3](figures/lmstudio3.png)
+
+### Model download
+
 ![lmstudio4](figures/lmstudio4.png)
 
+<aside class="notes" markdown="1">
 Before downloading any models, it is important to select a directory to save
 downloaded models. Click the folder icon in the sidebar, you can find that it
 saves models into your home directory by default. You can change the path to
 any directory where you have downloaded models. If you haven't downloaded any
 model, you had better set the path to a directory under your storage project.
 Otherwise, you run out of file/space quota easily.
+</aside>
 
+### Select download directory
 ![lmstudio5](figures/lmstudio5.png)
+
+### Check downloaded models
 ![lmstudio6](figures/lmstudio6.png)
 
+<aside class="notes" markdown="1">
 Once you set the path, you can go back to the chat window to download/load
 models and start a chat.
+</aside>
 
-![lmstudio6](figures/lmstudio6.png)
+### Load model and chat
 ![lmstudio7](figures/lmstudio7.png)
 
-### OpenAI-Compatible API Server
+### OpenAI-compatible API server
 
+<aside class="notes" markdown="1">
 Besides of the chat window, LM Studio also supports OpenAI compatible API
 server to handle HTTP requests. The server can be launched from the GUI by 
 toggling the option in Developer tab in the sidebar. Once you start the server,
 you can send HTTP requests to the listed endpoints. 
+</aside>
 
 ![lmstudio8](figures/lmstudio8.png)
 
-In the figure, it shows there are four endpoints:
+
+### Endpoints
+
+There are four endpoints:
 
 - `/v1/models`
 - `/v1/chat/completions`
@@ -65,9 +90,13 @@ In the figure, it shows there are four endpoints:
 You can test the API by sending HTTP request from your terminal by curl. For
 example:
 
-```console
-# Request for available models
-$ curl http://localhost:1234/v1/models
+### Use OpenAI API
+
+- Get available models: `curl http://localhost:1234/v1/models`
+
+<aside class="notes" markdown="1">
+
+```json
 {
   "data": [
     {
@@ -84,16 +113,21 @@ $ curl http://localhost:1234/v1/models
   "object": "list"
 }
 ```
+</aside>
+
+- Chat to a model:
 
 ```console
-# Chat
 $ curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/json" -d '{
     "model": "llama-3.3-70b-instruct",
     "messages": [
         { "role": "user", "content": "why is the sky blue" }
     ]
 }'
+```
 
+<aside class="notes" markdown="1">
+```json
 {
   "id": "chatcmpl-stubx36wa8neg1u8jo5re",
   "object": "chat.completion",
@@ -106,7 +140,7 @@ $ curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/j
       "finish_reason": "stop",
       "message": {
         "role": "assistant",
-        "content": "The sky appears blue because of a phenomenon called Rayleigh scattering, which is the scattering of light by small particles or molecules in the atmosphere.\n\nHere's what happens:\n\n1. **Sunlight enters Earth's atmosphere**: When sunlight enters our atmosphere, it contains all the colors of the visible spectrum (red, orange, yellow, green, blue, indigo, and violet).\n2. **Light encounters tiny molecules**: The light encounters tiny molecules of gases such as nitrogen (N2) and oxygen (O2) in the atmosphere.\n3. **Shorter wavelengths scatter more**: These small molecules scatter the shorter wavelengths of light, like blue and violet, more than the longer wavelengths, like red and orange. This is because the smaller molecules are more effective at scattering the higher-energy, shorter-wavelength light.\n4. **Blue light is scattered in all directions**: As a result of this scattering, the blue light is dispersed in all directions, reaching our eyes from all parts of the sky.\n5. **Our eyes perceive the sky as blue**: Since we see more blue light being scattered in all directions, our brains interpret the color of the sky as blue.\n\nThere are some additional factors that can affect the color of the sky:\n\n* **Dust and pollution**: Tiny particles in the atmosphere, like dust, smoke, or pollutants, can scatter light in different ways, making the sky appear more hazy or gray.\n* **Water vapor**: Water molecules in the air can also scatter light, which is why the sky often appears more blue on dry days.\n* **Time of day and sun position**: The color of the sky can change depending on the time of day and the position of the sun. During sunrise and sunset, the sky can take on hues of red, orange, and pink due to the scattering of light by atmospheric particles.\n\nIn summary, the sky appears blue because of the way that tiny molecules in the atmosphere scatter sunlight, favoring shorter wavelengths like blue and violet over longer wavelengths like red and orange."
+        "content": "The sky appears blue because of a phenomenon called Rayleigh scattering..."
       }
     }
   ],
@@ -119,38 +153,36 @@ $ curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/j
   "system_fingerprint": "llama-3.3-70b-instruct"
 }
 ```
+</aside>
 
-More information can be found in the [official document](https://lmstudio.ai/docs/app/api/endpoints/openai)
+- [More information](https://lmstudio.ai/docs/app/api/endpoints/openai)
+
+### OpenAI Python SDK
+
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:1234/v1")
+
+model_list = client.models.list()
+print(model_list)
+
+response = client.chat.completions.create(
+    messages=[{"role": "user", "content": "why is the sky blue?"}]
+)
+print(reponse)
+```
 
 ### Command line tools
+
+<aside class="notes" markdown="1">
 
 Once you have ever stared LM studio, it automatically installs a command line
 tool into you home directory: `~/.lmstudio/bin/lms`. With the tool, you can do
 the same operations as what you can do in the GUI. You can also see the models
 you have loaded from the GUI in the terminal
 
-```console
-$ ~/.lmstudio/bin/lms --help
-lms <subcommand>
-
-where <subcommand> can be one of:
-
-- status - Prints the status of LM Studio
-- server - Commands for managing the local server
-- ls - List all downloaded models
-- ps - List all loaded models
-- get - Searching and downloading a model from online.
-- load - Load a model
-- unload - Unload a model
-- create - Create a new project with scaffolding
-- log - Log operations. Currently only supports streaming logs from LM Studio via `lms log stream`
-- import - Import a model file into LM Studio
-- flags - Set or get experiment flags
-- bootstrap - Bootstrap the CLI
-- version - Prints the version of the CLI
-
-For more help, try running `lms <subcommand> --help`
-```
+</aside>
 
 ```console
 $ ~/.lmstudio/bin/lms status
@@ -165,6 +197,8 @@ $ ~/.lmstudio/bin/lms status
    └───────────────────────────────────────────┘
 ```
 
+### Command line tools (continue)
+
 ```console
 $ ~/.lmstudio/bin/lms ps
 
@@ -177,18 +211,22 @@ Identifier: llama-3.3-70b-instruct
   • Architecture: Llama
 ```
 
+Check more: `~/.lmstudio/bin/lms --help`
+
 ### Advanced settings
 
+<aside class="notes" markdown="1">
 In LM Studio GUI, you can find advanced setting in the Developer tab. You can
 set the `temperature`, `top K`, `top P` values, etc in the inference setting.
 There are also parameters about performance, like GPU offload, CPU Thread, KV
 cache, etc.
+</aside>
 
 ![lmstudio9](figures/lmstudio9.png)
-![lmstudio10](figures/lmstudio10.png)
 
 ## [vLLM](https://github.com/vllm-project/vllm)
 
+<aside class="notes" markdown="1">
 > vLLM is a fast and easy-to-use library for LLM inference and serving.
 
 vLLM itself doesn't have a GUI interface, but it is efficient for LLM inference
@@ -198,69 +236,56 @@ well on clusters like Alvis.
 There are two main entrypoints in vLLM, OpenAI-Compatible API Server and LLM
 class. The former one is implemented by the `AsyncLLMEngine` class while the
 latter one is based on `LLMEngine` class.
+</aside>
 
 ### OpenAI-Compatible API Server
-A typical way to use it is using the command line to serve models in
-OpenAI-compatible API servers. For example:
 
-```console
-$ vllm serve openai/gpt-oss-20b --port 8000 --async-scheduling --quantization mxfp4
-```
-will serve `gpt-oss-20b` model on `http://localhost:8000`.
+- Launch server: `vllm serve unsloth/Llama-3.2-1B-Instruct`
+    - default URL: `http://localhost:8000`
+    - set host: `--host <host>`
+    - set port: `--port <port>`
+    - [More arguments](https://docs.vllm.ai/en/latest/configuration/engine_args.html)
 
-More arguments can be found
-[here](https://docs.vllm.ai/en/latest/configuration/engine_args.html) or in
-`vllm serve --help`.
+Once a server is launched, in another terminal:
+- Chat: `vllm chat`
+- Completion: `vllm complete`
+- Benchmark: `vllm bench`
 
-Once the vLLM server get launched successfully. The following APIs are
-available:
 
-```
-/v1/models, Methods: GET
-/v1/responses, Methods: POST
-/v1/responses/{response_id}, Methods: GET
-/v1/responses/{response_id}/cancel, Methods: POST
-/v1/chat/completions, Methods: POST
-/v1/completions, Methods: POST
-/v1/embeddings, Methods: POST
-/v1/score, Methods: POST
-/v1/audio/transcriptions, Methods: POST
-/v1/audio/translations, Methods: POST
-/v1/rerank, Methods: POST
-/v2/rerank, Methods: POST
-```
+### Endpoints
 
-You also get some APIs from vLLM itself such as:
+- `/v1/models`
+- `/v1/responses`
+- `/v1/responses/{response_id}`
+- `/v1/responses/{response_id}/cancel`
+- `/v1/chat/completions`
+- `/v1/completions`
+- ...
+- `/openapi.json`
+- `/docs`
+- `/health`
+- ...
 
-```
-/openapi.json, Methods: HEAD, GET
-/docs, Methods: HEAD, GET
-/health, Methods: GET
-/tokenize, Methods: POST
-/detokenize, Methods: POST
-...
-```
+- Similiarly, get available models: `curl http://localhost:8000/v1/models`
+
 
 ### Offline inference (LLM class)
-As a python package, vLLM also provide `LLM` python class, which can be
-imported into python scripts and load models to do inference. For example:
 
-```python
-from vllm import LLM
+- `LLM` python class
+    ```python
+    from vllm import LLM
 
-# Initialize the vLLM engine.
-llm = LLM(model="facebook/opt-125m")
-```
+    # Initialize the vLLM engine.
+    llm = LLM(model="unsloth/Llama-3.2-1B-Instruct")
+    ```
+- [Arguments](https://docs.vllm.ai/en/latest/api/vllm/index.html#vllm.LLM) are
+  similar to the ones used in `vllm serve` except for some missing features
+  like pipeline parallelism.
 
-The LLM class can accept many
-[arguments](https://docs.vllm.ai/en/latest/api/vllm/index.html#vllm.LLM) and
-most of them are shared with the available arguments for `vllm serve`. However,
-some features are limited in `AsyncLLMEngine`, such as pipeline parallelism,
-and not supported in LLM class.
 
-Once a LLM instance is created, users can call the methods such as `chat` and
-`generate` as calling APIs in OpenAI-Compatible API server. Here is an example:
+### LLM class methods
 
+- Chat
 ```python
 from vllm import LLM, SamplingParams
 
@@ -275,21 +300,65 @@ messages = [
 ]
 
 llm = LLM(
-    model="openai/gpt-oss-20b",
+    model="unsloth/Llama-3.2-1B-Instruct",
     tensor_parallel_size=4,
-    quantization="mxfp4"
 )
 
 output = llm.chat(messages, sampling_params, use_tqdm=False)
 print(output[0].outputs[0].text)
 ```
 
-More examples can be found in
-[vLLM document](https://docs.vllm.ai/en/latest/models/generative_models.html).
+[More examples](https://docs.vllm.ai/en/latest/models/generative_models.html).
+
+## [Huggingface Transformers](https://huggingface.co/docs/transformers/main/index)
+
+### OpenAI-Compatible API Server
+
+- Launch server: `transformers serve` (model is not selected yet)
+- Endpoints:
+    - `/v1/chat/completions`
+    - `/v1/responses`
+    - `/v1/audio/transcriptions`
+    - `/v1/models`
+- Chat in another teminal: `transformers chat --model-name-or-path openai/gpt-oss-20b`
+- [More information](https://huggingface.co/docs/transformers/main/serving)
+
+### Lower level operation
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model_name = "openai/gpt-oss-20b"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    torch_dtype="auto",
+    device_map="auto"
+)
+
+messages = [
+    {"role": "user", "content": "Explain what MXFP4 quantization is."},
+]
+
+inputs = tokenizer.apply_chat_template(
+    messages,
+    add_generation_prompt=True,
+    return_tensors="pt",
+    return_dict=True,
+).to(model.device)
+
+outputs = model.generate(
+    **inputs,
+    max_new_tokens=200,
+    temperature=0.7
+)
+
+print(tokenizer.decode(outputs[0]))
+```
 
 ## Other Tools
 
-- Transformer
-- ollama + open webui
-
+- [SGLang](https://docs.sglang.ai/)
+- [Huggingface TGI](https://huggingface.co/docs/text-generation-inference/index)
+- [Ollama](https://ollama.com/)
 
