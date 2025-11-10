@@ -12,6 +12,7 @@ Pre and post course survey questions per schedule item:
     * I know the common stages of a simple RAG
     * I know when to use RAG for my usecase
     * I know how RAG is used by AI Agents
+* Is there anything you would like to see less or more in the future LLM workshop? Or do you have any general feedback?: Textbox
 
 Pre course survey questions only:
 * I can navigate inside NAISS project dirs
