@@ -9,15 +9,16 @@ Pre and post course survey quetions per schedule item:
     * I know the tools available on Alvis to quick start with LLMs
     * I can perform inference using LLM inference engine/server
 * LLM and hardware
-    * I know what makes LLMs compute heavy
-    * I know what makes LLMs memory heavy
-    * I know how LLMs perform next token predictions in general
+    * I know the general structure of neural networks
+    * I know why transformer helped training LLMs
+    * I know the difference in needs of LLM training/fine-tuning/inference
     * I know some tricks used to reduce computation and memory footprint in LLMs
 * LLM formats
-    * I know understand LLM nomenclature
-    * I know commonly used formats in which LLMs are saved on disk
-    * I can interpret quantization types in LLMs
-    * I know which GPU to go for which type of quantization
+    * I understand some elements in LLM names
+    * I know common formats in which LLMs are saved on disk
+    * I know common number formats relevant to LLMs
+    * I know common ways of performing quantization
+    * I know how to check compatibility between models and hardware
 * Is there anything you would like to see less or more in the future LLM workshop? Or do you have any general feedback?: Textbox
  
 Pre course survey questions only:

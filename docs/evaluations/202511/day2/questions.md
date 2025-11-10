@@ -5,7 +5,8 @@ Pre and post course survey questions per schedule item:
 * How to quantize
 * Model parallelism
     * I know different ways to parallelize LLM training
-    * I know the tools to perform parallelization
+    * I know how to choose a scheme for a certain LLM task
+    * I know some popular libraries for parallelizing LLMs
 * Multi-modalities
     * I can use inference engine/server to infer from multimodal LLMs
 * RAG
