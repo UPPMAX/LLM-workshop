@@ -10,8 +10,8 @@ familiarity with some concepts we will be using. We will cover a very brief
 refresher for the most important ones, but this will often not be sufficient to
 follow along if you are completely new to the topic.
 
-Additionally, there will be some steps to go through to get access and set up
-your environment on the cluster we will be using for this workshop.
+Complete the following steps to get access to the cluster and project so that
+you can do the excercises during the workshop.
 
 1. Complete [getting access](https://www.c3se.chalmers.se/documentation/first_time_users/)
     - This can take some time so start ASAP
@@ -20,3 +20,6 @@ your environment on the cluster we will be using for this workshop.
 2. Try accessing the cluster
     - SSH `ssh <CID>@alvis2.c3se.chalmers.se` (replace `<CID>` with your Alvis username)
     - Open OnDemand <https://alvis.c3se.chalmers.se>
+3. Try creating and editing a text file on the command line
+    - `nano` good enough, easy to get started
+    - `vim`/`emacs` more powerful
