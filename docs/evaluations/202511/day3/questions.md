@@ -5,7 +5,7 @@ Pre and post course survey quetions per schedule item:
 * Tools, chain/tree-of-thought
     * I know how LLMs make use of tools
     * I know how LLMs can be forced to "think"
-* Finetuning, RL
+* Posttraining
     * I know different finetuning techniques for LLMs
     * I can finetune an LLM on a dataset
 * HyperParameter tuning
