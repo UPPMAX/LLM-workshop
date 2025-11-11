@@ -7,7 +7,7 @@ Pre and post course survey quetions per schedule item:
     * I know how LLMs can be forced to "think"
 * Posttraining
     * I know different finetuning techniques for LLMs
-    * I can finetune an LLM on a dataset
+    * I am not afraid of finetuning an LLM on my dataset
 * HyperParameter tuning
     * I know what various hyperparameters mean
     * I know how to optimize my hyperparameter selection
