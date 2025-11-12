@@ -16,6 +16,10 @@
     box-shadow: none;
 }
 
+.reveal {
+  font-size: 28px;
+}
+
 /* By default all titles are all-caps, don't want that */
 .reveal h1,
 .reveal h2,
