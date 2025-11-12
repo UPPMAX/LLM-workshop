@@ -2,7 +2,9 @@ Pre and post course survey questions per schedule item:
 * Datapipeline
     * I know the common stages of pre-training pipeline
     * I know the common stages of post-training pipeline
-* How to quantize
+* Quantization
+    * I know different ways to perform quantization
+    * I know some popular libraries for quantizing models
 * Model parallelism
     * I know different ways to parallelize LLM training
     * I know how to choose a scheme for a certain LLM task

@@ -5,9 +5,11 @@ Pre and post course survey quetions per schedule item:
 * Brief introduction to public LLMs
     * I understand the categories in which LLMs are released
     * I know what to look for when selecting a LM for my use case 
-* Accessing LLMs / Quick inference
-    * I know the tools available on Alvis to quick start with LLMs
+* LLM inference
+    * I know the tools available on Alvis for LLM inference
     * I can perform inference using LLM inference engine/server
+    * I understand OpenAI API
+    * I know different ways to perform offline inference
 * LLM and hardware
     * I know the general structure of neural networks
     * I know why transformer helped training LLMs
