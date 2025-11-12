@@ -1,10 +1,9 @@
 ---
+title: Multi-Modality
 tags:
   - multi-modality
   - inference
 ---
-
-# Multi-Modality
 
 ## Introduction
 
@@ -13,18 +12,27 @@ https://arxiv.org/abs/2405.17927
 
 ## Inference in vLLM
 
-The way to use multimodal models is similar to using normal LLMs. VLMs can also
-be hosted as OpenAI-compatible API servers or loaded as local model instances.
-The main difference is the content of data to be sent to the model. Instead of
-text-only messages like
+- Support of 
+[multiModal models](https://docs.vllm.ai/models/supported_models.html#list-of-multimodal-language-models)
+- Same way to launch server for VLM:
 ```
+$ vllm serve unsloth/Llama-3.2-11B-Vision-Instruct
+```
+- Some other useful arguments: 
+    -`--limit-mm-per-prompt`
+    -`--allowed-local-media-path`
+
+### Messages to LLM
+
+```python
 messages = [
     {"role": "user", "content": "..."},
     ...
 ]
 ```
-The content has to be expanded with data type and the data match with the type.
-For example, to send an image, the content may look like
+
+### Messages to multi-modal model
+
 ```
 messages = [
     {
@@ -36,13 +44,26 @@ messages = [
     }
 ]
 ```
-Instead of sending a URL in the content, a base64-encoded can also be sent to
-models, such as 
+
+### Send image raw data
+
+- Encode with `base64`
+
+```bash
+# bash
+data=$(base64 image.jpg)
+```
+
 ```python
+# python
 import base64
 with open("image.jpg", "rb") as image_file:
-    data = base64.b64encode(image_file.read())
+    data = base64.b64encode(image_file.read()).decode("utf-8")
+```
 
+### Message with raw data
+
+```
 messages = [
     {
         "role": "user",
@@ -54,92 +75,107 @@ messages = [
 ]
 ```
 
-A complete example:
+### OpenAI python SDK example
 
-```bash
-#!/bin/bash
-#SBATCH --gpus-per-node=A100:4
-#SBATCH --time=2:00:00
+```python
+import base64
+from openai import OpenAI
 
-VLLM_PORT=$(find_ports) # get a random port
-NGPUS=${SLURM_GPUS_ON_NODE:-1}
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="")
 
-export APPTAINERENV_VLLM_DISABLE_COMPILE_CACHE=1
+with open("../image/eso2105a.jpg", "rb") as image_file:
+    data = base64.b64encode(image_file.read()).decode("utf-8")
 
-### Llama-3.2-11B-Vision-Instruct
-# https://github.com/vllm-project/vllm/issues/27198
-VLLM_SIF=/apps/containers/vLLM/vllm-0.9.1.sif
-HF_MODEL=/mimer/NOBACKUP/Datasets/LLM/huggingface/hub/models--neuralmagic--Llama-3.2-11B-Vision-Instruct-quantized.w4a16/snapshots/7f66874ab1a17131069ffede32f5efaad2cb80b5/
-MODEL_NAME=$(echo "$HF_MODEL" | sed -n 's#.*/models--\([^/]*\)--\([^/]*\)/.*#\1/\2#p')
-
-vllm_opts="--tensor-parallel-size=$NGPUS"
-vllm_opts+=" --max-model-len=10000"
-vllm_opts+=" --no-use-tqdm-on-load"
-vllm_opts+=" --enable-auto-tool-choice"
-vllm_opts+=" --tool-call-parser llama3_json"
-vllm_opts+=" --gpu-memory-utilization 0.5"
-vllm_opts+=" --max-num-seqs=16"  # multimodal
-vllm_opts+=" --enforce-eager"  # multimodal
-vllm_opts+=" --limit-mm-per-prompt.image 2"  # multimodal
-vllm_opts+=" --limit-mm-per-prompt.video 1"  # multimodal
-vllm_opts+=" --allowed-local-media-path=${HOME}"  # multimodal
-
-apptainer exec $VLLM_SIF \
-    vllm serve ${HF_MODEL} \
-        --served-model-name $MODEL_NAME \
-        --port ${VLLM_PORT} \
-        ${vllm_opts} \
-        > vllm.out 2> vllm.err &
-VLLM_PID=$!
-
-if timeout 600 bash -c "tail -f vllm.err | grep -q 'Application startup complete'"; then
-    echo "vLLM is running. Sending test request"
-else
-    echo "vLLM doesn't seem to start, aborting"
-    echo "Terminating VLLM" && kill -15 ${VLLM_PID}
-    exit
-fi
-
-curl http://localhost:$VLLM_PORT/v1/models | jq .
-
-BASE64IMG=$(base64 M87BH.jpg)
-cat > payload.json << EOF
-{
-    "model": "neuralmagic/Llama-3.2-11B-Vision-Instruct-quantized.w4a16",
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "What is shown in the image?"},
-                {"type": "image_url", "image_url": {"url": "data:image/png;base64, $BASE64IMG"}}
-            ]
-        }
-    ],
-    "temperature": 0
-}
-EOF
-curl http://localhost:$VLLM_PORT/v1/chat/completions \
-    -H "Content-Type: application/json; charset=utf-8" \
-    -d @payload.json | jq
-
-IMGURL="https://upload.wikimedia.org/wikipedia/commons/4/4f/Black_hole_-_Messier_87_crop_max_res.jpg"
-cat > payload.json << EOF
-{
-    "model": "neuralmagic/Llama-3.2-11B-Vision-Instruct-quantized.w4a16",
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "What is shown in the image?"},
-                {"type": "image_url", "image_url": {"url": "$IMGURL"}}
-            ]
-        }
-    ],
-    "temperature": 0
-}
-EOF
-curl http://localhost:$VLLM_PORT/v1/chat/completions \
-    -H "Content-Type: application/json; charset=utf-8" \
-    -d @payload.json | jq
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "text", "text": "What is shown in the image?"},
+            {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{data}"}},
+        ],
+    },
+]
+response = client.chat.completions.create(model="...", messages=messages)
+print(response)
 ```
+
+## Offline inference in Transformers
+
+- Use `AutoProcessor` instead of `AutoTokenizer`
+- User `AutoModelForImageTextToText` instead of `AutoModelForCausalLM`
+
+```python
+import requests
+from PIL import Image
+from transformers import AutoProcessor, AutoModelForImageTextToText
+
+model = AutoModelForImageTextToText.from_pretrained(
+    model_name, torch_dtype="auto", device_map="auto",
+)
+processor = AutoProcessor.from_pretrained(model_name)
+
+url = "https://cdn.eso.org/images/screen/eso2105a.jpg"
+```
+
+### Message to multimodal model
+
+- Use `{"type": "image", "url": url}` instead of 
+`{"type": "image_url", "image_url": {"url": url}}`
+```python
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "url": url},
+            {"type": "text", "text": "What is shown in the image?"},
+        ],
+    },
+]
+```
+
+### Raw data in message
+
+```python
+with open("../image/eso2105a.jpg", "rb") as image_file:
+    data = base64.b64encode(image_file.read()).decode("utf-8")
+
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "text", "text": "What is shown in the image?"},
+            {"type": "image", "url": f"data:image/png;base64,{data}"},
+        ],
+    },
+]
+
+processed_chat = processor.apply_chat_template(
+    messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt")
+print(list(processed_chat.keys()))
+```
+
+### Attach image with processor
+
+```python
+image = Image.open(requests.get(url, stream=True).raw)
+
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image"},
+            {"type": "text", "text": "What is shown in the image"}
+        ]
+    }
+]
+input_text = processor.apply_chat_template(messages, add_generation_prompt=True)
+inputs = processor(
+    image, input_text, add_special_tokens=False, return_tensors="pt"
+).to(model.device)
+
+output = model.generate(**inputs, max_new_tokens=30)
+print(processor.decode(output[0]))
+```
+
+
 

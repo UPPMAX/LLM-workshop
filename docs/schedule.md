@@ -16,7 +16,7 @@ Day 1
 |-----------------------------------------------------------------------|------|-------------------|
 | :simple-openstreetmap: Overview of the landscape and proper resources | TDB  | Viktor            |
 | :material-earth: Brief introduction to public LLMs                    | TDB  | Jayant            |
-| :fontawesome-solid-bolt: Accessing LLMs / Quick inference             | TDB  | Chia-Jung / Yunqi |
+| :fontawesome-solid-bolt: LLM inference                                | TDB  | Chia-Jung / Yunqi |
 | :simple-nvidia:  LLM and hardware                                     | TDB  | Yunqi             |
 | :octicons-file-binary-24: LLM formats                                 | TDB  | Yunqi             |
 

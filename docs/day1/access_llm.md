@@ -80,19 +80,18 @@ you can send HTTP requests to the listed endpoints.
 
 ### Endpoints
 
-There are four endpoints:
-
-- `/v1/models`
-- `/v1/chat/completions`
-- `/v1/completions`
-- `/v1/embeddings`
-
-You can test the API by sending HTTP request from your terminal by curl. For
-example:
+- Four endpoints:
+    - `/v1/models`
+    - `/v1/chat/completions`
+    - `/v1/completions`
+    - `/v1/embeddings`
 
 ### Use OpenAI API
 
-- Get available models: `curl http://localhost:1234/v1/models`
+- Get available models: 
+```console
+$ curl http://localhost:1234/v1/models
+```
 
 <aside class="notes" markdown="1">
 
@@ -247,6 +246,7 @@ latter one is based on `LLMEngine` class.
     - [More arguments](https://docs.vllm.ai/en/latest/configuration/engine_args.html)
 
 Once a server is launched, in another terminal:
+
 - Chat: `vllm chat`
 - Completion: `vllm complete`
 - Benchmark: `vllm bench`
@@ -254,30 +254,34 @@ Once a server is launched, in another terminal:
 
 ### Endpoints
 
-- `/v1/models`
-- `/v1/responses`
-- `/v1/responses/{response_id}`
-- `/v1/responses/{response_id}/cancel`
-- `/v1/chat/completions`
-- `/v1/completions`
-- ...
-- `/openapi.json`
-- `/docs`
-- `/health`
-- ...
+- Part of the endpoints
+    - `/v1/models`
+    - `/v1/responses`
+    - `/v1/responses/{response_id}`
+    - `/v1/chat/completions`
+    - `/v1/completions`
+    - ...
+    - `/openapi.json`
+    - `/docs`
+    - `/health`
+    - ...
 
-- Similiarly, get available models: `curl http://localhost:8000/v1/models`
-
+- Similiarly, get available models: 
+```
+$ curl http://localhost:8000/v1/models
+```
 
 ### Offline inference (LLM class)
 
 - `LLM` python class
-    ```python
-    from vllm import LLM
 
-    # Initialize the vLLM engine.
-    llm = LLM(model="unsloth/Llama-3.2-1B-Instruct")
-    ```
+```python
+from vllm import LLM
+
+# Initialize the vLLM engine.
+llm = LLM(model="unsloth/Llama-3.2-1B-Instruct")
+```
+
 - [Arguments](https://docs.vllm.ai/en/latest/api/vllm/index.html#vllm.LLM) are
   similar to the ones used in `vllm serve` except for some missing features
   like pipeline parallelism.
@@ -286,6 +290,7 @@ Once a server is launched, in another terminal:
 ### LLM class methods
 
 - Chat
+
 ```python
 from vllm import LLM, SamplingParams
 
