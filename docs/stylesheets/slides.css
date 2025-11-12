@@ -10,10 +10,14 @@
   max-width: 65%;
 }
 
+.reveal section {
+  text-align: left;
+}
+
 .reveal section img {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .reveal {
@@ -27,6 +31,7 @@
 .reveal h4,
 .reveal h5,
 .reveal h6 {
+  text-align: center;
   text-transform: none;
 }
 
@@ -42,8 +47,8 @@
 
 /* hide invisible fragments */
 .fragment.current-visible.visible:not(.current-fragment) {
-    display: none;
-    height:0px;
-    line-height: 0px;
-    font-size: 0px;
+  display: none;
+  height:0px;
+  line-height: 0px;
+  font-size: 0px;
 }
