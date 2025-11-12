@@ -1,5 +1,5 @@
 ---
-title: Quick Start to Access LLMs
+title: LLM Inference
 tags:
   - Inference
 icon: fontawesome/solid/bolt
@@ -336,9 +336,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 model_name = "openai/gpt-oss-20b"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    torch_dtype="auto",
-    device_map="auto"
+    model_name, torch_dtype="auto", device_map="auto"
 )
 
 messages = [
@@ -346,16 +344,11 @@ messages = [
 ]
 
 inputs = tokenizer.apply_chat_template(
-    messages,
-    add_generation_prompt=True,
-    return_tensors="pt",
-    return_dict=True,
+    messages, add_generation_prompt=True, return_tensors="pt", return_dict=True,
 ).to(model.device)
 
 outputs = model.generate(
-    **inputs,
-    max_new_tokens=200,
-    temperature=0.7
+    **inputs, max_new_tokens=200, temperature=0.7
 )
 
 print(tokenizer.decode(outputs[0]))

@@ -9,7 +9,7 @@ nav:
   # - Day 1:
   #   - Introduction: day1/introduction.md
   #   - Publicly available LLMs: day1/public_llms.md
-  #   - Accessing LLM: day1/access_llm.md
+  #   - Accessing LLM: day1/inference.md
   #   - LLM and hardware: day1/llm_hardware.md
   #   - LLM formats: day1/llm_formats.md
   # - Day 2:
