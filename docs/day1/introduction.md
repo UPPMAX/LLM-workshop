@@ -1,12 +1,18 @@
 ---
 title: "LLM Workshop - Introduction"
 author: "NAISS"
-date: 2025-09-30
+date: 2025-11-19
 fontsize: 10pt
 tags:
   - Introduction
 icon: simple/openstreetmap
 ---
+
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
 
 ## Overview
