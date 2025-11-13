@@ -11,7 +11,7 @@ refresher for the most important ones, but this will often not be sufficient to
 follow along if you are completely new to the topic.
 
 Complete the following steps to get access to the cluster and project so that
-you can do the excercises during the workshop.
+you can do the exercises during the workshop.
 
 1. Complete [getting access](https://www.c3se.chalmers.se/documentation/first_time_users/)
     - This can take some time so start ASAP
