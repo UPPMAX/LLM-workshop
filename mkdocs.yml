@@ -15,6 +15,8 @@ nav:
   # - Day 2:
   #   - Data Pipelines: day2/data_pipelines.md
   #   - ' 〰️ Quantization': day2/quantization.ipynb
+  #   - Model parallelism: day2/parallelization_schemes.md
+  #   - 'Multi-Modal LLM / VLM Inference': day2/multimodal.md
   #   - RAG: day2/rag.md
   # - Day 3:
   #   - Prompt Engineering: day3/prompt_engineering.md

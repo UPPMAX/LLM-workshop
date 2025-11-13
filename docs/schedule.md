@@ -25,9 +25,9 @@ Day 2
 | Item                                                  | Time | Instructor |
 |-------------------------------------------------------|------|------------|
 | :octicons-workflow-16: Datapipeline                   | TDB  | Jayant     |
-| :octicons-gear-16: How to quantize (and other tools?) | TDB  | Chia-Jung  |
+| :octicons-gear-16: Quantization                       | TDB  | Chia-Jung  |
 | :fontawesome-solid-network-wired: Model parallelism   | TDB  | Yunqi      |
-| :octicons-stack-16: Multi-modalities                  | TDB  | Chia-Jung  |
+| :octicons-stack-16: Multi-modal LLM / VLM inference   | TDB  | Chia-Jung  |
 | :material-database-search: RAG                        | TDB  | Jayant     |
 
 

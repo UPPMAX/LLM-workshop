@@ -1,14 +1,20 @@
 ---
-title: Multi-Modality
+title: Multi-Modal LLM / VLM Inference
 tags:
-  - multi-modality
+  - multimodal
   - inference
 ---
 
 ## Introduction
 
-- architecture?
-https://arxiv.org/abs/2405.17927
+- Multi-modal LLMs are LLMs capable of handling multiple types (modalities)
+of data, e.g. text, image, audio, video.
+- In this workshop, we focus on Vision Language Model (VLM), a subset of
+multi-modal LLMs.
+
+### VLM architectures
+
+![](figures/vlm_arch.jpg)
 
 ## Inference in vLLM
 
@@ -150,7 +156,8 @@ messages = [
 ]
 
 processed_chat = processor.apply_chat_template(
-    messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt")
+    messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt"
+)
 print(list(processed_chat.keys()))
 ```
 
@@ -177,5 +184,9 @@ output = model.generate(**inputs, max_new_tokens=30)
 print(processor.decode(output[0]))
 ```
 
+## Reference
 
+- https://huggingface.co/learn/computer-vision-course/unit4/multimodal-models/pre-intro
+- https://magazine.sebastianraschka.com/p/understanding-multimodal-llms
+- https://arxiv.org/abs/2405.17927
 
