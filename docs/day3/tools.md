@@ -7,9 +7,9 @@ icon: fontawesome/solid/diagram-project
 > There is a tool for every task, and a task for every tool.
 - Tywin Lannister
 
+<!--
 ## Overview
 - The general idea
-- 
 - Start from CoT
 - ReAct
 - ToolFormer
@@ -20,6 +20,7 @@ icon: fontawesome/solid/diagram-project
     - Write a very simple MCP
         - Try talking to it yourself
     - Use that MCP with ReAct:ish
+-->
 
 ## The general idea
 - Just chat
@@ -51,6 +52,9 @@ icon: fontawesome/solid/diagram-project
     - Human and LLM
     - LLM and tool
 
+### Interafaces schematic
+![Interface schematic](figures/chat_interface_and_mcp.svg)
+
 ### Human and LLM
 1. Text input
 2. HTTP request
@@ -60,8 +64,6 @@ icon: fontawesome/solid/diagram-project
 6. HTTP stream
 7. Text output
 
-### Human-LLM interface
-
 ### LLM and tools
 1. Tokens
 2. Text (tokenizer + chat template)
@@ -69,8 +71,6 @@ icon: fontawesome/solid/diagram-project
 4. Tool use (MCP)
 5. Tool response (stdio/http)
 6. Tokens
-
-### LLM-tool interface
 
 ## Using MCP based tools
 
