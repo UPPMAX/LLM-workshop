@@ -2,7 +2,7 @@
 title: "LLM Workshop - Introduction"
 author: "NAISS"
 date: 2025-11-19
-fontsize: 10pt
+fontsize: 12pt
 tags:
   - Introduction
 icon: simple/openstreetmap
@@ -116,12 +116,14 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
+<!--
 <style>
 img.rlhf_diagram {
   max-width: 1232px;
   height: auto;
 }
 </style>
+-->
 ![RLHF diagram](figures/rlhf_diagram.webp){.rlhf_diagram}
 
 - Enables RL when no clear scoring function available
@@ -163,9 +165,9 @@ img.thumbnail {
 }
 </style>
 
-- RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) in the right direction
+- RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) towards aligning AI
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
-- Misaligned leadership
+- Misaligned leadership?
     - What future are they aiming for?
 - Superintelligence [![If anyone builds it everyone dies, book cover](figures/ifanyonebuildsit_bookcover.png){.thumbnail}](https://ifanyonebuildsit.com/)
 
@@ -235,12 +237,12 @@ apptainer exec your_container.sif python your_code.py
 - Containers for accessing software
 - SLURM batch queue system for running things on the cluster
 
-## Excercise
+## Exercises
 1. Make sure you have finished [prerequisites](../prerequisites.md)
 2. Navigate to the workshop project storage directory
 3. Create your own directory e.g. `mkdir ${USER}`
 4. Copy `/mimer/NOBACKUP/groups/llm-workshop/exercises/day1/introduction/` and its content to your directory
-5. Do the below excercises
+5. Do the below exercises
 
 ### Submitting a batch job
 1. Take a look at `jobscript.sh` with your favourite editor
