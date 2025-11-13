@@ -21,12 +21,14 @@ multi-modal LLMs.
 - Support of 
 [multiModal models](https://docs.vllm.ai/models/supported_models.html#list-of-multimodal-language-models)
 - Same way to launch server for VLM:
+
 ```
 $ vllm serve unsloth/Llama-3.2-11B-Vision-Instruct
 ```
+
 - Some other useful arguments: 
-    -`--limit-mm-per-prompt`
-    -`--allowed-local-media-path`
+    - `--limit-mm-per-prompt`
+    - `--allowed-local-media-path`
 
 ### Messages to LLM
 

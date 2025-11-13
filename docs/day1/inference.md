@@ -5,7 +5,7 @@ tags:
 icon: fontawesome/solid/bolt
 ---
 
-## LM Studio
+## [LM Studio](https://lmstudio.ai/)
 
 ### LM Studio on Alvis
 
@@ -313,7 +313,7 @@ output = llm.chat(messages, sampling_params, use_tqdm=False)
 print(output[0].outputs[0].text)
 ```
 
-[More examples](https://docs.vllm.ai/en/latest/models/generative_models.html).
+- [More examples](https://docs.vllm.ai/en/latest/models/generative_models.html).
 
 ## [Huggingface Transformers](https://huggingface.co/docs/transformers/main/index)
 
