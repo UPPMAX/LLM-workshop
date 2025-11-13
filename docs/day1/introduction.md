@@ -8,14 +8,12 @@ tags:
 icon: simple/openstreetmap
 ---
 
+## Overview
 <style type="text/css" rel="stylesheet">
 .reveal section {
   text-align: center;
 }
 </style>
-
-
-## Overview
 - History of AI
 - Compute and AI
 - Ethics and concerns
