@@ -17,7 +17,7 @@ icon: octicons/workflow-16
 
 - Success of all frontier models like GPT-5 relies heavily on quality data and constructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have. 
 
-!!!- quote "[Smol LLM](https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook#smollm3-1) training team"
+!!!- quote "[SmolLM3](https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook#smollm3-1) training team"
 
     From our experience, and though it might disappoint architecture enthusiasts, the biggest performance gains usually come from data curation.
 
@@ -134,5 +134,5 @@ Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_to
         - [Self-Instruct: Aligning Language Models with Self-Generated Instructions](https://arxiv.org/abs/2212.10560)
 
 
-https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
-https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining
+<!-- https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
+https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining -->

@@ -1,6 +1,4 @@
 ---
-hide:
-  - navigation
 tags:
   - glossary
   - terminology
@@ -281,18 +279,3 @@ Memory on GPU cards used to store model weights, activations, and KV cache durin
 
 ### Zero-Shot
 The ability of models to perform tasks without task-specific training examples, relying solely on pre-training knowledge and prompt instructions.
-
----
-
-## References
-
-For deeper understanding of these concepts, refer to the workshop materials:
-
-- [Introduction](day1/introduction.md) - AI history, transformers, and compute
-- [Public LLMs](day1/public_llms.md) - Model categories and benchmarks
-- [LLM Hardware](day1/llm_hardware.md) - Hardware considerations and HPC
-- [LLM Formats](day1/llm_formats.md) - Model formats and quantization
-- [RAG](day2/rag.md) - Retrieval augmented generation
-- [Parallelization](day2/parallelization_schemes.md) - Distributed computing strategies
-- [Prompt Engineering](day3/prompt_engineering.md) - Effective prompt design
-- [Fine-tuning](day3/fine_tuning.md) - Model adaptation techniques

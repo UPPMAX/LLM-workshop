@@ -117,20 +117,6 @@ LangChain ex.: LangSmith, QAEvalChain
 https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction
 
 
-???- info "Resources 📚"
-
-    - Recommended papers on RAG:
-
-        - [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
-        - [REALM: Retrieval-Augmented Language Model Pre-Training](https://arxiv.org/pdf/2002.08909)
-        - [Dense Passage Retrieval for Open-Domain Question Answering](https://aclanthology.org/2020.emnlp-main.550)
-        - [Improving language models by retrieving from trillions of tokens](https://arxiv.org/abs/2112.04426)
-
-    - Popular libraries and software suite:
-        - [llama_index](https://github.com/run-llama/llama_index)
-        - [LangChain](https://github.com/langchain-ai/langchain)
-        - [RAGFlow](https://github.com/infiniflow/ragflow)
-
 !!!- info "When and when not to use RAG ⚖️"
 
     <div class="annotate" markdown>
@@ -148,12 +134,23 @@ https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv
     
     1. ![RAG failure reasons](./figures/rag_failures.png)  
 
+
+???- info "Note on popular Chat UI frameworks"
+
+    If doing basic RAG which can read a few of your documents and can search the web, check out popular LLM chat frameworks with integrated RAG functionality.
+    - LMstudio
+    - Open-webui
+    - WebUI by llama.cpp
+    - Chainlit
+
 ## Agentic RAG 🤖
 
 * An LLM-powered agent **decides** when and how to retrieve during reasoning. This gives more flexibility in the decision making process by the system but low control over it by the engineer.
 * Router
 * Tool calling
 * Multistep reasoning with tools
+* llm.txt
+* Documentation sites have already started building their RAG powered chatbots: vllm, langchain, anthropic etc.
 
 (More about Agents will be covered in Day 3.)
 
@@ -167,6 +164,23 @@ https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesso
     - GraphRAG (Knowledge graphs?)
     - RAPTOR
     - EraRAG
+
+Have you tried out chatbot for UPPMAX docs yet? Its a RAG system under the hood! C3SE chatbot is coming soon too.
+
+???- info "Resources 📚"
+
+    - Recommended papers on RAG:
+
+        - [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+        - [REALM: Retrieval-Augmented Language Model Pre-Training](https://arxiv.org/pdf/2002.08909)
+        - [Dense Passage Retrieval for Open-Domain Question Answering](https://aclanthology.org/2020.emnlp-main.550)
+        - [Improving language models by retrieving from trillions of tokens](https://arxiv.org/abs/2112.04426)
+
+    - Popular libraries and software suite:
+        - [llama_index](https://github.com/run-llama/llama_index)
+        - [LangChain](https://github.com/langchain-ai/langchain)
+        - [RAGFlow](https://github.com/infiniflow/ragflow)
+
 
 
 [^1]: Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach [arXiv](https://arxiv.org/html/2407.16833v1)

@@ -12,11 +12,19 @@ icon: material/earth
     - To understand the different categories that LLM comes in
     - To know which matrices to look at for your particular usecase
 
+## The DeepSeek Moment
+
+![Open AI vs Deepseek meme](./figures/openai_vs_deepseek.png){align=right width="250" }
+
+The release of DeepSeek-R1 in January 2025 marked a pivotal "DeepSeek moment" in the LLM landscape. This open-weight model demonstrated that it could match or even exceed the performance of leading closed-source models like GPT-4o and Claude-3.5-Sonnet across multiple benchmarks, while being trained at a fraction of the cost (~$5.5M vs hundreds of millions). 
+
+DeepSeek's achievement proved that world-class AI capabilities are no longer exclusive to well-funded closed-source providers, fundamentally shifting the competitive dynamics and accessibility of cutting-edge language models.
+
+
 ## Arena
 
-
 <figure markdown="span">
-  ![Open vs Closed Models](./figures/open-vs-close.png){ width="700" }
+  ![Open vs Closed Models](./figures/open-vs-close.png){align=left width="700" }
   <figcaption>Narrowing performance gap on MMLU benchmark (Apr 2022 - July 2025) with human domain experts at 89.8%</figcaption>
 </figure>
 
