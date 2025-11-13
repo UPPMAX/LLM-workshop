@@ -144,7 +144,7 @@ $$
 <!-- Add plot of pdf -->
 
 ## Types of metrics
-- Evaluation: loss, accuracy, ...
+- Evaluation: loss, accuracy, ... <!-- Add perpexity -->
 - Speed: seq/s, ...
 - Compute budget: GPU-h
 - Memory use: GB

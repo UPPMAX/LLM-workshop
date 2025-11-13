@@ -1,0 +1,5 @@
+Bootstrap: localimage
+From: /apps/containers/vLLM/vllm-0.11.0.sif
+
+%post
+    pip install jupyterlab ipywidgets optuna datasets scikit-learn plotly
