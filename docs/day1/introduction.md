@@ -102,7 +102,6 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 
 <iframe src="https://ourworldindata.org/grapher/exponential-growth-of-computation-in-the-training-of-notable-ai-systems?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
 
-
 ### Compute and performance
 <iframe src="https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
 
@@ -233,8 +232,21 @@ apptainer exec your_container.sif python your_code.py
 - SLURM batch queue system for running things on the cluster
 
 ## Excercise
-1. Finish [prerequisites](../prerequisites.md)
-2. Navigate to your instance of `LLM-workshop`
-3. Do a `git pull` to get the latest changes
-4. Launch an interactive session through <https://alvis.c3se.chalmers.se/>
-5. Modify and then submit `LLM-workshop/excercises/introduction/hello-llms.sh` TODO
+1. Make sure you have finished [prerequisites](../prerequisites.md)
+2. Navigate to the workshop project storage directory
+3. Create your own directory e.g. `mkdir ${USER}`
+4. Copy `/mimer/NOBACKUP/groups/llm-workshop/exercises/day1/introduction/` and its content to your directory
+5. Do the below excercises
+
+### Submitting a batch job
+1. Take a look at `jobscript.sh` with your favourite editor
+2. Submit `jobscript.sh` with sbatch
+3. Monitor your jobs (with `job_stats.py <JOBID>` and/or manually over SSH)
+    - Use `squeue` and `sacct` to see job-IDs, nodelist etc.
+    - Job stats links are at the top of `slurm-<JOBID>.out`
+
+### Running interactively
+1. Go to <https://alvis.c3se.chalmers.se>
+2. Launch a short interactive session using few resources
+3. Try it out and make sure to close the session when you are done
+4. (Optional) adapt a runtime from `/apps/portal/` to your own runtime in `~/portal`
