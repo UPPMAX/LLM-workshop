@@ -150,7 +150,7 @@ $$
 - Memory use: GB
 - Multi-objectives and/or constraints
 
-## Excercises
+## Exercises
 - Job-arrays and random search
 - Optuna
 - (Optional: Tiny jobs, hyperqueue (goal=seq/s?))

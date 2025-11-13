@@ -15,7 +15,7 @@ icon: fontawesome/solid/diagram-project
 - ToolFormer
 - MCPs
 - ACPs
-- Excercises
+- Exercises
     - Run LLM with reasoning/CoT
     - Write a very simple MCP
         - Try talking to it yourself
@@ -76,7 +76,7 @@ icon: fontawesome/solid/diagram-project
 
 ## Writing tools according to MCP
 
-## Excercises
+## Exercises
 1. Interact with an MCP manually
 2. Write your own MCP (note on security)
 3. Use both through Chainlit in Alvis OnDemand portal

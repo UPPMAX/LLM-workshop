@@ -21,6 +21,6 @@ icon: octicons/graph-16
 - Constructing your own benchmark
     - Good example R&D-bench: https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/
     - How much data needed etc?
-- Excersices:
+- Exercises:
     - Running evals on a generic dataset (which?)
     - Running evals on a task specific dataset (which?)
