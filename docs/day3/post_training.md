@@ -68,9 +68,9 @@ icon: octicons/tools-16
     * We need even less data than SFT as the model is already following our instructions nicely and alternatively gained domain knowledge.
     * We can already leverage LLMs now to generate strong and weak pair of responses. Use a better model -> strong responses, weaker/baseline model -> weak responses.
     * Alternatively, run ony one LLM on the same prompt to produce strong/weak response pairs and another "grader" LLM that gives scores to these outputs.
-
+<!-- 
 https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/ynmgf/introduction-to-post-training
-https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-of-sft
+https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-of-sft -->
 
 ## Reinforcement Learning (RL) 🎮
 
