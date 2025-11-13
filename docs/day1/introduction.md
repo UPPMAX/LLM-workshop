@@ -116,15 +116,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
     - Reinforcement Learning with Human Feedback
 
 ### RLHF
-<!--
-<style>
-img.rlhf_diagram {
-  max-width: 1232px;
-  height: auto;
-}
-</style>
--->
-![RLHF diagram](figures/rlhf_diagram.webp){.rlhf_diagram}
+![RLHF diagram](figures/rlhf_diagram.webp)
 
 - Enables RL when no clear scoring function available
 - Relatively little human input needed
