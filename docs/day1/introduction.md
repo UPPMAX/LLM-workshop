@@ -16,9 +16,13 @@ icon: simple/openstreetmap
 - Introducing the workshop hardware
 
 ## History of AI
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4215_RC01/embed_loader.js"></script>
+<!-- Truncating the last four months because recent data is unreliable -->
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4271_RC01/embed_loader.js"></script>
 <script type="text/javascript">
-trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=AI","guestPath":"https://trends.google.com:443/trends/embed/"});
+  var date_start = "2022-01-01";
+  var d_end = new Date(); d_end.setMonth(d_end.getMonth() - 4)
+  var date_end = d_end.toISOString().substring(0, 10)
+  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI","geo":"","time":`${date_start} ${date_end}`}],"category":0,"property":""}, {"exploreQuery":"date=today%204-y&q=AI","guestPath":"https://trends.google.com:443/trends/embed/"});
 </script>
 
 - How has AI developed over time?
