@@ -16,7 +16,7 @@ VLLM_BASE_URL="http://localhost:${VLLM_API_PORT}/v1"
 # Chainlit set-up
 CHAINLIT_SIF=/apps/containers/Chainlit/Chainlit-2.5.5.sif
 
-# Predefined variables in OOD (Users shouldn't touch)
+
 echo JOBDIR=$JOBDIR
 echo CHAINLIT_PORT=$CHAINLIT_PORT
 echo VLLM_API_PORT=$VLLM_API_PORT

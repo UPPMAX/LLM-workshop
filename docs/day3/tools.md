@@ -95,23 +95,47 @@ icon: fontawesome/solid/diagram-project
 - Models are trained/finetuned to use structured output
 - Compatible with ReAct
 - Structure is model specific, inference engine must support it
+    - xml, json, special tokens, ...
 
 ## Using MCP based tools
-<!-- TODO?
-- How the inference engine identifies tool calls
-- The JSON-RCP used in MCP
-- Launching a Streamable HTTP MCP server
-- Launching a stdio MCP server
--->
-
+- Inference Engine
+- MCP Client
+    - stdio
+    - SSE
+    - Streamable-HTTP
 
 ### Enabling Tool Calls in vLLM
+- <https://docs.vllm.ai/en/stable/features/tool_calling.html#automatic-function-calling>
+- `--enable-auto-tool-choice`
+- `--tool-call-parser=<supported-parser-name>`
 
+### Connecting to an MCP Server from Chainlit: stdio
+- The MCP Client (Chainlit) launches the tool
+    - Chainlit config limits what executables can be used
+    - Recommended to be careful with what you add here
+- The MCP client will launch the tools as a subprocess
+    - As your user
+    - Don't (let the AI) run unknown code
+- Examples:
+    - `npx -y @modelcontextprotocol/server-filesystem /dev/shm /tmp`
+    - `mcp mcp_server.py`
+
+### Connecting to an MCP Server from Chainlit: HTTP
+- SSE deprecated in favor of Streamable HTTP
+- For connecting to existing MCP Server
+- Authentication tokens typically needed
+- Required:
+    - HTTP adress
+    - Possibly a header with authentication token
 
 ## Writing tools according to MCP
 - The Python SDK for MCP Servers
+<!-- TODO -->
 
 ## Exercises
-1. Interact with an MCP server manually
-2. Write your own tool according to MCP (note on security)
-3. Use both through Chainlit in Alvis OnDemand portal
+1. Using tools via MCPs in Chainlit
+2. Developing your own MCP server
+<!--3. (Optional) connecting to HuggingFace MCP with a token--> <!-- Alternatively, run a dummy mcp on the github pages -->
+
+### Using tools via MCPs in Chainlit
+### Developing your own MCP server
