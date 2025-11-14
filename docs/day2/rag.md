@@ -114,7 +114,11 @@ LangChain ex.: LangSmith, QAEvalChain
 * QA/chat
 * Misc: Reranker model, GraphRAG, RAPTOR, EraRAG, multimodal
 
-https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction
+!!!- info "Exercises"
+
+        Homework: https://docs.vllm.ai/en/latest/examples/online_serving/retrieval_augmented_generation_with_langchain/
+
+<!-- https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction -->
 
 
 !!!- info "When and when not to use RAG ⚖️"
