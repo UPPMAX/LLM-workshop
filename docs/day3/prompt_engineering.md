@@ -28,7 +28,7 @@ icon: octicons/pencil-16
 
 * Response to same prompts can easily vary across different LLMs.
 
-* Prompt templates are a well formatted function with variables that can be substituted for text(mostly) that results in a prompt.
+* Prompt templates are a well formatted function with variables that can be substituted for text(mostly) that results in a prompt. 
 
 
 ???- info "Prompting terminologies"
@@ -79,15 +79,324 @@ icon: octicons/pencil-16
 
 ## Assigning roles
 
-* Give `system` prompt to assign a role or give a persona to your model.
+* Give `system` (or even `user`) prompt to assign a role or give a persona to your model.
 * Improves accuracy in that specific scenarios. like, if the task is meant for a software engineer, legal expert, XYZ consultant etc.
 * Helps change the communication sytle in the output.
 
 ## Separating Data and instructions
 
+* If the data that the LLM needs to work upon needs to change on every request, its best to separate it out in the form of variables.
+* Creating a fixed skeleton of the prompt separate from the user input helps us simply repetitive tasks.
+* Care should be given how to seperate the user input from instructions. As different models are trained to look for different delimeters. Using XML tags as seperators is quite common though. example: `<tag_name>content</tag_name>`
+
 ## Formatting Output
 
-## 
+* The output from previous turn can either be consumed as another LLM input or can be presented as the final output. In either case, model can be told how to present its output.
+* Using tags is again the best way to achieve this. In addition to mentioning that it needs to output in either tags like XML or JSON format. This helps the next LLM call to ingest the input correctly too.
+* Some models allow for prefilling their outputs. This makes the output more deterministic. example: is JSON output is desired, add `{` or for tags, add `<tag_name>`.
+<!-- 
+```json
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Prompt engineering techniques demo (vLLM + OpenAI client)\n",
+        "\n",
+        "Set BASE_URL and MODEL below to point to your vLLM server and served model.\n",
+        "This notebook shows baseline vs improved prompts for five techniques in research contexts."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "import os\n",
+        "from openai import OpenAI\n",
+        "\n",
+        "# Configure vLLM OpenAI-compatible endpoint and model\n",
+        "BASE_URL = os.getenv(\"VLLM_BASE_URL\", \"http://localhost:8000/v1\")\n",
+        "MODEL = os.getenv(\"VLLM_MODEL\", \"meta-llama/Meta-Llama-3.1-8B-Instruct\")  # change to your served model name\n",
+        "\n",
+        "# For vLLM, a dummy key is acceptable unless your server enforces auth\n",
+        "client = OpenAI(base_url=BASE_URL, api_key=os.getenv(\"OPENAI_API_KEY\", \"EMPTY\"))\n",
+        "\n",
+        "def chat(messages, temperature=0.2, max_tokens=600):\n",
+        "    resp = client.chat.completions.create(\n",
+        "        model=MODEL,\n",
+        "        messages=messages,\n",
+        "        temperature=temperature,\n",
+        "        max_tokens=max_tokens,\n",
+        "    )\n",
+        "    return resp.choices[0].message.content\n",
+        "\n",
+        "def run(system, user, temperature=0.2):\n",
+        "    msgs = []\n",
+        "    if system:\n",
+        "        msgs.append({\"role\": \"system\", \"content\": system})\n",
+        "    msgs.append({\"role\": \"user\", \"content\": user})\n",
+        "    return chat(msgs, temperature=temperature)\n",
+        "\n",
+        "def compare(title, base_system, base_user, imp_system, imp_user, temperature=0.2):\n",
+        "    print(\"=\" * 80)\n",
+        "    print(title)\n",
+        "    print(\"-\" * 80)\n",
+        "    print(\"Baseline\")\n",
+        "    print(\"-\" * 80)\n",
+        "    print(run(base_system, base_user, temperature=temperature))\n",
+        "    print(\"-\" * 80)\n",
+        "    print(\"Improved\")\n",
+        "    print(\"-\" * 80)\n",
+        "    print(run(imp_system, imp_user, temperature=temperature))\n",
+        "    print()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 1) Being clear and direct (Sociology: open-ended survey synthesis)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "title = \"1) Being clear and direct (Sociology: open-ended survey synthesis)\"\n",
+        "survey = (\n",
+        "    \"Responses about remote work stress (n=5):\\n\"\n",
+        "    \"1) Meetings pile up and I skip lunch.\\n\"\n",
+        "    \"2) Hard to switch off; Slack pings at night.\\n\"\n",
+        "    \"3) I save commute time and can exercise more.\\n\"\n",
+        "    \"4) Childcare overlaps with calls; feel guilty.\\n\"\n",
+        "    \"5) Fewer interruptions; deeper focus on analysis.\"\n",
+        ")\n",
+        "\n",
+        "baseline_system = None\n",
+        "baseline_user = f\"Tell me what this says:\\n{survey}\"\n",
+        "\n",
+        "improved_system = None\n",
+        "improved_user = f\"\"\"\n",
+        "Task: Produce a concise summary for a methods section in a sociology paper.\n",
+        "Audience: academic readers.\n",
+        "Goal: Extract 3 key themes with one evidence quote-like paraphrase each.\n",
+        "Constraints: 120-160 words; neutral tone; no fabrication; use only the provided responses.\n",
+        "Steps:\n",
+        "- Identify themes\n",
+        "- Support with grounded phrasing\n",
+        "- End with a one-sentence implication\n",
+        "Data:\n",
+        "{survey}\n",
+        "\"\"\"\n",
+        "\n",
+        "compare(title, baseline_system, baseline_user, improved_system, improved_user)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 2) Few/multi-shot prompting (Linguistics: voice classification, Active vs Passive)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "title = \"2) Few-shot prompting (Linguistics: Active vs Passive)\"\n",
+        "items = [\n",
+        "    \"1) The treaty was signed by the ministers.\",\n",
+        "    \"2) Researchers replicated the study last year.\",\n",
+        "    \"3) The villages were evacuated overnight.\",\n",
+        "    \"4) A new corpus informed the guidelines.\",\n",
+        "]\n",
+        "\n",
+        "baseline_system = None\n",
+        "baseline_user = (\n",
+        "    \"Label each sentence as Active or Passive. Return lines like '1) Active'.\\n\" + \"\\n\".join(items)\n",
+        ")\n",
+        "\n",
+        "improved_system = None\n",
+        "improved_user = (\n",
+        "    \"\"\"\n",
+        "<examples>\n",
+        "Input: \"The letter was delivered by the courier.\" -> Passive\n",
+        "Input: \"The analyst coded the transcripts.\" -> Active\n",
+        "Input: \"The samples were processed overnight.\" -> Passive\n",
+        "Format: 'n) Active|Passive'\n",
+        "</examples>\n",
+        "Classify the following sentences strictly following the format. One label per line, nothing else:\n",
+        "\"\"\"\n",
+        "    + \"\\n\".join(items)\n",
+        ")\n",
+        "\n",
+        "compare(title, baseline_system, baseline_user, improved_system, improved_user, temperature=0.0)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 3) Assigning roles (Peace/Conflict research: early warning indicators)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "title = \"3) Assigning roles (Conflict early warning analysis)\"\n",
+        "news = (\n",
+        "    \"District K: Local militia checkpoints reappeared near the highway.\\n\"\n",
+        "    \"Fuel and staple prices rose ~30% in two weeks.\\n\"\n",
+        "    \"Talks between the prefect and union leaders stalled on Monday.\\n\"\n",
+        "    \"WhatsApp rumors about road closures spread rapidly.\\n\"\n",
+        "    \"Local NGO reports 200 families temporarily displaced from hamlet Q.\"\n",
+        ")\n",
+        "\n",
+        "baseline_system = None\n",
+        "baseline_user = f\"Summarize the risks in this update:\\n{news}\"\n",
+        "\n",
+        "improved_system = (\n",
+        "    \"You are a senior conflict early-warning analyst. Be cautious, evidence-based, and use established indicator language.\"\n",
+        ")\n",
+        "improved_user = f\"\"\"\n",
+        "Extract early warning indicators from the field note below.\n",
+        "Produce:\n",
+        "- Triggers\n",
+        "- Accelerators\n",
+        "- Vulnerabilities\n",
+        "- Near-term outlook (2-4 weeks)\n",
+        "Cite only details present in the note; avoid speculation.\n",
+        "Field note:\n",
+        "{news}\n",
+        "\"\"\"\n",
+        "\n",
+        "compare(title, baseline_system, baseline_user, improved_system, improved_user)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 4) Separating data and instructions (Philology: normalization of a snippet)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "title = \"4) Separating data and instructions (Philology normalization)\"\n",
+        "data1 = \"In marg.: 'hoc est librũ antiq͂m'; text: 'dñs Ivlivs scripsit anno dñi m.ccc.xv'.\"\n",
+        "\n",
+        "# Baseline: intertwined instructions and data\n",
+        "baseline_system = None\n",
+        "baseline_user = (\n",
+        "    \"Normalize this medieval Latin snippet to plain Latin, expand common scribal abbreviations, \"\n",
+        "    \"preserve capitalization where clear, and output the normalized text only:\\n\" + data1\n",
+        ")\n",
+        "\n",
+        "# Improved: clear separation using tags and a reusable template\n",
+        "improved_system = \"You are a philology assistant specialized in Latin paleography.\"\n",
+        "improved_user_template = \"\"\"\n",
+        "<instruction>\n",
+        "Normalize medieval Latin to classical orthography:\n",
+        "- Expand scribal abbreviations (e.g., ũ->um, ͂m->um, dñs->dominus, dñi->domini).\n",
+        "- Standardize U/V and I/J to modern usage (Iulius instead of Ivlivs).\n",
+        "- Convert roman numerals to uppercase with periods removed.\n",
+        "- Output: normalized text only.\n",
+        "</instruction>\n",
+        "<text>\n",
+        "{TEXT}\n",
+        "</text>\n",
+        "\"\"\"\n",
+        "improved_user = improved_user_template.replace(\"{TEXT}\", data1)\n",
+        "\n",
+        "compare(title, baseline_system, baseline_user, improved_system, improved_user)\n",
+        "\n",
+        "# Demonstrate easy data swapping\n",
+        "data2 = \"In tit.: 'epist. q͂ ad civem', marg.: 'cf. cap. xiii'; text: 'dñi petrvs donavit librũ'.\"\n",
+        "print(\"Swapped data (improved prompt stays the same):\")\n",
+        "print(run(\n",
+        "    improved_system,\n",
+        "    improved_user_template.replace(\"{TEXT}\", data2)\n",
+        "))"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 5) Formatting output (Sociology: JSON codebook entry)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": [],
+      "source": [
+        "title = \"5) Formatting output (Sociology codebook JSON)\"\n",
+        "\n",
+        "baseline_system = None\n",
+        "baseline_user = (\n",
+        "    \"Create a compact codebook entry for 'collective efficacy' in neighborhood studies \"\n",
+        "    \"with definition, inclusion and exclusion criteria, and 2 example indicators.\"\n",
+        ")\n",
+        "\n",
+        "improved_system = None\n",
+        "improved_user = (\n",
+        "    \"\"\"\n",
+        "Create a codebook entry for the construct 'collective efficacy' in neighborhood studies.\n",
+        "\n",
+        "Return a single JSON object matching this schema exactly:\n",
+        "{\n",
+        "  \"code\": string,\n",
+        "  \"definition\": string,\n",
+        "  \"inclusion_criteria\": [string, ...],\n",
+        "  \"exclusion_criteria\": [string, ...],\n",
+        "  \"example_indicators\": [string, ...]\n",
+        "}\n",
+        "Constraints:\n",
+        "- No markdown or commentary.\n",
+        "- Keep lists 2-4 items each.\n",
+        "- Use concise academic style.\n",
+        "Start your reply with '{' and end with '}'.\n",
+        "\"\"\"\n",
+        ")\n",
+        "\n",
+        "compare(title, baseline_system, baseline_user, improved_system, improved_user, temperature=0.0)"
+      ]
+    }
+  ]
+}
+```
+ -->
+
+!!!- info "Exercises"
+
+    Start a Jupyter server using `prompt_eng_env.sh` as its environment. We need to use openai library to communicate with vllm server
 
 
 
@@ -151,6 +460,10 @@ anthropic cookbook for coding -->
     - Best practices and cookbooks:
 
         - [The Prompt Report: A Systematic Survey of Prompt Engineering Techniques](https://arxiv.org/pdf/2406.06608)
+
+    - Checkout model provider's docs:
+      - [Claude](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview)
+      - [OpenAI](https://platform.openai.com/docs/guides/prompt-engineering)
 
 
 

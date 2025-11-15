@@ -159,15 +159,14 @@ LangChain ex.: LangSmith, QAEvalChain
 (More about Agents will be covered in Day 3.)
 
 
-https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesson/yd6nd/introduction
+<!-- https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesson/yd6nd/introduction -->
 
 !!!- info "Some more useful techniques in retrieval pipelines 🛠️"
 
-    - Rerankers
-        - [article](https://www.answer.ai/posts/2024-09-16-rerankers.html) on rerankers
-    - GraphRAG (Knowledge graphs?)
-    - RAPTOR
-    - EraRAG
+    - [Rerankers](https://www.answer.ai/posts/2024-09-16-rerankers.html)
+    - [GraphRAG](https://arxiv.org/pdf/2404.16130)
+    - [RAPTOR](https://arxiv.org/pdf/2401.18059)
+    - [EraRAG](https://arxiv.org/abs/2506.20963)
 
 Have you tried out chatbot for UPPMAX docs yet? Its a RAG system under the hood! C3SE chatbot is coming soon too.
 

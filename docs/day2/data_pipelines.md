@@ -121,7 +121,44 @@ This aligning is done via supervised fine-tuning and preference optimization (re
 2. PII filtering and annotation by humans or AI. Ranking and scoring by humans or smaller models for Reward modelling. Deduplication.  
 3. Tokenization, formatting into chat templates, sharding and packing for effecient GPU training.  
 Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_tokenizers)
-4. Schema validataion (e.g. via pydantic), quality checks, benchmarking and collecting stats.
+4. Schema validation (for example with Pydantic), quality checks, simple benchmarks, and basic stats.
+
+### Dataset file formats
+
+Some commonly used include:
+
+- JSON/JSONL (.jsonl, also .jsonl.gz or .zst)
+    - Use when datasets are small/medium and you want quick edits and reviews. Good for chat-style SFT and preference pairs.
+    - Pros: easy to read, easy to diff, streams line-by-line.
+    - Cons: bigger files, slower random access, no built-in schema.
+
+- Apache Arrow (.arrow)
+    - Use for fast local reads and training-ready batches. Works well with Hugging Face Datasets.
+    - Pros: column-based, memory-mapped, typed; very fast.
+    - Cons: less common for general analytics than Parquet.
+
+- Parquet (.parquet)
+    - Use for larger local datasets and preprocessing before training.
+    - Pros: column-based and compressed; efficient scans; easy to split into parts.
+    - Cons: writing can be heavier; very small rows need careful block sizing.
+
+!!!- info "Tips on storage"
+        
+    - Prefer column-based + compressed shards (Parquet/Arrow) for scale; use JSONL for iteration and human review.
+    - Shard size: 50–500 MB per shard is a good starting point for multi-process training.
+    - Compress with zstd or gzip; keep a local manifest and checksums.
+    - Keep explicit schemas: for SFT {messages: [...], meta: {...}}; for preference data {prompt, chosen, rejected}.
+    
+    On Alvis: 
+    
+    - Check your usage and quota using `C3SE_quota` and for Cephyr file usage `where-are-my-files`.
+    - Prefer few large files over many small files. File-IO can be a limiting factor.
+
+    Recommended defaults:
+
+    - For local Hugging Face SFT/RLAIF: use Parquet or Arrow shards.
+    - Use JSONL for prototyping, manual review, and small experiments.
+    - Always record dataset version, schema, and shard manifest for reproducibility.
 
 ???- info "Resources 📚"
 
