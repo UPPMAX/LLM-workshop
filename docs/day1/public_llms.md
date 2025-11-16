@@ -56,6 +56,10 @@ Open-weight models are catching up with closed source models steadily[^1][^9]. H
 	height="450"
 ></iframe>
 
+!!!- note "Open LLM leaderboard has retired"
+
+    To check community owned leaderboards head to : [OpenEvals](https://huggingface.co/OpenEvals/collections)
+
 Other notable leaderboards:  
  - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models by Stanford)  
  - [LMArena](http://lmarena.ai/leaderboard) (focus on open-weight models by UC Berkeley)
