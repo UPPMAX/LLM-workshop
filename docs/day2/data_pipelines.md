@@ -68,7 +68,7 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
 
-???- info "Full reproduction of the FineWeb dataset"
+???- note "Full reproduction of the FineWeb dataset"
 
     ```python title="fineweb.py"
 
@@ -142,7 +142,7 @@ Some commonly used include:
     - Pros: column-based and compressed; efficient scans; easy to split into parts.
     - Cons: writing can be heavier; very small rows need careful block sizing.
 
-!!!- info "Tips on storage"
+!!!- note "Tips on storage"
         
     - Prefer column-based + compressed shards (Parquet/Arrow) for scale; use JSONL for iteration and human review.
     - Shard size: 50–500 MB per shard is a good starting point for multi-process training.

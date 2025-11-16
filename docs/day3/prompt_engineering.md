@@ -31,11 +31,11 @@ icon: octicons/pencil-16
 * Prompt templates are a well formatted function with variables that can be substituted for text(mostly) that results in a prompt. 
 
 
-???- info "Prompting terminologies"
+???- note "Prompting terminologies"
 
     - **Context window**: The maximum number of tokens (words/characters) that an LLM can process in a single interaction, including both input prompt and generated response.
 
-        ???- info "Claude example"
+        ???- note "Claude example"
             Context window management when combining extended thining with tool usage[^1]:
             ![context window thinking tools](./figures/context-window-thinking-tools.svg)
     
@@ -394,13 +394,14 @@ icon: octicons/pencil-16
 ```
  -->
 
-!!!- info "Exercises"
+!!!- example "Exercises"
 
-    Start a Jupyter server using `prompt_eng_env.sh` as its environment. We need to use openai library to communicate with vllm server
+    * Start a Jupyter server using `prompt_eng_env.sh` as its environment. We need to use openai library to communicate with vllm server.
+    * Run `prompt_eng.ipynb`
 
 
 
-!!!- info "A few words about Context Engineering"
+!!!- note "A few words about Context Engineering"
     
     * Differs from Prompt Engineering as we are more careful at filling the context window of our LLMs in industrial application settings.
     * This requires careful design of the following components:
@@ -415,7 +416,7 @@ icon: octicons/pencil-16
         * Global state/context
     * Read more a [here](https://www.llamaindex.ai/blog/context-engineering-what-it-is-and-techniques-to-consider)
 
-!!!- info "Security Issues with Prompting"
+!!!- note "Security Issues with Prompting"
 
     **Prompt Injection**: Malicious instructions embedded within user input to override system prompts and manipulate model behavior.
     

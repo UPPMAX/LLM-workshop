@@ -24,13 +24,13 @@ icon: material/database-search
 
 ## Basics
 
-???- info "RAG figures"
+???- note "RAG figures"
     
-    ???- info "Naive RAG"
+    ???- note "Naive RAG"
         
         ![Naive RAG](./figures/naive_rag.png)
 
-    ???- info "Naive Retrieval System"
+    ???- note "Naive Retrieval System"
         ![Naive Retrieval](./figures/naive_retrieval.png)
 
 
@@ -114,14 +114,14 @@ LangChain ex.: LangSmith, QAEvalChain
 * QA/chat
 * Misc: Reranker model, GraphRAG, RAPTOR, EraRAG, multimodal
 
-!!!- info "Exercises"
+!!!- example "Exercises"
 
-        Homework: https://docs.vllm.ai/en/latest/examples/online_serving/retrieval_augmented_generation_with_langchain/
+    DIY: [vllm with langchain](https://docs.vllm.ai/en/latest/examples/online_serving/retrieval_augmented_generation_with_langchain/)
 
 <!-- https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction -->
 
 
-!!!- info "When and when not to use RAG ⚖️"
+!!!- note "When and when not to use RAG ⚖️"
 
     <div class="annotate" markdown>
 
@@ -139,7 +139,7 @@ LangChain ex.: LangSmith, QAEvalChain
     1. ![RAG failure reasons](./figures/rag_failures.png)  
 
 
-???- info "Note on popular Chat UI frameworks"
+???- note "Note on popular Chat UI frameworks"
 
     If doing basic RAG which can read a few of your documents and can search the web, check out popular LLM chat frameworks with integrated RAG functionality.
     - LMstudio
@@ -161,7 +161,7 @@ LangChain ex.: LangSmith, QAEvalChain
 
 <!-- https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesson/yd6nd/introduction -->
 
-!!!- info "Some more useful techniques in retrieval pipelines 🛠️"
+!!!- note "Some more useful techniques in retrieval pipelines 🛠️"
 
     - [Rerankers](https://www.answer.ai/posts/2024-09-16-rerankers.html)
     - [GraphRAG](https://arxiv.org/pdf/2404.16130)

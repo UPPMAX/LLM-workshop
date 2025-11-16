@@ -49,7 +49,12 @@ Open-weight models are catching up with closed source models steadily[^1][^9]. H
 ## Leaderboard
 [:hugging: Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/)
 
-<iframe src="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+<iframe
+	src="https://open-llm-leaderboard-open-llm-leaderboard.hf.space"
+	frameborder="0"
+	width="1200"
+	height="450"
+></iframe>
 
 Other notable leaderboards:  
  - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models by Stanford)  
@@ -80,7 +85,7 @@ Core capability benchmarks (higher is better unless noted)
 
 **Note:** Mulitlingual and multimodal benchmarks are not covered here in detail.
 
-??? - info "Detailed benchmark coverage per open-weight model provider"
+??? - note "Detailed benchmark coverage per open-weight model provider"
 
     | Benchmark                                 |           Meta (LLaMA)           |             Mistral            | Cohere (Command-R+) | DeepSeek |
     | ----------------------------------------- | :------------------------------: | :----------------------------: | :-----------------: | :------: |

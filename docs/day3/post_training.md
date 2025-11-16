@@ -42,15 +42,15 @@ icon: octicons/tools-16
 </div>
 1.  ![LoRA learning-forgetting tradeoff](./figures/learnless_forgetless.png) 
 
-!!! info "Exercise"
+!!! example "Exercise"
 
-    Recommeded [max_length calculator](https://huggingface.co/spaces/trl-lib/dataset-length-profiler).
+    - Run a jupyter notebook using `post_training_env` environment.
+    - Run `sft.ipynb`
+
+    - Recommeded [max_length calculator](https://huggingface.co/spaces/trl-lib/dataset-length-profiler).
     Deepspeed [memory calculator](https://deepspeed.readthedocs.io/en/latest/memory.html) API.
 
-    - Try a TRL SFT example on slurm
-    - Try multinode deepspeed example using C3se docs
-
-    Some more to try: https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers
+    DIY: [Gpt-oss PEFT](https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers)
 
 
 ## Preference Optimization 
@@ -72,6 +72,11 @@ icon: octicons/tools-16
 https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/ynmgf/introduction-to-post-training
 https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-of-sft -->
 
+!!! example "Exercise"
+
+    - Run a jupyter notebook using `post_training_env` environment.
+    - Run `dpo.ipynb`
+
 ## Reinforcement Learning (RL) 🎮
 
 * "A is better than B" is not always what we are looking for. We would like to have in-between steps to be correct too for problems that requires thinking longer.
@@ -81,7 +86,12 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
     * When we can create verifiable reward signals
     * When tasks are multi-steps
 
-???- info "Note on On-policy distillation"
+!!! example "Exercise"
+
+    - Run a jupyter notebook using `post_training_env` environment.
+    - Run `rl.ipynb`
+
+???- note "Note on On-policy distillation"
 
     Methods like this lie in-between preference optimization and RL by taking advantage of reward signal coming from a Teacher model. The student model can continously absorb samples from Teacher model and without needing explicit preference labels, can start to show capabilities of the Teacher model. This method is often simpler to implement than RL way cheaper in compute too. Although its success is only shown in smaller to mid-sized (<30B) models. Whereas RL works better in larger models (20B+) only. 
 
