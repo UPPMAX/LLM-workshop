@@ -1,6 +1,6 @@
 ---
 title: LLM and hardware
-icon: octicons/file-binary-24
+icon: simple/nvidia
 ---
 
 ### Overview
