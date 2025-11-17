@@ -9,17 +9,17 @@ tags:
 
 ### Day 1  
 
-| Item                                                                  | Time         | Duration | Instructor        |
-|-----------------------------------------------------------------------|--------------|----------|-------------------|
-| :simple-openstreetmap: Workshop Introduction                          | 10:00-10:40  | 40 min   | Viktor            |
-| :material-earth: Brief introduction to public LLMs                    | 10:40-11:10  | 30 min   | Jayant            |
-| :material-coffee: Break                                               | 11:10-11:20  | 10 min   | -                 |
-| :fontawesome-solid-bolt: LLM inference                                | 11:20-12:20  | 60 min   | Chia-Jung / Yunqi |
-| :fontawesome-solid-utensils: Lunch break                              | 12:20-13:20  | 60 min   | -                 |
-| :simple-nvidia: LLM and hardware                                      | 13:20-14:20  | 60 min   | Yunqi             |
-| :material-coffee: Break                                               | 14:20-14:30  | 10 min   | -                 |
-| :octicons-file-binary-24: LLM formats                                 | 14:30-15:30  | 60 min   | Yunqi             |
-| :octicons-comment-discussion-16: Feedback                             | 15:30-15:40  | 10 min   | -                 |
+| Item                                                                  | Time         | Duration | Instructor |
+|-----------------------------------------------------------------------|--------------|----------|------------|
+| :simple-openstreetmap: Workshop Introduction                          | 10:00-10:40  | 40 min   | Viktor     |
+| :material-earth: Brief introduction to public LLMs                    | 10:40-11:10  | 30 min   | Jayant     |
+| :material-coffee: Break                                               | 11:10-11:20  | 10 min   | -          |
+| :fontawesome-solid-bolt: LLM inference                                | 11:20-12:20  | 60 min   | Chia-Jung  |
+| :fontawesome-solid-utensils: Lunch break                              | 12:20-13:20  | 60 min   | -          |
+| :simple-nvidia: LLM and hardware                                      | 13:20-14:20  | 60 min   | Yunqi      |
+| :material-coffee: Break                                               | 14:20-14:30  | 10 min   | -          |
+| :octicons-file-binary-24: LLM formats                                 | 14:30-15:30  | 60 min   | Yunqi      |
+| :octicons-comment-discussion-16: Feedback                             | 15:30-15:40  | 10 min   | -          |
 
 Total duration: 5 hr 40 min
 
