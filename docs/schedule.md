@@ -27,7 +27,7 @@ Total duration: 5 hr 40 min
 
 | Item                                                  | Time         | Duration | Instructor |
 |-------------------------------------------------------|--------------|----------|------------|
-| :material-brain: Recap Quiz                           | 10:00-10:10  | 10 min   | Jayant     |
+| :material-brain: Recap Quiz and Feedback              | 10:00-10:10  | 10 min   | Jayant     |
 | :octicons-workflow-16: Datapipeline                   | 10:10-11:10  | 60 min   | Jayant     |
 | :material-coffee: Break                               | 11:10-11:20  | 10 min   | -          |
 |  〰️  Quantization                       | 11:20-12:20  | 60 min   | Chia-Jung  |
@@ -44,7 +44,7 @@ Total duration: 5 hr 50 min
 
 | Item                                                             | Time         | Duration | Instructor |
 |------------------------------------------------------------------|--------------|----------|------------|
-| :material-brain: Recap Quiz                                      | 10:00-10:10  | 10 min   | Jayant     |
+| :material-brain: Recap Quiz and Feedback                         | 10:00-10:10  | 10 min   | Jayant     |
 | :octicons-pencil-16: Prompt engineering                          | 10:10-11:00  | 50 min   | Jayant     |
 | :material-coffee: Break                                          | 11:00-11:10  | 10 min   | -          |
 | :fontawesome-solid-diagram-project: Tools, chain/tree-of-thought | 11:10-11:55  | 45 min   | Viktor     |
