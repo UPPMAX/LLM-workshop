@@ -7,7 +7,7 @@ icon: fontawesome/solid/network-wired
 
 This section is available as slides which is presented on the workshop. This
 text version include some additional notes. You can also access the slide
-version [here](./parallelization_schemes-slides).
+version [here](../parallelization_schemes-slides).
 
 </aside>
 

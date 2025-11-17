@@ -7,7 +7,7 @@ icon: simple/nvidia
 
 This section is available as slides which is presented on the workshop. This
 text version include some additional notes. You can also access the slide
-version [here](./llm_hardware-slides).
+version [here](../llm_hardware-slides).
 
 </aside>
 
