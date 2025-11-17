@@ -53,7 +53,7 @@ icon: octicons/tools-16
     DIY: [Gpt-oss PEFT](https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers)
 
 
-## Preference Optimization 
+## Preference Optimization 🤝
 
 * Contrastive learning based on positive and negative responses.
 * With SFT, LLM only reproduce patterns it learnt from the data it was trained on.

@@ -9,7 +9,6 @@ icon: octicons/workflow-16
 ???- info "Learning outcomes"
 
     - Understand the key components of data pipelines for LLMs  
-    - Perform data preparation for a pre-training task
 
 ![Data meme](./figures/data_meme.jpg){ align=right width=300 }
 

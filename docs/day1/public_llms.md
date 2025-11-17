@@ -12,7 +12,7 @@ icon: material/earth
     - To understand the different categories that LLM comes in
     - To know which matrices to look at for your particular usecase
 
-## The DeepSeek Moment
+## The DeepSeek Moment 🚀
 
 ![Open AI vs Deepseek meme](./figures/openai_vs_deepseek.png){align=right width="250" }
 
@@ -21,7 +21,7 @@ The release of DeepSeek-R1 in January 2025 marked a pivotal "DeepSeek moment" in
 DeepSeek's achievement proved that world-class AI capabilities are no longer exclusive to well-funded closed-source providers, fundamentally shifting the competitive dynamics and accessibility of cutting-edge language models.
 
 
-## Arena
+## Arena ⚖️
 
 <figure markdown="span">
   ![Open vs Closed Models](./figures/open-vs-close.png){align=left width="700" }
@@ -30,7 +30,7 @@ DeepSeek's achievement proved that world-class AI capabilities are no longer exc
 
 Open-weight models are catching up with closed source models steadily[^1][^9]. However, creating high-quality benchmarks is an active area of research as the existing ones are beginning to plateau. 
 
-## Categories 
+## Categories 📂
 
 * LLMs come in wide-range of "openness".
 * Public != Open.
@@ -46,14 +46,14 @@ Open-weight models are catching up with closed source models steadily[^1][^9]. H
 | **Proprietary API‑only** | ❌ | ⚠️ API-only | ❌ | ❌ | Vendor ToS | Google Gemini API|
 
 
-## Leaderboard
+## Leaderboard 🏆
 [:hugging: Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/)
 
 <iframe
-	src="https://open-llm-leaderboard-open-llm-leaderboard.hf.space"
-	frameborder="0"
-	width="1200"
-	height="450"
+  src="https://open-llm-leaderboard-open-llm-leaderboard.hf.space"
+  frameborder="0"
+  width="1200"
+  height="450"
 ></iframe>
 
 !!!- note "Open LLM leaderboard has retired"
@@ -64,7 +64,7 @@ Other notable leaderboards:
  - [HELM](https://crfm.stanford.edu/helm/latest/) (Holistic Evaluation of Language Models by Stanford)  
  - [LMArena](http://lmarena.ai/leaderboard) (focus on open-weight models by UC Berkeley)
 
-## Benchmarks to consider
+## Benchmarks to consider 📊
 
 Focus on a small set of comparable metrics (most appear on the Open LLM Leaderboard or model cards):
 
@@ -117,7 +117,6 @@ Core capability benchmarks (higher is better unless noted)
 So what models for look for, while we do our research spanning couple of years? 
 - Look for Chinese model makers. This year has been there's.
 
-
 [^1]: The path forward for large language models in medicine is open. [Nature](https://www.nature.com/articles/s41746-024-01344-w)
 [^2]: MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark. [arXiv](https://arxiv.org/pdf/2406.01574)
 [^4]: GPQA: A High-Quality Dataset for Evaluating Question Answering in Specialized Domains. [arXiv](https://arxiv.org/abs/2311.12022)
@@ -126,3 +125,4 @@ So what models for look for, while we do our research spanning couple of years?
 [^7]: BBH: Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them. [arXiv](https://arxiv.org/abs/2210.09261)
 [^8]: IFEval: Instruction-Following Evaluation for Large Language Models. [arXiv](https://arxiv.org/abs/2311.07911)
 [^9]: Closed-source vs. open-weight models [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7378380957889904640/)
+

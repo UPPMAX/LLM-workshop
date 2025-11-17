@@ -31,9 +31,9 @@ icon: octicons/pencil-16
 * Prompt templates are a well formatted function with variables that can be substituted for text(mostly) that results in a prompt. 
 
 
-???- note "Prompting terminologies"
+???- note "Prompting terminologies 🧠"
 
-    - **Context window**: The maximum number of tokens (words/characters) that an LLM can process in a single interaction, including both input prompt and generated response.
+    - **Context window**: The Maximum number of tokens (words/characters) that an LLM can process in a single interaction, including both input prompt and generated response.
 
         ???- note "Claude example"
             Context window management when combining extended thining with tool usage[^1]:
@@ -56,7 +56,7 @@ icon: octicons/pencil-16
     - **Role**: A defined persona or character that the LLM should adopt when responding (e.g., "act as a teacher", "respond as a technical expert").
 
 
-## Being Clear and direct
+## Being Clear and direct 🔍
 
 * Give more context to your model:
 
@@ -69,7 +69,7 @@ icon: octicons/pencil-16
 
 * Provide step by step instructions in a bullet points or numbered list.
 
-## Few/multi-shot prompting
+## Few/multi-shot prompting ✨
 
 * Effective for tasks that require strong adherence to a specific format or requires structured output.
 * Don't give bogus examples, rather real use-case examples.
@@ -77,19 +77,19 @@ icon: octicons/pencil-16
 * Give tags around your examples so the model can disabiguate well between instructions and examples. like, `<example>, <examples>` etc.
 
 
-## Assigning roles
+## Assigning roles 🎭
 
 * Give `system` (or even `user`) prompt to assign a role or give a persona to your model.
 * Improves accuracy in that specific scenarios. like, if the task is meant for a software engineer, legal expert, XYZ consultant etc.
 * Helps change the communication sytle in the output.
 
-## Separating Data and instructions
+## Separating Data and instructions 🧩
 
 * If the data that the LLM needs to work upon needs to change on every request, its best to separate it out in the form of variables.
 * Creating a fixed skeleton of the prompt separate from the user input helps us simply repetitive tasks.
 * Care should be given how to seperate the user input from instructions. As different models are trained to look for different delimeters. Using XML tags as seperators is quite common though. example: `<tag_name>content</tag_name>`
 
-## Formatting Output
+## Formatting Output 🧾
 
 * The output from previous turn can either be consumed as another LLM input or can be presented as the final output. In either case, model can be told how to present its output.
 * Using tags is again the best way to achieve this. In addition to mentioning that it needs to output in either tags like XML or JSON format. This helps the next LLM call to ingest the input correctly too.
@@ -414,7 +414,7 @@ icon: octicons/pencil-16
         * Responses from tools
         * Structured outputs
         * Global state/context
-    * Read more a [here](https://www.llamaindex.ai/blog/context-engineering-what-it-is-and-techniques-to-consider)
+    * Read more [here](https://www.llamaindex.ai/blog/context-engineering-what-it-is-and-techniques-to-consider)
 
 !!!- note "Security Issues with Prompting"
 
@@ -445,16 +445,6 @@ icon: octicons/pencil-16
     *Example*: Suggesting `eval(user_input)` without input validation, creating code injection risks.
 
     Learn more about adding Guardrails to your LLM powered agents: [Guardrails.ai](https://github.com/guardrails-ai/guardrails)
-
-<!-- Prompt playground: chainlit
-Prompt optimizer: [openai platform](https://platform.openai.com/chat/edit?models=gpt-5&optimize=true) -->
-
-<!-- Chat templates: .jinja
-prompt templates?
-
-openai cookbook
-openai compatible AI
-anthropic cookbook for coding -->
 
 ???- info "Resources 📚"
 
