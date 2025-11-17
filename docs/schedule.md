@@ -30,7 +30,7 @@ Total duration: 5 hr 40 min
 | :material-brain: Recap Quiz                           | 10:00-10:10  | 10 min   | Jayant     |
 | :octicons-workflow-16: Datapipeline                   | 10:10-11:10  | 60 min   | Jayant     |
 | :material-coffee: Break                               | 11:10-11:20  | 10 min   | -          |
-| :octicons-gear-16: Quantization                       | 11:20-12:20  | 60 min   | Chia-Jung  |
+|  〰️  Quantization                       | 11:20-12:20  | 60 min   | Chia-Jung  |
 | :fontawesome-solid-utensils: Lunch break              | 12:20-13:20  | 60 min   | -          |
 | :fontawesome-solid-network-wired: Model parallelism   | 13:20-14:20  | 60 min   | Yunqi      |
 | :octicons-stack-16: Multi-modal LLM / VLM inference   | 14:20-14:40  | 20 min   | Chia-Jung  |

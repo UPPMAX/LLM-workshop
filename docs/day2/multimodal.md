@@ -3,6 +3,7 @@ title: Multi-Modal LLM / VLM Inference
 tags:
   - multimodal
   - inference
+icon: octicons/stack-24
 ---
 
 ## Introduction

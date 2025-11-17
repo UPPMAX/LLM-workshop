@@ -1,6 +1,6 @@
 ---
 title: LLM parallelization schemes
-icon: octicons/stack-24
+icon: fontawesome/solid/network-wired
 ---
 
 ### Motivation
