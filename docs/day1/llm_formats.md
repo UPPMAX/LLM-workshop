@@ -3,7 +3,21 @@ title: LLM formats
 icon: octicons/file-binary-24
 ---
 
+<aside class="notes" markdown="1">
+
+This section is available as slides which is presented on the workshop. This
+text version include some additional notes. You can also access the slide
+version [here](./llm_formats-slides).
+
+</aside>
+
 ## Overview
+
+<aside class="notes" markdown="1">
+
+This section cover the following:
+
+</aside>
 
 - Formats of LLM models
 - Formats of numbers

@@ -3,7 +3,21 @@ title: LLM and hardware
 icon: simple/nvidia
 ---
 
+<aside class="notes" markdown="1">
+
+This section is available as slides which is presented on the workshop. This
+text version include some additional notes. You can also access the slide
+version [here](./llm_hardware-slides).
+
+</aside>
+
 ### Overview
+
+<aside class="notes" markdown="1">
+
+This section cover the following:
+
+</aside>
 
 - Computations in LLMs
 - LLM on super-comupters
