@@ -6,24 +6,24 @@ nav:
   - "Course dates": course_dates.md
   - "Schedule": schedule.md
   - "Glossary": glossary.md
-  # - Day 1:
-  #   - Introduction: day1/introduction.md
-  #   - Publicly available LLMs: day1/public_llms.md
-  #   - LLM Inference: day1/inference.md
-  #   - LLM and hardware: day1/llm_hardware.md
-  #   - LLM formats: day1/llm_formats.md
-  # - Day 2:
-  #   - Data Pipelines: day2/data_pipelines.md
-  #   - ' 〰️ Quantization': day2/quantization.ipynb
-  #   - Model parallelism: day2/parallelization_schemes.md
-  #   - 'Multi-Modal LLM / VLM Inference': day2/multimodal.md
-  #   - RAG: day2/rag.md
-  # - Day 3:
-  #   - Prompt Engineering: day3/prompt_engineering.md
-  #   - Tools and Reasoning: day3/tools.md
-  #   - Post-training: day3/post_training.md
-  #   - Hyperparameter tuning: day3/hyperparameter_tuning.md
-  #   - Evaluating LLMs: day3/evaluation_metrics.md
+  - Day 1:
+    - Introduction: day1/introduction.md
+    - Publicly available LLMs: day1/public_llms.md
+    - LLM Inference: day1/inference.md
+    - LLM and hardware: day1/llm_hardware.md
+    - LLM formats: day1/llm_formats.md
+  - Day 2:
+    - Data Pipelines: day2/data_pipelines.md
+    - ' 〰️ Quantization': day2/quantization.ipynb
+    - Model parallelism: day2/parallelization_schemes.md
+    - Multi-Modal LLM / VLM Inference: day2/multimodal.md
+    - RAG: day2/rag.md
+  - Day 3:
+    - Prompt Engineering: day3/prompt_engineering.md
+    - Tools and Reasoning: day3/tools.md
+    - Post-training: day3/post_training.md
+    - Hyperparameter tuning: day3/hyperparameter_tuning.md
+    - Evaluating LLMs: day3/evaluation_metrics.md
 
 theme:
   name: material
