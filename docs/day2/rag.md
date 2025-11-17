@@ -10,7 +10,7 @@ icon: material/database-search
 ???- info "Learning outcomes"
 
     - Understand the key components of RAG applications by looking at what popular open-source RAG libraries provide
-    - Perform a simple RAG task 
+    - Perform an Agentic RAG task 
 
 ![RAG meme](./figures/rag_is_dead.jpg){ align=right width=300 }
 
@@ -114,11 +114,9 @@ LangChain ex.: LangSmith, QAEvalChain
 * QA/chat
 * Misc: Reranker model, GraphRAG, RAPTOR, EraRAG, multimodal
 
-!!!- example "Exercises"
+!!!- example "Exercise"
 
     DIY: [vllm with langchain](https://docs.vllm.ai/en/latest/examples/online_serving/retrieval_augmented_generation_with_langchain/)
-
-<!-- https://learn.deeplearning.ai/courses/langchain-chat-with-your-data/lesson/snupv/introduction -->
 
 
 !!!- note "When and when not to use RAG ⚖️"
@@ -158,8 +156,11 @@ LangChain ex.: LangSmith, QAEvalChain
 
 (More about Agents will be covered in Day 3.)
 
+!!!- example "Exercise"
 
-<!-- https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex/lesson/yd6nd/introduction -->
+    - Copy `llm-workshop/containers/rag/rag_env.sh` to your `~/portal/jupyter/`
+    - Start a jupyter server on A40 node using `rag_env.sh` runtime and working directory as your project folder.
+    - Run `rag.ipynb`
 
 !!!- note "Some more useful techniques in retrieval pipelines 🛠️"
 
