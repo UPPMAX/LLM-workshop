@@ -11,16 +11,15 @@ tags:
 
 | Item                                                                  | Time         | Duration | Instructor        |
 |-----------------------------------------------------------------------|--------------|----------|-------------------|
-| :fontawesome-solid-handshake: Welcome                                 | 10:00-10:10  | 10 min   | Viktor            |
-| :simple-openstreetmap: Overview of the landscape and proper resources | 10:10-10:40  | 30 min   | Viktor            |
+| :simple-openstreetmap: Workshop Introduction                          | 10:00-10:40  | 40 min   | Viktor            |
 | :material-earth: Brief introduction to public LLMs                    | 10:40-11:10  | 30 min   | Jayant            |
 | :material-coffee: Break                                               | 11:10-11:20  | 10 min   | -                 |
 | :fontawesome-solid-bolt: LLM inference                                | 11:20-12:20  | 60 min   | Chia-Jung / Yunqi |
 | :fontawesome-solid-utensils: Lunch break                              | 12:20-13:20  | 60 min   | -                 |
-| :simple-nvidia: LLM and hardware                                      | 13:20-14:20    | 60 min   | Yunqi             |
-| :material-coffee: Break                                               | 14:20-14:30    | 10 min   | -                 |
-| :octicons-file-binary-24: LLM formats                                 | 14:30-15:30    | 60 min   | Yunqi             |
-| :octicons-comment-discussion-16: Feedback                             | 15:30-15:40    | 10 min   | -             |
+| :simple-nvidia: LLM and hardware                                      | 13:20-14:20  | 60 min   | Yunqi             |
+| :material-coffee: Break                                               | 14:20-14:30  | 10 min   | -                 |
+| :octicons-file-binary-24: LLM formats                                 | 14:30-15:30  | 60 min   | Yunqi             |
+| :octicons-comment-discussion-16: Feedback                             | 15:30-15:40  | 10 min   | -                 |
 
 Total duration: 5 hr 40 min
 
@@ -28,7 +27,7 @@ Total duration: 5 hr 40 min
 
 | Item                                                  | Time         | Duration | Instructor |
 |-------------------------------------------------------|--------------|----------|------------|
-| :material-brain: Recap Quiz                               | 10:00-10:10  | 10 min   | Jayant     |
+| :material-brain: Recap Quiz                           | 10:00-10:10  | 10 min   | Jayant     |
 | :octicons-workflow-16: Datapipeline                   | 10:10-11:10  | 60 min   | Jayant     |
 | :material-coffee: Break                               | 11:10-11:20  | 10 min   | -          |
 | :octicons-gear-16: Quantization                       | 11:20-12:20  | 60 min   | Chia-Jung  |
@@ -45,15 +44,15 @@ Total duration: 5 hr 50 min
 
 | Item                                                             | Time         | Duration | Instructor |
 |------------------------------------------------------------------|--------------|----------|------------|
-| :material-brain: Recap Quiz                                       | 10:00-10:10  | 10 min   | Jayant     |
-| :octicons-pencil-16: Prompt engineering                           | 10:10-11:00  | 50 min   | Jayant     |
-| :material-coffee: Break                                           | 11:00-11:10  | 10 min   | -          |
-| :fontawesome-solid-diagram-project: Tools, chain/tree-of-thought  | 11:10-11:55  | 45 min   | Viktor     |
-| :fontawesome-solid-utensils: Lunch break                          | 12:00-13:00  | 60 min   | -          |
-| :octicons-tools-16: Post-training                                 | 13:00-14:00  | 60 min   | Jayant     |
-| :fontawesome-solid-sliders: HyperParameter tuning                 | 14:00-14:45  | 45 min   | Viktor     |
-| :material-coffee: Break                                           | 14:45-15:00  | 15 min   | -          |
-| :octicons-graph-16: Evaluation metrics                            | 15:00-15:45  | 45 min   | Viktor     |
-| :octicons-comment-discussion-16: Feedback                         | 15:45-16:00  | 15 min   | -          |
+| :material-brain: Recap Quiz                                      | 10:00-10:10  | 10 min   | Jayant     |
+| :octicons-pencil-16: Prompt engineering                          | 10:10-11:00  | 50 min   | Jayant     |
+| :material-coffee: Break                                          | 11:00-11:10  | 10 min   | -          |
+| :fontawesome-solid-diagram-project: Tools, chain/tree-of-thought | 11:10-11:55  | 45 min   | Viktor     |
+| :fontawesome-solid-utensils: Lunch break                         | 12:00-13:00  | 60 min   | -          |
+| :octicons-tools-16: Post-training                                | 13:00-14:00  | 60 min   | Jayant     |
+| :fontawesome-solid-sliders: HyperParameter tuning                | 14:00-14:45  | 45 min   | Viktor     |
+| :material-coffee: Break                                          | 14:45-15:00  | 15 min   | -          |
+| :octicons-graph-16: Evaluation metrics                           | 15:00-15:45  | 45 min   | Viktor     |
+| :octicons-comment-discussion-16: Feedback                        | 15:45-16:00  | 15 min   | -          |
 
 Total duration: 5 hr 55 min
