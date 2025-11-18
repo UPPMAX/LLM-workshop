@@ -256,8 +256,9 @@ if trial.should_prune():
 
 ## Exercise
 1. Copy the optuna exercise directory from project storage into your own directory
-2. Copy the runtime for jupyter to your runtimes `cp /mimer/NOBACKUP/groups/llm-workshop/portal/jupyter/Optuna.sh ~/portal/jupyter/`
+2. Copy the runtime for jupyter to your runtimes `cp portal/jupyter/Optuna.sh ~/portal/jupyter/`
 3. Find the best hyperparameters for finetuning the LM in `optuna.ipynb`
+    - You can use <https://alvis.c3se.chalmers.se> Jupyter app to launch
     - Choose `Sampler` and `Pruner`
     - Check out the jobscript to run non-interactively
         - e.g. `sbatch --array=0-9%2 jobscript_optuna.sh`
