@@ -6,3 +6,6 @@
 ml purge
 container="/apps/containers/vLLM/vllm-0.11.0.sif"
 apptainer exec "$container" python3 async_llm_streaming.py
+
+
+# TODO use vllm run-batch instead? https://docs.vllm.ai/en/stable/cli/index.html#run-batch

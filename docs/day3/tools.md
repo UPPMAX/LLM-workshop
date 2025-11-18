@@ -139,3 +139,4 @@ icon: fontawesome/solid/diagram-project
 
 ### Using tools via MCPs in Chainlit
 ### Developing your own MCP server
+<!-- Remember step about updating ~/.chainlit/config.toml -->

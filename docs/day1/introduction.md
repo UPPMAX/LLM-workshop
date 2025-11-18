@@ -128,6 +128,7 @@ $$ \mathrm{Attention}(V, K, Q) = \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}
 - Societal concerns
 - Misuse concerns
 - Misalignment concerns
+<!-- TODO simplify and add actionables -->
 
 ### Societal concerns
 - Perpetuated bias
@@ -157,7 +158,7 @@ img.thumbnail {
 }
 </style>
 
-- RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) towards aligning AI
+- RLHF is [only a step](https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research) towards aligning AI <!-- https://blog.vllm.ai/assets/figures/struct-decode-intro/shogoth-gpt.png -->
 - [Goodhart's law](https://doi.org/10.48550/arXiv.1803.04585)
 - Misaligned leadership?
     - What future are they aiming for?
