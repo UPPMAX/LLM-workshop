@@ -444,6 +444,8 @@ icon: octicons/pencil-16
     - **Bugs and security vulnerabilities**: Generated code contains logical errors or security flaws.
     *Example*: Suggesting `eval(user_input)` without input validation, creating code injection risks.
 
+    Want to see some jailbroken system prompts? Check [this repository](https://github.com/elder-plinius/CL4R1T4S)
+
     Learn more about adding Guardrails to your LLM powered agents: [Guardrails.ai](https://github.com/guardrails-ai/guardrails)
 
 ???- info "Resources 📚"

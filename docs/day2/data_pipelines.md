@@ -135,11 +135,13 @@ This aligning is done via supervised fine-tuning and preference optimization (re
 
 <div class="annotate" markdown>
 
+- Choosing Base model and deciding training regimes (5)
+
 - Collection and cleaning (1)
 
 - Curation (2)
 
-- Transformation (3)
+- Transformation (Check Exercise) (3)
 
 - Validation (4)
 
@@ -147,9 +149,11 @@ This aligning is done via supervised fine-tuning and preference optimization (re
 
 1. Instruction–response pairs, multi-turn formatting style and tool-use coverage. Synthetic data generation.  
 2. PII filtering and annotation by humans or AI. Ranking and scoring by humans or smaller models for Reward modelling. Deduplication.  
-3. Tokenization, formatting into chat templates, sharding and packing for effecient GPU training.  
-Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_tokenizers)
+3. Tokenization, formatting into **chat templates**, sharding and packing for effecient GPU training.  
+Tokenizers: [HF Fast-tokenizer](https://huggingface.co/docs/transformers/fast_tokenizers).  
+Finetuning libraries like [TRL](https://huggingface.co/trl-lib) internally handle most of this.
 4. Schema validation (for example with Pydantic), quality checks, simple benchmarks, and basic stats.
+5. Decide model size, architecutre, post-training track record in SFT/PO/RL.
 
 ### Dataset file formats
 
@@ -188,6 +192,12 @@ Some commonly used include:
     - Use JSONL for prototyping, manual review, and small experiments.
     - Always record dataset version, schema, and shard manifest for reproducibility.
 
+!!!- example "Exercise"
+
+    - Start a jupyter server with A40 (and above) GPU with `post_train_env` environment and working directory set to your personal project directory.
+    - Run `data_pipelines.ipynb` to prepare a dataset for Supervised Finetuning on [openai's gsm8k](https://huggingface.co/datasets/openai/gsm8k) math dataset.
+
+
 ???- info "Resources 📚"
 
     - LLM papers on data and data pipelines:
@@ -198,6 +208,3 @@ Some commonly used include:
         - [LIMA: Less Is More for Alignment](https://arxiv.org/abs/2305.11206)
         - [Self-Instruct: Aligning Language Models with Self-Generated Instructions](https://arxiv.org/abs/2212.10560)
 
-
-<!-- https://learn.deeplearning.ai/courses/pretraining-llms/lesson/xfpqx/data-preparation
-https://learn.deeplearning.ai/courses/pretraining-llms/lesson/wqgv4/packaging-data-for-pretraining -->
