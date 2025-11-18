@@ -44,7 +44,7 @@ icon: octicons/tools-16
 
 !!! example "Exercise"
 
-    - Run a jupyter notebook using `post_training_env` environment.
+    - Run a jupyter notebook using `post_train_env` environment and working directory as your personal project directory.
     - Run `sft.ipynb`
 
     - Recommeded [max_length calculator](https://huggingface.co/spaces/trl-lib/dataset-length-profiler).
@@ -74,7 +74,7 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
 
 !!! example "Exercise"
 
-    - Run a jupyter notebook using `post_training_env` environment.
+    - Run a jupyter notebook using `post_train_env` environment and working directory as your personal project directory.
     - Run `dpo.ipynb`
 
 ## Reinforcement Learning (RL) 🎮
@@ -88,7 +88,7 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
 
 !!! example "Exercise"
 
-    - Run a jupyter notebook using `post_training_env` environment.
+    - Run a jupyter notebook using `post_train_env` environment and working directory as your personal project directory.
     - Run `rl.ipynb`
 
 ???- note "Note on On-policy distillation"
