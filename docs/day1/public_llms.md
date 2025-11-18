@@ -12,6 +12,33 @@ icon: material/earth
     - To understand the different categories that LLM comes in
     - To know which matrices to look at for your particular usecase
 
+
+    ???- question "Quiz yourself!"
+
+        ???- note inline end "Answer key"
+    
+            1:A, 2:B, 3:C
+
+
+        1. What distinguishes "Publicly Available" models from "Closed Source" models in the document?  
+        A. Publicly available means model checkpoints can be publicly accessible (terms can still apply). Closed source means the opposite.  
+        B. Publicly available models always permit commercial use without restrictions.  
+        C. Publicly available models are only accessible via an API.  
+        D. Publicly available models are always smaller and less capable than closed-source models.
+        
+        2. Where to begin your search for publicly available models
+        A. Academic papers and technical reports    
+        B. Model hub & model cards on Hugging Face  
+        C. Official vendor pages and API docs (e.g., OpenAI, Meta, Google)  
+        D. Community leaderboards, GitHub repos, and discussion forums  
+
+        3. Which category from the table typically allows redistribution of weights and derivatives?  
+        A. Open Source (OSI‑compatible)  
+        B. Open Weights (restricted / gated)  
+        C. Adapter‑only / Delta releases  
+        D. Proprietary API‑only  
+
+
 ## The DeepSeek Moment 🚀
 
 ![Open AI vs Deepseek meme](./figures/openai_vs_deepseek.png){align=right width="250" }
@@ -123,8 +150,6 @@ Core capability benchmarks (higher is better unless noted)
 
     ⚪ = not a primary benchmark for that org (either not reported or only mentioned indirectly)
 
-So what models for look for, while we do our research spanning couple of years? 
-- Look for Chinese model makers. This year has been there's.
 
 [^1]: The path forward for large language models in medicine is open. [Nature](https://www.nature.com/articles/s41746-024-01344-w)
 [^2]: MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark. [arXiv](https://arxiv.org/pdf/2406.01574)
