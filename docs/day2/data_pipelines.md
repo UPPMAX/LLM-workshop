@@ -9,6 +9,7 @@ icon: octicons/workflow-16
 ???- info "Learning outcomes"
 
     - Understand the key components of data pipelines for LLMs 
+    - Run a part of post-training data preparation pipeline
 
     ???- question "Quiz yourself!"
 
