@@ -140,6 +140,7 @@ LangChain ex.: LangSmith, QAEvalChain
 ???- note "Note on popular Chat UI frameworks"
 
     If doing basic RAG which can read a few of your documents and can search the web, check out popular LLM chat frameworks with integrated RAG functionality.
+
     - LMstudio
     - Open-webui
     - WebUI by llama.cpp
@@ -151,7 +152,7 @@ LangChain ex.: LangSmith, QAEvalChain
 * Router
 * Tool calling
 * Multistep reasoning with tools
-* llm.txt
+* [llm.txt](https://llmstxt.org/)
 * Documentation sites have already started building their RAG powered chatbots: vllm, langchain, anthropic etc.
 
 (More about Agents will be covered in Day 3.)
