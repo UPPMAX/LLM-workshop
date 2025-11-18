@@ -8,7 +8,36 @@ icon: octicons/workflow-16
 
 ???- info "Learning outcomes"
 
-    - Understand the key components of data pipelines for LLMs  
+    - Understand the key components of data pipelines for LLMs 
+
+    ???- question "Quiz yourself!"
+
+        ???- note inline end "Answer key"
+    
+            1:B, 2:B, 3:B
+
+        1. What is the primary goal of pre-training described in the document?
+
+            A. Train small task-specific classifiers  
+            B. Assemble large, diverse, governed corpora and feed tokens efficiently so the model learns general-purpose representations  
+            C. Compress datasets for long-term archival  
+            D. Only fine-tune models on downstream tasks
+
+        2. Which file format is recommended for fast local reads and training-ready batches with Hugging Face Datasets?
+
+            A. JSON/JSONL  
+            B. Apache Arrow  
+            C. CSV  
+            D. XML
+
+        3. According to the post-training section, aligning base LLMs to tasks is primarily done via:
+
+            A. Data sharding and compression  
+            B. Supervised fine-tuning and preference optimization (reward modelling or RLHF/RLAIF)  
+            C. Only unsupervised pre-training  
+            D. Manual rule-based post-processing
+
+
 
 ![Data meme](./figures/data_meme.jpg){ align=right width=300 }
 
