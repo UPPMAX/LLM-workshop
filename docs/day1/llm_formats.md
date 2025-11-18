@@ -28,17 +28,17 @@ This section cover the following:
 
 ### So you want to use a LLM model
 
-![](figures/hf-search-models.png){ style="height=360px" }
-
 <aside class="notes" markdown="1">
 
-It is common for LLMs to be quantized after training. The quantization of
-LLMs is relevant to the model's compatibility with different implementations, as
-well its its performance, both in terms of accuracy and speed. This section will
-focus on explaining details of different floating point number formats and
-quantization methods.
+Today most LLMs are published on HugginFace. Searching for a base model, you
+will find variants with all kinds of labels. These labels tells a lot about how
+the models are prepared and how efficient will they run on the target
+hardware. This session will cover the most of the jargons in those names.
 
 </aside>
+
+![](figures/hf-search-models.png){ style="height=360px" }
+
 
 ### What the name means
 
@@ -54,39 +54,47 @@ Models architecture and size are often the first consideration when working on
 LLM.  But equally important are the format of models and the quantization
 method. Modern acceleration devices cater for the lower precision need of
 machine learning models, depending on the device you want to run on, quantized
-models might give significant speed up.
+models might give significant speed up. We will first go through the **file
+formats**, then detail the quantization methods and **number formats**.
 
 </aside>
 
 ### File-formats of LLMs
 
-![](figures/gguf.png){ style="max-height:360px" }
-
-The gguf file fomat (image from [huggingface](https://huggingface.co/docs/hub/gguf))
-
 <aside class="notes" markdown="1">
 
-LLM models commonly consists of metadata, and the tensor themselves.
+LLM models commonly consists of metadata such as the metadata, quantization
+methods, and the tensor themselves. The following shows the layout of the gguf
+file format.
 
 </asisde>
+
+![](figures/gguf.png){ style="max-height:360px" }  
+Image from [huggingface](https://huggingface.co/docs/hub/gguf).
+
 
 ### Common formats of LLMs
 
 - bin/pth/tf: "raw" ML library formats;
-- safetensors: used by huggingfacs;
-- ggml/gguf: developed by llama.cpp (supports many qunatization formats);
-- llamafile: by mozilla, single-file format, executable.
+- safetensors: used by huggingface;
+- ggml/gguf: developed by [llama.cpp](https://github.com/ggml-org/llama.cpp)
+  (supports many qunatization formats);
+- [llamafile](https://mozilla-ai.github.io/llamafile): by mozilla, single-file
+  format, executable.
 
-You can find detailed model information for some model formats,
+In the repo you can find detailed model information for some model formats,
 [example](https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf).
 
 <aside class="notes" markdown="1">
 
-Models are published on different formats and they are optimized for different
-usages. They can be converted to one another but has different purposes.
+Models published on different formats are optimized for different usages. They
+can be converted to one another (which is typically implemented as model loaders
+by inference engines,
+[example](https://docs.vllm.ai/en/stable/api/vllm/model_executor/model_loader/gguf_loader.html)).
 
 raw formats used by ML formats might be handy for re-training. Some of them
-contain pickled data so might execute arbitrary code (unsafe).
+contain pickled data so might execute arbitrary code (in contrary to "safe"
+formats).
 
 Newer formats like GGUF/safetensors are suitable for common model architectures
 (different engines will support them if the architecture is known). They are
@@ -96,35 +104,108 @@ memory-mapped, which are especially useful for [disk offloading].
 
 </aside>
 
-### Look for the following
+### Picking a model
+
+<aside class="notes" markdown="1">
+
+While not strictly a requirement, it is usually less trouble to get a model in
+your desired format. The other part of the model name is usually tell you the 
+quantization method and the number formats in the model.
+
+In the following, we will introduce the quantization procedure and how that
+impacts the performance (both in terms of speed and accuracy) and hardware
+compatibility.
+
+</aside>
+
+
+<div markdown="1" class="no-mkdocs">
 
 - Quantization method;
 - Number format;
-- Hardware compatibility hints.
+- Hardware compatibility.
+
+</div>
+
 
 ## Formats of numbers
 
 ### Why do we care?
 
-- Quantization allow you to run larger models;
-- It might also eliminate expensive communication;
 - ML tolerates lower numerical precision;
-- Number formats also determines "distributioin of information";
+- Quantization allow you to run larger models;
+- To eliminate expensive communication;
 
-### Number formats
+### Number formats - floating point
 
-![](figures/float16.png)
+<aside class="notes" markdown="1">
+
+Floating point number is the most common way one represents a real number in a
+computer. A floating point number uses a fixed number of bits and represents a
+number in terms of an exponent and mantissa (significand).
+
+</aside>
+
+![](figures/float16.png){ style="height:360px" }  
+Image source: [Maarten Grootendorst](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)
+
 
 ### Floating point formats - cont. 1
 
-![](figures/number-format.svg)
+<aside class="notes" markdown="1">
+
+The mantissa determines the significant digits of a FP number, and the exponent
+determines the range. Standard FP numbers typically aim to strike a balance
+between accuracy and range. 
+
+</aside>
+
+![](figures/number-format.svg){ style="height:360px" }  
+Image source: [Hamzael Shafie](https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm)
+
+<aside class="notes" markdown="1">
+
+For ML application, it is beneficial to use a reduced precision format with the
+same number of exponents, as that simplifies the quantization procedure, and it
+has been
+[claimed](https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus)
+that "neural networks are far more sensitive to the size of the exponent than
+that of the mantissa".
+
+</aside>
+
 
 ### Floating point formats - cont. 2
 
-![](figures/number-ranges.png)
+<aside class="notes" markdown="1">
 
+
+As an example, converting from FP32 to BF16 will be trivial as the dynamic range
+is the same. One would only need to discard mantissa from FP32. In contrary,
+conversion from FP32 to FP16 will require scaling or clipping the number. With
+implication to be decided.
+
+While not detailed here, integers are also used as quantization targets. Besides
+the dynamic range, note that integers numbers will also have different scales as
+compared to FP numbers.
+
+</aside>
+
+![](figures/number-ranges.png){ style="height:360px" }  
+Image source: [Maarten Grootendorst](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)
 
 ### Hardware Compatibility
+
+<aside class="notes" markdown="1"> 
+
+Acceleration of floating point operations requires also support from hardware
+vendor or custom implementations of numeric kernels. Newer number formats are
+not necessarily accelerated by the GPU and might get converted back depending on
+implementation.
+
+Below lists some commonly used FP formats and their hardware support status:
+
+</aside>
 
 |                             | hardware accel. | note        |
 |-----------------------------|-----------------|-------------|
@@ -136,24 +217,15 @@ memory-mapped, which are especially useful for [disk offloading].
 
 [onnx-fp8]: https://onnx.ai/onnx/technical/float8.html
 
-
 See also [Data types support][amd-fp-formats] by AMD RocM.
 
 [amd-fp-formats]: https://rocm.docs.amd.com/en/latest/reference/precision-support.html
 
-<aside class="notes" markdown="1">
-
-Floating point number generally follows a IEEE standard format. However, details
-like the representation of negative zeros (NZ) and infinite values might be
-different.
-
-</aside>
-
 ### Rule of thumb
 
-- ML tasks favor a larger proportion of exponents;
-- [Google's bf16] (same range as fp32, less mantissa);
-- training usually done in fp32/16;
+- [Google's bf16] if unsure  
+  (same range as fp32, less mantissa, good compatibility);
+- training usually done in fp32/bf16;
 - int4/8 is good for inference (on older GPUs).
 
 [Google's bf16]: https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus

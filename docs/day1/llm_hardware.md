@@ -200,8 +200,9 @@ like has been done in operating system kernels.
 <aside class="notes" markdown="1">
 
 This allows us to efficiently use the fast memory on the GPUs.  You can find
-more in-depth discussion of the technique from this [blog post]() (source of
-this visualization).
+more in-depth discussion of the technique from this [blog
+post](https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm/)
+(source of this visualization).
 
 [paged attention from first principles]: https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm/
 
