@@ -46,6 +46,7 @@ icon: octicons/graph-16
 - Collection: 
 
 ## Exercise
+<!-- TODO find smallest eval in NeMo Evaluator and run that -->
 - Try running evals against vLLM endpoint instructor set-up
 - Make sure to set `HF_HOME` as datasets will be downloaded when running
 - Launch interactive job `srun -A NAISS2025-22-1522 -t 30 -C NOGPU -c 2 --pty bash`
