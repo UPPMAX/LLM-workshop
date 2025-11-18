@@ -135,13 +135,16 @@ $$
 - $p(\theta) \propto 1$
 - In practice a uniform distribution
 - When you're uncertain about exact place in a  range
-<!-- Add plot of pdf -->
 
 ### Reciprocal prior
 - $p(\theta) \propto 1/\theta$
 - In practice a loguniform distribution
 - When you're uncertain about order of magnitude
-<!-- Add plot of pdf -->
+- Usually a good choice for continuous parameters
+
+### Training hyperparameter priors
+- Big impact: Training data, model architecture, optimizer, loss function and/or optimization metric
+- Learning rate: log-scale 
 
 ## Types of metrics
 - Evaluation: loss, accuracy, ... <!-- Add perpexity -->
@@ -149,6 +152,33 @@ $$
 - Compute budget: GPU-h
 - Memory use: GB
 - Multi-objectives and/or constraints
+
+### Cross-entropy loss
+- Used to train a Language Models to follow a distribution
+- Minimize expected description length (minimum when $p = q$)
+- Can be estimated based on samples from $p$ (i.e. data)
+
+$$
+    H(p, q) = -\mathbb{E}_p[\mathrm{log}\,q]
+$$
+
+### Kullbeck-Leibler divergence
+- Used in student-trainer type training (e.g. to avoid catastrophic forgetting)
+- Functionally equivalent to cross-entropy loss, but used when $p$ and $q$ are known
+- Not symmetric!
+
+$$
+    D_{\text{KL}}(p||q) = \mathbb{E}_p[(\log p - \log q)]
+$$
+
+### Perplexity
+- Measure of uncertainty, 2 for a coint toss and 6
+- Perplexity per token is commonly used to evaluate how closely a LM models some data
+- Is directly related to cross-entropy through exponentiation
+
+$$
+    \exp(H(p, q))
+$$
 
 ## Exercises
 - Job-arrays and random search
