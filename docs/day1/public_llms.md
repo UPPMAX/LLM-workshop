@@ -89,6 +89,15 @@ Core capability benchmarks (higher is better unless noted)
 
 **Note:** Mulitlingual and multimodal benchmarks are not covered here in detail.
 
+??? - note "Popular benchmarks for Vision Language Models"
+
+    * [MathVista](https://arxiv.org/abs/2310.02255): evaluates mathematical reasoning in the context of images.
+    * [AI2D](https://arxiv.org/abs/1603.07396): focuses on diagram understanding.
+    * [ScienceQA](https://arxiv.org/abs/2209.09513): science question answering.
+    * [OCRBench](https://arxiv.org/abs/2501.00321): assesses document understanding and OCR capabilities.
+    
+    [Leaderboard for VLMs](https://huggingface.co/spaces/opencompass/open_vlm_leaderboard) 
+
 ??? - note "Detailed benchmark coverage per open-weight model provider"
 
     | Benchmark                                 |           Meta (LLaMA)           |             Mistral            | Cohere (Command-R+) | DeepSeek |
