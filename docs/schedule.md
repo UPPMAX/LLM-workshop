@@ -33,11 +33,12 @@ Total duration: 5 hr 40 min
 |  〰️  Quantization                       | 11:20-12:20  | 60 min   | Chia-Jung  |
 | :fontawesome-solid-utensils: Lunch break              | 12:20-13:20  | 60 min   | -          |
 | :fontawesome-solid-network-wired: Model parallelism   | 13:20-14:20  | 60 min   | Yunqi      |
-| :octicons-stack-16: Multi-modal LLM / VLM inference   | 14:20-14:40  | 20 min   | Chia-Jung  |
-| :material-database-search: RAG                        | 14:40-15:40  | 60 min   | Jayant     |
-| :octicons-comment-discussion-16: Feedback             | 15:40-15:50  | 10 min   | -          |
+| :material-coffee: Break                               | 14:20-14:30  | 10 min   | -          |
+| :octicons-stack-16: Multi-modal LLM / VLM inference   | 14:30-14:50  | 20 min   | Chia-Jung  |
+| :material-database-search: RAG                        | 14:50-15:50  | 60 min   | Jayant     |
+| :octicons-comment-discussion-16: Feedback             | 15:50-16:00  | 10 min   | -          |
 
-Total duration: 5 hr 50 min
+Total duration: 6 hrs
 
 
 ### Day 3  
