@@ -147,7 +147,7 @@ number in terms of an exponent and mantissa (significand).
 </aside>
 
 ![](figures/float16.png){ style="height:360px" }  
-Image source: [Maarten Grootendorst](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)
+Image source: [Maarten Grootendorst]
 
 
 ### Floating point formats - cont. 1
@@ -192,7 +192,7 @@ compared to FP numbers.
 </aside>
 
 ![](figures/number-ranges.png){ style="height:360px" }  
-Image source: [Maarten Grootendorst](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)
+Image source: [Maarten Grootendorst]
 
 ### Hardware Compatibility
 
@@ -223,8 +223,7 @@ See also [Data types support][amd-fp-formats] by AMD RocM.
 
 ### Rule of thumb
 
-- [Google's bf16] if unsure  
-  (same range as fp32, less mantissa, good compatibility);
+- [Google's bf16] if unsure (same range as fp32, less mantissa, good compatibility);
 - training usually done in fp32/bf16;
 - int4/8 is good for inference (on older GPUs).
 
@@ -234,18 +233,30 @@ See also [Data types support][amd-fp-formats] by AMD RocM.
 
 ### Quantization target
 
+<aside class="notes" markdown="1">
+
+Quantization can be applied to weights, activations or KV-caches; Weights are
+the most common target to quantize as weights are the most memory-hungry part of
+the model. It is possible to quantize only part of the model (
+[non-uniform quantization](https://docs.vllm.ai/projects/llm-compressor/en/latest/examples/quantization_non_uniform/))
+
+</aside>
+
 ![](figures/mixed_precision_hopper.jpg)
+
+<div markdown="1" class="no-mkdocs">
 
 - Weight/activation/mixed percision (w8a16);
 - KV-cache;
 - Non-uniform;
 
-<aside class="notes" markdown="1">
+</div>
 
-weights is usually the first thing to quantize, it is also the most supported
-way of quantizing the model. Depending on the hardware, it might or might not
-support converting the tensors between precision or doing tensor operations
-natively.
+<aside class="notes" markdown="1"> 
+
+Mixed-precision evaluation of matrix multiplications depends on the hardware; it
+might or might not support converting the tensors between precision or doing
+tensor operations natively. 
 
 For instance, FP8 is not officially support on Ampere GPUs (A40 and A100). While
 there exist implementations that makes [w8a16][vllm-fp8] operations available,
@@ -254,23 +265,31 @@ support](https://discuss.vllm.ai/t/kv-cache-quantizing/749).
 
 [vllm-fp8]: https://docs.vllm.ai/en/v0.5.2/quantization/fp8.html
 
-Models can also been quantized
-[non-uniformly](https://docs.vllm.ai/projects/llm-compressor/en/latest/examples/quantization_non_uniform/)
 
 </aside>
 
 ### (A)symmetric qunatization
 
-![](figures/quantization_symmetry.webp)
-
-- linear transformation;
-- depend on original range;
-- position of zero.
-
 <aside class="notes" markdown="1">
 
-One important aspect when quantizing the models is the distribution of the
-model, the easiest way is to simply scale the parameters by a factor.
+One important aspect when quantizing the models is the range of the model, the
+easiest way is to simply scale the parameters by a factor.
+
+</aside>
+
+![](figures/quantization_symmetry.webp){ style="max-height:360px;" }  
+Image source: [Maarten Grootendorst]
+
+
+<div markdown="1" class="no-mkdocs">
+
+- position of zero;
+- range of parameters;
+- simple for implementation;
+
+</div>
+
+<aside class="notes" markdown="1">
 
 To minimize loss of precision, we could map the parameters according to the
 max/min values of the parameter, rather than the number-format range. There, we
@@ -282,11 +301,12 @@ complexity in computation).
 
 ### Clipping
 
-![](figures/clipping.webp)
+![](figures/clipping.webp){ style="max-height:240px;" }  
+Image source: [Maarten Grootendorst]
 
 <aside class="notes" markdown="1">
 
-we can also choose to clip out the outlier to same more precision.
+we can also choose to clip out the outlier to gain more precision.
 
 </aside>
 
@@ -295,24 +315,25 @@ we can also choose to clip out the outlier to same more precision.
 
 <aside class="notes" markdown="1">
 
-For parameters of the model We can simply quantize them, since we know their
+For weights of the model We can simply quantize them, since we know their
 distribution. But given some small dataset but we can also improved the accuracy
-but estimating how important each parameter it. A popular way to do that is the
-GPTQ method.
+but estimating how important each parameter it. 
+
+[^gptq]: [arXiv:2210.17323](https://arxiv.org/abs/2210.17323)
+
+A popular way to do that is the GPTQ method.[^gptq] Below is an illustration of
+GPTQ method. A calibration dataset is used to evaluate the inverse Hessian
+(sensitivity) of the output with respect to the weights. Then the quantization
+error is calibrated to minimize its impact.
 
 </aside>
 
-![](figures/gptq.webp)
-
-Illustration of GPTQ method, where quantization are done to minimize the error,
-weighed by according to the inverse Hessian (sensitivity).
+![](figures/gptq.webp){ style="max-height:240px;" }  
+Image source: [Maarten Grootendorst]
 
 
-### Calibration for activation qunatization
 
-![](figures/dynamic_calibration.webp)
-
-Can be dynamic or static.
+### Calibration for activation quantization
 
 <aside class="notes" markdown="1">
 
@@ -323,14 +344,17 @@ statically (with a calibration set).
 
 </aside>
 
-### Post-training quantization methods (PTQ)
 
-- Weights and/or activation;
-- Calibration/accuracy trade off;
-- Not detailed here: sparsification.
+![](figures/dynamic_calibration.webp){ style="max-height:360px;" }  
+Image source: [Maarten Grootendorst]
 
-![](figures/sparse-matrix.png)
+The range can be estimated can be dynamically (on the fly) or statically.
 
+
+### Sparsification
+
+![](figures/sparse-matrix.png){ style="max-height:240px;" }  
+Image source: [Nvidia technical blog](https://developer.nvidia.com/blog/accelerating-inference-with-sparsity-using-ampere-and-tensorrt)/
 
 <aside class="notes" markdown="1">
 
@@ -341,39 +365,70 @@ with [llm-compressor]);
 
 [llm-compressor]: https://github.com/vllm-project/llm-compressor/blob/main/examples/sparse_2of4_quantization_fp8/README.md
 
-So far we covered mostly the so-called PTQ method when we do/can not run the
-training (for a complete list with compatibility see [vLLM guide]).
+</aside>
 
-[vLLM guide]: https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md
+
+### Post-training quantization methods (PTQ)
+
+<aside class="notes" markdown="1">
+
+So far we covered mostly the so-called PTQ method which works without training the model:
+
+</aside>
+
+- Weight and activation;
+- Not detailed: sparsification/KV cache.
+- Calibration/accuracy trade off;
+
+
+<aside class="notes" markdown="1">
+
+For a complete list of PTQ methods along with their compatibility see [vLLM's guide].
+
+[vLLM's guide]: https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md
 
 </aside>
 
 ### Quantization aware training (QAT)
 
-QAT introduce quantization error during training;
-
-![](figures/qat.webp){ style="max-height:100px;" }
-![](figures/qat_back.webp){ style="max-height:300px;" }
-
 <aside class="notes" markdown="1">
 
-But we can also get higher accuracy by using the Quantization aware training
-(QAT) method. There we do the training and perform the
-quantization/dequantization; which this the first thing we gain is that we can
-actually optimize the quantization parameters as part of the training process.
+But we get higher accuracy by using the Quantization aware training (QAT)
+method. There we perform the quantization/dequantization during the training
+process.
 
 </aside>
 
-### Quantization aware training (QAT) - cont.
-
-![](figures/qat_theory.webp)
+![](figures/qat.webp){ style="max-height:100px;" }
+![](figures/qat_back.webp){ style="max-height:300px;" }  
+Image source: [Maarten Grootendorst]
 
 <aside class="notes" markdown="1">
 
-The reason why it might work better, is that by introducing the quantization
-error in the training process, we force the model to land in a local minima
-where it is less sensitive to model parameters. So even the original model
-performs worth, the quantized model works better
+The first benefit is that we can actually optimize the quantization parameters
+as part of the training process.
+
+</aside>
+
+
+### Quantization aware training (QAT) - cont.
+
+<aside class="notes" markdown="1">
+
+As we introduce the quantization error in the training process, we are will
+arrive at a model with higher loss during  training.
+
+</aside>
+
+![](figures/qat_theory.webp){ style="max-height:360px;" }  
+Image source: [Maarten Grootendorst]
+
+<aside class="notes" markdown="1">
+
+The reason why it might work better, is that we force the model to land in a
+local minima where it is less sensitive to model parameters. So even the
+original model performs worse, the quantized model would perform better than
+those quantized with PTQ.
 
 </aside>
 
@@ -392,3 +447,6 @@ performs worth, the quantized model works better
 Benchmarks:
 
 - [derek135/quantization-benchmarks](https://huggingface.co/datasets/derekl35/quantization-benchmarks)
+
+
+[Maarten Grootendorst]: https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
