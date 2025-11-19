@@ -25,7 +25,10 @@ This section cover the following:
 ## Computations in LLMs
 
 ### Neural networks
-
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
 
 <aside class="notes" markdown="1">
 
@@ -134,6 +137,12 @@ predicts the next token with a sequence of previous ones.
 
 
 ### Training of LLMs
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+
 
 ![](./figures/neural_network_training.png){ style="height:350px;" }
 
@@ -150,6 +159,11 @@ to update the parameters.
 </aside>
 
 ### Fine-tuninig of LLMs
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
 ![](./figures/fine_tuning.png){ style="height:360px" }
 
@@ -318,6 +332,12 @@ of those number formats in the next section).
 
 
 ### Alvis hardware - network & storage
+
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
 <aside class="notes" markdown="1">
 

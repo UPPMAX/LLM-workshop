@@ -82,7 +82,7 @@ Image from [huggingface](https://huggingface.co/docs/hub/gguf).
 - [llamafile](https://mozilla-ai.github.io/llamafile): by mozilla, single-file
   format, executable.
 
-In the repo you can find detailed model information for some model formats,
+In some repos, you can find detailed model information for some model formats,
 [example](https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf).
 
 <aside class="notes" markdown="1">
