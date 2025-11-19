@@ -310,9 +310,9 @@ if you want to optimize you inference tasks for real.
 
 ![](./figures/gpu_direct.png){ style="height:200px" }
 
-- Fast storage: [WEKA file system];
 - Infiniband: 100Gbit (A100 nodes);
 - Ethernet: 25Gbit (most other nodes);
+- Fast storage: [WEKA file system].
 
 [WEKA file system]: https://docs.weka.io/weka-system-overview/about/weka-system-functionality-features
 
