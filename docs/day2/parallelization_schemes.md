@@ -34,7 +34,7 @@ overhead, albeit less significant than other model parallelism schemes.
 </aside>
 
 
-![](figures/data_parallelization.png){ style="height:360px;" }
+![](figures/data_parallelization.png){ style="height:360px;" }  
 Image source: [ultrascale playbook]
 
 
@@ -57,7 +57,7 @@ technique, that is, synchronize the weights during the back-propagation process.
 
 
 ![](figures/dp_overlap1.svg){ style="height:180px;" }
-![](figures/dp_overlap3.svg){ style="height:180px;" }
+![](figures/dp_overlap3.svg){ style="height:180px;" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -97,7 +97,7 @@ examples
 
 </aside>
 
-![](figures/dp_sharding.gif){ style="height:360px;" }
+![](figures/dp_sharding.gif){ style="height:360px;" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -119,7 +119,7 @@ and no inter-GPU would be necessary.
 </aside>
 
 
-![](figures/ep_moe.png){ style="width:600px" }
+![](figures/ep_moe.png){ style="width:600px" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -158,7 +158,7 @@ and [NeMo](https://docs.nvidia.com/nemo-framework/user-guide/latest/nemotoolkit/
 </aside>
 
 ![](figures/tp_row.png){ .fragment .current-visible style="height:360px;" }
-![](figures/tp_col.png){ .fragment .current-visible style="height:360px;" }
+![](figures/tp_col.png){ .fragment .current-visible style="height:360px;" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -183,7 +183,7 @@ nodes. We see a noticeable decrease in performance going from 8 to 16 GPUs.
 
 </aside>
 
-![](figures/tp_scaling.png){ style="height:360px;" }
+![](figures/tp_scaling.png){ style="height:360px;" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -217,7 +217,7 @@ significant.
 
 
 ![](figures/pp_afab.svg){ style="width:800px" }
-![](figures/pp_afab2.svg){ style="width:800px" }
+![](figures/pp_afab2.svg){ style="width:800px" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -237,7 +237,7 @@ available.
 
 </aside>
 
-![](figures/pp_zerobubble_ppschedule.png){ style="width:600px" }
+![](figures/pp_zerobubble_ppschedule.png){ style="width:600px" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
@@ -262,7 +262,7 @@ with DP and PP.
 </aside>
 
 
-![](figures/3d-parallelism.png){ style="width:600px" }
+![](figures/3d-parallelism.png){ style="width:600px" }  
 Image source: [ultrascale playbook]
 
 - For really large models one need to combine the techniques;
