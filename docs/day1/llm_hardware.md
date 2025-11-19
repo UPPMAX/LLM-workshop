@@ -256,7 +256,7 @@ post](https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a
 ### Key takeaways
 
 - LLMs/NNs benefit from massive parallelization;
-- Different Need for different tasks:
+- Different need for different tasks:
     + training: memory + compute + data throughput;
     + fine-tuninig: similar to training, cheaper;
     + pre-filling: compute;
