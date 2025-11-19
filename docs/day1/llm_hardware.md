@@ -29,6 +29,7 @@ This section cover the following:
 .reveal section {
   text-align: center;
 }
+</style>
 
 <aside class="notes" markdown="1">
 
