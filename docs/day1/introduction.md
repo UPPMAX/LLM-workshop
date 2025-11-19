@@ -214,7 +214,7 @@ apptainer exec your_container.sif python your_code.py
 ![Submitting a job](figures/generic_cluster_jobsubmission.svg)
 
 ### SLURM workflow &ndash; Job starts
-![Job starts](figures/generic_cluster_jobsubmission.svg)
+![Job starts](figures/generic_cluster_jobstart.svg)
 
 ### Partial command overview
 - View queued and running jobs `squeue [--me]`
