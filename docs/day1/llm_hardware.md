@@ -72,7 +72,36 @@ not alone; see [double descent](https://en.wikipedia.org/wiki/Double_descent).
 - So far: mini-batch & optimizer & big → good.
 </div>
 
-### Transformer
+### Attention mechanism
+
+<aside class="notes" markdown="1">
+
+The "secret sauce" of transformer models is the so-called attention mechanism.
+Generally speaking attention mechanism is how one compute pairwise
+(similarities), and do so by creating the "keys" and "queries" using neural
+networks.
+
+Think of it as a general way to building a function that models the relation
+between two things (or two sets of inputs), where relation is parameterized by a
+neural network. The attention mechanism can be self-attention (the case for
+language models) or not (e.g. when one have keys/values from a picture and
+queries by a word).
+
+</aside>
+
+![](figures/attention.png){ style="height:360px" }  
+Image source: [Introduction to Attention Mechanism](https://erdem.pl/2021/05/introduction-to-attention-mechanism)
+
+<div markdown="1" class="no-mkdocs">
+
+- keys, queries, and vales (K,Q,V);
+- general ways of building trainable "relations" from neural networks;
+- self-attention.
+
+</div>
+
+
+### Transformer vs. RNN
 
 <aside class="notes" markdown="1">
 
@@ -101,6 +130,7 @@ we can see transformer as just a composition of neural network blocks that
 predicts the next token with a sequence of previous ones.
 
 </aside>
+
 
 
 ### Training of LLMs
