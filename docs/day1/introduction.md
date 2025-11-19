@@ -231,8 +231,8 @@ apptainer exec your_container.sif python your_code.py
 - SLURM batch queue system for running things on the cluster
 
 ## Exercises
-1. Make sure you have finished [prerequisites](../prerequisites.md)
-2. Navigate to the workshop project storage directory
+1. Make sure you have finished [prerequisites](../docs/prerequisites.md)
+2. Navigate to the workshop project storage directory (see path with `C3SE_quota`)
 3. Create your own directory e.g. `mkdir ${USER}`
 4. Copy `/mimer/NOBACKUP/groups/llm-workshop/exercises/day1/introduction/` and its content to your directory
 5. Do the below exercises
