@@ -118,7 +118,7 @@ icon: fontawesome/solid/diagram-project
     - Don't (let the AI) run unknown code
 - Examples:
     - `npx -y @modelcontextprotocol/server-filesystem /dev/shm /tmp`
-    - `mcp mcp_server.py`
+    - `mcp run -t stdio mcp_server.py`
 
 ### Connecting to an MCP Server from Chainlit: HTTP
 - SSE deprecated in favor of Streamable HTTP
@@ -130,6 +130,7 @@ icon: fontawesome/solid/diagram-project
 
 ## Writing tools according to MCP
 - The Python SDK for MCP Servers
+- <https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart>
 <!-- TODO -->
 
 ## Exercises
@@ -138,5 +139,17 @@ icon: fontawesome/solid/diagram-project
 <!--3. (Optional) connecting to HuggingFace MCP with a token--> <!-- Alternatively, run a dummy mcp on the github pages -->
 
 ### Using tools via MCPs in Chainlit
+1. Edit `~/.chainlit/config.toml` under `[features.mcp.studio]` change to `allowed_executables = [ "npx", "uvx", "mcp" ]`
+1. Copy the the quick start example from the Python MCP SDK <https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart>
+2. Prepare the custom Chainlit runtime environment for this exercise: `cp /mimer/NOBACKUP/groups/llm-workshop/exercises/day3/tools/portal/chainlit/use_existing_vllm.sh ~/portal/chainlit/`
+3. Launch a Chainlit interactive session from <https://alvis.c3se.chalmers.se> with the `use_existing_vllm.sh` runtime and 1 CPU core.
+4. Press the plug symbol to add an MCP Server
+    1. Select `stdio` as transport
+    2. Give it a name
+    3. Add command `mcp run -t stdio <path to mcp server file here>`
+
 ### Developing your own MCP server
-<!-- Remember step about updating ~/.chainlit/config.toml -->
+- Based on the Getting Started example write your own MCP tool. 
+- Note that if you launch it from inside the container, you will be limited to what is in the container
+- Optionally, install mcp in a venv and launch an SSE instead of stdio and use that:
+    - You will need to forward the port for the SSE to the compute node you're running Chainlit on
