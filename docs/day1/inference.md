@@ -89,6 +89,7 @@ you can send HTTP requests to the listed endpoints.
 ### Use OpenAI API
 
 - Get available models: 
+
 ```console
 $ curl http://localhost:1234/v1/models
 ```
@@ -154,7 +155,8 @@ $ curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/j
 ```
 </aside>
 
-- [More information](https://lmstudio.ai/docs/app/api/endpoints/openai)
+- [LM Studio document](https://lmstudio.ai/docs/app/api/endpoints/openai)
+- [OpenAI API document](https://platform.openai.com/docs/api-reference/)
 
 ### OpenAI Python SDK
 
@@ -171,6 +173,8 @@ response = client.chat.completions.create(
 )
 print(reponse)
 ```
+
+[Chat completion arguments](https://platform.openai.com/docs/api-reference/chat/create)
 
 ### Command line tools
 
@@ -223,6 +227,20 @@ cache, etc.
 
 ![lmstudio9](figures/lmstudio9.png)
 
+
+<div markdown="1" class="no-mkdocs">
+
+### Exercise
+
+<div style="text-align: center; justify-content: center; align-items: center">
+- Launch your own LM Studio on compute node
+- Use `curl` to get response
+- Use OpenAI python SDK to get response
+</div>
+
+</div>
+
+
 ## [vLLM](https://github.com/vllm-project/vllm)
 
 <aside class="notes" markdown="1">
@@ -251,6 +269,26 @@ Once a server is launched, in another terminal:
 - Completion: `vllm complete`
 - Benchmark: `vllm bench`
 
+<aside class="notes" markdown="1">
+!!! important
+    Using `unsloth/Llama-3.2-1B-Instruct` will download model from huggingface
+    to your `HF_HOME` directory. To use local saved model, you can use absolute
+    path to a snapshot in argument, e.g.
+    `/..../models--unsloth--Llama-3.2-1B-Instruct/snapshots/d2b9e3...../`.
+    The same way also applies in `transformers`
+</aside>
+
+<div markdown="1" class="no-mkdocs">
+
+***Note***:
+
+<div style="font-size: 20px">
+- Using `unsloth/Llama-3.2-1B-Instruct` will download model from huggingface
+to your `HF_HOME` directory.
+- To load local model, you can use 
+`/..../models--unsloth--Llama-3.2-1B-Instruct/snapshots/d2b9e3...../`
+</div>
+</div>
 
 ### Endpoints
 
@@ -315,6 +353,21 @@ print(output[0].outputs[0].text)
 
 - [More examples](https://docs.vllm.ai/en/latest/models/generative_models.html).
 
+
+<div markdown="1" class="no-mkdocs">
+
+### Exercise
+
+<div style="text-align: center; justify-content: center; align-items: center">
+- Launch your own vLLM server on compute node
+- Write a jobscript to launch vLLM
+- Use `curl` in your jobscript to get response the vLLM server
+- Write another python file and use OpenAI python SDK to get response
+- Use `LLM` class to load model and generate some output
+</div>
+
+</div>
+
 ## [Huggingface Transformers](https://huggingface.co/docs/transformers/main/index)
 
 ### OpenAI-Compatible API Server
@@ -353,6 +406,18 @@ outputs = model.generate(
 
 print(tokenizer.decode(outputs[0]))
 ```
+
+<div markdown="1" class="no-mkdocs">
+
+### Exercise
+
+<div style="text-align: center; justify-content: center; align-items: center">
+- Use `AutoModel` and `AutoTokenizer` class to load model and generate some output
+</div>
+
+</div>
+
+
 
 ## Other Tools
 
