@@ -97,7 +97,7 @@ Checkpoint/logging: [HF Trainer](https://huggingface.co/docs/transformers/en/tra
 10. Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. 
 
 
-???- note "Full reproduction of the FineWeb dataset"
+???- note "[Full reproduction](https://github.com/huggingface/datatrove/blob/main/examples/fineweb.py) of the FineWeb dataset"
 
     ```python title="fineweb.py"
 
@@ -195,7 +195,8 @@ Some commonly used include:
 
 !!!- example "Exercise"
 
-    - Start a jupyter server with A40 (and above) GPU with `post_train_env` environment and working directory set to your personal project directory.
+    - Copy `llm-workshop/containers/post_train/post_train_env.sh` [:material-github:](https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day2/post_train_env.sh) to your `~/portal/jupyter/`
+    - Start a jupyter server with 1x A40 (or above) GPU with `post_train_env` environment and working directory set to your personal project directory.
     - Run `data_pipelines.ipynb` to prepare a dataset for Supervised Finetuning on [openai's gsm8k](https://huggingface.co/datasets/openai/gsm8k) math dataset.
 
 
