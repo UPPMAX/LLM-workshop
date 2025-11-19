@@ -26,7 +26,7 @@ icon: material/earth
         C. Publicly available models are only accessible via an API.  
         D. Publicly available models are always smaller and less capable than closed-source models.
         
-        2. Where to begin your search for publicly available models
+        2. Where to begin your search for publicly available models?  
         A. Academic papers and technical reports    
         B. Model hub & model cards on Hugging Face  
         C. Official vendor pages and API docs (e.g., OpenAI, Meta, Google)  
