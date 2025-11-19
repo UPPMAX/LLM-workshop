@@ -15,7 +15,7 @@ version [here](../llm_hardware-slides).
 
 <aside class="notes" markdown="1">
 
-This section cover the following:
+This session covers the following:
 
 </aside>
 
