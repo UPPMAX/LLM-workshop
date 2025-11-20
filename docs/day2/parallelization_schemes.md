@@ -33,7 +33,7 @@ This session covers the following:
 }
 </style>
 
-![](./figures/dp_for_slides.png)
+![](./figures/dp_for_slides.png){class="no-mkdocs"}
 
 
 ### Data parallelism (DP)
@@ -159,7 +159,7 @@ Image source: [ultrascale playbook]
 }
 </style>
 
-![](./figures/tp_for_slides.png)
+![](./figures/tp_for_slides.png){class="no-mkdocs"}
 
 
 ### Tensor parallelism
@@ -237,7 +237,7 @@ Image source: [ultrascale playbook]
 }
 </style>
 
-![](./figures/pp_for_slides.png)
+![](./figures/pp_for_slides.png){class="no-mkdocs"}
 
 
 ### Pipeline parallelism (PP)
