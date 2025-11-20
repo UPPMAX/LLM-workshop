@@ -17,6 +17,8 @@ multi-modal LLMs.
 
 ![](figures/vlm_arch.jpg)
 
+Image source: [Sebastian Raschka](https://magazine.sebastianraschka.com/p/understanding-multimodal-llms)
+
 ## Inference in vLLM
 
 - Support of 
@@ -186,6 +188,19 @@ inputs = processor(
 output = model.generate(**inputs, max_new_tokens=30)
 print(processor.decode(output[0]))
 ```
+
+<div markdown="1" class="no-mkdocs">
+
+### Exercise
+
+<div style="text-align: center; justify-content: center; align-items: center">
+
+- Write a jobscript to launch a vLLM server serving one VLM
+- Use your preferable way to send messages and images to the server,
+you can do it in the same jobscript
+
+</div>
+</div>
 
 ## Reference
 
