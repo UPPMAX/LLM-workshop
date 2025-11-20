@@ -1,8 +1,11 @@
 ---
 title: Tools and Reasoning
+author: NAISS
 icon: fontawesome/solid/diagram-project
 ---
 
+
+<!--
 # Tools and reasoning
 <style type="text/css" rel="stylesheet">
 .reveal section {
@@ -11,6 +14,7 @@ icon: fontawesome/solid/diagram-project
 </style>
 > There is a tool for every task, and a task for every tool.
 - Tywin Lannister
+-->
 
 <!--
 ## Overview
@@ -52,6 +56,13 @@ icon: fontawesome/solid/diagram-project
 - RAG (sometimes considered separate)
 - Image generation
 
+### Model Context Protocol (MCP)
+- Standard for how to interface with tools
+- MCP Clients are those which want to use a tool
+- MCP Server is what handles the tool
+- By following the protocol, you don't need an implementation per server-client
+  combination
+
 ## Interfaces
 - How to different part interface with each other
     - Human and LLM
@@ -73,7 +84,7 @@ icon: fontawesome/solid/diagram-project
 1. Tokens
 2. Text (tokenizer + chat template)
 3. Tool request (stdio/http)
-4. Tool use (Model Context Protocol (MCP) server)
+4. Tool use (MCP server)
 5. Tool response (stdio/http)
 6. Tokens
 
