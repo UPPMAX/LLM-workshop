@@ -119,7 +119,7 @@ examples
 
 </aside>
 
-![](figures/dp_sharding.gif){ style="height:360px;" }  
+![](figures/zero_memory.svg){ style="height:360px;" }  
 Image source: [ultrascale playbook]
 
 <div markdown="1" class="no-mkdocs">
