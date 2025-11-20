@@ -1,0 +1,13 @@
+bootstrap: docker
+from: pytorch/pytorch_2.6.0-cuda12.6-cudnn9-devel.sif
+
+%post
+    pip install jupyterlab ipywidgets
+    pip install bitsandbytes optimum
+    pip install llmcompressor==0.6.0.1
+    pip install optimum-quanto==0.2.7
+    pip install transformers==4.52.4  # 4.53.2
+    pip install -v gptqmodel==2.2.0 --no-build-isolation
+
+%environment
+    CC=/usr/bin/gcc
