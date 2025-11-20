@@ -13,12 +13,16 @@ icon: octicons/graph-16
 - Reproducibility
 - Helping informed decisions
 
-<!-- TODO
-- Apples-to-apples (size, precision)
-- Goodhart's law
-- Bad datasets https://en.wikipedia.org/wiki/MMLU#Limitations
+### Caveats
+- Apples-to-apples
+    - Compare against similar model size/datatype precision
+- Benchmark quality varies
+    - MMLU
 - Benchmark gaming
--->
+    - [Llama 4 Chatbor Arena scandal](https://doi.org/10.48550/arXiv.2504.20879)
+    - [Models can cheat](https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/#reward-hacking-example)
+- Optimizing too much for benchmarks can have side-effects
+    - [Why language models hallucinate](https://openai.com/index/why-language-models-hallucinate/)
 
 ## Evaluation
 - Generic benchmarks
@@ -63,7 +67,6 @@ icon: octicons/graph-16
 - Configure your own benchmark
 
 ## Exercise
-<!-- TODO find smallest eval in NeMo Evaluator and run that -->
 - Try running evals against vLLM endpoint instructor set-up
 - Make sure to set `HF_HOME` as datasets will be downloaded when running
 - Launch interactive job `srun -A NAISS2025-22-1522 -t 30 -C NOGPU -c 2 --pty bash`
