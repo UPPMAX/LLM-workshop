@@ -448,9 +448,9 @@ srun python -u -m torch.distributed.run \
 
 - **PyTorch DDP**: standard (basic) DP in PyTorch;
 - **PyTorch FSDP**: improved with sharding;
-- **DeepSpeed**: implements advanced schemes;
-- **Megatron-LM**: Nvidia's  of 3D parallelism;
-- **Other options**: Colossal-AI, FairScale, ...
+- **DeepSpeed**: implements advanced schemes (most sharding);
+- **Megatron-LM**: Nvidia's implementation (tensor-parallelism);
+- **Other options**: NeMo, Colossal-AI, FairScale, ...
 
 ### Popular inference frameworks
 
