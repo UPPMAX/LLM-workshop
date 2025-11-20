@@ -4,6 +4,11 @@ icon: fontawesome/solid/diagram-project
 ---
 
 # Tools and reasoning
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 > There is a tool for every task, and a task for every tool.
 - Tywin Lannister
 

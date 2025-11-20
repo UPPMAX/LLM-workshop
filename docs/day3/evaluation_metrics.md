@@ -4,6 +4,11 @@ icon: octicons/graph-16
 ---
 
 ## Motivation
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 - Tracking progress
 - Reproducibility
 - Helping informed decisions

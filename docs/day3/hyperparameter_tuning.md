@@ -4,6 +4,11 @@ icon: fontawesome/solid/sliders
 ---
 
 # Hyperparameter tuning
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 - What could be tuned?
 - Overview of basic tuning techniques:
     - Grid search (not recommended)

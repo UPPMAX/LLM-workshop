@@ -34,6 +34,9 @@ jobs:
             "${DOC_ROOT}/day1/llm_formats.md"
             "${DOC_ROOT}/day2/parallelization_schemes.md"
             "${DOC_ROOT}/day2/multimodal.md"
+            "${DOC_ROOT}/day3/tools.md"
+            "${DOC_ROOT}/day3/hyperparameter_tuning.md"
+            "${DOC_ROOT}/day3/evaluation_metrics.md"
           )
           for f in ${slides[@]};
           do
