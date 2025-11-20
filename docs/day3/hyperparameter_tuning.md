@@ -30,7 +30,7 @@ icon: fontawesome/solid/sliders
 - Population based methods
 
 ### Grid search
-- Typically first thing you can think of
+- Brute force, typically first thing you can think of
 - Inefficient, especially for many hyperparameters
 
 ### Random search
@@ -95,6 +95,7 @@ $$
 
 ### Sequential evaluation
 ![Sequential jobs](figures/slurm_gantt_sequential.svg)
+
 - One job at the time, no parallelisation
 
 ### Batch evaluation
