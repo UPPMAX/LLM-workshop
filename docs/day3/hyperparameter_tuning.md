@@ -3,7 +3,7 @@ title: Hyperparameter Tuning
 icon: fontawesome/solid/sliders
 ---
 
-# Hyperparameter tuning
+## Hyperparameter tuning
 <style type="text/css" rel="stylesheet">
 .reveal section {
   text-align: center;
