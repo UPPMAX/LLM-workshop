@@ -118,7 +118,7 @@ config:
 HF_HOME="$TMPDIR/hf"
 
 # Run partial benchmark
-apptainer exec /apps/containers/NeMo/Evaluator/NeMo-Evaluator-LM-Evaluation-Harnesk-NGC-25.10.sif nemo-evaluator run_eval --run_config my_nemo_conf.yaml --output_dir="${TMPDIR:-/tmp/}/$USER" --eval_type bbq --override="config.params.limit_samples=10"
+apptainer exec /apps/containers/NeMo/Evaluator/NeMo-Evaluator-LM-Evaluation-Harnesk-NGC-25.10.sif nemo-evaluator run_eval --run_config my_nemo_config.yaml --output_dir="${TMPDIR:-/tmp/}/$USER" --eval_type bbq --override="config.params.limit_samples=10"
 ```
 
 ### Possible complications
