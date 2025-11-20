@@ -3,7 +3,7 @@
 
 module purge
 
-container=/cephyr/users/chiajung/Alvis/mimer/venvs/llm-quantization.sif
+container=/mimer/NOBACKUP/groups/llm-workshop/containers/llm-quantization.sif
 
 # You can launch jupyter notebook or lab, but you must specify the config file as below:
 apptainer exec $container jupyter lab --config="${CONFIG_FILE}"
