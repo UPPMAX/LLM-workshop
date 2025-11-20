@@ -160,12 +160,17 @@ LangChain ex.: LangSmith, QAEvalChain
 !!!- example "Exercise"
 
     - Create `~/portal/jupyter` dir if you dont have already.
-    
+
     - Copy `llm-workshop/containers/rag/rag_env.sh` [:material-github:](https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day2/rag_env.sh) to your `~/portal/jupyter/` . ie. `cp /mimer/NOBACKUP/groups/llm-workshop/containers/rag/rag_env.sh ~/portal/jupyter/`
 
     - Start a jupyter server on 1x A40 node using `rag_env.sh` runtime and working directory as your project folder.
     
     - Run `rag.ipynb`
+
+    ???- note "RAG on single node"
+        ![Compute node setup](./figures/rag_setup.png)
+
+    
 
 !!!- note "Some more useful techniques in retrieval pipelines 🛠️"
 
@@ -189,7 +194,6 @@ Have you tried out chatbot for UPPMAX docs yet? Its a RAG system under the hood!
         - [llama_index](https://github.com/run-llama/llama_index)
         - [LangChain](https://github.com/langchain-ai/langchain)
         - [RAGFlow](https://github.com/infiniflow/ragflow)
-
 
 
 [^1]: Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach [arXiv](https://arxiv.org/html/2407.16833v1)
