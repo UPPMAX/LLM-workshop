@@ -17,7 +17,7 @@ icon: octicons/workflow-16
     
             1:B, 2:B, 3:B
 
-        1. What is the primary goal of pre-training described in the document?
+        1. What is the primary goal of pre-training?
 
             A. Train small task-specific classifiers  
             B. Assemble large, diverse, governed corpora and feed tokens efficiently so the model learns general-purpose representations  
