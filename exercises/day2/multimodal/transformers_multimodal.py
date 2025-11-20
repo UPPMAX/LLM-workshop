@@ -56,7 +56,8 @@ print(processor.decode(out[0]))
 
 print("======================================================================")
 
-with open("../image/eso2105a.jpg", "rb") as image_file:
+# wget https://cdn.eso.org/images/screen/eso2105a.jpg
+with open("eso2105a.jpg", "rb") as image_file:
     data = base64.b64encode(image_file.read()).decode("utf-8")
 
 messages = [
