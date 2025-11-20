@@ -1,5 +1,5 @@
 ---
-title: LLM parallelization schemes
+title: Model Parallelism
 icon: fontawesome/solid/network-wired
 ---
 

@@ -10,12 +10,12 @@ nav:
     - Introduction: day1/introduction.md
     - Publicly available LLMs: day1/public_llms.md
     - LLM Inference: day1/inference.md
-    - LLM and hardware: day1/llm_hardware.md
-    - LLM formats: day1/llm_formats.md
+    - LLM and Hardware: day1/llm_hardware.md
+    - LLM Formats: day1/llm_formats.md
   - Day 2:
     - Data Pipelines: day2/data_pipelines.md
     - ' 〰️ Quantization': day2/quantization.ipynb
-    - Model parallelism: day2/parallelization_schemes.md
+    - Model Parallelism: day2/parallelization_schemes.md
     - Multi-Modal LLM / VLM Inference: day2/multimodal.md
     - RAG: day2/rag.md
   - Day 3:
