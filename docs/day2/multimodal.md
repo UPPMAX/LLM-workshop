@@ -198,6 +198,7 @@ print(processor.decode(output[0]))
 - Write a jobscript to launch a vLLM server serving one VLM
 - Use your preferable way to send messages and images to the server,
 you can do it in the same jobscript
+- Use transformers to load a VLM and handle a message with image
 
 </div>
 </div>
