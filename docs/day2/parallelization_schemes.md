@@ -3,6 +3,7 @@ title: LLM parallelization schemes
 icon: fontawesome/solid/network-wired
 ---
 
+
 <section data-visibility="hidden" markdown=1>
 
 This section is available as slides which is presented on the workshop. This
@@ -11,14 +12,36 @@ version [here](../parallelization_schemes-slides).
 
 </section>
 
-### Motivation
+### Overview
 
-- Parallelization is necessary;
-- Good vs. bad parallelization.
+<aside class="notes" markdown="1">
+
+This session covers the following:
+
+</aside>
+
+- Parallelization schemes that are useful for LLM;
+- Common tools that for running LLMs in parallel;
+
 
 ## Strategies
 
+### Data parallelism (DP) {class="no-mkdocs"}
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+
+![](./figures/dp_for_slides.png)
+
+
 ### Data parallelism (DP)
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
 <aside class="notes" markdown="1">
 
@@ -54,7 +77,6 @@ To mitigate the communication overhead, one can use the so-called overlapping
 technique, that is, synchronize the weights during the back-propagation process.
 
 </aside>
-
 
 ![](figures/dp_overlap1.svg){ style="height:180px;" }
 ![](figures/dp_overlap3.svg){ style="height:180px;" }  
@@ -103,7 +125,8 @@ Image source: [ultrascale playbook]
 <div markdown="1" class="no-mkdocs">
 
 - Sharding reduces memory usage;
-- Three levels of sharding (optimizer, gradients,weights).
+- Three levels of sharding (optimizer, gradients,weights);
+- ZeRO-methods / FSDP2.
 
 </div>
 
@@ -125,12 +148,26 @@ Image source: [ultrascale playbook]
 <div markdown="1" class="no-mkdocs">
 
 - Activate only subsets of experts per token;
-- Reduces compute cost for huge models.
+- Similar to sharding, but reduce need for data exchange.
 
 </div>
 
+### Tensor parallelism {class="no-mkdocs"}
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+
+![](./figures/tp_for_slides.png)
+
 
 ### Tensor parallelism
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
 <aside class="notes" markdown="1">
 
@@ -193,8 +230,17 @@ Image source: [ultrascale playbook]
 
 </div>
 
+### Pipeline parallelism (PP) {class="no-mkdocs"}
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 
-### Pipeline parallelism
+![](./figures/pp_for_slides.png)
+
+
+### Pipeline parallelism (PP)
 
 <aside class="notes" markdown="1">
 
