@@ -159,8 +159,12 @@ LangChain ex.: LangSmith, QAEvalChain
 
 !!!- example "Exercise"
 
-    - Copy `llm-workshop/containers/rag/rag_env.sh` to your `~/portal/jupyter/`
-    - Start a jupyter server on A40 node using `rag_env.sh` runtime and working directory as your project folder.
+    - Create `~/portal/jupyter` dir if you dont have already.
+    
+    - Copy `llm-workshop/containers/rag/rag_env.sh` [:material-github:](https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day2/rag_env.sh) to your `~/portal/jupyter/` . ie. `cp /mimer/NOBACKUP/groups/llm-workshop/containers/rag/rag_env.sh ~/portal/jupyter/`
+
+    - Start a jupyter server on 1x A40 node using `rag_env.sh` runtime and working directory as your project folder.
+    
     - Run `rag.ipynb`
 
 !!!- note "Some more useful techniques in retrieval pipelines 🛠️"
