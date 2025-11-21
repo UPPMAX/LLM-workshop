@@ -148,8 +148,8 @@ $$
 
 ### Training hyperparameter priors
 - Big impact: Training data, model architecture, optimizer, loss function and/or optimization metric
-- Learning rate: log-scale 
-- Batch size: correlated with learning rate
+- Batch size: affects compute performance and ideal learning rate
+- Learning rate: log-scale
 
 ## Types of metrics
 - Evaluation: loss, accuracy, ... <!-- Add perpexity -->
