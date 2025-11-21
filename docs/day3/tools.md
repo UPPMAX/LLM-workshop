@@ -34,7 +34,7 @@ icon: fontawesome/solid/diagram-project
 - RAG (sometimes considered separate)
 - Image generation
 
-### Model Context Protocol (MCP)
+## Model Context Protocol (MCP)
 - Standard for how to interface with tools
 - MCP Clients are those which want to use a tool
 - MCP Server is what handles the tool
