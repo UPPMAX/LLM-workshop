@@ -255,7 +255,7 @@ if trial.should_prune():
 ```
 
 ## Exercise
-1. Copy the optuna exercise directory from project storage into your own directory
+1. Copy the optuna exercise directory from project storage into your own directory `cp -r /mimer/NOBACKUP/groups/llm-workshop/exercises/day3/optuna/ <path-to-your-dir-here>`
 2. Copy the runtime for jupyter to your runtimes `cp portal/jupyter/Optuna.sh ~/portal/jupyter/`
 3. Find the best hyperparameters for finetuning the LM in `optuna.ipynb`
     - You can use <https://alvis.c3se.chalmers.se> Jupyter app to launch
