@@ -4,6 +4,11 @@ icon: fontawesome/solid/sliders
 ---
 
 ## Components
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
 - Parameter selection
 - Parameter evaluation
 
