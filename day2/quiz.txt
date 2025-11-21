@@ -1,0 +1,32 @@
+Which parallelization technique shards optimizer states, gradients, and/or parameters across devices to reduce memory footprint?
+A) Standard data parallelism
+B) Naive model parallelism
+C) ZeRO (memory sharding / optimizer-state partitioning)
+D) Pipeline parallelism
+Correct answer: C
+
+Moving from 32-bit floating point to 8-bit integer quantization for model weights typically results in:
+A) Increased memory usage and slower inference
+B) Reduced memory usage and often faster inference, with potential small accuracy loss
+C) Eliminating the need for GPUs entirely
+D) Always a large, unacceptable drop in model accuracy
+Correct answer: B
+
+What is a primary benefit of using Retrieval-Augmented Generation (RAG)?
+A) It reduces latency by avoiding document access
+B) It eliminates the need for any training data
+C) It grounds generation in external knowledge sources, helping reduce hallucinations and keep responses factual
+D) It always increases the model’s parameter count significantly
+Correct answer: C
+
+According to the post-training section, aligning base LLMs to tasks is primarily done via:
+A. Data sharding and compression
+B. Supervised fine-tuning and preference optimization (reward modelling or RLHF/RLAIF)
+C. Only unsupervised pre-training
+D. Manual rule-based post-processing
+
+Which pipeline stage is primarily responsible for transforming raw data into a clean, structured format suitable for modeling?
+A) Ingestion
+B) Feature engineering
+C) Preprocessing
+D) Deployment

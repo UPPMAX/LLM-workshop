@@ -1,0 +1,25 @@
+Which statement about self-attention in Transformers is correct?
+A. Self-attention requires recurrent connections to pass hidden state forward in time.
+B. In self-attention, Q comes from the decoder while K and V come from the encoder.
+C. In self-attention, the same input X is used to produce Q, K, and V.
+D. Decoder self-attention never masks future tokens. Answer: C Explanation: Self-attention uses the same X for Q, K, and V; decoder self-attention masks future tokens.
+During LLM inference, which phase is typically more memory-bound due to KV cache growth?
+A. Tokenization
+B. Pre-filling (processing the entire prompt)
+C. Decoding (generating tokens one by one)
+D. Training forward pass Answer: C Explanation: Decoding is memory-bound due to the growing KV cache; pre-filling is compute-heavy.
+In a model name like “Llama-3.3-70B-Instruct-AWQ-INT4-GGUF,” what does “GGUF” indicate?
+A. The fine-tuning method used
+B. The quantization scheme
+C. The model architecture
+D. The model file format Answer: D Explanation: GGUF is a model file format used widely by llama.cpp-based tooling.
+Which numeric format is commonly used to speed up LLM inference on older GPUs (with acceptable accuracy trade-offs)?
+A. FP32
+B. BF16
+C. TF32
+D. INT4/INT8 Answer: D Explanation: INT4/INT8 are commonly used for inference efficiency, especially on older GPUs.
+Which benchmark primarily evaluates a model’s ability to strictly follow instructions?
+A. MMLU-Pro
+B. GPQA
+C. IFEval
+D. HumanEval Answer: C Explanation: IFEval is specifically designed to test instruction-following behavior.

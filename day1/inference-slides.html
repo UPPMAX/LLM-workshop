@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>LLM Inference</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">LLM Inference</h1>
+</section>
+
+<section>
+<section id="lm-studio" class="title-slide slide level2">
+<h2><a href="https://lmstudio.ai/">LM Studio</a></h2>
+
+</section>
+<section id="lm-studio-on-alvis" class="slide level3">
+<h3>LM Studio on Alvis</h3>
+<p><img data-src="figures/lmstudio1.png" alt="lmstudio1" /></p>
+<aside class="notes">
+<p><a href="https://lmstudio.ai/">LM Studio</a> is a desktop app for
+developing and experimenting with LLMs. It has a friendly user interface
+and suitable for private usage. In this tutorial, we will use it to show
+some key concepts in LLM inference.</p>
+<p>We have deployed it on Alvis, you can find it in
+<code>Menu &gt; C3SE &gt; LM Studio</code>.</p>
+<p>!!! important LM Studio supports limited file format and may not
+scale well on clusters. Don’t use it for productive work.</p>
+</aside>
+</section>
+<section id="lm-studio-desktop-app" class="slide level3">
+<h3>LM Studio desktop app</h3>
+<p><img data-src="figures/lmstudio2.png" alt="lmstudio2" /></p>
+</section>
+<section id="chat-interface" class="slide level3">
+<h3>Chat interface</h3>
+<aside class="notes">
+Once you start LM studio, it brings you to a chat window. On top of the
+chat window, you can see a drop-down list allowing you to
+select/download models.
+</aside>
+<p><img data-src="figures/lmstudio3.png" alt="lmstudio3" /></p>
+</section>
+<section id="model-download" class="slide level3">
+<h3>Model download</h3>
+<p><img data-src="figures/lmstudio4.png" alt="lmstudio4" /></p>
+<aside class="notes">
+Before downloading any models, it is important to select a directory to
+save downloaded models. Click the folder icon in the sidebar, you can
+find that it saves models into your home directory by default. You can
+change the path to any directory where you have downloaded models. If
+you haven’t downloaded any model, you had better set the path to a
+directory under your storage project. Otherwise, you run out of
+file/space quota easily.
+</aside>
+</section>
+<section id="select-download-directory" class="slide level3">
+<h3>Select download directory</h3>
+<p><img data-src="figures/lmstudio5.png" alt="lmstudio5" /></p>
+</section>
+<section id="check-downloaded-models" class="slide level3">
+<h3>Check downloaded models</h3>
+<p><img data-src="figures/lmstudio6.png" alt="lmstudio6" /></p>
+<aside class="notes">
+Once you set the path, you can go back to the chat window to
+download/load models and start a chat.
+</aside>
+</section>
+<section id="load-model-and-chat" class="slide level3">
+<h3>Load model and chat</h3>
+<p><img data-src="figures/lmstudio7.png" alt="lmstudio7" /></p>
+</section>
+<section id="openai-compatible-api-server" class="slide level3">
+<h3>OpenAI-compatible API server</h3>
+<aside class="notes">
+Besides of the chat window, LM Studio also supports OpenAI compatible
+API server to handle HTTP requests. The server can be launched from the
+GUI by toggling the option in Developer tab in the sidebar. Once you
+start the server, you can send HTTP requests to the listed endpoints.
+</aside>
+<p><img data-src="figures/lmstudio8.png" alt="lmstudio8" /></p>
+</section>
+<section id="endpoints" class="slide level3">
+<h3>Endpoints</h3>
+<ul>
+<li>Four endpoints:
+<ul>
+<li><code>/v1/models</code></li>
+<li><code>/v1/chat/completions</code></li>
+<li><code>/v1/completions</code></li>
+<li><code>/v1/embeddings</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="use-openai-api" class="slide level3">
+<h3>Use OpenAI API</h3>
+<ul>
+<li>Get available models:</li>
+</ul>
+<pre class="console"><code>$ curl http://localhost:1234/v1/models</code></pre>
+<aside class="notes">
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;llama-3.3-70b-instruct&quot;</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;object&quot;</span><span class="fu">:</span> <span class="st">&quot;model&quot;</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;owned_by&quot;</span><span class="fu">:</span> <span class="st">&quot;organization_owner&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;text-embedding-nomic-embed-text-v1.5&quot;</span><span class="fu">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;object&quot;</span><span class="fu">:</span> <span class="st">&quot;model&quot;</span><span class="fu">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;owned_by&quot;</span><span class="fu">:</span> <span class="st">&quot;organization_owner&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;object&quot;</span><span class="fu">:</span> <span class="st">&quot;list&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</aside>
+<ul>
+<li>Chat to a model:</li>
+</ul>
+<pre class="console"><code>$ curl http://localhost:1234/v1/chat/completions -H &quot;Content-Type: application/json&quot; -d &#39;{
+    &quot;model&quot;: &quot;llama-3.3-70b-instruct&quot;,
+    &quot;messages&quot;: [
+        { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;why is the sky blue&quot; }
+    ]
+}&#39;</code></pre>
+<aside class="notes">
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;chatcmpl-stubx36wa8neg1u8jo5re&quot;</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;object&quot;</span><span class="fu">:</span> <span class="st">&quot;chat.completion&quot;</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;created&quot;</span><span class="fu">:</span> <span class="dv">1746801158</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;model&quot;</span><span class="fu">:</span> <span class="st">&quot;llama-3.3-70b-instruct&quot;</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;choices&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;index&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;logprobs&quot;</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;finish_reason&quot;</span><span class="fu">:</span> <span class="st">&quot;stop&quot;</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;assistant&quot;</span><span class="fu">,</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;The sky appears blue because of a phenomenon called Rayleigh scattering...&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;usage&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;prompt_tokens&quot;</span><span class="fu">:</span> <span class="dv">40</span><span class="fu">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;completion_tokens&quot;</span><span class="fu">:</span> <span class="dv">406</span><span class="fu">,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;total_tokens&quot;</span><span class="fu">:</span> <span class="dv">446</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;stats&quot;</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;system_fingerprint&quot;</span><span class="fu">:</span> <span class="st">&quot;llama-3.3-70b-instruct&quot;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</aside>
+<ul>
+<li><a href="https://lmstudio.ai/docs/app/api/endpoints/openai">LM
+Studio document</a></li>
+<li><a href="https://platform.openai.com/docs/api-reference/">OpenAI API
+document</a></li>
+</ul>
+</section>
+<section id="openai-python-sdk" class="slide level3">
+<h3>OpenAI Python SDK</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(base_url<span class="op">=</span><span class="st">&quot;http://localhost:1234/v1&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>model_list <span class="op">=</span> client.models.<span class="bu">list</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_list)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;why is the sky blue?&quot;</span>}]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reponse)</span></code></pre></div>
+<p><a
+href="https://platform.openai.com/docs/api-reference/chat/create">Chat
+completion arguments</a></p>
+</section>
+<section id="command-line-tools" class="slide level3">
+<h3>Command line tools</h3>
+<aside class="notes">
+<p>Once you have ever stared LM studio, it automatically installs a
+command line tool into you home directory:
+<code>~/.lmstudio/bin/lms</code>. With the tool, you can do the same
+operations as what you can do in the GUI. You can also see the models
+you have loaded from the GUI in the terminal</p>
+</aside>
+<pre class="console"><code>$ ~/.lmstudio/bin/lms status
+
+   ┌ Status ───────────────────────────────────┐
+   │                                           │
+   │   Server:  ON  (Port: 1234)               │
+   │                                           │
+   │   Loaded Models                           │
+   │     · llama-3.3-70b-instruct - 42.52 GB   │
+   │                                           │
+   └───────────────────────────────────────────┘</code></pre>
+</section>
+<section id="command-line-tools-continue" class="slide level3">
+<h3>Command line tools (continue)</h3>
+<pre class="console"><code>$ ~/.lmstudio/bin/lms ps
+
+   LOADED MODELS
+
+Identifier: llama-3.3-70b-instruct
+  • Type:  LLM
+  • Path: lmstudio-community/Llama-3.3-70B-Instruct-GGUF/Llama-3.3-70B-Instruct-Q4_K_M.gguf
+  • Size: 42.52 GB
+  • Architecture: Llama</code></pre>
+<p>Check more: <code>~/.lmstudio/bin/lms --help</code></p>
+</section>
+<section id="advanced-settings" class="slide level3">
+<h3>Advanced settings</h3>
+<aside class="notes">
+In LM Studio GUI, you can find advanced setting in the Developer tab.
+You can set the <code>temperature</code>, <code>top K</code>,
+<code>top P</code> values, etc in the inference setting. There are also
+parameters about performance, like GPU offload, CPU Thread, KV cache,
+etc.
+</aside>
+<p><img data-src="figures/lmstudio9.png" alt="lmstudio9" /></p>
+</section>
+<section id="exercise" class="slide level3 no-mkdocs" data-markdown="1">
+<h3>Exercise</h3>
+<div
+style="text-align: center; justify-content: center; align-items: center">
+<ul>
+<li>Launch your own LM Studio on compute node</li>
+<li>Use <code>curl</code> to get response</li>
+<li>Use OpenAI python SDK to get response</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="vllm" class="title-slide slide level2">
+<h2><a href="https://github.com/vllm-project/vllm">vLLM</a></h2>
+<aside class="notes">
+<blockquote>
+<p>vLLM is a fast and easy-to-use library for LLM inference and
+serving.</p>
+</blockquote>
+<p>vLLM itself doesn’t have a GUI interface, but it is efficient for LLM
+inference and allow users to load LLMs to multiple GPU and multiple
+nodes. It can scale well on clusters like Alvis.</p>
+There are two main entrypoints in vLLM, OpenAI-Compatible API Server and
+LLM class. The former one is implemented by the
+<code>AsyncLLMEngine</code> class while the latter one is based on
+<code>LLMEngine</code> class.
+</aside>
+</section>
+<section id="openai-compatible-api-server-1" class="slide level3">
+<h3>OpenAI-Compatible API Server</h3>
+<ul>
+<li>Launch server: <code>vllm serve unsloth/Llama-3.2-1B-Instruct</code>
+<ul>
+<li>default URL: <code>http://localhost:8000</code></li>
+<li>set host: <code>--host &lt;host&gt;</code></li>
+<li>set port: <code>--port &lt;port&gt;</code></li>
+<li><a
+href="https://docs.vllm.ai/en/latest/configuration/engine_args.html">More
+arguments</a></li>
+</ul></li>
+</ul>
+<p>Once a server is launched, in another terminal:</p>
+<ul>
+<li>Chat: <code>vllm chat</code></li>
+<li>Completion: <code>vllm complete</code></li>
+<li>Benchmark: <code>vllm bench</code></li>
+</ul>
+<aside class="notes">
+!!! important Using <code>unsloth/Llama-3.2-1B-Instruct</code> will
+download model from huggingface to your <code>HF_HOME</code> directory.
+To use local saved model, you can use absolute path to a snapshot in
+argument, e.g.
+<code>/..../models--unsloth--Llama-3.2-1B-Instruct/snapshots/d2b9e3...../</code>.
+The same way also applies in <code>transformers</code>
+</aside>
+<div class="no-mkdocs" data-markdown="1">
+<p><strong><em>Note</em></strong>:</p>
+<div style="font-size: 20px">
+<ul>
+<li>Using <code>unsloth/Llama-3.2-1B-Instruct</code> will download model
+from huggingface to your <code>HF_HOME</code> directory.</li>
+<li>To load local model, you can use
+<code>/..../models--unsloth--Llama-3.2-1B-Instruct/snapshots/d2b9e3...../</code></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="endpoints-1" class="slide level3">
+<h3>Endpoints</h3>
+<ul>
+<li>Part of the endpoints
+<ul>
+<li><code>/v1/models</code></li>
+<li><code>/v1/responses</code></li>
+<li><code>/v1/responses/{response_id}</code></li>
+<li><code>/v1/chat/completions</code></li>
+<li><code>/v1/completions</code></li>
+<li>…</li>
+<li><code>/openapi.json</code></li>
+<li><code>/docs</code></li>
+<li><code>/health</code></li>
+<li>…</li>
+</ul></li>
+<li>Similiarly, get available models:</li>
+</ul>
+<pre><code>$ curl http://localhost:8000/v1/models</code></pre>
+</section>
+<section id="offline-inference-llm-class" class="slide level3">
+<h3>Offline inference (LLM class)</h3>
+<ul>
+<li><code>LLM</code> python class</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> vllm <span class="im">import</span> LLM</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the vLLM engine.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> LLM(model<span class="op">=</span><span class="st">&quot;unsloth/Llama-3.2-1B-Instruct&quot;</span>)</span></code></pre></div>
+<ul>
+<li><a
+href="https://docs.vllm.ai/en/latest/api/vllm/index.html#vllm.LLM">Arguments</a>
+are similar to the ones used in <code>vllm serve</code> except for some
+missing features like pipeline parallelism.</li>
+</ul>
+</section>
+<section id="llm-class-methods" class="slide level3">
+<h3>LLM class methods</h3>
+<ul>
+<li>Chat</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> vllm <span class="im">import</span> LLM, SamplingParams</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sampling_params <span class="op">=</span> SamplingParams(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.6</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">128</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    top_p<span class="op">=</span><span class="fl">0.9</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>messages <span class="op">=</span> [</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;Why is the sky blue?&quot;</span>},</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> LLM(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">&quot;unsloth/Llama-3.2-1B-Instruct&quot;</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    tensor_parallel_size<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.chat(messages, sampling_params, use_tqdm<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output[<span class="dv">0</span>].outputs[<span class="dv">0</span>].text)</span></code></pre></div>
+<ul>
+<li><a
+href="https://docs.vllm.ai/en/latest/models/generative_models.html">More
+examples</a>.</li>
+</ul>
+</section>
+<section id="exercise-1" class="slide level3 no-mkdocs"
+data-markdown="1">
+<h3>Exercise</h3>
+<div
+style="text-align: center; justify-content: center; align-items: center">
+<ul>
+<li>Launch your own vLLM server on compute node</li>
+<li>Write a jobscript to launch vLLM</li>
+<li>Use <code>curl</code> in your jobscript to get response the vLLM
+server</li>
+<li>Write another python file and use OpenAI python SDK to get
+response</li>
+<li>Use <code>LLM</code> class to load model and generate some
+output</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="huggingface-transformers" class="title-slide slide level2">
+<h2><a
+href="https://huggingface.co/docs/transformers/main/index">Huggingface
+Transformers</a></h2>
+
+</section>
+<section id="openai-compatible-api-server-2" class="slide level3">
+<h3>OpenAI-Compatible API Server</h3>
+<ul>
+<li>Launch server: <code>transformers serve</code> (model is not
+selected yet)</li>
+<li>Endpoints:
+<ul>
+<li><code>/v1/chat/completions</code></li>
+<li><code>/v1/responses</code></li>
+<li><code>/v1/audio/transcriptions</code></li>
+<li><code>/v1/models</code></li>
+</ul></li>
+<li>Chat in another teminal:
+<code>transformers chat --model-name-or-path openai/gpt-oss-20b</code></li>
+<li><a href="https://huggingface.co/docs/transformers/main/serving">More
+information</a></li>
+</ul>
+</section>
+<section id="lower-level-operation" class="slide level3">
+<h3>Lower level operation</h3>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>model_name <span class="op">=</span> <span class="st">&quot;openai/gpt-oss-20b&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    model_name, torch_dtype<span class="op">=</span><span class="st">&quot;auto&quot;</span>, device_map<span class="op">=</span><span class="st">&quot;auto&quot;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>messages <span class="op">=</span> [</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;Explain what MXFP4 quantization is.&quot;</span>},</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer.apply_chat_template(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    messages, add_generation_prompt<span class="op">=</span><span class="va">True</span>, return_tensors<span class="op">=</span><span class="st">&quot;pt&quot;</span>, return_dict<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>).to(model.device)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> model.generate(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>inputs, max_new_tokens<span class="op">=</span><span class="dv">200</span>, temperature<span class="op">=</span><span class="fl">0.7</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokenizer.decode(outputs[<span class="dv">0</span>]))</span></code></pre></div>
+</section>
+<section id="exercise-2" class="slide level3 no-mkdocs"
+data-markdown="1">
+<h3>Exercise</h3>
+<div
+style="text-align: center; justify-content: center; align-items: center">
+<ul>
+<li>Use <code>AutoModel</code> and <code>AutoTokenizer</code> class to
+load model and generate some output</li>
+</ul>
+</div>
+</section></section>
+<section id="other-tools" class="title-slide slide level2">
+<h2>Other Tools</h2>
+<ul>
+<li><a href="https://docs.sglang.ai/">SGLang</a></li>
+<li><a
+href="https://huggingface.co/docs/text-generation-inference/index">Huggingface
+TGI</a></li>
+<li><a href="https://ollama.com/">Ollama</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

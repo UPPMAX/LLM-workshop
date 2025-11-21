@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>LLM and hardware</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">LLM and hardware</h1>
+</section>
+
+<section class="slide level3">
+
+<section data-visibility="hidden">
+<p>This section is available as slides which is presented on the
+workshop. This text version include some additional notes. You can also
+access the slide version <a href="../llm_hardware-slides">here</a>.</p>
+</section>
+</section>
+<section id="overview" class="slide level3">
+<h3>Overview</h3>
+<aside class="notes">
+<p>This session covers the following:</p>
+</aside>
+<ul>
+<li>Computations in LLMs</li>
+<li>LLM on super-computers</li>
+</ul>
+</section>
+<section>
+<section id="computations-in-llms" class="title-slide slide level2">
+<h2>Computations in LLMs</h2>
+
+</section>
+<section id="neural-networks" class="slide level3">
+<h3>Neural networks</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<aside class="notes">
+<p>Neural networks are building blocks of modern machine learning
+applications, a basic illustration of neural network is shown below:</p>
+</aside>
+<p><img data-src="figures/neural_network_training.png"
+style="height:360px" /></p>
+<aside class="notes">
+<p>In a nutshells a neural network is a function constructed from a
+chain of matrix multiplications (followed by activation functions). The
+“weights” and “biases” are parameters of the models, and they can be
+trained with the gradient descent algorithm, i.e.:</p>
+<ul>
+<li>compute the output of your model;</li>
+<li>compute the <em>loss function</em> according to reference
+output</li>
+<li>compute the gradient of loss with respect to your parameters;</li>
+<li>update you parameters slightly in the direction that reduces the
+loss the most;</li>
+</ul>
+<p>Neural networks are however:</p>
+<ul>
+<li><strong>easy to differentiate:</strong> thanks to automatic
+differentiation;</li>
+<li><strong>easy to parallelize:</strong> matrix multiplications can be
+done in parallel;</li>
+<li><strong>easy to scale:</strong> training is done on small subsets of
+data per step.</li>
+</ul>
+<p>which makes it extermely easy to scale up, and show great performance
+when scaled up. <a href="#/fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>Note that during training, we need to store multiple copies of all
+model parameters (for gradients, optimizer states, etc.), which
+multiplies memory needs. This is one major challenge we face for
+training LLMs.</p>
+</aside>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Learn patterns by adjusting parameters (weights);</li>
+<li>Training = prediction → differentiation → update;</li>
+<li>So far: mini-batch &amp; optimizer &amp; big → good.</li>
+</ul>
+</div>
+</section>
+<section id="attention-mechanism" class="slide level3">
+<h3>Attention mechanism</h3>
+<aside class="notes">
+<p>The “secret sauce” of transformer models is the so-called attention
+mechanism. Generally speaking attention mechanism is how one compute
+pairwise (similarities), and do so by creating the “keys” and “queries”
+using neural networks.</p>
+<p>Think of it as a general way to building a function that models the
+relation between two things (or two sets of inputs), where relation is
+parameterized by a neural network. The attention mechanism can be
+self-attention (the case for language models) or not (e.g. when one have
+keys/values from a picture and queries by a word).</p>
+</aside>
+<p><img data-src="figures/attention.png" style="height:360px" /><br />
+Image source: <a
+href="https://erdem.pl/2021/05/introduction-to-attention-mechanism">Introduction
+to Attention Mechanism</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>keys, queries, and vales (K,Q,V);</li>
+<li>general ways of building trainable “relations” from neural
+networks;</li>
+<li>self-attention.</li>
+</ul>
+</div>
+</section>
+<section id="transformer-vs.-rnn" class="slide level3">
+<h3>Transformer vs. RNN</h3>
+<aside class="notes">
+<p>Transformers is an innovation that makes a training a large language
+model practical. Unlike RNNs or LSTMs, they do not rely on a hidden
+state that is carried sequentially.</p>
+</aside>
+<p><img data-src="figures/transformer_vs_rnn.png"
+style="height:360px" /></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Transformer computes <em>relationships</em> between tokens
+(attention);</li>
+<li>tokens can be processed in parallel</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Instead, the transformer computes <em>relationships</em> between all
+tokens in a sequence using the self-attention mechanism. This means that
+during training, all tokens can be processed in parallel.
+<strong>Caching</strong> of the relations between tokens will be crucial
+to <strong>inference</strong> performance, but during
+<strong>training</strong>, we can see transformer as just a composition
+of neural network blocks that predicts the next token with a sequence of
+previous ones.</p>
+</aside>
+</section>
+<section id="training-of-llms" class="slide level3">
+<h3>Training of LLMs</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<p><img data-src="./figures/neural_network_training.png"
+style="height:350px;" /></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Just neural networkes that can be parallelized more
+efficiently;</li>
+</ul>
+</div>
+<aside class="notes">
+Training of LLMs are not very different from other large neural network
+models. Just as a recap, you need to run the run the model to predict
+your predicate, compute a loss function, use back-propagation to compute
+the gradient of the loss function, and save some states for each
+parameter to update the parameters.
+</aside>
+</section>
+<section id="fine-tuninig-of-llms" class="slide level3">
+<h3>Fine-tuninig of LLMs</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<p><img data-src="./figures/fine_tuning.png" style="height:360px" /></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>With specialized data (instruct, chat, etc);</li>
+<li>Less memory usage by “freezing parameters”;</li>
+<li>LoRA: low-rank adapters (arXiv:2106.09685).</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Once a base model is trained, we usually fine-tune it on specific
+data (instruct, chat, etc.). From a computation point of view,
+fine-tuning is almost the same task as training, but you we can use some
+tricks to reduce the resource we need.</p>
+<p>Above is a diagram of the LoRA (Low-Rank Adaptation) algorithm.<a
+href="#/fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> Instead of updating a full weight
+matrix, we consider updating it by a matrix product of two small ones,
+this way we still need to do one copy of the big matrix, but the
+backward path we just have the two low-rank matrices.</p>
+</aside>
+</section>
+<section id="inference-of-llms" class="slide level3">
+<h3>Inference of LLMs</h3>
+<aside class="notes">
+<p>Inference will need much less memory than training as we only need
+the forward pass. But this is actually an interesting aspect of LLMs as
+compared to other common machine learning tasks.</p>
+<p>Inference of LLM involves two distinct parts:</p>
+</aside>
+<p><img data-src="figures/prefill_vs_decode.png"
+style="height:360px" /></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>GPT-style inference: <em>pre-filling</em> and
+<em>decoding</em>;</li>
+<li>Pre-filling: process the input prompt in parallel;</li>
+<li>Decoding: generate new tokens one-by-one, using cached results.</li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><strong>pre-filling</strong>: process the entire prompt, this can be
+done in parallel efficiently;</li>
+<li><strong>decoding</strong>: generate one token at a time, but the
+intermediate results from previous can be cached as <strong>key–value
+(KV) cache</strong>, saving computation at the expense of memory.</li>
+</ul>
+<p>Think about what your inference task in mind, will it be more heavy
+in pre-filling or decoding?</p>
+</aside>
+</section>
+<section id="optimize-caches-for-inference" class="slide level3">
+<h3>Optimize caches for inference</h3>
+<aside class="notes">
+<p>Many effort in improving inference of LLMs has been put on improving
+efficiency of memory accessing patterns and reducing the memory needed.
+As an example, the paged attention mechanism groups adjacent tokens into
+virtual memory “pages” like has been done in operating system
+kernels.</p>
+</aside>
+<p><img data-src="./figures/paged_attention.gif"
+style="height:360px" /></p>
+<ul>
+<li>Optimizing access to KV cache:
+<ul>
+<li>paged attention: indexed blocks of caches;</li>
+<li>flash attention: fuse operations to reduce caches;</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>This allows us to efficiently use the fast memory on the GPUs. You
+can find more in-depth discussion of the technique from this <a
+href="https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm/">blog
+post</a> (source of this visualization).</p>
+</aside>
+</section>
+<section id="key-takeaways" class="slide level3">
+<h3>Key takeaways</h3>
+<ul>
+<li>LLMs/NNs benefit from massive parallelization;</li>
+<li>Different need for different tasks:
+<ul>
+<li>training: memory + compute + data throughput;</li>
+<li>fine-tuninig: similar to training, cheaper;</li>
+<li>pre-filling: compute;</li>
+<li>decoding: memory;</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="llm-on-hpc-clusters" class="title-slide slide level2">
+<h2>LLM on HPC clusters</h2>
+
+</section>
+<section id="llm-on-general-computers" class="slide level3">
+<h3>LLM on general computers</h3>
+<aside class="notes">
+<p>Personal computers typically do not have sufficient resource (GPUs
+with large memory). While it is possible to run LLM for inference, it
+typically requires techniques to reduce the need for GPU memory, or use
+CPUs only:</p>
+</aside>
+<ul>
+<li>Memory-mapped file formats;</li>
+<li>Quantization;</li>
+<li>CPU offloading;</li>
+</ul>
+<aside class="notes">
+<p>We will not go into details about them in this workshop.</p>
+</aside>
+</section>
+<section id="hpc-clusters" class="slide level3">
+<h3>HPC clusters</h3>
+<p><img data-src="./figures/hpc_cluster.png" style="height:360px" /></p>
+<aside class="notes">
+<p>HPC are designed for parallel computing; the hardware is equipped
+with:</p>
+</aside>
+<ul>
+<li>Racked computer nodes;</li>
+<li>Parallel network storage;</li>
+<li>Infiniband/RoCE networking;</li>
+</ul>
+<aside class="notes">
+<p>Which allow them to handle:</p>
+<ul>
+<li>fast communication between node;</li>
+<li>fast access to storage (local or shared);</li>
+<li>many CPUs/GPUs in one node</li>
+</ul>
+</aside>
+</section>
+<section id="alvis-hardware---compute" class="slide level3">
+<h3>Alvis hardware - compute</h3>
+<aside class="notes">
+<p>Specifically, Alvis is a HPC cluster built for AI research, so it’s
+equipped with latest (at the time) GPU acceleration cards. They are
+capable of doing fast floating point operations in reduced precision (we
+will detail the implication of those number formats in the next
+section).</p>
+</aside>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Data type</th>
+<th>A100</th>
+<th>A40</th>
+<th>V100</th>
+<th>T4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">FP64</td>
+<td>9.7 | 19.5</td>
+<td>0.58</td>
+<td>7.8</td>
+<td>0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">FP32</td>
+<td>19.5</td>
+<td>37.4</td>
+<td>15.7</td>
+<td>8.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">TF32</td>
+<td>156</td>
+<td>74.8</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">FP16</td>
+<td>312</td>
+<td>149.7</td>
+<td>125</td>
+<td>65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">BF16</td>
+<td>312</td>
+<td>149.7</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Int8</td>
+<td>624</td>
+<td>299.3</td>
+<td>64</td>
+<td>130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Int4</td>
+<td>1248</td>
+<td>598.7</td>
+<td>N/A</td>
+<td>260</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="alvis-hardware---network-storage" class="slide level3">
+<h3>Alvis hardware - network &amp; storage</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<aside class="notes">
+<p>Alvis is also equipped with fast storage system backed by flash
+storage; on the most powerful nodes (4xA100 GPUs) infiniband network
+that goes directly to storage is available.</p>
+<p>They were designed to facilitate fast loading of data, which is
+useful for any training tasks. In the case of LLM, one should already
+benefit from that for training.</p>
+<p>It is worth noting that the while one typically do not need such fast
+storage for inference, the LLM inference can actually take advantage of
+fast storage backend, this is rather experimental, but take a look at
+the <a
+href="https://docs.lmcache.ai/kv_cache/storage_backends/infinistore.html">LMcache</a>
+package if you want to optimize you inference tasks for real.</p>
+</aside>
+<p><img data-src="./figures/gpu_direct.png" style="height:200px" /></p>
+<ul>
+<li>Infiniband: 100Gbit (A100 nodes);</li>
+<li>Ethernet: 25Gbit (most other nodes);</li>
+<li>Fast storage: <a
+href="https://docs.weka.io/weka-system-overview/about/weka-system-functionality-features">WEKA
+file system</a>.</li>
+</ul>
+</section>
+<section id="running-llms-on-supercomputers" class="slide level3">
+<h3>Running LLMs on supercomputers</h3>
+<aside class="notes">
+<p>Supercomputers allow us to run larger LLMs because of not only the
+more powerful nodes, but also the nodes are connected with fast internet
+connection. We still have the same issue as most high performance
+computing tasks, the CPUs need to access the memory and the data need to
+transferred.</p>
+<p>Most commonly, when you try to run a large model (70B and 400B)
+parameters, you need to split the models to many GPUs. You can choose to
+quantize the model, so that the model use less memory, and you need less
+GPUs and less overhead from parallelization. To this end, you will need
+to look up the compatibility between the model, hardware and
+implementation.</p>
+<p>You will also need to think about how do you parallelize the models,
+you have the options:</p>
+<ul>
+<li>Tensor parallelism;</li>
+<li>Pipeline parallelism;</li>
+<li>Data parallelism</li>
+</ul>
+<p>In the next session we will introduce the different formats in LLMs,
+and tomorrow’s sessions will cover details about the parallelism
+schemes.</p>
+</aside>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Most common bottleneck: <strong>memory</strong></li>
+<li>Quantized models to fit larger models;</li>
+<li>Parallelize the model across GPUs or nodes;</li>
+</ul>
+</div>
+</section>
+<section id="tools-to-gather-information" class="slide level3">
+<h3>Tools to gather information</h3>
+<p><img data-src="./figures/grafana.png" style="height:360px" /></p>
+<aside class="notes">
+<p>When using LLM on HPC, one should keep an eye on the resource
+utilization and make sure that the resource is used efficiently. It is
+also helpful to glean metrics about the jobs to identify the bottleneck
+of the computation and optimize the performance tools are available on
+alvis and can be used to gather such information:</p>
+</aside>
+<ul>
+<li>grafana (network utilization, temp disk);</li>
+<li>nvtop, htop (CPU/GPU utilization, power draw);</li>
+<li>nvidia nsight (advanced debugging and tracing);</li>
+</ul>
+<p>Find details in <a
+href="https://www.c3se.chalmers.se/documentation/submitting_jobs/monitoring/">C3SE
+documentation</a>.</p>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level2">
+<h2>Summary</h2>
+
+</section>
+<section id="take-home-messages" class="slide level3">
+<h3>Take home messages</h3>
+<ul>
+<li>LLMs/neural networks benefit from massive parallelization;</li>
+<li>Same issue of memeory vs. compute-bound;</li>
+<li>Some optimization strategies;</li>
+<li>Be aware of the troubleshooting tools!</li>
+</ul>
+</section>
+<section id="useful-links" class="slide level3">
+<h3>Useful links</h3>
+<ul>
+<li>The nanotron team has some in-depth discussion about the efficiency
+of model training; (<a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook">The
+Ultra-Scale Playbook</a>), as well as a <a
+href="https://huggingface.co/spaces/nanotron/predict_memory">prediction
+memory</a> estimation tool;</li>
+<li>Alvis <a
+href="https://www.c3se.chalmers.se/about/Alvis/#gpu-hardware-details">hardware
+specifications</a>;</li>
+<li>Alvis <a
+href="https://www.c3se.chalmers.se/documentation/submitting_jobs/monitoring/">monitoring
+tools</a>;</li>
+</ul>
+</section></section>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>If you are surprised that models work better with more
+variables, you are not alone; see <a
+href="https://en.wikipedia.org/wiki/Double_descent">double
+descent</a>.<a href="#/fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>arXiv:2106.09685 [cs.CL]<a href="#/fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
