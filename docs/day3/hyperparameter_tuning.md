@@ -131,7 +131,6 @@ $$
 
 ## Priors
 - What are good start values?
-- How some variables interact with each other.
 
 ### Flat prior
 - $p(\theta) \propto 1$
@@ -150,6 +149,7 @@ $$
 ### Training hyperparameter priors
 - Big impact: Training data, model architecture, optimizer, loss function and/or optimization metric
 - Learning rate: log-scale 
+- Batch size: correlated with learning rate
 
 ## Types of metrics
 - Evaluation: loss, accuracy, ... <!-- Add perpexity -->
