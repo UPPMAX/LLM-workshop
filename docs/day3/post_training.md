@@ -44,13 +44,16 @@ icon: octicons/tools-16
 
 !!! example "Exercise"
 
+    - For this and subsequent exercises we will use [TRL](https://github.com/huggingface/trl) and [PEFT](https://github.com/huggingface/peft) libraries.
+    - Copy `llm-workshop/containers/post_train/post_train_env.sh` [:material-github:](https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day2/post_train_env.sh) to your `~/portal/jupyter/`
+    - Create `~/portal/jupyter` dir if you dont have already.
     - Run a jupyter notebook using `post_train_env` environment and working directory as your personal project directory.
     - Run `sft.ipynb`
 
-    - Recommeded [max_length calculator](https://huggingface.co/spaces/trl-lib/dataset-length-profiler).
+    - Handy tools: [max_length calculator](https://huggingface.co/spaces/trl-lib/dataset-length-profiler).
     Deepspeed [memory calculator](https://deepspeed.readthedocs.io/en/latest/memory.html) API.
 
-    DIY: [Gpt-oss PEFT](https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers)
+    DIY Exercise: [Gpt-oss PEFT](https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers), [Qwen3-14B PEFT](https://github.com/huggingface/trl/blob/main/examples/notebooks/sft_trl_lora_qlora.ipynb)
 
 
 ## Preference Optimization 🤝
@@ -67,10 +70,7 @@ icon: octicons/tools-16
 * Data curation:
     * We need even less data than SFT as the model is already following our instructions nicely and alternatively gained domain knowledge.
     * We can already leverage LLMs now to generate strong and weak pair of responses. Use a better model -> strong responses, weaker/baseline model -> weak responses.
-    * Alternatively, run ony one LLM on the same prompt to produce strong/weak response pairs and another "grader" LLM that gives scores to these outputs.
-<!-- 
-https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/ynmgf/introduction-to-post-training
-https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-of-sft -->
+    * Alternatively, run only one LLM on the same prompt to produce strong/weak response pairs and another "grader" LLM that gives scores to these outputs.
 
 !!! example "Exercise"
 
@@ -81,7 +81,7 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
 
 * "A is better than B" is not always what we are looking for. We would like to have in-between steps to be correct too for problems that requires thinking longer.
 * LLM can be given an environment that could include code unit tests, math verfiers, humans as judges or code executors in real-time as LLM is thinking.
-* Reward signals can help guide LLMs to generate better code, solve math problems or plan in multiple steps. Caveat being reward models are difficult create and LLMs are harder to stabilise and costly to train. Reward hacking is a challenging to overcome. 
+* Reward signals can help guide LLMs to generate better code, solve math problems or plan in multiple steps. Caveat being reward models are difficult to create and LLMs are harder to stabilise and costly to train. Reward hacking is a challenging to overcome. 
 * Use cases:
     * When we can create verifiable reward signals
     * When tasks are multi-steps
@@ -96,7 +96,9 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
     Methods like this lie in-between preference optimization and RL by taking advantage of reward signal coming from a Teacher model. The student model can continously absorb samples from Teacher model and without needing explicit preference labels, can start to show capabilities of the Teacher model. This method is often simpler to implement than RL way cheaper in compute too. Although its success is only shown in smaller to mid-sized (<30B) models. Whereas RL works better in larger models (20B+) only. 
 
 
-<!-- https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/jeg0d/basics-of-online-rl -->
+???- note "Note on Memory considerations"
+
+    - In case of full finetuning, a rule of thumb is [16 GB of GPU memory per 1B params in the model](https://modal.com/blog/how-much-vram-need-fine-tuning)
 
 ???- info "Resources 📚"
 
@@ -116,6 +118,7 @@ https://learn.deeplearning.ai/courses/post-training-of-llms/lesson/erg07/basics-
     | [NemoRL](https://github.com/NVIDIA-NeMo/RL) | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ |
     | [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF) | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ |
 
+    - Optimizing finetuning on GPU: [transformers (GPU)](https://huggingface.co/docs/transformers/perf_train_gpu_one)
 
 [^1]: LoRA Learns Less and Forgets Less. [arXiv](https://arxiv.org/abs/2405.09673)
 [^10]: The Smol Training Playbook:
