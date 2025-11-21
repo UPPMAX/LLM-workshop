@@ -144,6 +144,9 @@ $$
 - When you're uncertain about order of magnitude
 - Usually a good choice for continuous parameters
 
+### Categorical prior
+- Multiple choice where order doesn't matter
+
 ### Training hyperparameter priors
 - Big impact: Training data, model architecture, optimizer, loss function and/or optimization metric
 - Learning rate: log-scale 
