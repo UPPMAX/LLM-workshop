@@ -122,6 +122,7 @@ $$
 - RL parameters (KL coefficient, reward model learning rate, ...)
 
 ### Inference hyperparameters
+- (Prompt)
 - Temparature
 - Top-k
 - Repetition penalty
