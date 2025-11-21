@@ -396,8 +396,10 @@ icon: octicons/pencil-16
 
 !!!- example "Exercises"
 
-    * Start a Jupyter server using `prompt_eng_env.sh` as its environment. We need to use openai library to communicate with vllm server.
-    * Run `prompt_eng.ipynb`
+    * Create `~/portal/jupyter` dir if you dont have already.
+    * Copy `llm-workshop/containers/post_train/prompt_eng_env.sh` [:material-github:](https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day3/prompt_eng/prompt_eng_env.sh) to your `~/portal/jupyter/`
+    * Start a jupyter server with or without GPU using `prompt_eng_env.sh` as its environment. We need to use openai library to communicate with vllm server.
+    * Run `prompt_eng.ipynb` from the `exercises` dir. 
 
 
 
