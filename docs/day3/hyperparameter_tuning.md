@@ -3,21 +3,6 @@ title: Hyperparameter Tuning
 icon: fontawesome/solid/sliders
 ---
 
-## Hyperparameter tuning
-<style type="text/css" rel="stylesheet">
-.reveal section {
-  text-align: center;
-}
-</style>
-- What could be tuned?
-- Overview of basic tuning techniques:
-    - Grid search (not recommended)
-    - Random search
-    - BayesOpt, ... (what others, don't need full coverage)
-- Simple example with job-arrays
-- (For small tasks use HTC framework like HyperQueue)
-- More complex example using Optuna
-
 ## Components
 - Parameter selection
 - Parameter evaluation
@@ -140,7 +125,7 @@ $$
 
 ## Priors
 - What are good start values?
-- How some variables interacti with each other.
+- How some variables interact with each other.
 
 ### Flat prior
 - $p(\theta) \propto 1$
@@ -165,7 +150,7 @@ $$
 - Multi-objectives and/or constraints
 
 ### Cross-entropy loss
-- Used to train a Language Models to follow a distribution
+- Used to train Language Models to follow a distribution
 - Minimize expected description length (minimum when $p = q$)
 - Can be estimated based on samples from $p$ (i.e. data)
 
@@ -183,7 +168,7 @@ $$
 $$
 
 ### Perplexity
-- Measure of uncertainty, 2 for a coint toss and 6
+- Measure of uncertainty, 2 for a coin toss and 6 for rolling a d6
 - Perplexity per token is commonly used to evaluate how closely a LM models some data
 - Is directly related to cross-entropy through exponentiation
 
