@@ -197,9 +197,7 @@ Selected feedback from participants:
 
 4. "I spent the last few days sick in bed, so I just followed the workshop passively. Also, I dropped in and out depening on my energy levels. Sorry for that! But thanks a lot for the workshop! I think I got good overview of different LLM-related topics, and I now know what to look out for depening on my specific project needs."
 
-5. "."
-
-6. "I couldn't attend the afternoon session on Friday, but I will have a look at the recordings when they become available. Thanks!"
+5. "I couldn't attend the afternoon session on Friday, but I will have a look at the recordings when they become available. Thanks!"
 
 ## Summary
 
