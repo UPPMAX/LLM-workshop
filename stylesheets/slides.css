@@ -1,0 +1,54 @@
+/* NAISS additions to white theme */
+.reveal-viewport {
+  background-image: url("/LLM-workshop/logo/naiss_logo_inverted.png");
+  background-position: bottom 10px left 10px;
+  background-size: 20em;
+  background-repeat: no-repeat;
+}
+
+.reveal iframe {
+  max-width: 65%;
+}
+
+.reveal section {
+  text-align: left;
+}
+
+.reveal section img {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.reveal {
+  font-size: 28px;
+}
+
+/* By default all titles are all-caps, don't want that */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-align: center;
+  text-transform: none;
+}
+
+/* Change how blockquotes look */
+.reveal blockquote {
+  font-size: 0.7em;
+  font-style: italic;
+  color: #555;              /* softer text color */
+  border-left: 4px solid #888;
+  padding-left: 1em;
+  background: none;         /* remove default background */
+}
+
+/* hide invisible fragments */
+.fragment.current-visible.visible:not(.current-fragment) {
+  display: none;
+  height:0px;
+  line-height: 0px;
+  font-size: 0px;
+}

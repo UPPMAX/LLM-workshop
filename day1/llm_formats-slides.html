@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>LLM formats</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">LLM formats</h1>
+</section>
+
+<section class="slide level3">
+
+<section data-visibility="hidden">
+<p>This section is available as slides which is presented on the
+workshop. This text version include some additional notes. You can also
+access the slide version <a href="../llm_formats-slides">here</a>.</p>
+</section>
+</section>
+<section id="overview" class="title-slide slide level2">
+<h2>Overview</h2>
+<aside class="notes">
+<p>This session covers the following:</p>
+</aside>
+<ul>
+<li>Formats of LLM models</li>
+<li>Formats of numbers</li>
+<li>Quantization of LLM</li>
+<li>Quantization and performance</li>
+</ul>
+</section>
+
+<section>
+<section id="formats-of-llm-models" class="title-slide slide level2">
+<h2>Formats of LLM models</h2>
+
+</section>
+<section id="so-you-want-to-use-a-llm-model" class="slide level3">
+<h3>So you want to use a LLM model</h3>
+<aside class="notes">
+<p>Today most LLMs are published on HugginFace. Searching for a base
+model, you will find variants with all kinds of labels. These labels
+tells a lot about how the models are prepared and how efficient will
+they run on the target hardware. This session will cover the most of the
+jargons in those names.</p>
+</aside>
+<p><img data-src="figures/hf-search-models.png"
+style="height=360px" /></p>
+</section>
+<section id="what-the-name-means" class="slide level3">
+<h3>What the name means</h3>
+<ul>
+<li><code>Llama-3.3</code>: model (architecture)</li>
+<li><code>70B</code>: size / number of parameters</li>
+<li><code>Instruct</code>: fine-tuning</li>
+<li><code>AWQ-INT4</code>: quantization</li>
+<li><code>GGUF</code>: model format</li>
+</ul>
+<aside class="notes">
+<p>Models architecture and size are often the first consideration when
+working on LLM. But equally important are the format of models and the
+quantization method. Modern acceleration devices cater for the lower
+precision need of machine learning models, depending on the device you
+want to run on, quantized models might give significant speed up. We
+will first go through the <strong>file formats</strong>, then detail the
+quantization methods and <strong>number formats</strong>.</p>
+</aside>
+</section>
+<section id="file-formats-of-llms" class="slide level3">
+<h3>File-formats of LLMs</h3>
+<aside class="notes" markdown="1">
+<p>LLM models commonly consists of metadata such as the metadata,
+quantization methods, and the tensor themselves. The following shows the
+layout of the gguf file format.</p>
+<p></asisde></p>
+<p><img data-src="figures/gguf.png" style="max-height:360px" /><br />
+Image from <a
+href="https://huggingface.co/docs/hub/gguf">huggingface</a>.</p>
+</section>
+<section id="common-formats-of-llms" class="slide level3">
+<h3>Common formats of LLMs</h3>
+<ul>
+<li>bin/pth/tf: “raw” ML library formats;</li>
+<li>safetensors: used by huggingface;</li>
+<li>ggml/gguf: developed by <a
+href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (supports
+many qunatization formats);</li>
+<li><a href="https://mozilla-ai.github.io/llamafile">llamafile</a>: by
+mozilla, single-file format, executable.</li>
+</ul>
+<p>In some repos, you can find detailed model information for some model
+formats, <a
+href="https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf">example</a>.</p>
+<aside class="notes">
+<p>Models published on different formats are optimized for different
+usages. They can be converted to one another (which is typically
+implemented as model loaders by inference engines, <a
+href="https://docs.vllm.ai/en/stable/api/vllm/model_executor/model_loader/gguf_loader.html">example</a>).</p>
+<p>raw formats used by ML formats might be handy for re-training. Some
+of them contain pickled data so might execute arbitrary code (in
+contrary to “safe” formats).</p>
+<p>Newer formats like GGUF/safetensors are suitable for common model
+architectures (different engines will support them if the architecture
+is known). They are memory-mapped, which are especially useful for <a
+href="https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.disk_offload">disk
+offloading</a>.</p>
+</aside>
+</section>
+<section id="picking-a-model" class="slide level3">
+<h3>Picking a model</h3>
+<aside class="notes">
+<p>While not strictly a requirement, it is usually less trouble to get a
+model in your desired format. The other part of the model name is
+usually tell you the quantization method and the number formats in the
+model.</p>
+<p>In the following, we will introduce the quantization procedure and
+how that impacts the performance (both in terms of speed and accuracy)
+and hardware compatibility.</p>
+</aside>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Quantization method;</li>
+<li>Number format;</li>
+<li>Hardware compatibility.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="formats-of-numbers" class="title-slide slide level2">
+<h2>Formats of numbers</h2>
+
+</section>
+<section id="why-do-we-care" class="slide level3">
+<h3>Why do we care?</h3>
+<ul>
+<li>ML tolerates lower numerical precision;</li>
+<li>Quantization allow you to run larger models;</li>
+<li>To eliminate expensive communication;</li>
+</ul>
+</section>
+<section id="number-formats---floating-point" class="slide level3">
+<h3>Number formats - floating point</h3>
+<aside class="notes">
+<p>Floating point number is the most common way one represents a real
+number in a computer. A floating point number uses a fixed number of
+bits and represents a number in terms of an exponent and mantissa
+(significand).</p>
+</aside>
+<p><img data-src="figures/float16.png" style="height:360px" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+</section>
+<section id="floating-point-formats---cont.-1" class="slide level3">
+<h3>Floating point formats - cont. 1</h3>
+<aside class="notes">
+<p>The mantissa determines the significant digits of a FP number, and
+the exponent determines the range. Standard FP numbers typically aim to
+strike a balance between accuracy and range.</p>
+</aside>
+<p><img data-src="figures/number-format.svg"
+style="height:360px" /><br />
+Image source: <a
+href="https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm">Hamzael
+Shafie</a></p>
+<aside class="notes">
+<p>For ML application, it is beneficial to use a reduced precision
+format with the same number of exponents, as that simplifies the
+quantization procedure, and it has been <a
+href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">claimed</a>
+that “neural networks are far more sensitive to the size of the exponent
+than that of the mantissa”.</p>
+</aside>
+</section>
+<section id="floating-point-formats---cont.-2" class="slide level3">
+<h3>Floating point formats - cont. 2</h3>
+<aside class="notes">
+<p>As an example, converting from FP32 to BF16 will be trivial as the
+dynamic range is the same. One would only need to discard mantissa from
+FP32. In contrary, conversion from FP32 to FP16 will require scaling or
+clipping the number. With implication to be decided.</p>
+<p>While not detailed here, integers are also used as quantization
+targets. Besides the dynamic range, note that integers numbers will also
+have different scales as compared to FP numbers.</p>
+</aside>
+<p><img data-src="figures/number-ranges.png"
+style="height:360px" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+</section>
+<section id="hardware-compatibility" class="slide level3">
+<h3>Hardware Compatibility</h3>
+<aside class="notes">
+<p>Acceleration of floating point operations requires also support from
+hardware vendor or custom implementations of numeric kernels. Newer
+number formats are not necessarily accelerated by the GPU and might get
+converted back depending on implementation.</p>
+<p>Below lists some commonly used FP formats and their hardware support
+status:</p>
+</aside>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>hardware accel.</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>fp16/32/64</td>
+<td>most gpus</td>
+<td>IEEE 754</td>
+</tr>
+<tr class="even">
+<td>fp8 <a
+href="https://onnx.ai/onnx/technical/float8.html">(E4M3/E5M2)</a></td>
+<td>hooper</td>
+<td>Recent IEEE</td>
+</tr>
+<tr class="odd">
+<td>bf16</td>
+<td>most gpus</td>
+<td>Google’s</td>
+</tr>
+<tr class="even">
+<td>tf32</td>
+<td>nvidia-gpus</td>
+<td>Nvidia</td>
+</tr>
+<tr class="odd">
+<td>int4/8</td>
+<td>most GPUs</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>See also <a
+href="https://rocm.docs.amd.com/en/latest/reference/precision-support.html">Data
+types support</a> by AMD RocM.</p>
+</section>
+<section id="rule-of-thumb" class="slide level3">
+<h3>Rule of thumb</h3>
+<ul>
+<li><a
+href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google’s
+bf16</a> if unsure (same range as fp32, less mantissa, good
+compatibility);</li>
+<li>training usually done in fp32/bf16;</li>
+<li>int4/8 is good for inference (on older GPUs).</li>
+</ul>
+</section></section>
+<section>
+<section id="quantization-methods" class="title-slide slide level2">
+<h2>Quantization methods</h2>
+
+</section>
+<section id="quantization-target" class="slide level3">
+<h3>Quantization target</h3>
+<aside class="notes">
+<p>Quantization can be applied to weights, activations or KV-caches;
+Weights are the most common target to quantize as weights are the most
+memory-hungry part of the model. It is possible to quantize only part of
+the model ( <a
+href="https://docs.vllm.ai/projects/llm-compressor/en/latest/examples/quantization_non_uniform/">non-uniform
+quantization</a>)</p>
+</aside>
+<p><img data-src="figures/mixed_precision_hopper.jpg" /></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Weight/activation/mixed percision (w8a16);</li>
+<li>KV-cache;</li>
+<li>Non-uniform;</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Mixed-precision evaluation of matrix multiplications depends on the
+hardware; it might or might not support converting the tensors between
+precision or doing tensor operations natively.</p>
+<p>For instance, FP8 is not officially support on Ampere GPUs (A40 and
+A100). While there exist implementations that makes <a
+href="https://docs.vllm.ai/en/v0.5.2/quantization/fp8.html">w8a16</a>
+operations available, quantizating KV cache to FP8 currently <a
+href="https://discuss.vllm.ai/t/kv-cache-quantizing/749">need hardware
+support</a>.</p>
+</aside>
+</section>
+<section id="asymmetric-qunatization" class="slide level3">
+<h3>(A)symmetric qunatization</h3>
+<aside class="notes">
+<p>One important aspect when quantizing the models is the range of the
+model, the easiest way is to simply scale the parameters by a
+factor.</p>
+</aside>
+<p><img data-src="figures/quantization_symmetry.webp"
+style="max-height:360px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>position of zero;</li>
+<li>range of parameters;</li>
+<li>simple for implementation;</li>
+</ul>
+</div>
+<aside class="notes">
+<p>To minimize loss of precision, we could map the parameters according
+to the max/min values of the parameter, rather than the number-format
+range. There, we need to choose whether we shift the zero point in the
+transform (but introduces complexity in computation).</p>
+</aside>
+</section>
+<section id="clipping" class="slide level3">
+<h3>Clipping</h3>
+<p><img data-src="figures/clipping.webp"
+style="max-height:240px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+<aside class="notes">
+<p>we can also choose to clip out the outlier to gain more
+precision.</p>
+</aside>
+</section>
+<section id="calibration-for-weight-quantization" class="slide level3">
+<h3>Calibration for weight quantization</h3>
+<aside class="notes">
+<p>For weights of the model We can simply quantize them, since we know
+their distribution. But given some small dataset but we can also
+improved the accuracy but estimating how important each parameter
+it.</p>
+<p>A popular way to do that is the GPTQ method.<a href="#/fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+Below is an illustration of GPTQ method. A calibration dataset is used
+to evaluate the inverse Hessian (sensitivity) of the output with respect
+to the weights. Then the quantization error is calibrated to minimize
+its impact.</p>
+</aside>
+<p><img data-src="figures/gptq.webp" style="max-height:240px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+</section>
+<section id="calibration-for-activation-quantization"
+class="slide level3">
+<h3>Calibration for activation quantization</h3>
+<aside class="notes">
+<p>To also quantize the activation function, we need to estimate the
+range of activation, that has to be done by passing data to the model
+and collect minima/maximi. We can do that either dynamically (during
+inference) or statically (with a calibration set).</p>
+</aside>
+<p><img data-src="figures/dynamic_calibration.webp"
+style="max-height:360px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+<p>The range can be estimated can be dynamically (on the fly) or
+statically.</p>
+</section>
+<section id="sparsification" class="slide level3">
+<h3>Sparsification</h3>
+<p><img data-src="figures/sparse-matrix.png"
+style="max-height:240px;" /><br />
+Image source: <a
+href="https://developer.nvidia.com/blog/accelerating-inference-with-sparsity-using-ampere-and-tensorrt">Nvidia
+technical blog</a>/</p>
+<aside class="notes">
+<p>Models may also be sparsified to reduce the required computation,
+this is commonly known as weight pruning. But some GPUs also support
+efficient evaluation of sparse matrices if the sparsity follow certain
+pattern (example with <a
+href="https://github.com/vllm-project/llm-compressor/blob/main/examples/sparse_2of4_quantization_fp8/README.md">llm-compressor</a>);</p>
+</aside>
+</section>
+<section id="post-training-quantization-methods-ptq"
+class="slide level3">
+<h3>Post-training quantization methods (PTQ)</h3>
+<aside class="notes">
+<p>So far we covered mostly the so-called PTQ method which works without
+training the model:</p>
+</aside>
+<ul>
+<li>Weight and activation;</li>
+<li>Not detailed: sparsification/KV cache.</li>
+<li>Calibration/accuracy trade off;</li>
+</ul>
+<aside class="notes">
+<p>For a complete list of PTQ methods along with their compatibility see
+<a
+href="https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md">vLLM’s
+guide</a>.</p>
+</aside>
+</section>
+<section id="quantization-aware-training-qat" class="slide level3">
+<h3>Quantization aware training (QAT)</h3>
+<aside class="notes">
+<p>But we get higher accuracy by using the Quantization aware training
+(QAT) method. There we perform the quantization/dequantization during
+the training process.</p>
+</aside>
+<p><img data-src="figures/qat.webp" style="max-height:100px;" /> <img
+data-src="figures/qat_back.webp" style="max-height:300px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+<aside class="notes">
+<p>The first benefit is that we can actually optimize the quantization
+parameters as part of the training process.</p>
+</aside>
+</section>
+<section id="quantization-aware-training-qat---cont."
+class="slide level3">
+<h3>Quantization aware training (QAT) - cont.</h3>
+<aside class="notes">
+<p>As we introduce the quantization error in the training process, we
+are will arrive at a model with higher loss during training.</p>
+</aside>
+<p><img data-src="figures/qat_theory.webp"
+style="max-height:360px;" /><br />
+Image source: <a
+href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten
+Grootendorst</a></p>
+<aside class="notes">
+<p>The reason why it might work better, is that we force the model to
+land in a local minima where it is less sensitive to model parameters.
+So even the original model performs worse, the quantized model would
+perform better than those quantized with PTQ.</p>
+</aside>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level2">
+<h2>Summary</h2>
+
+</section>
+<section id="when-choosing-a-model" class="slide level3">
+<h3>When choosing a model</h3>
+<ul>
+<li>Know the hardware/implementation compatibility;</li>
+<li>Find the right model/format/qunatization;</li>
+<li>Quantize if needed;</li>
+<li>Look up/run benchmarks.</li>
+</ul>
+</section>
+<section id="other-useful-links" class="slide level3">
+<h3>Other useful links</h3>
+<p>Benchmarks:</p>
+<ul>
+<li><a
+href="https://huggingface.co/datasets/derekl35/quantization-benchmarks">derek135/quantization-benchmarks</a></li>
+</ul>
+</section></section>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://arxiv.org/abs/2210.17323">arXiv:2210.17323</a><a
+href="#/fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

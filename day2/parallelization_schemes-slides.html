@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Model Parallelism</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Model Parallelism</h1>
+</section>
+
+<section class="slide level3">
+
+<section data-visibility="hidden">
+<p>This section is available as slides which is presented on the
+workshop. This text version include some additional notes. You can also
+access the slide version <a
+href="../parallelization_schemes-slides">here</a>.</p>
+</section>
+</section>
+<section id="overview" class="slide level3">
+<h3>Overview</h3>
+<aside class="notes">
+<p>This session covers the following:</p>
+</aside>
+<ul>
+<li>Parallelization schemes that are useful for LLM;</li>
+<li>Common tools that for running LLMs in parallel;</li>
+</ul>
+</section>
+<section>
+<section id="strategies" class="title-slide slide level2">
+<h2>Strategies</h2>
+
+</section>
+<section id="data-parallelism-dp" class="slide level3 no-mkdocs">
+<h3 class="no-mkdocs">Data parallelism (DP)</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<p><img data-src="./figures/dp_for_slides.png" class="no-mkdocs" /></p>
+</section>
+<section id="data-parallelism-dp-1" class="slide level3">
+<h3>Data parallelism (DP)</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<aside class="notes">
+<p>The trivial way to parallelize a LLM is to run multiple replicas of
+the model, and process different data. As the data are not related to
+one another, it is almost trivial to implement. One would only need to
+synchronize the weights when training the model.</p>
+<p>Downside of this approach is that the model needs to be replicated
+and thus needs to fit on one GPU; the synchronization of weights also
+incurs some overhead, albeit less significant than other model
+parallelism schemes.</p>
+</aside>
+<p><img data-src="figures/data_parallelization.png"
+style="height:360px;" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Trivial to implement;</li>
+<li>Syncing overhead for training;</li>
+<li>Memory cost due to replication.</li>
+</ul>
+</div>
+</section>
+<section id="overlapping-in-dp" class="slide level3">
+<h3>Overlapping in DP</h3>
+<aside class="notes">
+<p>To mitigate the communication overhead, one can use the so-called
+overlapping technique, that is, synchronize the weights during the
+back-propagation process.</p>
+</aside>
+<p><img data-src="figures/dp_overlap1.svg" style="height:180px;" /> <img
+data-src="figures/dp_overlap3.svg" style="height:180px;" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Overlapping reduces communication overhead.</li>
+</ul>
+</div>
+</section>
+<section id="sharding-in-dp" class="slide level3">
+<h3>Sharding in DP</h3>
+<aside class="notes">
+<p>While data-parallelism is nice, the biggest limitation is that we can
+not use it for large models that does not fit in one GPU. To fit larger
+models to one GPU, we can store part of the variables in each GPU, and
+access it only while necessary.</p>
+<p>This is known as the <a
+href="https://deepspeed.readthedocs.io/en/latest/zero3.html">ZeRO</a>
+optimization, of the deepspeed library. With three stages of
+optimization, the optimizer state, the gradients and the weights. The
+fully sharded data parallel (FSDP2) resembles ZeRO stage 3
+optimization.</p>
+<p>Note that sharding of data is not free lunch, transfer of sharded
+states do incur extra cost due to both communication overhead and extra
+memory needed to store the metadata. Typically optimizer state is the
+most expensive part in training tasks so ZeRO-1 brings the most
+improvement.</p>
+<p>Going for more sharding does not always improve the performance, as a
+rule of thumb, ZeRO-2 is often consider balance. Note that when
+fine-tuning the model, there will be much less gradients and optimizer
+states to store, sharding in this case might not be really
+desirable.</p>
+<p>Closely related to sharding is the offloading of memories to RAM or
+other fast storage, this goes out of the scope of this session but you
+can find some examples <a
+href="https://www.c3se.chalmers.se/documentation/software/machine_learning/deepspeed/?h=torchrun#other-options">here</a>.</p>
+</aside>
+<p><img data-src="figures/zero_memory.svg"
+style="height:360px;" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Sharding reduces memory usage;</li>
+<li>Three levels of sharding (optimizer, gradients,weights);</li>
+<li>ZeRO-methods / FSDP2.</li>
+</ul>
+</div>
+</section>
+<section id="expert-moe-parallelism" class="slide level3">
+<h3>Expert (MoE) parallelism</h3>
+<aside class="notes">
+<p>In a similar spirit of sharding in data parallelism, one can
+implement models for which only part of a model is active for a given
+data input. This way, the parts of the model (so-called experts) can be
+naturally put on different GPUs and no inter-GPU would be necessary.</p>
+</aside>
+<p><img data-src="figures/ep_moe.png" style="width:600px" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Activate only subsets of experts per token;</li>
+<li>Similar to sharding, but reduce need for data exchange.</li>
+</ul>
+</div>
+</section>
+<section id="tensor-parallelism" class="slide level3 no-mkdocs">
+<h3 class="no-mkdocs">Tensor parallelism</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<p><img data-src="./figures/tp_for_slides.png" class="no-mkdocs" /></p>
+</section>
+<section id="tensor-parallelism-1" class="slide level3">
+<h3>Tensor parallelism</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<aside class="notes">
+<p>Tensor parallelism (TP) splits a model by distributing individual
+tensor operations (matrix multiplications) to different GPUs. Unlike
+data parallelism, the same data will be processed by different GPUs and
+the results gathered (or summed). Depending on which direction the
+computation is sliced, it can be further categorized into row- or column
+versions.</p>
+<p>Notably, tensor parallelism needs some careful design, by labeling
+how each layer will be parallelized. Taking the below illustration of
+row- and column- version, one see that if one perform a column-split
+followed by a row-split, one can omit the intermediate
+<code>all_gather</code> step since each GPU will only take one column as
+the next input.</p>
+<p>TP for inference tasks is somewhat well supported (e.g. in <a
+href="https://docs.vllm.ai/en/latest/serving/parallelism_scaling/#distributed-inference-strategies-for-a-single-model-replica">vLLM</a>
+and <a
+href="https://www.deepspeed.ai/tutorials/automatic-tensor-parallelism/">deepspeed</a>.
+Tensor parallel support is less readily available. Know (untested)
+implements are that of <a
+href="https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/index.html#quick-start">Megatron-LM</a>
+and <a
+href="https://docs.nvidia.com/nemo-framework/user-guide/latest/nemotoolkit/features/parallelisms.html">NeMo</a></p>
+</aside>
+<p><img data-src="figures/tp_row.png" class="fragment current-visible"
+style="height:360px;" /> <img data-src="figures/tp_col.png"
+class="fragment current-visible" style="height:360px;" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>row vs. column version;</li>
+<li>needs to be carefully designed;</li>
+</ul>
+</div>
+</section>
+<section id="tensor-parallelism-cont." class="slide level3">
+<h3>Tensor parallelism (cont.)</h3>
+<aside class="notes">
+<p>One shall also note that TP requires more intermediate results to be
+synced and much more synchronization operations than DP. It is thus
+essential that TP is done where GPUs have fast and low-latency access
+memory to each other.</p>
+<p>This usually means TP is only efficient when done within one compute
+node in the cluster, below is the benchmarks given in the ultrascale
+playbook, with 8-GPU nodes. We see a noticeable decrease in performance
+going from 8 to 16 GPUs.</p>
+</aside>
+<p><img data-src="figures/tp_scaling.png" style="height:360px;" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>expensive communication;</li>
+<li>efficiency reduce with inter-node parallelization;</li>
+</ul>
+</div>
+</section>
+<section id="pipeline-parallelism-pp" class="slide level3 no-mkdocs">
+<h3 class="no-mkdocs">Pipeline parallelism (PP)</h3>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<p><img data-src="./figures/pp_for_slides.png" class="no-mkdocs" /></p>
+</section>
+<section id="pipeline-parallelism-pp-1" class="slide level3">
+<h3>Pipeline parallelism (PP)</h3>
+<aside class="notes">
+<p>One can also split the model “sequentially”, such that each GPU
+process only a “segment” of the model and hence the name “pipeline
+parallelism”. Unlike TP, pipeline parallelism (PP) only require minimal
+inter-GPU communication, so it is ideal for parallelization across
+multiple nodes.</p>
+<p>However, with naive PP only one GPU will be working a time; this is
+easy to solve for inference tasks, if one have multiple inputs to be
+processed (think about setting up a server that serves a LLM, different
+users’ requests can be queued and the GPU will always be busy for some
+request.</p>
+<p>For training tasks, this is more tricky as next forward pass
+necessarily depends on the previous backward pass. Nevertheless, it is
+beneficial to have smaller mini-batches per parameter update, so that
+the “bubble” of idling GPUs is less significant.</p>
+</aside>
+<p><img data-src="figures/pp_afab.svg" style="width:800px" /> <img
+data-src="figures/pp_afab2.svg" style="width:800px" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Training: bubbling problem;</li>
+<li>Can be mitigated by smaller batch size (and accumulating the
+gradients);</li>
+</ul>
+</div>
+</section>
+<section id="pipeline-parallelism-cont." class="slide level3">
+<h3>Pipeline parallelism (cont.)</h3>
+<aside class="notes">
+<p>More sophisticated schedule is possible to further reduce the bubble
+further, or reduce the overhead in between the steps. Though implement
+is not generally available.</p>
+</aside>
+<p><img data-src="figures/pp_zerobubble_ppschedule.png"
+style="width:600px" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>More strategies exist;</li>
+<li>Balancing, bubble, memory and communication;</li>
+<li>Implement is not trivial.</li>
+</ul>
+</div>
+</section>
+<section id="hybrid-3d-parallelism" class="slide level3">
+<h3>Hybrid / 3D parallelism</h3>
+<aside class="notes">
+<p>Finally, we shall note that for really huge models that fits only on
+many nodes, one need to combine multiple model parallelization schemes
+for optimal performance. Typically one perform TP on one node, and
+arrange computes nodes with DP and PP.</p>
+</aside>
+<p><img data-src="figures/3d-parallelism.png"
+style="width:600px" /><br />
+Image source: <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a></p>
+<ul>
+<li>For really large models one need to combine the techniques;</li>
+</ul>
+</section></section>
+<section>
+<section id="implementations" class="title-slide slide level2">
+<h2>Implementations</h2>
+
+</section>
+<section id="distributed-computing---mpi" class="slide level3">
+<h3>Distributed computing - MPI</h3>
+<aside class="notes">
+<p>MPI is a typical way of launching distributed computation tasks on a
+HPC cluster. It integrates well with the cluster and works fine for data
+parallelism tasks. Some early implementation in the DP scheme is
+implemented with MPI (but it is less used in modern frameworks).</p>
+</aside>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># just a simple script</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hvd.init()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(...)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> hvd.DistributedOptimizer()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>( ... )</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>model.fit( ... )</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># and run in a job script</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>srun python train.py</span></code></pre></div>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>General-purpose HPC communication;</li>
+<li>Integrates well with the cluster;</li>
+<li>Not so popular in AI/ML.</li>
+</ul>
+</div>
+</section>
+<section id="distributed-computing---ray" class="slide level3">
+<h3>Distributed computing - Ray</h3>
+<aside class="notes">
+<p>A more popular framework is the ray framework. With ray one uses a
+python interface to schedule tasks to different “remote” workers. This
+gives one more flexibility to program how tasks will be distributed.</p>
+</aside>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ray.init()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">@ray.remote</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess(data):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">@ray.remote</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(model_name, dataset):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>cleaned <span class="op">=</span> [preprocess.remote(...) <span class="cf">for</span> data <span class="kw">in</span> dataset ]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>trained_models <span class="op">=</span> [train.remote(...) <span class="cf">for</span> data <span class="kw">in</span> cleand]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> ray.get(trained_models)</span></code></pre></div>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Python-native distributed orchestration;</li>
+</ul>
+</div>
+</section>
+<section id="distributed-computing---ray-cont." class="slide level3">
+<h3>Distributed computing - Ray (cont.)</h3>
+<aside class="notes">
+<p>The “downside” is that ray needs to start its own service and
+communicate over TCP ports that is not typical HPC jobs. Tasks needs to
+be “told” to act as master and client nodes and the ray cluster needs to
+be started before actual jobs are run. At Alvis we have some <a
+href="https://www.c3se.chalmers.se/documentation/software/machine_learning/vllm/#example-python-client">examples</a>
+of running such jobs.</p>
+</aside>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start ray head</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">-J</span> <span class="st">&quot;head ray node-step-%J&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  apptainer exec <span class="va">${SIF_IMAGE}</span> <span class="va">${RAY_CMD_HEAD}</span> <span class="kw">&amp;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">RAY_HEAD_PID</span><span class="op">=</span><span class="va">$!</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># start ray worker</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">-J</span> <span class="st">&quot;worker ray node-step-%J&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  apptainer exec <span class="va">${SIF_IMAGE}</span> <span class="va">${RAY_CMD_WORKER}</span> <span class="kw">&amp;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 10</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># start the actual script</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="va">${SIF_IMAGE}</span> vllm serve <span class="va">${HF_MODEL}</span> <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">--port</span> <span class="va">${API_PORT}</span> <span class="va">${vllm_opts}</span></span></code></pre></div>
+<div class="no-mkdocs" data-markdown="1">
+<ul>
+<li>Run in server/client mode;</li>
+<li>Needs more work to configure.</li>
+</ul>
+</div>
+</section>
+<section id="distributed-computing---torchrun-elastic-launch"
+class="slide level3">
+<h3>Distributed computing - torchrun (Elastic Launch)</h3>
+<aside class="notes">
+<p>A final example of starting distributed computing tasks is torchrun,
+is utilizes the “Elastic Launch” protocol for jobs to join a training
+cluster. It is designed to be fault tolerant (e.g.) allow worker to
+join/leave. It is less tedious to set up as compared to a ray cluster
+and on Alvis we configure some environment variables to easily start a
+distributed training job.</p>
+</aside>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GPUS_PER_NODE</span><span class="op">=</span>4</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MASTER_ADDR</span><span class="op">=</span><span class="va">${PROEPI_HEAD_NODE}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MASTER_PORT</span><span class="op">=</span><span class="va">${PROEPI_FREE_PORT}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> python <span class="at">-u</span> <span class="at">-m</span> torch.distributed.run <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--nproc_per_node</span> <span class="va">$GPUS_PER_NODE</span> <span class="at">--nnodes</span> <span class="va">$SLURM_NNODES</span> <span class="at">--node_rank</span> <span class="va">$SLURM_PROCID</span> <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--rdzv_id</span><span class="op">=</span><span class="va">$SLURM_JOB_ID</span> <span class="at">--rdzv_backend</span><span class="op">=</span>c10d <span class="at">--rdzv_endpoint</span><span class="op">=</span><span class="va">$MASTER_ADDR</span>:<span class="va">$MASTER_PORT</span> <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">$ARGS</span></span></code></pre></div>
+</section>
+<section id="popular-training-frameworks" class="slide level3">
+<h3>Popular training frameworks</h3>
+<ul>
+<li><strong>PyTorch DDP</strong>: standard (basic) DP in PyTorch;</li>
+<li><strong>PyTorch FSDP</strong>: improved with sharding;</li>
+<li><strong>DeepSpeed</strong>: implements advanced schemes (most
+sharding);</li>
+<li><strong>Megatron-LM</strong>: Nvidia’s implementation
+(tensor-parallelism);</li>
+<li><strong>Other options</strong>: NeMo, Colossal-AI, FairScale, …</li>
+</ul>
+</section>
+<section id="popular-inference-frameworks" class="slide level3">
+<h3>Popular inference frameworks</h3>
+<ul>
+<li><strong>vLLM</strong>: PagedAttention and dynamic batching;</li>
+<li><strong>DeepSpeed</strong>: fused attention;</li>
+<li><strong>Triton</strong>: NVIDIA’s inference platform;</li>
+</ul>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level2">
+<h2>Summary</h2>
+
+</section>
+<section id="take-home-message" class="slide level3">
+<h3>Take home-message</h3>
+<ul>
+<li>Enough memory: use data parallelism;</li>
+<li>On a single node: prefer tensor parallelism;</li>
+<li>On many nodes: user pipeline parallelism;</li>
+<li>For training: the <a
+href="https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high-level_overview">ultrascale
+playbook</a>;</li>
+<li>For inference: use a inference engine.</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

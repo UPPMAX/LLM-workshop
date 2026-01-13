@@ -1,0 +1,1711 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../llm_hardware/">
+      
+      
+        <link rel="next" href="../../day2/data_pipelines/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>LLM formats - LLM Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/mkdocs.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LLM Workshop" class="md-header__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LLM formats
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_dates/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course dates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../schedule/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Schedule
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../introduction/" class="md-tabs__link">
+          
+  
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day2/data_pipelines/" class="md-tabs__link">
+          
+  
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/prompt_engineering/" class="md-tabs__link">
+          
+  
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LLM Workshop" class="md-nav__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    LLM Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_dates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course dates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.81 2C4.83 2.09 4 3 4 4v16c0 1.05.95 2 2 2h12c1.05 0 2-.95 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H5.81M12 13h1a1 1 0 0 1 1 1v4h-1v-2h-1v2h-1v-4a1 1 0 0 1 1-1m0 1v1h1v-1zm3 1h3v1l-2 3h2v1h-3v-1l2-3h-2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.672 23.969c-.352-.089-.534-.234-1.471-1.168C.085 21.688.014 21.579.018 20.999c0-.645-.196-.414 3.368-3.986 3.6-3.608 3.415-3.451 4.064-3.449.302 0 .378.016.62.14l.277.14 1.744-1.744-.218-.343c-.425-.662-.825-1.629-1.006-2.429a7.66 7.66 0 0 1 1.479-6.44c2.49-3.12 6.959-3.812 10.26-1.588 1.812 1.218 2.99 3.099 3.328 5.314.07.467.07 1.579 0 2.074a7.55 7.55 0 0 1-2.205 4.402 6.7 6.7 0 0 1-1.943 1.401c-.959.483-1.775.71-2.881.803-1.573.131-3.32-.305-4.656-1.163l-.343-.218-1.744 1.744.14.28c.125.241.14.316.14.617.003.651.156.467-3.426 4.049-2.761 2.756-3.186 3.164-3.398 3.261-.271.125-.69.171-.945.106zM17.485 13.95a6.43 6.43 0 0 0 4.603-3.51c1.391-2.899.455-6.306-2.227-8.108-.638-.43-1.529-.794-2.367-.962-.581-.117-1.809-.104-2.414.025a6.6 6.6 0 0 0-2.452 1.064c-.444.315-1.177 1.048-1.487 1.487a6.384 6.384 0 0 0 .38 7.907 6.4 6.4 0 0 0 3.901 2.136c.509.078 1.542.058 2.065-.037zm-3.738 7.376a81 81 0 0 1-2.196-.651c-.025-.028 1.207-4.396 1.257-4.449.023-.026 4.242 1.152 4.414 1.236.062.026-.003.288-.525 2.102a399 399 0 0 0-.635 2.236c-.025.087-.069.156-.097.156-.028-.003-1.028-.287-2.219-.631zm2.912.524c0-.053 1.227-4.333 1.246-4.347.047-.034 4.324-1.23 4.341-1.211.019.019-1.199 4.337-1.23 4.36-.02.019-4.126 1.191-4.259 1.218-.054.011-.098 0-.098-.019zm-7.105-1.911c.846-.852 1.599-1.627 1.674-1.728.171-.218.405-.732.472-1.015.026-.118.053-.352.058-.522l.011-.307.182-.051c.103-.028.193-.044.202-.034.023.025-1.207 4.321-1.246 4.36-.02.016-.677.213-1.464.436l-1.425.405 1.537-1.542zm8.289-3.06a1.4 1.4 0 0 1-.059-.187l-.044-.156.156-.028c1.339-.227 2.776-.856 3.908-1.713.16-.125.252-.171.265-.134.054.165.272.95.265.959-.034.034-4.48 1.282-4.492 1.261zm-15.083-1.3c-.05-.039-1.179-3.866-1.264-4.29-.016-.084.146-.044 2.174.536 2.121.604 2.192.629 2.222.74.028.098.011.129-.125.223-.084.059-.769.724-1.523 1.479a64 64 0 0 1-1.39 1.367c-.016 0-.056-.025-.093-.054zm.821-4.378c-1.188-.343-2.164-.623-2.167-.626-.016-.012 1.261-4.433 1.285-4.46.022-.022 4.422 1.211 4.469 1.252.009.009-.269 1.017-.618 2.239-.576 2.02-.643 2.224-.723 2.22-.05-.003-1.059-.285-2.247-.626zm2.959.538c.012-.031.212-.723.444-1.534l.42-1.476.056.321c.093.556.265 1.188.464 1.741.106.296.187.539.181.545-.008.006-.332.101-.719.212-.389.109-.741.21-.786.224q-.085.025-.059-.034zM4.905 6.112c-1.187-.339-2.167-.635-2.18-.654-.04-.062-1.246-4.321-1.23-4.338.026-.025 4.31 1.204 4.351 1.246.047.051 1.28 4.379 1.246 4.376L4.91 6.113zm2.148-1.713-.519-1.806-.078-.28 1.693-.483c.934-.265 1.724-.495 1.76-.508.034-.016-.083.14-.26.336A8.7 8.7 0 0 0 7.69 5.23a4 4 0 0 0-.132.561c0 .293-.115-.025-.505-1.39z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../public_llms/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicly available LLMs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inference/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224H416c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288H32c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm_hardware/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.948 8.798v-1.43a7 7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851a3.7 3.7 0 0 1-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6 6 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964a6.5 6.5 0 0 1-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM and Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3a2 2 0 0 1 2-2h9.982a2 2 0 0 1 1.414.586l4.018 4.018A2 2 0 0 1 21 7.018V21a2 2 0 0 1-2 2H4.75a.75.75 0 0 1 0-1.5H19a.5.5 0 0 0 .5-.5V8.5h-4a2 2 0 0 1-2-2v-4H5a.5.5 0 0 0-.5.5v6.25a.75.75 0 0 1-1.5 0Zm12-.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0-.146-.336l-4.018-4.018A.5.5 0 0 0 15 2.5"/><path d="M0 13.75C0 12.784.784 12 1.75 12h3c.966 0 1.75.784 1.75 1.75v4a1.75 1.75 0 0 1-1.75 1.75h-3A1.75 1.75 0 0 1 0 17.75Zm1.75-.25a.25.25 0 0 0-.25.25v4c0 .138.112.25.25.25h3a.25.25 0 0 0 .25-.25v-4a.25.25 0 0 0-.25-.25ZM9 12a.75.75 0 0 0 0 1.5h1.5V18H9a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5H12v-5.25a.75.75 0 0 0-.75-.75z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Formats
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3a2 2 0 0 1 2-2h9.982a2 2 0 0 1 1.414.586l4.018 4.018A2 2 0 0 1 21 7.018V21a2 2 0 0 1-2 2H4.75a.75.75 0 0 1 0-1.5H19a.5.5 0 0 0 .5-.5V8.5h-4a2 2 0 0 1-2-2v-4H5a.5.5 0 0 0-.5.5v6.25a.75.75 0 0 1-1.5 0Zm12-.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0-.146-.336l-4.018-4.018A.5.5 0 0 0 15 2.5"/><path d="M0 13.75C0 12.784.784 12 1.75 12h3c.966 0 1.75.784 1.75 1.75v4a1.75 1.75 0 0 1-1.75 1.75h-3A1.75 1.75 0 0 1 0 17.75Zm1.75-.25a.25.25 0 0 0-.25.25v4c0 .138.112.25.25.25h3a.25.25 0 0 0 .25-.25v-4a.25.25 0 0 0-.25-.25ZM9 12a.75.75 0 0 0 0 1.5h1.5V18H9a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5H12v-5.25a.75.75 0 0 0-.75-.75z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formats-of-llm-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formats of LLM models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formats-of-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formats of numbers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantization methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/data_pipelines/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75C0 .784.784 0 1.75 0h3.5C6.216 0 7 .784 7 1.75v3.5A1.75 1.75 0 0 1 5.25 7H4v4a1 1 0 0 0 1 1h4v-1.25C9 9.784 9.784 9 10.75 9h3.5c.966 0 1.75.784 1.75 1.75v3.5A1.75 1.75 0 0 1 14.25 16h-3.5A1.75 1.75 0 0 1 9 14.25v-.75H5A2.5 2.5 0 0 1 2.5 11V7h-.75A1.75 1.75 0 0 1 0 5.25Zm1.75-.25a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Zm9 9a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/quantization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     〰️ Quantization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/parallelization_schemes/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M248 88h80v48h-80zm-8-56c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h16v32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96v32h-16c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48v-64c0-26.5-21.5-48-48-48h-16v-32h192v32h-16c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48v-64c0-26.5-21.5-48-48-48h-16v-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H320v-32h16c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm208 344h8v48h-80v-48zm-256 0h8v48h-80v-48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Parallelism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/multimodal/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.063 1.456a1.75 1.75 0 0 1 1.874 0l8.383 5.316a1.75 1.75 0 0 1 0 2.956l-8.383 5.316a1.75 1.75 0 0 1-1.874 0L2.68 9.728a1.75 1.75 0 0 1 0-2.956Zm1.071 1.267a.25.25 0 0 0-.268 0L3.483 8.039a.25.25 0 0 0 0 .422l8.383 5.316a.25.25 0 0 0 .268 0l8.383-5.316a.25.25 0 0 0 0-.422Z"/><path d="M1.867 12.324a.75.75 0 0 1 1.035-.232l8.964 5.685a.25.25 0 0 0 .268 0l8.964-5.685a.75.75 0 0 1 .804 1.267l-8.965 5.685a1.75 1.75 0 0 1-1.874 0l-8.965-5.685a.75.75 0 0 1-.231-1.035"/><path d="M1.867 16.324a.75.75 0 0 1 1.035-.232l8.964 5.685a.25.25 0 0 0 .268 0l8.964-5.685a.75.75 0 0 1 .804 1.267l-8.965 5.685a1.75 1.75 0 0 1-1.874 0l-8.965-5.685a.75.75 0 0 1-.231-1.035"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Modal LLM / VLM Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/rag/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.68 12.32a4.49 4.49 0 0 0-6.36.01 4.49 4.49 0 0 0 0 6.36 4.51 4.51 0 0 0 5.57.63L21 22.39 22.39 21l-3.09-3.11c1.13-1.77.87-4.09-.62-5.57m-1.41 4.95c-.98.98-2.56.97-3.54 0-.97-.98-.97-2.56.01-3.54.97-.97 2.55-.97 3.53 0 .97.98.97 2.56 0 3.54M10.9 20.1a6.5 6.5 0 0 1-1.48-2.32C6.27 17.25 4 15.76 4 14v3c0 2.21 3.58 4 8 4-.4-.26-.77-.56-1.1-.9M4 9v3c0 1.68 2.07 3.12 5 3.7v-.2c0-.93.2-1.85.58-2.69C6.34 12.3 4 10.79 4 9m8-6C7.58 3 4 4.79 4 7c0 2 3 3.68 6.85 4h.05c1.2-1.26 2.86-2 4.6-2 .91 0 1.81.19 2.64.56A3.22 3.22 0 0 0 20 7c0-2.21-3.58-4-8-4"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/prompt_engineering/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.25.25 0 0 0-.064.108l-.558 1.953 1.953-.558a.25.25 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/tools/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v16h128V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-96c-26.5 0-48-21.5-48-48v-16H192v16c0 7.3-1.7 14.3-4.6 20.5L256 288h80c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-96c-26.5 0-48-21.5-48-48v-96c0-7.3 1.7-14.3 4.6-20.5L128 224H48c-26.5 0-48-21.5-48-48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools and Reasoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/post_training/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5.433 2.304A4.49 4.49 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A6 6 0 0 1 2 6a6 6 0 0 1 2.567-4.92 1.48 1.48 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.25.25 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.48 1.48 0 0 1 1.673.04A6 6 0 0 1 14 6a6 6 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.5 4.5 0 0 0 12.5 6a4.49 4.49 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/hyperparameter_tuning/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M32 64C14.3 64 0 78.3 0 96s14.3 32 32 32h86.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H265.3C253 35.7 224.8 16 192 16s-61 19.7-73.3 48zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h246.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-54.7c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h54.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H233.3c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Hyperparameter tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/evaluation_metrics/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0m14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluating LLMs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Start
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Day 1
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/UPPMAX/LLM-workshop/edit/master/docs/day1/llm_formats.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/LLM-workshop/raw/master/docs/day1/llm_formats.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>LLM Formats</h1>
+
+<section data-visibility="hidden">
+<p>This section is available as slides which is presented on the workshop. This
+text version include some additional notes. You can also access the slide
+version <a href="../llm_formats-slides">here</a>.</p>
+</section>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Anchor link to this section for reference">&para;</a></h2>
+<aside class="notes">
+<p>This session covers the following:</p>
+</aside>
+<ul>
+<li>Formats of LLM models</li>
+<li>Formats of numbers</li>
+<li>Quantization of LLM</li>
+<li>Quantization and performance</li>
+</ul>
+<h2 id="formats-of-llm-models">Formats of LLM models<a class="headerlink" href="#formats-of-llm-models" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="so-you-want-to-use-a-llm-model">So you want to use a LLM model<a class="headerlink" href="#so-you-want-to-use-a-llm-model" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>Today most LLMs are published on HugginFace. Searching for a base model, you
+will find variants with all kinds of labels. These labels tells a lot about how
+the models are prepared and how efficient will they run on the target
+hardware. This session will cover the most of the jargons in those names.</p>
+</aside>
+<p><img alt="" src="../figures/hf-search-models.png" style="height=360px" /></p>
+<h3 id="what-the-name-means">What the name means<a class="headerlink" href="#what-the-name-means" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><code>Llama-3.3</code>: model (architecture)</li>
+<li><code>70B</code>: size / number of parameters</li>
+<li><code>Instruct</code>: fine-tuning</li>
+<li><code>AWQ-INT4</code>: quantization</li>
+<li><code>GGUF</code>: model format</li>
+</ul>
+<aside class="notes">
+<p>Models architecture and size are often the first consideration when working on
+LLM.  But equally important are the format of models and the quantization
+method. Modern acceleration devices cater for the lower precision need of
+machine learning models, depending on the device you want to run on, quantized
+models might give significant speed up. We will first go through the <strong>file
+formats</strong>, then detail the quantization methods and <strong>number formats</strong>.</p>
+</aside>
+<h3 id="file-formats-of-llms">File-formats of LLMs<a class="headerlink" href="#file-formats-of-llms" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>LLM models commonly consists of metadata such as the metadata, quantization
+methods, and the tensor themselves. The following shows the layout of the gguf
+file format.</p>
+<p></asisde></p>
+<p><img alt="" src="../figures/gguf.png" style="max-height:360px" /><br />
+Image from <a href="https://huggingface.co/docs/hub/gguf">huggingface</a>.</p>
+<h3 id="common-formats-of-llms">Common formats of LLMs<a class="headerlink" href="#common-formats-of-llms" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>bin/pth/tf: "raw" ML library formats;</li>
+<li>safetensors: used by huggingface;</li>
+<li>ggml/gguf: developed by <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>
+  (supports many qunatization formats);</li>
+<li><a href="https://mozilla-ai.github.io/llamafile">llamafile</a>: by mozilla, single-file
+  format, executable.</li>
+</ul>
+<p>In some repos, you can find detailed model information for some model formats,
+<a href="https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF?show_file_info=Qwen-Image-Edit-2509-Q2_K.gguf">example</a>.</p>
+<aside class="notes">
+<p>Models published on different formats are optimized for different usages. They
+can be converted to one another (which is typically implemented as model loaders
+by inference engines,
+<a href="https://docs.vllm.ai/en/stable/api/vllm/model_executor/model_loader/gguf_loader.html">example</a>).</p>
+<p>raw formats used by ML formats might be handy for re-training. Some of them
+contain pickled data so might execute arbitrary code (in contrary to "safe"
+formats).</p>
+<p>Newer formats like GGUF/safetensors are suitable for common model architectures
+(different engines will support them if the architecture is known). They are
+memory-mapped, which are especially useful for <a href="https://huggingface.co/docs/accelerate/package_reference/big_modeling#accelerate.disk_offload">disk offloading</a>.</p>
+</aside>
+<h3 id="picking-a-model">Picking a model<a class="headerlink" href="#picking-a-model" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>While not strictly a requirement, it is usually less trouble to get a model in
+your desired format. The other part of the model name is usually tell you the 
+quantization method and the number formats in the model.</p>
+<p>In the following, we will introduce the quantization procedure and how that
+impacts the performance (both in terms of speed and accuracy) and hardware
+compatibility.</p>
+</aside>
+<div class="no-mkdocs">
+<ul>
+<li>Quantization method;</li>
+<li>Number format;</li>
+<li>Hardware compatibility.</li>
+</ul>
+</div>
+<h2 id="formats-of-numbers">Formats of numbers<a class="headerlink" href="#formats-of-numbers" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="why-do-we-care">Why do we care?<a class="headerlink" href="#why-do-we-care" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>ML tolerates lower numerical precision;</li>
+<li>Quantization allow you to run larger models;</li>
+<li>To eliminate expensive communication;</li>
+</ul>
+<h3 id="number-formats-floating-point">Number formats - floating point<a class="headerlink" href="#number-formats-floating-point" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>Floating point number is the most common way one represents a real number in a
+computer. A floating point number uses a fixed number of bits and represents a
+number in terms of an exponent and mantissa (significand).</p>
+</aside>
+<p><img alt="" src="../figures/float16.png" style="height:360px" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<h3 id="floating-point-formats-cont-1">Floating point formats - cont. 1<a class="headerlink" href="#floating-point-formats-cont-1" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>The mantissa determines the significant digits of a FP number, and the exponent
+determines the range. Standard FP numbers typically aim to strike a balance
+between accuracy and range. </p>
+</aside>
+<p><img alt="" src="../figures/number-format.svg" style="height:360px" /><br />
+Image source: <a href="https://hamzaelshafie.bearblog.dev/paged-attention-from-first-principles-a-view-inside-vllm">Hamzael Shafie</a></p>
+<aside class="notes">
+<p>For ML application, it is beneficial to use a reduced precision format with the
+same number of exponents, as that simplifies the quantization procedure, and it
+has been
+<a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">claimed</a>
+that "neural networks are far more sensitive to the size of the exponent than
+that of the mantissa".</p>
+</aside>
+<h3 id="floating-point-formats-cont-2">Floating point formats - cont. 2<a class="headerlink" href="#floating-point-formats-cont-2" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>As an example, converting from FP32 to BF16 will be trivial as the dynamic range
+is the same. One would only need to discard mantissa from FP32. In contrary,
+conversion from FP32 to FP16 will require scaling or clipping the number. With
+implication to be decided.</p>
+<p>While not detailed here, integers are also used as quantization targets. Besides
+the dynamic range, note that integers numbers will also have different scales as
+compared to FP numbers.</p>
+</aside>
+<p><img alt="" src="../figures/number-ranges.png" style="height:360px" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<h3 id="hardware-compatibility">Hardware Compatibility<a class="headerlink" href="#hardware-compatibility" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>Acceleration of floating point operations requires also support from hardware
+vendor or custom implementations of numeric kernels. Newer number formats are
+not necessarily accelerated by the GPU and might get converted back depending on
+implementation.</p>
+<p>Below lists some commonly used FP formats and their hardware support status:</p>
+</aside>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>hardware accel.</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fp16/32/64</td>
+<td>most gpus</td>
+<td>IEEE 754</td>
+</tr>
+<tr>
+<td>fp8 <a href="https://onnx.ai/onnx/technical/float8.html">(E4M3/E5M2)</a></td>
+<td>hooper</td>
+<td>Recent IEEE</td>
+</tr>
+<tr>
+<td>bf16</td>
+<td>most gpus</td>
+<td>Google's</td>
+</tr>
+<tr>
+<td>tf32</td>
+<td>nvidia-gpus</td>
+<td>Nvidia</td>
+</tr>
+<tr>
+<td>int4/8</td>
+<td>most GPUs</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>See also <a href="https://rocm.docs.amd.com/en/latest/reference/precision-support.html">Data types support</a> by AMD RocM.</p>
+<h3 id="rule-of-thumb">Rule of thumb<a class="headerlink" href="#rule-of-thumb" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><a href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">Google's bf16</a> if unsure (same range as fp32, less mantissa, good compatibility);</li>
+<li>training usually done in fp32/bf16;</li>
+<li>int4/8 is good for inference (on older GPUs).</li>
+</ul>
+<h2 id="quantization-methods">Quantization methods<a class="headerlink" href="#quantization-methods" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="quantization-target">Quantization target<a class="headerlink" href="#quantization-target" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>Quantization can be applied to weights, activations or KV-caches; Weights are
+the most common target to quantize as weights are the most memory-hungry part of
+the model. It is possible to quantize only part of the model (
+<a href="https://docs.vllm.ai/projects/llm-compressor/en/latest/examples/quantization_non_uniform/">non-uniform quantization</a>)</p>
+</aside>
+<p><img alt="" src="../figures/mixed_precision_hopper.jpg" /></p>
+<div class="no-mkdocs">
+<ul>
+<li>Weight/activation/mixed percision (w8a16);</li>
+<li>KV-cache;</li>
+<li>Non-uniform;</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Mixed-precision evaluation of matrix multiplications depends on the hardware; it
+might or might not support converting the tensors between precision or doing
+tensor operations natively. </p>
+<p>For instance, FP8 is not officially support on Ampere GPUs (A40 and A100). While
+there exist implementations that makes <a href="https://docs.vllm.ai/en/v0.5.2/quantization/fp8.html">w8a16</a> operations available,
+quantizating KV cache to FP8 currently <a href="https://discuss.vllm.ai/t/kv-cache-quantizing/749">need hardware
+support</a>.</p>
+</aside>
+<h3 id="asymmetric-qunatization">(A)symmetric qunatization<a class="headerlink" href="#asymmetric-qunatization" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>One important aspect when quantizing the models is the range of the model, the
+easiest way is to simply scale the parameters by a factor.</p>
+</aside>
+<p><img alt="" src="../figures/quantization_symmetry.webp" style="max-height:360px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<div class="no-mkdocs">
+<ul>
+<li>position of zero;</li>
+<li>range of parameters;</li>
+<li>simple for implementation;</li>
+</ul>
+</div>
+<aside class="notes">
+<p>To minimize loss of precision, we could map the parameters according to the
+max/min values of the parameter, rather than the number-format range. There, we
+need to choose whether we shift the zero point in the transform (but introduces
+complexity in computation).</p>
+</aside>
+<h3 id="clipping">Clipping<a class="headerlink" href="#clipping" title="Anchor link to this section for reference">&para;</a></h3>
+<p><img alt="" src="../figures/clipping.webp" style="max-height:240px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<aside class="notes">
+<p>we can also choose to clip out the outlier to gain more precision.</p>
+</aside>
+<h3 id="calibration-for-weight-quantization">Calibration for weight quantization<a class="headerlink" href="#calibration-for-weight-quantization" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>For weights of the model We can simply quantize them, since we know their
+distribution. But given some small dataset but we can also improved the accuracy
+but estimating how important each parameter it. </p>
+<p>A popular way to do that is the GPTQ method.<sup id="fnref:gptq"><a class="footnote-ref" href="#fn:gptq">1</a></sup> Below is an illustration of
+GPTQ method. A calibration dataset is used to evaluate the inverse Hessian
+(sensitivity) of the output with respect to the weights. Then the quantization
+error is calibrated to minimize its impact.</p>
+</aside>
+<p><img alt="" src="../figures/gptq.webp" style="max-height:240px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<h3 id="calibration-for-activation-quantization">Calibration for activation quantization<a class="headerlink" href="#calibration-for-activation-quantization" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>To also quantize the activation function, we need to estimate the range of
+activation, that has to be done by passing data to the model and collect
+minima/maximi. We can do that either dynamically (during inference) or
+statically (with a calibration set).</p>
+</aside>
+<p><img alt="" src="../figures/dynamic_calibration.webp" style="max-height:360px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<p>The range can be estimated can be dynamically (on the fly) or statically.</p>
+<h3 id="sparsification">Sparsification<a class="headerlink" href="#sparsification" title="Anchor link to this section for reference">&para;</a></h3>
+<p><img alt="" src="../figures/sparse-matrix.png" style="max-height:240px;" /><br />
+Image source: <a href="https://developer.nvidia.com/blog/accelerating-inference-with-sparsity-using-ampere-and-tensorrt">Nvidia technical blog</a>/</p>
+<aside class="notes">
+<p>Models may also be sparsified to reduce the required computation, this is
+commonly known as weight pruning. But some GPUs also support efficient
+evaluation of sparse matrices if the sparsity follow certain pattern (example
+with <a href="https://github.com/vllm-project/llm-compressor/blob/main/examples/sparse_2of4_quantization_fp8/README.md">llm-compressor</a>);</p>
+</aside>
+<h3 id="post-training-quantization-methods-ptq">Post-training quantization methods (PTQ)<a class="headerlink" href="#post-training-quantization-methods-ptq" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>So far we covered mostly the so-called PTQ method which works without training the model:</p>
+</aside>
+<ul>
+<li>Weight and activation;</li>
+<li>Not detailed: sparsification/KV cache.</li>
+<li>Calibration/accuracy trade off;</li>
+</ul>
+<aside class="notes">
+<p>For a complete list of PTQ methods along with their compatibility see <a href="https://github.com/vllm-project/llm-compressor/blob/main/docs/guides/compression_schemes.md">vLLM's guide</a>.</p>
+</aside>
+<h3 id="quantization-aware-training-qat">Quantization aware training (QAT)<a class="headerlink" href="#quantization-aware-training-qat" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>But we get higher accuracy by using the Quantization aware training (QAT)
+method. There we perform the quantization/dequantization during the training
+process.</p>
+</aside>
+<p><img alt="" src="../figures/qat.webp" style="max-height:100px;" />
+<img alt="" src="../figures/qat_back.webp" style="max-height:300px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<aside class="notes">
+<p>The first benefit is that we can actually optimize the quantization parameters
+as part of the training process.</p>
+</aside>
+<h3 id="quantization-aware-training-qat-cont">Quantization aware training (QAT) - cont.<a class="headerlink" href="#quantization-aware-training-qat-cont" title="Anchor link to this section for reference">&para;</a></h3>
+<aside class="notes">
+<p>As we introduce the quantization error in the training process, we are will
+arrive at a model with higher loss during  training.</p>
+</aside>
+<p><img alt="" src="../figures/qat_theory.webp" style="max-height:360px;" /><br />
+Image source: <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization">Maarten Grootendorst</a></p>
+<aside class="notes">
+<p>The reason why it might work better, is that we force the model to land in a
+local minima where it is less sensitive to model parameters. So even the
+original model performs worse, the quantized model would perform better than
+those quantized with PTQ.</p>
+</aside>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="when-choosing-a-model">When choosing a model<a class="headerlink" href="#when-choosing-a-model" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>Know the hardware/implementation compatibility;</li>
+<li>Find the right model/format/qunatization;</li>
+<li>Quantize if needed;</li>
+<li>Look up/run benchmarks.</li>
+</ul>
+<h3 id="other-useful-links">Other useful links<a class="headerlink" href="#other-useful-links" title="Anchor link to this section for reference">&para;</a></h3>
+<p>Benchmarks:</p>
+<ul>
+<li><a href="https://huggingface.co/datasets/derekl35/quantization-benchmarks">derek135/quantization-benchmarks</a></li>
+</ul>
+</aside>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:gptq">
+<p><a href="https://arxiv.org/abs/2210.17323">arXiv:2210.17323</a>&#160;<a class="footnote-backref" href="#fnref:gptq" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../llm_hardware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LLM and Hardware">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LLM and Hardware
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../day2/data_pipelines/" class="md-footer__link md-footer__link--next" aria-label="Next: Data Pipelines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Data Pipelines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.naiss.se/" target="_blank" rel="noopener" title="NAISS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.integrate", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.expand", "search.suggest", "content.code.annotate", "content.code.copy", "content.code.select", "content.tabs.link", "content.action.edit", "content.action.view", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

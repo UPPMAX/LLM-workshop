@@ -1,0 +1,1780 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../day1/llm_formats/">
+      
+      
+        <link rel="next" href="../quantization/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Data Pipelines - LLM Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/mkdocs.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-pipelines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LLM Workshop" class="md-header__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Pipelines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_dates/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course dates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../schedule/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Schedule
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day1/introduction/" class="md-tabs__link">
+          
+  
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/prompt_engineering/" class="md-tabs__link">
+          
+  
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LLM Workshop" class="md-nav__button md-logo" aria-label="LLM Workshop" data-md-component="logo">
+      
+  <img src="../../logo/naiss_logo_white.png" alt="logo">
+
+    </a>
+    LLM Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/LLM-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_dates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course dates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.81 2C4.83 2.09 4 3 4 4v16c0 1.05.95 2 2 2h12c1.05 0 2-.95 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H5.81M12 13h1a1 1 0 0 1 1 1v4h-1v-2h-1v2h-1v-4a1 1 0 0 1 1-1m0 1v1h1v-1zm3 1h3v1l-2 3h2v1h-3v-1l2-3h-2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/introduction/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.672 23.969c-.352-.089-.534-.234-1.471-1.168C.085 21.688.014 21.579.018 20.999c0-.645-.196-.414 3.368-3.986 3.6-3.608 3.415-3.451 4.064-3.449.302 0 .378.016.62.14l.277.14 1.744-1.744-.218-.343c-.425-.662-.825-1.629-1.006-2.429a7.66 7.66 0 0 1 1.479-6.44c2.49-3.12 6.959-3.812 10.26-1.588 1.812 1.218 2.99 3.099 3.328 5.314.07.467.07 1.579 0 2.074a7.55 7.55 0 0 1-2.205 4.402 6.7 6.7 0 0 1-1.943 1.401c-.959.483-1.775.71-2.881.803-1.573.131-3.32-.305-4.656-1.163l-.343-.218-1.744 1.744.14.28c.125.241.14.316.14.617.003.651.156.467-3.426 4.049-2.761 2.756-3.186 3.164-3.398 3.261-.271.125-.69.171-.945.106zM17.485 13.95a6.43 6.43 0 0 0 4.603-3.51c1.391-2.899.455-6.306-2.227-8.108-.638-.43-1.529-.794-2.367-.962-.581-.117-1.809-.104-2.414.025a6.6 6.6 0 0 0-2.452 1.064c-.444.315-1.177 1.048-1.487 1.487a6.384 6.384 0 0 0 .38 7.907 6.4 6.4 0 0 0 3.901 2.136c.509.078 1.542.058 2.065-.037zm-3.738 7.376a81 81 0 0 1-2.196-.651c-.025-.028 1.207-4.396 1.257-4.449.023-.026 4.242 1.152 4.414 1.236.062.026-.003.288-.525 2.102a399 399 0 0 0-.635 2.236c-.025.087-.069.156-.097.156-.028-.003-1.028-.287-2.219-.631zm2.912.524c0-.053 1.227-4.333 1.246-4.347.047-.034 4.324-1.23 4.341-1.211.019.019-1.199 4.337-1.23 4.36-.02.019-4.126 1.191-4.259 1.218-.054.011-.098 0-.098-.019zm-7.105-1.911c.846-.852 1.599-1.627 1.674-1.728.171-.218.405-.732.472-1.015.026-.118.053-.352.058-.522l.011-.307.182-.051c.103-.028.193-.044.202-.034.023.025-1.207 4.321-1.246 4.36-.02.016-.677.213-1.464.436l-1.425.405 1.537-1.542zm8.289-3.06a1.4 1.4 0 0 1-.059-.187l-.044-.156.156-.028c1.339-.227 2.776-.856 3.908-1.713.16-.125.252-.171.265-.134.054.165.272.95.265.959-.034.034-4.48 1.282-4.492 1.261zm-15.083-1.3c-.05-.039-1.179-3.866-1.264-4.29-.016-.084.146-.044 2.174.536 2.121.604 2.192.629 2.222.74.028.098.011.129-.125.223-.084.059-.769.724-1.523 1.479a64 64 0 0 1-1.39 1.367c-.016 0-.056-.025-.093-.054zm.821-4.378c-1.188-.343-2.164-.623-2.167-.626-.016-.012 1.261-4.433 1.285-4.46.022-.022 4.422 1.211 4.469 1.252.009.009-.269 1.017-.618 2.239-.576 2.02-.643 2.224-.723 2.22-.05-.003-1.059-.285-2.247-.626zm2.959.538c.012-.031.212-.723.444-1.534l.42-1.476.056.321c.093.556.265 1.188.464 1.741.106.296.187.539.181.545-.008.006-.332.101-.719.212-.389.109-.741.21-.786.224q-.085.025-.059-.034zM4.905 6.112c-1.187-.339-2.167-.635-2.18-.654-.04-.062-1.246-4.321-1.23-4.338.026-.025 4.31 1.204 4.351 1.246.047.051 1.28 4.379 1.246 4.376L4.91 6.113zm2.148-1.713-.519-1.806-.078-.28 1.693-.483c.934-.265 1.724-.495 1.76-.508.034-.016-.083.14-.26.336A8.7 8.7 0 0 0 7.69 5.23a4 4 0 0 0-.132.561c0 .293-.115-.025-.505-1.39z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/public_llms/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicly available LLMs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/inference/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224H416c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288H32c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/llm_hardware/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.948 8.798v-1.43a7 7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851a3.7 3.7 0 0 1-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6 6 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964a6.5 6.5 0 0 1-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM and Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/llm_formats/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3a2 2 0 0 1 2-2h9.982a2 2 0 0 1 1.414.586l4.018 4.018A2 2 0 0 1 21 7.018V21a2 2 0 0 1-2 2H4.75a.75.75 0 0 1 0-1.5H19a.5.5 0 0 0 .5-.5V8.5h-4a2 2 0 0 1-2-2v-4H5a.5.5 0 0 0-.5.5v6.25a.75.75 0 0 1-1.5 0Zm12-.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0-.146-.336l-4.018-4.018A.5.5 0 0 0 15 2.5"/><path d="M0 13.75C0 12.784.784 12 1.75 12h3c.966 0 1.75.784 1.75 1.75v4a1.75 1.75 0 0 1-1.75 1.75h-3A1.75 1.75 0 0 1 0 17.75Zm1.75-.25a.25.25 0 0 0-.25.25v4c0 .138.112.25.25.25h3a.25.25 0 0 0 .25-.25v-4a.25.25 0 0 0-.25-.25ZM9 12a.75.75 0 0 0 0 1.5h1.5V18H9a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5H12v-5.25a.75.75 0 0 0-.75-.75z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75C0 .784.784 0 1.75 0h3.5C6.216 0 7 .784 7 1.75v3.5A1.75 1.75 0 0 1 5.25 7H4v4a1 1 0 0 0 1 1h4v-1.25C9 9.784 9.784 9 10.75 9h3.5c.966 0 1.75.784 1.75 1.75v3.5A1.75 1.75 0 0 1 14.25 16h-3.5A1.75 1.75 0 0 1 9 14.25v-.75H5A2.5 2.5 0 0 1 2.5 11V7h-.75A1.75 1.75 0 0 1 0 5.25Zm1.75-.25a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Zm9 9a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Pipelines
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 1.75C0 .784.784 0 1.75 0h3.5C6.216 0 7 .784 7 1.75v3.5A1.75 1.75 0 0 1 5.25 7H4v4a1 1 0 0 0 1 1h4v-1.25C9 9.784 9.784 9 10.75 9h3.5c.966 0 1.75.784 1.75 1.75v3.5A1.75 1.75 0 0 1 14.25 16h-3.5A1.75 1.75 0 0 1 9 14.25v-.75H5A2.5 2.5 0 0 1 2.5 11V7h-.75A1.75 1.75 0 0 1 0 5.25Zm1.75-.25a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Zm9 9a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-3.5a.25.25 0 0 0-.25-.25Z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-training 📊
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-training 🎯
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quantization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     〰️ Quantization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallelization_schemes/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M248 88h80v48h-80zm-8-56c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h16v32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96v32h-16c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48v-64c0-26.5-21.5-48-48-48h-16v-32h192v32h-16c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48v-64c0-26.5-21.5-48-48-48h-16v-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H320v-32h16c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm208 344h8v48h-80v-48zm-256 0h8v48h-80v-48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Parallelism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multimodal/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.063 1.456a1.75 1.75 0 0 1 1.874 0l8.383 5.316a1.75 1.75 0 0 1 0 2.956l-8.383 5.316a1.75 1.75 0 0 1-1.874 0L2.68 9.728a1.75 1.75 0 0 1 0-2.956Zm1.071 1.267a.25.25 0 0 0-.268 0L3.483 8.039a.25.25 0 0 0 0 .422l8.383 5.316a.25.25 0 0 0 .268 0l8.383-5.316a.25.25 0 0 0 0-.422Z"/><path d="M1.867 12.324a.75.75 0 0 1 1.035-.232l8.964 5.685a.25.25 0 0 0 .268 0l8.964-5.685a.75.75 0 0 1 .804 1.267l-8.965 5.685a1.75 1.75 0 0 1-1.874 0l-8.965-5.685a.75.75 0 0 1-.231-1.035"/><path d="M1.867 16.324a.75.75 0 0 1 1.035-.232l8.964 5.685a.25.25 0 0 0 .268 0l8.964-5.685a.75.75 0 0 1 .804 1.267l-8.965 5.685a1.75 1.75 0 0 1-1.874 0l-8.965-5.685a.75.75 0 0 1-.231-1.035"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Modal LLM / VLM Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.68 12.32a4.49 4.49 0 0 0-6.36.01 4.49 4.49 0 0 0 0 6.36 4.51 4.51 0 0 0 5.57.63L21 22.39 22.39 21l-3.09-3.11c1.13-1.77.87-4.09-.62-5.57m-1.41 4.95c-.98.98-2.56.97-3.54 0-.97-.98-.97-2.56.01-3.54.97-.97 2.55-.97 3.53 0 .97.98.97 2.56 0 3.54M10.9 20.1a6.5 6.5 0 0 1-1.48-2.32C6.27 17.25 4 15.76 4 14v3c0 2.21 3.58 4 8 4-.4-.26-.77-.56-1.1-.9M4 9v3c0 1.68 2.07 3.12 5 3.7v-.2c0-.93.2-1.85.58-2.69C6.34 12.3 4 10.79 4 9m8-6C7.58 3 4 4.79 4 7c0 2 3 3.68 6.85 4h.05c1.2-1.26 2.86-2 4.6-2 .91 0 1.81.19 2.64.56A3.22 3.22 0 0 0 20 7c0-2.21-3.58-4-8-4"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/prompt_engineering/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.25.25 0 0 0-.064.108l-.558 1.953 1.953-.558a.25.25 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/tools/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v16h128V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-96c-26.5 0-48-21.5-48-48v-16H192v16c0 7.3-1.7 14.3-4.6 20.5L256 288h80c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-96c-26.5 0-48-21.5-48-48v-96c0-7.3 1.7-14.3 4.6-20.5L128 224H48c-26.5 0-48-21.5-48-48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools and Reasoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/post_training/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5.433 2.304A4.49 4.49 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A6 6 0 0 1 2 6a6 6 0 0 1 2.567-4.92 1.48 1.48 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.25.25 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.48 1.48 0 0 1 1.673.04A6 6 0 0 1 14 6a6 6 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.5 4.5 0 0 0 12.5 6a4.49 4.49 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Post-training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/hyperparameter_tuning/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M32 64C14.3 64 0 78.3 0 96s14.3 32 32 32h86.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H265.3C253 35.7 224.8 16 192 16s-61 19.7-73.3 48zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h246.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-54.7c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h54.7c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H233.3c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Hyperparameter tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/evaluation_metrics/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0m14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluating LLMs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Start
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Day 2
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/UPPMAX/LLM-workshop/edit/master/docs/day2/data_pipelines.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/LLM-workshop/raw/master/docs/day2/data_pipelines.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="data-pipelines">Data Pipelines<a class="headerlink" href="#data-pipelines" title="Anchor link to this section for reference">&para;</a></h1>
+<details class="- info">
+<summary>Learning outcomes</summary>
+<ul>
+<li>Understand the key components of data pipelines for LLMs </li>
+<li>Run a part of post-training data preparation pipeline</li>
+</ul>
+<details class="- question">
+<summary>Quiz yourself!</summary>
+<details class="- note inline end">
+<summary>Answer key</summary>
+<p>1:B, 2:B, 3:B</p>
+</details>
+<ol>
+<li>
+<p>What is the primary goal of pre-training?</p>
+<p>A. Train small task-specific classifiers<br />
+B. Assemble large, diverse, governed corpora and feed tokens efficiently so the model learns general-purpose representations<br />
+C. Compress datasets for long-term archival<br />
+D. Only fine-tune models on downstream tasks</p>
+</li>
+<li>
+<p>Which file format is recommended for fast local reads and training-ready batches with Hugging Face Datasets?</p>
+<p>A. JSON/JSONL<br />
+B. Apache Arrow<br />
+C. CSV<br />
+D. XML</p>
+</li>
+<li>
+<p>According to the post-training section, aligning base LLMs to tasks is primarily done via:</p>
+<p>A. Data sharding and compression<br />
+B. Supervised fine-tuning and preference optimization (reward modelling or RLHF/RLAIF)<br />
+C. Only unsupervised pre-training<br />
+D. Manual rule-based post-processing</p>
+</li>
+</ol>
+</details>
+</details>
+<p><img align="right" alt="Data meme" src="../figures/data_meme.jpg" width="300" /></p>
+<ul>
+<li>
+<p>Well-designed data pipelines determine LLM quality, safety, and training throughput.</p>
+</li>
+<li>
+<p>Success of all frontier models like GPT-5 relies heavily on quality data and constructing effecient pipelines around it that reduces training compute and improves the capabilities of the model that we desire it to have. </p>
+</li>
+</ul>
+<div class="admonition - quote">
+<p class="admonition-title"><a href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook#smollm3-1">SmolLM3</a> training team</p>
+<p>From our experience, and though it might disappoint architecture enthusiasts, the biggest performance gains usually come from data curation.</p>
+</div>
+<h2 id="pre-training">Pre-training 📊<a class="headerlink" href="#pre-training" title="Anchor link to this section for reference">&para;</a></h2>
+<p><strong>Goal:</strong> Assemble large, diverse, governed corpora and feed tokens efficiently to the model to learn general-purpose representations. LLM learns in self-supervised fashion.</p>
+<p><a href="https://raw.githubusercontent.com/stanford-cs336/spring2025-lectures/refs/heads/main/var/sample-documents.txt">Raw data</a>, is often messy and unsuitable for learning linguistic semantics. It typically exists in diverse formats like HTML, PDFs, spreadsheets etc, requiring extensive preprocessing to make it usable for training. Challenge lies in preserving the content and structure during this lossy process of data cleaning.</p>
+<div class="annotate">
+<ul>
+<li>
+<p>Data acquisition and licensing (1)</p>
+</li>
+<li>
+<p>Content extraction, normalization and detection (2)</p>
+</li>
+<li>
+<p>Deduplication (3)</p>
+</li>
+<li>
+<p>Quality filtering, decontamination (4)</p>
+</li>
+<li>
+<p>Tokenization and training (5)</p>
+</li>
+<li>
+<p>Mixture building and sampling (6)</p>
+</li>
+<li>
+<p>Storage and sharding (7)</p>
+</li>
+<li>
+<p>Training and observability (8)</p>
+</li>
+<li>
+<p>Continuous Evaluation (9)</p>
+</li>
+<li>
+<p>Data governance and ethics (10)</p>
+</li>
+</ul>
+</div>
+<ol>
+<li>web crawl, books, Github code, academic papers. PII and copyright governance.<br />
+Web crawl : <a href="https://commoncrawl.org/overview">CC</a> </li>
+<li>language ID, Unicode cleanup, boilerplate removal, doc boundaries.<br />
+Language classifiers: <a href="https://github.com/cisnlp/GlotLID">GlotLID</a>, <a href="https://github.com/facebookresearch/fastText">Fasttext</a></li>
+<li>exact and near-dup (MinHash/SimHash); mitigate contamination and overfitting.</li>
+<li>heuristic/classifier filters (toxicity, spam), quality scoring, temperature sampling.</li>
+<li>train vocab (BPE/Unigram), pre-tokenize, pack sequences respecting EOD.
+Tokenization: <a href="https://huggingface.co/docs/tokenizers/en/index">HF Tokenizers</a>, </li>
+<li>domain/language balance, curriculum, up/down-sampling.</li>
+<li>Arrow/Parquet/WebDataset, deterministic sharding, resume-safe streaming.
+Arrow: <a href="https://huggingface.co/docs/datasets/about_arrow">HF Datasets</a></li>
+<li>Remove overlaps with evals; versioning, lineage, dashboards.
+Checkpoint/logging: <a href="https://huggingface.co/docs/transformers/en/trainer">HF Trainer</a></li>
+<li>benchmark language understanding, reasoning, QA etc. Bias, stereotype, toxicity and answer safety checks.</li>
+<li>Ethical charter, inspection tools for data composition, licensing, artifact release for reproducibility and further research. </li>
+</ol>
+<details class="- note">
+<summary><a href="https://github.com/huggingface/datatrove/blob/main/examples/fineweb.py">Full reproduction</a> of the FineWeb dataset</summary>
+<div class="highlight"><span class="filename">fineweb.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">This file contains the code used to process and create the</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">FineWeb dataset (https://huggingface.co/datasets/HuggingFaceFW/fineweb)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.executor.slurm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SlurmPipelineExecutor</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.dedup</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinhashDedupCluster</span><span class="p">,</span> <span class="n">MinhashDedupFilter</span><span class="p">,</span> <span class="n">MinhashDedupSignature</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.dedup.minhash</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinhashConfig</span><span class="p">,</span> <span class="n">MinhashDedupBuckets</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.extractors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trafilatura</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.filters</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">C4QualityFilter</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">FineWebQualityFilter</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">GopherQualityFilter</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">GopherRepetitionFilter</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">LanguageFilter</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">URLFilter</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.formatters</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIIFormatter</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.readers</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonlReader</span><span class="p">,</span> <span class="n">WarcReader</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.tokens</span><span class="w"> </span><span class="kn">import</span> <span class="n">TokensCounter</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.pipeline.writers.jsonl</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonlWriter</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datatrove.utils.hashing</span><span class="w"> </span><span class="kn">import</span> <span class="n">HashConfig</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="sd">    we first ran the following pipeline for each dump</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">DUMP_TO_PROCESS</span> <span class="o">=</span> <span class="s2">&quot;CC-MAIN-2023-50&quot;</span>  <span class="c1"># example</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">MAIN_OUTPUT_PATH</span> <span class="o">=</span> <span class="s2">&quot;s3://some_s3_bucket&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">FILTERING_OUTPUT_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MAIN_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/base_processing&quot;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">main_processing_executor</span> <span class="o">=</span> <span class="n">SlurmPipelineExecutor</span><span class="p">(</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">job_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;cc_</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="n">WarcReader</span><span class="p">(</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>            <span class="sa">f</span><span class="s2">&quot;s3://commoncrawl/crawl-data/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/segments/&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            <span class="n">glob_pattern</span><span class="o">=</span><span class="s2">&quot;*/warc/*&quot;</span><span class="p">,</span>  <span class="c1"># we want the warc files</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="n">default_metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;dump&quot;</span><span class="p">:</span> <span class="n">DUMP_TO_PROCESS</span><span class="p">},</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="p">),</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">URLFilter</span><span class="p">(</span><span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/removed/1_url/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)),</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">Trafilatura</span><span class="p">(</span><span class="n">favour_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">LanguageFilter</span><span class="p">(</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>            <span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/2_non_english/&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>                <span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{language}</span><span class="s2">/&quot;</span> <span class="o">+</span> <span class="n">DUMP_TO_PROCESS</span> <span class="o">+</span> <span class="s2">&quot;/$</span><span class="si">{rank}</span><span class="s2">.jsonl.gz&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>                <span class="c1"># folder structure: language/dump/file</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="p">)</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="p">),</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="n">GopherRepetitionFilter</span><span class="p">(</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/removed/3_gopher_rep/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="p">),</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">GopherQualityFilter</span><span class="p">(</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>            <span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/removed/4_gopher_qual/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="p">),</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="n">C4QualityFilter</span><span class="p">(</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="n">filter_no_terminal_punct</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>            <span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/removed/5_c4/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="p">),</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="n">FineWebQualityFilter</span><span class="p">(</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>            <span class="n">exclusion_writer</span><span class="o">=</span><span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/removed/6_fineweb_qual/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="p">),</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/output/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="p">],</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="n">tasks</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;10:00:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">logging_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MAIN_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/logs/base_processing/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">slurm_logs_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;logs/base_processing/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/slurm_logs&quot;</span><span class="p">,</span>  <span class="c1"># must be local</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">randomize_start_duration</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>  <span class="c1"># don&#39;t hit the bucket all at once with the list requests</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">mem_per_cpu_gb</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;hopper-cpu&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="p">)</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="n">main_processing_executor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="sd">    we then applied minhash deduplication to each individual dump,</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="c1"># you can also change ngrams or the number of buckets and their size here</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="n">minhash_config</span> <span class="o">=</span> <span class="n">MinhashConfig</span><span class="p">(</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="n">hash_config</span><span class="o">=</span><span class="n">HashConfig</span><span class="p">(</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="n">hash_fc</span><span class="o">=</span><span class="s2">&quot;sha1&quot;</span><span class="p">,</span>  <span class="c1"># better precision -&gt; fewer false positives (collisions)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">precision</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="p">),</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">num_buckets</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">hashes_per_bucket</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="n">n_grams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="p">)</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="n">S3_MINHASH_BASE_PATH</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MAIN_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/minhash&quot;</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="n">S3_LOGS_FOLDER</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MAIN_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/logs/minhash&quot;</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="n">LOCAL_LOGS_FOLDER</span> <span class="o">=</span> <span class="s2">&quot;logs/minhash&quot;</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="n">TOTAL_TASKS</span> <span class="o">=</span> <span class="mi">1000</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="c1"># this is the original data that we want to deduplicate</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="n">INPUT_READER</span> <span class="o">=</span> <span class="n">JsonlReader</span><span class="p">(</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">FILTERING_OUTPUT_PATH</span><span class="si">}</span><span class="s2">/output/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="p">)</span>  <span class="c1"># this is the output from the first part</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a><span class="c1"># stage 1 computes minhash signatures for each task (each task gets a set of files)</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="n">stage1</span> <span class="o">=</span> <span class="n">SlurmPipelineExecutor</span><span class="p">(</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="n">job_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;mh1_</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="n">INPUT_READER</span><span class="p">,</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="n">MinhashDedupSignature</span><span class="p">(</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>            <span class="n">output_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/signatures&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">minhash_config</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>        <span class="p">),</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="p">],</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="n">tasks</span><span class="o">=</span><span class="n">TOTAL_TASKS</span><span class="p">,</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;5:00:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;hopper-cpu&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="n">logging_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_LOGS_FOLDER</span><span class="si">}</span><span class="s2">/signatures&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">slurm_logs_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">LOCAL_LOGS_FOLDER</span><span class="si">}</span><span class="s2">/signatures/slurm_logs&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="n">randomize_start_duration</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="n">depends</span><span class="o">=</span><span class="n">main_processing_executor</span><span class="p">,</span>  <span class="c1"># only start after the first one completes</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a><span class="p">)</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a><span class="n">stage2</span> <span class="o">=</span> <span class="n">SlurmPipelineExecutor</span><span class="p">(</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="n">job_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;mh2_</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>        <span class="n">MinhashDedupBuckets</span><span class="p">(</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>            <span class="n">input_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/signatures&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>            <span class="n">output_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/buckets&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>            <span class="n">config</span><span class="o">=</span><span class="n">MinhashConfig</span><span class="p">(</span><span class="n">hash_config</span><span class="o">=</span><span class="n">minhash_config</span><span class="o">.</span><span class="n">hash_config</span><span class="p">),</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>        <span class="p">),</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="p">],</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="n">tasks</span><span class="o">=</span><span class="n">minhash_config</span><span class="o">.</span><span class="n">num_buckets</span> <span class="o">*</span> <span class="mi">50</span><span class="p">,</span>  <span class="c1"># the code supports parallelizing each bucket. here we run 50</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="c1"># workers per bucket</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="n">randomize_start_duration</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="n">logging_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_LOGS_FOLDER</span><span class="si">}</span><span class="s2">/buckets&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;hopper-cpu&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;02:00:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="n">mem_per_cpu_gb</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="n">cpus_per_task</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># you can add run more (smaller) tasks if you do not have a lot of memory</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="n">depends</span><span class="o">=</span><span class="n">stage1</span><span class="p">,</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a><span class="p">)</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+<a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>
+<a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a><span class="n">stage3</span> <span class="o">=</span> <span class="n">SlurmPipelineExecutor</span><span class="p">(</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>    <span class="n">job_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;mh3_</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>        <span class="n">MinhashDedupCluster</span><span class="p">(</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>            <span class="n">input_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/buckets&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>            <span class="n">output_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/remove_ids&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>            <span class="n">config</span><span class="o">=</span><span class="n">minhash_config</span><span class="p">,</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>        <span class="p">),</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>    <span class="p">],</span>
+<a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>    <span class="n">tasks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># this step runs on a single task</span>
+<a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>    <span class="n">logging_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_LOGS_FOLDER</span><span class="si">}</span><span class="s2">/clustering&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>    <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;hopper-cpu&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;30:00:00&quot;</span><span class="p">,</span>  <span class="c1"># and can also be quite slow. Usually not this slow though</span>
+<a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="n">mem_per_cpu_gb</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+<a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>    <span class="n">cpus_per_task</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># if you dedup a full dump, you do need a lot of memory for this one</span>
+<a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>    <span class="n">depends</span><span class="o">=</span><span class="n">stage2</span><span class="p">,</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a><span class="p">)</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>
+<a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>
+<a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a><span class="n">stage4</span> <span class="o">=</span> <span class="n">SlurmPipelineExecutor</span><span class="p">(</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>    <span class="n">job_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;mh4_</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>    <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>        <span class="n">INPUT_READER</span><span class="p">,</span>
+<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>        <span class="n">TokensCounter</span><span class="p">(),</span>  <span class="c1"># you can remove this one, it&#39;s just a nice way to know how many tokens we have</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>        <span class="c1"># before and after dedup</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>        <span class="n">MinhashDedupFilter</span><span class="p">(</span><span class="n">input_folder</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/remove_ids&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>        <span class="c1"># run the PII removal</span>
+<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>        <span class="n">PIIFormatter</span><span class="p">(),</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>        <span class="n">JsonlWriter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_MINHASH_BASE_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DUMP_TO_PROCESS</span><span class="si">}</span><span class="s2">/deduped_output&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>    <span class="p">],</span>
+<a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>    <span class="n">tasks</span><span class="o">=</span><span class="n">TOTAL_TASKS</span><span class="p">,</span>
+<a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>    <span class="n">logging_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">S3_LOGS_FOLDER</span><span class="si">}</span><span class="s2">/filtering&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>    <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;hopper-cpu&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a>    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;5:00:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>    <span class="n">mem_per_cpu_gb</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>    <span class="n">depends</span><span class="o">=</span><span class="n">stage3</span><span class="p">,</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a><span class="p">)</span>
+<a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>
+<a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a><span class="c1"># launch dedup pipelines</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a><span class="n">stage4</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<details class="- info">
+<summary>Resources 📚</summary>
+<ul>
+<li>
+<p>LLM papers on data and data pipelines:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2101.00027">The Pile: An 800GB Dataset of Diverse Text for Language Modeling</a></li>
+<li><a href="https://arxiv.org/abs/1911.00359">CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data</a></li>
+<li><a href="https://arxiv.org/abs/2306.01116">The RefinedWeb Dataset for Falcon LLM: Outperforming Curated Corpora with Web Data, and Web Data Only</a></li>
+<li><a href="https://arxiv.org/abs/2306.07196">Dolma: an Open Corpus of Three Trillion Tokens for Language Model Pretraining Research</a></li>
+<li><a href="https://arxiv.org/pdf/2411.12372">RedPajama: an Open Dataset for Training Large Language Models</a></li>
+</ul>
+</li>
+<li>
+<p>End-to-end Data preprocessing libraries:</p>
+<ul>
+<li><a href="https://github.com/huggingface/datatrove/">HF datatrove</a></li>
+<li><a href="https://github.com/NVIDIA-NeMo/Curator">Nvidia Curator</a></li>
+<li><a href="https://github.com/webdataset/webdataset">Webdataset</a></li>
+</ul>
+</li>
+<li>
+<p>Classic NLP data preprocessing libararies:</p>
+<ul>
+<li><a href="https://github.com/explosion/spaCy">Explosion spaCy</a></li>
+<li><a href="https://github.com/nltk/nltk">NLTK</a></li>
+<li><a href="https://github.com/stanfordnlp/stanza">StanfordNLP Stanza</a></li>
+</ul>
+</li>
+</ul>
+</details>
+<h2 id="post-training">Post-training 🎯<a class="headerlink" href="#post-training" title="Anchor link to this section for reference">&para;</a></h2>
+<p><strong>Goal</strong>: Align base LLMs to new tasks or improve its existing abilities in chat-based dialogs, structured tasks or domain-specific data.</p>
+<p>This aligning is done via supervised fine-tuning and preference optimization (reward modelling or RLHF/RLAIF).</p>
+<div class="annotate">
+<ul>
+<li>
+<p>Choosing Base model and deciding training regimes (5)</p>
+</li>
+<li>
+<p>Collection and cleaning (1)</p>
+</li>
+<li>
+<p>Curation (2)</p>
+</li>
+<li>
+<p>Transformation (Check Exercise) (3)</p>
+</li>
+<li>
+<p>Validation (4)</p>
+</li>
+</ul>
+</div>
+<ol>
+<li>Instruction–response pairs, multi-turn formatting style and tool-use coverage. Synthetic data generation.  </li>
+<li>PII filtering and annotation by humans or AI. Ranking and scoring by humans or smaller models for Reward modelling. Deduplication.  </li>
+<li>Tokenization, formatting into <strong>chat templates</strong>, sharding and packing for effecient GPU training.<br />
+Tokenizers: <a href="https://huggingface.co/docs/transformers/fast_tokenizers">HF Fast-tokenizer</a>.<br />
+Finetuning libraries like <a href="https://huggingface.co/trl-lib">TRL</a> internally handle most of this.</li>
+<li>Schema validation (for example with Pydantic), quality checks, simple benchmarks, and basic stats.</li>
+<li>Decide model size, architecutre, post-training track record in SFT/PO/RL.</li>
+</ol>
+<h3 id="dataset-file-formats">Dataset file formats<a class="headerlink" href="#dataset-file-formats" title="Anchor link to this section for reference">&para;</a></h3>
+<p>Some commonly used include:</p>
+<ul>
+<li>
+<p>JSON/JSONL (.jsonl, also .jsonl.gz or .zst)</p>
+<ul>
+<li>Use when datasets are small/medium and you want quick edits and reviews. Good for chat-style SFT and preference pairs.</li>
+<li>Pros: easy to read, easy to diff, streams line-by-line.</li>
+<li>Cons: bigger files, slower random access, no built-in schema.</li>
+</ul>
+</li>
+<li>
+<p>Apache Arrow (.arrow)</p>
+<ul>
+<li>Use for fast local reads and training-ready batches. Works well with Hugging Face Datasets.</li>
+<li>Pros: column-based, memory-mapped, typed; very fast.</li>
+<li>Cons: less common for general analytics than Parquet.</li>
+</ul>
+</li>
+<li>
+<p>Parquet (.parquet)</p>
+<ul>
+<li>Use for larger local datasets and preprocessing before training.</li>
+<li>Pros: column-based and compressed; efficient scans; easy to split into parts.</li>
+<li>Cons: writing can be heavier; very small rows need careful block sizing.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition - note">
+<p class="admonition-title">Tips on storage</p>
+<ul>
+<li>Prefer column-based + compressed shards (Parquet/Arrow) for scale; use JSONL for iteration and human review.</li>
+<li>Shard size: 50–500 MB per shard is a good starting point for multi-process training.</li>
+<li>Compress with zstd or gzip; keep a local manifest and checksums.</li>
+<li>Keep explicit schemas: for SFT {messages: [...], meta: {...}}; for preference data {prompt, chosen, rejected}.</li>
+</ul>
+<p>On Alvis: </p>
+<ul>
+<li>Check your usage and quota using <code>C3SE_quota</code> and for Cephyr file usage <code>where-are-my-files</code>.</li>
+<li>Prefer few large files over many small files. File-IO can be a limiting factor.</li>
+</ul>
+<p>Recommended defaults:</p>
+<ul>
+<li>For local Hugging Face SFT/RLAIF: use Parquet or Arrow shards.</li>
+<li>Use JSONL for prototyping, manual review, and small experiments.</li>
+<li>Always record dataset version, schema, and shard manifest for reproducibility.</li>
+</ul>
+</div>
+<div class="admonition - example">
+<p class="admonition-title">Exercise</p>
+<ul>
+<li>Create <code>~/portal/jupyter</code> dir if you dont have already.</li>
+<li>Copy <code>llm-workshop/containers/post_train/post_train_env.sh</code> <a href="https://github.com/UPPMAX/LLM-workshop/blob/main/exercises/day2/post_train_env.sh"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></span></a> to your <code>~/portal/jupyter/</code></li>
+<li>Start a jupyter server with 1x A40 (or above) GPU with <code>post_train_env</code> environment and working directory set to your personal project directory.</li>
+<li>Run <code>data_pipelines.ipynb</code> to prepare a dataset for Supervised Finetuning on <a href="https://huggingface.co/datasets/openai/gsm8k">openai's gsm8k</a> math dataset.</li>
+</ul>
+</div>
+<details class="- info">
+<summary>Resources 📚</summary>
+<ul>
+<li>
+<p>LLM papers on data and data pipelines:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2203.02155">Training language models to follow instructions with human feedback</a></li>
+<li><a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a></li>
+<li><a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a></li>
+<li><a href="https://arxiv.org/abs/2305.11206">LIMA: Less Is More for Alignment</a></li>
+<li><a href="https://arxiv.org/abs/2212.10560">Self-Instruct: Aligning Language Models with Self-Generated Instructions</a></li>
+</ul>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../day1/llm_formats/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LLM Formats">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LLM Formats
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../quantization/" class="md-footer__link md-footer__link--next" aria-label="Next:  〰️ Quantization">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                 〰️ Quantization
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.naiss.se/" target="_blank" rel="noopener" title="NAISS" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.integrate", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.expand", "search.suggest", "content.code.annotate", "content.code.copy", "content.code.select", "content.tabs.link", "content.action.edit", "content.action.view", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

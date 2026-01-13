@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="NAISS">
+  <meta name="dcterms.date" content="2025-11-19">
+  <title>LLM Workshop - Introduction</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">LLM Workshop - Introduction</h1>
+  <p class="author">NAISS</p>
+  <p class="date">2025-11-19</p>
+</section>
+
+<section id="overview" class="title-slide slide level2">
+<h2>Overview</h2>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<ul>
+<li>History of AI</li>
+<li>Compute and AI</li>
+<li>Ethics and concerns</li>
+<li>Introducing the workshop hardware</li>
+</ul>
+</section>
+
+<section>
+<section id="history-of-ai" class="title-slide slide level2">
+<h2>History of AI</h2>
+<!-- Truncating the last four months because recent data is unreliable -->
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4271_RC01/embed_loader.js"></script>
+<script type="text/javascript">
+  var date_start = "2022-01-01";
+  var d_end = new Date(); d_end.setMonth(d_end.getMonth() - 4)
+  var date_end = d_end.toISOString().substring(0, 10)
+  trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"AI","geo":"","time":`${date_start} ${date_end}`}],"category":0,"property":""}, {"exploreQuery":"date=today%204-y&q=AI","guestPath":"https://trends.google.com:443/trends/embed/"});
+</script>
+<ul>
+<li>How has AI developed over time?</li>
+</ul>
+</section>
+<section id="ai-as-a-term-is-coined" class="slide level3">
+<h3>AI as a term is coined</h3>
+<blockquote>
+<p>We propose that <strong>a 2-month, 10-man study of artificial
+intelligence</strong> be carried out during the summer of 1956 at
+Dartmouth College in Hanover, New Hampshire. […] An attempt will be made
+to find how to <strong>make machines use language, form abstractions and
+concepts, solve kinds of problems now reserved for humans, and improve
+themselves</strong>. We think that a significant advance can be made in
+one or more of these problems if a carefully selected group of
+scientists work on it together for a summer.</p>
+</blockquote>
+<ul>
+<li><a
+href="http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf">Darthmout
+Summer Research Project</a></li>
+</ul>
+</section>
+<section id="early-nlp-1956-1966" class="slide level3">
+<h3>Early NLP – 1956-1966</h3>
+<p><img data-src="figures/nlp_pipeline_rules.svg"
+alt="Rule based NLP pipeline" /></p>
+<ul>
+<li>Rule based, lots of manual effort</li>
+<li>Lots of LISP</li>
+<li>Used for:
+<ul>
+<li>Information retrieval</li>
+<li>Basic chat-bots e.g. <a
+href="https://en.wikipedia.org/wiki/ELIZA">Eliza</a></li>
+<li>Limited translation systems</li>
+</ul></li>
+</ul>
+</section>
+<section id="ai-winter-i-1974-1980" class="slide level3">
+<h3>AI Winter I – 1974-1980</h3>
+<ul>
+<li>NLP Winter started even earlier</li>
+</ul>
+<p><img data-src="figures/winter.svg" alt="Wintery landscape" /></p>
+</section>
+<section id="statistical-nlp-1980s" class="slide level3">
+<h3>Statistical NLP – 1980s</h3>
+<p><img data-src="figures/nlp_pipeline_stats.svg"
+alt="Statistical NLP pipeline" /></p>
+<ul>
+<li>Using statistics of the corpus</li>
+<li>Bag-of-words, N-grams</li>
+</ul>
+</section>
+<section id="ai-winter-ii-1990s-early-2000s" class="slide level3">
+<h3>AI Winter II – 1990s, early 2000s</h3>
+<ul>
+<li>The word “AI” is <strong>not</strong> a buzzword</li>
+<li>Research continues under other names</li>
+</ul>
+</section>
+<section id="deep-learning-2012-" class="slide level3">
+<h3>Deep Learning – 2012-</h3>
+<p><img data-src="figures/nlp_pipeline_deep.svg"
+alt="Embedding words for Deep Learning" /></p>
+<ul>
+<li>2012: <a href="https://doi.org/10.1145/3065386">AlexNet</a> has less
+than 25% error on ImageNet challenge</li>
+<li>2017: Transformer architecture (<a
+href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">Attention
+Is All You Need</a>, <a
+href="https://doi.org/10.1145/3065386">retrospectic</a>)</li>
+<li>2019: <a
+href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">GPT-2</a>
+released. Surprisingly good.</li>
+<li>2020: <a href="https://doi.org/10.48550/arXiv.2005.14165">GPT-3</a>
+released. Surprisingly still improving.</li>
+<li>2022: ChatGPT (GPT-3.5) <a
+href="https://openai.com/index/chatgpt/">released</a>. General public
+starts to take notice.</li>
+</ul>
+</section>
+<section id="deep-learning-transformer-architecture"
+class="slide level3">
+<h3>Deep Learning – Transformer architecture</h3>
+<section style="text-align: left; margin-left: 5em">
+No recurrent connections,<br />
+thus more parallelizable.
+</section>
+<style>
+img.transformer {
+  float: right;
+  max-height: 600px;
+  width: auto;
+  transform: translateY(-5em)
+}
+</style>
+<p><img data-src="figures/Transformer_full_architecture.png"
+class="transformer" alt="Transformer architecture" /></p>
+</section>
+<section id="deep-learning-attention-mechanism" class="slide level3">
+<h3>Deep Learning – Attention mechanism</h3>
+<ul>
+<li>Scaled Dot-Product Attention <span class="math display">\[
+\mathrm{Attention}(V, K, Q) =
+\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_K}}\right)V \]</span></li>
+<li>Cross-attention: <span class="math inline">\(Q = X_\mathrm{dec}
+W_Q\)</span>, <span class="math inline">\(K = X_\mathrm{enc}
+W_K\)</span> and <span class="math inline">\(V = X_\mathrm{enc}
+W_V\)</span></li>
+<li>Self-attention: Same <span class="math inline">\(X\)</span> used for
+all matrices</li>
+<li>In decoder, self-attention masks future tokens</li>
+<li>Autoregressive unimodal LLMs usually decoder only</li>
+</ul>
+</section></section>
+<section>
+<section id="compute-and-ai" class="title-slide slide level2">
+<h2>Compute and AI</h2>
+<ul>
+<li>What has changed?</li>
+<li><a href="https://en.wikipedia.org/wiki/Bitter_lesson">The bitter
+lesson by Richard Sutton, 2019</a></li>
+</ul>
+<blockquote>
+<p>The biggest lesson that can be read from 70 years of AI research is
+that general methods that leverage computation are ultimately the most
+effective, and by a large margin.</p>
+</blockquote>
+</section>
+<section id="compute-use-over-time" class="slide level3">
+<h3>Compute use over time</h3>
+<ul>
+<li><a
+href="https://ourworldindata.org/scaling-up-ai#compute-scaling-up-computational-resources">Compute</a>,
+but also <a
+href="https://ourworldindata.org/scaling-up-ai#data-scaling-up-the-training-data">data</a>,
+<a
+href="https://ourworldindata.org/scaling-up-ai#data-scaling-up-the-training-data">architecture</a>
+and <a
+href="https://epoch.ai/blog/algorithmic-progress-in-language-models">algorithms</a></li>
+</ul>
+<iframe src="https://ourworldindata.org/grapher/exponential-growth-of-computation-in-the-training-of-notable-ai-systems?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write">
+</iframe>
+</section>
+<section id="compute-and-performance" class="slide level3">
+<h3>Compute and performance</h3>
+<iframe src="https://ourworldindata.org/grapher/ai-performance-knowledge-tests-vs-training-computation?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write">
+</iframe>
+</section>
+<section id="what-was-new-with-chatgpt" class="slide level3">
+<h3>What was new with ChatGPT?</h3>
+<ul>
+<li>Base models are pure language models</li>
+<li>Chat models are:
+<ul>
+<li>Instruct tuned (supervised)</li>
+<li>Reinforcement Learning with Human Feedback</li>
+</ul></li>
+</ul>
+</section>
+<section id="rlhf" class="slide level3">
+<h3>RLHF</h3>
+<p><img data-src="figures/rlhf_diagram.webp" alt="RLHF diagram" /></p>
+<ul>
+<li>Enables RL when no clear scoring function available</li>
+<li>Relatively little human input needed</li>
+</ul>
+</section>
+<section id="further-scaling" class="slide level3">
+<h3>Further scaling</h3>
+<p><a href="https://blogs.nvidia.com/blog/ai-scaling-laws/"><img
+data-src="figures/3-Scaling-Laws-Chart-scaled.png"
+alt="3 scaling laws, pre, post and test-time" /></a></p>
+</section></section>
+<section>
+<section id="ethics-and-issues" class="title-slide slide level2">
+<h2>Ethics and issues</h2>
+<ul>
+<li>Societal concerns</li>
+<li>Misuse concerns</li>
+<li>Misalignment concerns
+<!-- TODO simplify and add actionables --></li>
+</ul>
+</section>
+<section id="societal-concerns" class="slide level3">
+<h3>Societal concerns</h3>
+<ul>
+<li>Perpetuated bias</li>
+<li>Confident falsehood and sycophancy</li>
+<li>Copyright &amp; IP issues</li>
+<li>Distribution of wealth and the job market
+<ul>
+<li>E.g. <a href="https://openai.com/index/gdpval/">GDPval</a>
+benchmark</li>
+</ul></li>
+<li>Climate footprint
+<ul>
+<li>Word for word comparisson, <a
+href="https://www.nature.com/articles/s41598-024-54271-x">AI is
+cheaper</a></li>
+<li>But, AI can generate a lot more text (rel. <a
+href="https://en.wikipedia.org/wiki/Jevons_paradox">Jevons
+paradox</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="misuse-concerns" class="slide level3">
+<h3>Misuse concerns</h3>
+<ul>
+<li>Mass spear phishing, disinformation campaigns, …</li>
+<li>Cyberattacks
+<ul>
+<li><a
+href="https://thehackernews.com/2024/11/googles-ai-tool-big-sleep-finds-zero.html">Finding</a>
+and exploiting vulnerabilities</li>
+</ul></li>
+<li>Enabling bad actors
+<ul>
+<li><a href="https://doi.org/10.1038/s42256-022-00465-9">Dual use of
+artificial-intelligence-powered drug discovery</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="misalignment" class="slide level3">
+<h3>Misalignment</h3>
+<style>
+img.thumbnail {
+  max-height: 200px;
+  width: auto;
+  vertical-align: top;
+  margin-left: 0.5em;
+  transform: translateY(-0.5ch);
+}
+</style>
+<ul>
+<li>RLHF is <a
+href="https://www.alignmentforum.org/posts/vwu4kegAEZTBtpT6p/thoughts-on-the-impact-of-rlhf-research">only
+a step</a> towards aligning AI
+<!-- https://blog.vllm.ai/assets/figures/struct-decode-intro/shogoth-gpt.png --></li>
+<li><a href="https://doi.org/10.48550/arXiv.1803.04585">Goodhart’s
+law</a></li>
+<li>Misaligned leadership?
+<ul>
+<li>What future are they aiming for?</li>
+</ul></li>
+<li>Superintelligence <a href="https://ifanyonebuildsit.com/"><img
+data-src="figures/ifanyonebuildsit_bookcover.png" class="thumbnail"
+alt="If anyone builds it everyone dies, book cover" /></a></li>
+</ul>
+</section></section>
+<section>
+<section id="introduction-to-the-hardware-for-this-workshop"
+class="title-slide slide level2">
+<h2>Introduction to the hardware for this workshop</h2>
+<ul>
+<li>Main reference: <a
+href="https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/">Alvis
+introduction material</a></li>
+<li>Compute clusters</li>
+<li>GPUs as compute accelerator</li>
+<li>Multi-GPU</li>
+<li>Containers</li>
+<li>Batch queue system</li>
+</ul>
+</section>
+<section id="compute-clusters" class="slide level3">
+<h3>Compute clusters</h3>
+<p><img data-src="figures/generic_cluster.svg"
+alt="Generic compute cluster diagram" /></p>
+</section>
+<section id="the-compute-node" class="slide level3">
+<h3>The compute node</h3>
+<style>
+img.generic_gpu_node {
+  max-width: 60%;
+  height: auto;
+}
+</style>
+<p><img data-src="figures/generic_gpu_node.svg" class="generic_gpu_node"
+alt="Generic compute node with GPUs" /></p>
+<ul>
+<li>Speed-up by parallelization</li>
+<li>Feeding data to GPU memory (VRAM) often bottleneck</li>
+</ul>
+</section>
+<section id="software" class="slide level3">
+<h3>Software</h3>
+<ul>
+<li>Default software environment intentionally sparse</li>
+<li>Use modules or containers to run software</li>
+<li>(Follow our <a
+href="https://www.c3se.chalmers.se/documentation/module_system/python/">recommendations</a>
+when installing Python packages)</li>
+<li>We will use containers in this course</li>
+</ul>
+</section>
+<section id="software-containers" class="slide level3">
+<h3>Software – containers</h3>
+<ul>
+<li>Apptainer containers</li>
+<li>A single file for your software and all dependencies</li>
+<li>(<a
+href="https://www.c3se.chalmers.se/documentation/miscellaneous/containers/#building-containers">Building
+containers</a>)</li>
+<li>Running software in a container</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec your_container.sif python your_code.py</span></code></pre></div>
+</section>
+<section id="slurm" class="slide level3">
+<h3>SLURM</h3>
+<ul>
+<li>Batch queueing system</li>
+<li>Allocates resources in a fair and effective manner</li>
+<li>Resources are finite so expect queue times occasionally</li>
+</ul>
+</section>
+<section id="slurm-workflow-preparing-job" class="slide level3">
+<h3>SLURM workflow – Preparing job</h3>
+<p><img data-src="figures/generic_cluster_work_on_login.svg"
+alt="Work on login node" /></p>
+</section>
+<section id="slurm-workflow-submitting-job-to-queue"
+class="slide level3">
+<h3>SLURM workflow – Submitting job to queue</h3>
+<p><img data-src="figures/generic_cluster_jobsubmission.svg"
+alt="Submitting a job" /></p>
+</section>
+<section id="slurm-workflow-job-starts" class="slide level3">
+<h3>SLURM workflow – Job starts</h3>
+<p><img data-src="figures/generic_cluster_jobstart.svg"
+alt="Job starts" /></p>
+</section>
+<section id="partial-command-overview" class="slide level3">
+<h3>Partial command overview</h3>
+<ul>
+<li>View queued and running jobs <code>squeue [--me]</code></li>
+<li>View previous jobs <code>sacct</code></li>
+<li>Submit jobs <code>sbatch &lt;JOBSCRIPT&gt;</code></li>
+<li>Cancel queued or running jobs
+<code>scancel &lt;JOBID&gt;</code></li>
+<li>More complete overview at <a
+href="https://slurm.schedmd.com/quickstart.html#commands">SLURM
+documentation</a> and <a
+href="https://www.c3se.chalmers.se/documentation/first_time_users/intro-alvis/slides/#job-command-overview">Alvis
+intro</a></li>
+</ul>
+</section></section>
+<section id="summary-of-introduction" class="title-slide slide level2">
+<h2>Summary of Introduction</h2>
+<ul>
+<li>Compute a key component to the success of LLMs</li>
+<li>Use and development of AI is not without its issues</li>
+<li>The hardware you can access</li>
+<li>Containers for accessing software</li>
+<li>SLURM batch queue system for running things on the cluster</li>
+</ul>
+</section>
+
+<section>
+<section id="exercises" class="title-slide slide level2">
+<h2>Exercises</h2>
+<ol type="1">
+<li>Make sure you have finished <a
+href="../docs/prerequisites.md">prerequisites</a></li>
+<li>Navigate to the workshop project storage directory (see path with
+<code>C3SE_quota</code>)</li>
+<li>Create your own directory e.g. <code>mkdir ${USER}</code></li>
+<li>Copy
+<code>/mimer/NOBACKUP/groups/llm-workshop/exercises/day1/introduction/</code>
+and its content to your directory</li>
+<li>Do the below exercises</li>
+</ol>
+</section>
+<section id="submitting-a-batch-job" class="slide level3">
+<h3>Submitting a batch job</h3>
+<ol type="1">
+<li>Take a look at <code>jobscript.sh</code> with your favourite
+editor</li>
+<li>Submit <code>jobscript.sh</code> with sbatch</li>
+<li>Monitor your jobs (with <code>job_stats.py &lt;JOBID&gt;</code>
+and/or manually over SSH)
+<ul>
+<li>Use <code>squeue</code> and <code>sacct</code> to see job-IDs,
+nodelist etc.</li>
+<li>Job stats links are at the top of
+<code>slurm-&lt;JOBID&gt;.out</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="running-interactively" class="slide level3">
+<h3>Running interactively</h3>
+<ol type="1">
+<li>Go to <a href="https://alvis.c3se.chalmers.se"
+class="uri">https://alvis.c3se.chalmers.se</a></li>
+<li>Launch a short interactive session using few resources</li>
+<li>Try it out and make sure to close the session when you are done</li>
+<li>(Optional) adapt a runtime from <code>/apps/portal/</code> to your
+own runtime in <code>~/portal</code></li>
+</ol>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

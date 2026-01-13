@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="NAISS">
+  <title>Tools and Reasoning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="/LLM-workshop/stylesheets/slides.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Tools and Reasoning</h1>
+  <p class="author">NAISS</p>
+</section>
+
+<section>
+<section id="the-general-idea" class="title-slide slide level2">
+<h2>The general idea</h2>
+<style type="text/css" rel="stylesheet">
+.reveal section {
+  text-align: center;
+}
+</style>
+<ul>
+<li>Just chat</li>
+<li>Chat + reasoning</li>
+<li>Chat + reasoning + tool use</li>
+<li>Examples of tool use</li>
+</ul>
+</section>
+<section id="a-basic-chatbot" class="slide level3">
+<h3>A Basic Chatbot</h3>
+<p><img data-src="figures/basic_chat.svg"
+alt="Basic chat interface" /></p>
+</section>
+<section id="a-reasoning-chatbot" class="slide level3">
+<h3>A Reasoning Chatbot</h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2201.11903">Chain of Thought</a> <img
+data-src="figures/reasoning_chat.svg"
+alt="Reasoning chat interface" /></li>
+</ul>
+</section>
+<section id="a-reactive-chatbot" class="slide level3">
+<h3>A ReActive Chatbot</h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2210.03629">ReAct</a> <img
+data-src="figures/react_chat.svg" alt="ReAct chat interface" /></li>
+</ul>
+</section>
+<section id="examples-of-tool-use" class="slide level3">
+<h3>Examples of tool use</h3>
+<ul>
+<li>Weather services</li>
+<li>Searching the internet</li>
+<li>Interacting with local files</li>
+<li>Playing games</li>
+<li>RAG (sometimes considered separate)</li>
+<li>Image generation</li>
+</ul>
+</section></section>
+<section id="model-context-protocol-mcp"
+class="title-slide slide level2">
+<h2>Model Context Protocol (MCP)</h2>
+<ul>
+<li>Standard for how to interface with tools</li>
+<li>MCP Clients are those which want to use a tool</li>
+<li>MCP Server is what handles the tool</li>
+<li>By following the protocol, you don’t need an implementation per
+server-client combination</li>
+</ul>
+</section>
+
+<section>
+<section id="interfaces" class="title-slide slide level2">
+<h2>Interfaces</h2>
+<ul>
+<li>How to different part interface with each other
+<ul>
+<li>Human and LLM</li>
+<li>LLM and tool</li>
+</ul></li>
+</ul>
+</section>
+<section id="interafaces-and-protocols" class="slide level3">
+<h3>Interafaces and protocols</h3>
+<p><img data-src="figures/chat_interface_and_mcp.svg"
+alt="Interface schematic" /></p>
+</section>
+<section id="human-and-llm" class="slide level3">
+<h3>Human and LLM</h3>
+<ol type="1">
+<li>Text input</li>
+<li>HTTP request</li>
+<li>Tokens (tokenizer.encode)</li>
+<li>Next token (LLM)</li>
+<li>Text (tokenizer.decode)</li>
+<li>HTTP stream</li>
+<li>Text output</li>
+</ol>
+</section>
+<section id="llm-and-tools" class="slide level3">
+<h3>LLM and tools</h3>
+<ol type="1">
+<li>Tokens</li>
+<li>Text (tokenizer + chat template)</li>
+<li>Tool request (stdio/http)</li>
+<li>Tool use (MCP server)</li>
+<li>Tool response (stdio/http)</li>
+<li>Tokens</li>
+</ol>
+</section></section>
+<section id="the-model-context-protocol-server"
+class="title-slide slide level2">
+<h2>The Model Context Protocol server</h2>
+<ul>
+<li><a href="https://modelcontextprotocol.io/docs/learn/server-concepts"
+class="uri">https://modelcontextprotocol.io/docs/learn/server-concepts</a></li>
+<li>Can provide
+<ol type="1">
+<li>Tools: Functions callable by the LLM</li>
+<li>Resources: Read only access to files or databases</li>
+<li>Prompts: Already prepared and ready for use</li>
+</ol></li>
+<li>The MCP defines the structure of input/output for tool calls</li>
+<li>The MCP does <strong>not</strong> define the structure the LLM
+should output</li>
+</ul>
+</section>
+
+<section>
+<section id="how-the-model-calls-a-tool"
+class="title-slide slide level2">
+<h2>How the model calls a tool</h2>
+<ul>
+<li>Forced structured output or</li>
+<li>Model specific embedded structured output</li>
+</ul>
+</section>
+<section id="forced-structured-output" class="slide level3">
+<h3>Forced structured output</h3>
+<ul>
+<li><a
+href="https://blog.vllm.ai/2025/01/14/struct-decode-intro.html">Structured
+decoding</a> to influence model output</li>
+<li>Not compatible with ReAct, only Act.</li>
+<li>In vLLM: Named/Required Function Calling</li>
+<li>Compatible with any model</li>
+</ul>
+</section>
+<section id="automatic-function-calling" class="slide level3">
+<h3>Automatic Function Calling</h3>
+<ul>
+<li>Models are trained/finetuned to use structured output</li>
+<li>Compatible with ReAct</li>
+<li>Structure is model specific, inference engine must support it
+<ul>
+<li>xml, json, special tokens, …</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="using-mcp-based-tools" class="title-slide slide level2">
+<h2>Using MCP based tools</h2>
+<ul>
+<li>Inference Engine</li>
+<li>MCP Client
+<ul>
+<li>stdio</li>
+<li>SSE</li>
+<li>Streamable-HTTP</li>
+</ul></li>
+</ul>
+</section>
+<section id="enabling-tool-calls-in-vllm" class="slide level3">
+<h3>Enabling Tool Calls in vLLM</h3>
+<ul>
+<li><a
+href="https://docs.vllm.ai/en/stable/features/tool_calling.html#automatic-function-calling"
+class="uri">https://docs.vllm.ai/en/stable/features/tool_calling.html#automatic-function-calling</a></li>
+<li><code>--enable-auto-tool-choice</code></li>
+<li><code>--tool-call-parser=&lt;supported-parser-name&gt;</code></li>
+</ul>
+</section>
+<section id="connecting-to-an-mcp-server-from-chainlit-stdio"
+class="slide level3">
+<h3>Connecting to an MCP Server from Chainlit: stdio</h3>
+<ul>
+<li>The MCP Client (Chainlit) launches the tool
+<ul>
+<li>Chainlit config limits what executables can be used</li>
+<li>Recommended to be careful with what you add here</li>
+</ul></li>
+<li>The MCP client will launch the tools as a subprocess
+<ul>
+<li>As your user</li>
+<li>Don’t (let the AI) run unknown code</li>
+</ul></li>
+<li>Examples:
+<ul>
+<li><code>npx -y @modelcontextprotocol/server-filesystem /dev/shm /tmp</code></li>
+<li><code>mcp run -t stdio mcp_server.py</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="connecting-to-an-mcp-server-from-chainlit-http"
+class="slide level3">
+<h3>Connecting to an MCP Server from Chainlit: HTTP</h3>
+<ul>
+<li>SSE deprecated in favor of Streamable HTTP</li>
+<li>For connecting to existing MCP Server</li>
+<li>Authentication tokens typically needed</li>
+<li>Required:
+<ul>
+<li>HTTP adress</li>
+<li>Possibly a header with authentication token</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="writing-tools-according-to-mcp"
+class="title-slide slide level2">
+<h2>Writing tools according to MCP</h2>
+<ul>
+<li>The Python SDK for MCP Servers</li>
+<li><a
+href="https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart"
+class="uri">https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart</a>
+<!-- TODO --></li>
+</ul>
+</section>
+
+<section>
+<section id="exercises" class="title-slide slide level2">
+<h2>Exercises</h2>
+<ol type="1">
+<li>Using tools via MCPs in Chainlit</li>
+<li>Developing your own MCP server
+<!--3. (Optional) connecting to HuggingFace MCP with a token-->
+<!-- Alternatively, run a dummy mcp on the github pages --></li>
+</ol>
+</section>
+<section id="using-tools-via-mcps-in-chainlit" class="slide level3">
+<h3>Using tools via MCPs in Chainlit</h3>
+<ol type="1">
+<li>Edit <code>~/.chainlit/config.toml</code> under
+<code>[features.mcp.studio]</code> change to
+<code>allowed_executables = [ "npx", "uvx", "mcp" ]</code></li>
+<li>Copy the the quick start example from the Python MCP SDK <a
+href="https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart"
+class="uri">https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#quickstart</a></li>
+<li>Prepare the custom Chainlit runtime environment for this exercise:
+<code>cp /mimer/NOBACKUP/groups/llm-workshop/exercises/day3/tools/portal/chainlit/use_existing_vllm.sh ~/portal/chainlit/</code></li>
+<li>Launch a Chainlit interactive session from <a
+href="https://alvis.c3se.chalmers.se"
+class="uri">https://alvis.c3se.chalmers.se</a> with the
+<code>use_existing_vllm.sh</code> runtime and 1 CPU core.</li>
+<li>Press the plug symbol to add an MCP Server
+<ol type="1">
+<li>Select <code>stdio</code> as transport</li>
+<li>Give it a name</li>
+<li>Add command
+<code>mcp run -t stdio &lt;path to mcp server file here&gt;</code></li>
+</ol></li>
+</ol>
+</section>
+<section id="developing-your-own-mcp-server" class="slide level3">
+<h3>Developing your own MCP server</h3>
+<ul>
+<li>Based on the Getting Started example write your own MCP tool.</li>
+<li>Note that if you launch it from inside the container, you will be
+limited to what is in the container</li>
+<li>Optionally, install mcp in a venv and launch an SSE instead of stdio
+and use that:
+<ul>
+<li>You will need to forward the port for the SSE to the compute node
+you’re running Chainlit on</li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

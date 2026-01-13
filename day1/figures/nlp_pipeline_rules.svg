@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="592"
+   height="102.59375"
+   version="1.1"
+   id="svg42735"
+   sodipodi:docname="nlp_pipeline_rules.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs42739">
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-3" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-6" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-0" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-36" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-1" />
+    <rect
+       x="19.440876"
+       y="46.847141"
+       width="78.768021"
+       height="49.854755"
+       id="rect44934-02" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview42737"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.4857143"
+     inkscape:cx="341.14943"
+     inkscape:cy="66.37931"
+     inkscape:window-width="3840"
+     inkscape:window-height="2082"
+     inkscape:window-x="0"
+     inkscape:window-y="41"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg42735" />
+  <!-- Headings -->
+  <text
+     x="51"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42707">Input</text>
+  <text
+     x="211"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42709">Representation</text>
+  <text
+     x="381"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42711">Processing</text>
+  <text
+     x="541"
+     y="11.59375"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     font-weight="bold"
+     id="text42713">Output</text>
+  <!-- Input Box -->
+  <rect
+     x="1"
+     y="21.59375"
+     width="100"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#d3d3d3;stroke:#000000;stroke-width:2"
+     id="rect42715" />
+  <!-- Arrow to Representation -->
+  <line
+     x1="101"
+     y1="61.59375"
+     x2="141"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42717" />
+  <polygon
+     points="150,75 150,65 160,70 "
+     style="fill:#000000"
+     id="polygon42719"
+     transform="translate(-9,-8.40625)" />
+  <!-- Representation Box -->
+  <rect
+     x="151"
+     y="21.59375"
+     width="120"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2"
+     id="rect42721" />
+  <!-- Arrow to Processing -->
+  <line
+     x1="271"
+     y1="61.59375"
+     x2="311"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42723" />
+  <polygon
+     points="320,75 320,65 330,70 "
+     style="fill:#000000"
+     id="polygon42725"
+     transform="translate(-9,-8.40625)" />
+  <!-- Processing Box -->
+  <rect
+     x="321"
+     y="21.59375"
+     width="120"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#ffffff;stroke:#000000;stroke-width:2"
+     id="rect42727" />
+  <!-- Arrow to Output -->
+  <line
+     x1="441"
+     y1="61.59375"
+     x2="481"
+     y2="61.59375"
+     style="stroke:#000000;stroke-width:2"
+     id="line42729" />
+  <polygon
+     points="490,75 490,65 500,70 "
+     style="fill:#000000"
+     id="polygon42731"
+     transform="translate(-9,-8.40625)" />
+  <!-- Output Box -->
+  <rect
+     x="491"
+     y="21.59375"
+     width="100"
+     height="80"
+     rx="10"
+     ry="10"
+     style="fill:#d3d3d3;stroke:#000000;stroke-width:2"
+     id="rect42733" />
+  <text
+     xml:space="preserve"
+     id="text44932"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(-7.1693024,-1.1524981)"><tspan
+       x="19.441406"
+       y="58.644501"
+       id="tspan81367">The cat sat </tspan><tspan
+       x="19.441406"
+       y="75.311127"
+       id="tspan81369">on the mat.</tspan></text>
+  <text
+     xml:space="preserve"
+     id="text44932-0"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-36);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(460.59176,0.3764919)" />
+  <text
+     xml:space="preserve"
+     id="text44932-8"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-1);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(406.6055,-61.562799)" />
+  <text
+     xml:space="preserve"
+     id="text44932-3"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-02);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(489.96142,-9.4508344)"><tspan
+       x="19.441406"
+       y="58.644501"
+       id="tspan81371">Can you </tspan><tspan
+       x="19.441406"
+       y="75.311127"
+       id="tspan81373">elaborate </tspan><tspan
+       x="19.441406"
+       y="91.977753"
+       id="tspan81375">on that?</tspan></text>
+  <text
+     xml:space="preserve"
+     id="text44932-2"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-6);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(153.45607,-0.482339)" />
+  <text
+     xml:space="preserve"
+     id="text44932-5"
+     style="font-style:normal;font-weight:normal;font-size:12.2678px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-3);fill:#000000;fill-opacity:1;stroke:none"
+     transform="matrix(1.1812496,0,0,1,145.43861,-1.6087762)" />
+  <text
+     xml:space="preserve"
+     id="text44932-9"
+     style="font-style:normal;font-weight:normal;font-size:13.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect44934-0);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(151.37562,-0.0455578)"><tspan
+       x="19.441406"
+       y="58.644501"
+       id="tspan81377">[Det, N] V </tspan><tspan
+       x="19.441406"
+       y="75.311127"
+       id="tspan81379">[Pre, Det N]</tspan></text>
+  <g
+     style="fill:#000000"
+     id="g74163"
+     transform="matrix(0.21304701,0,0,0.21304701,350.1717,29.419819)">
+    <g
+       id="g74151">
+	<g
+   id="g74149">
+		<g
+   id="g74147">
+			<path
+   d="m 228.572,123.81 v 14.286 h -51.257 l -24.933,-12.467 v -16.105 h 7.143 c 6.562,0 11.905,-5.338 11.905,-11.905 0,-3.876 -1.89,-7.29 -4.762,-9.462 v -5.062 c 6.081,-5.438 9.524,-13.029 9.524,-21.186 0,-15.757 -12.814,-28.571 -28.571,-28.571 -15.757,0 -28.571,12.814 -28.571,28.571 0,8.157 3.443,15.752 9.524,21.186 v 5.062 c -2.871,2.176 -4.762,5.59 -4.762,9.462 0,6.567 5.343,11.905 11.905,11.905 h 7.143 v 16.105 l -34.459,17.228 34.457,17.229 v 16.105 H 38.096 V 161.905 H 66.667 V 123.81 H 0.001 v 38.095 h 28.571 v 14.286 4.762 V 200 H 0.001 v 38.095 H 66.668 V 200 H 38.096 V 185.714 H 142.858 V 200 h -28.571 v 38.095 h 28.571 v 19.048 h -9.524 c -10.505,0 -19.048,8.543 -19.048,19.048 0,10.505 8.543,19.048 19.048,19.048 h 28.571 c 10.505,0 19.048,-8.543 19.048,-19.048 0,-10.505 -8.543,-19.048 -19.048,-19.048 h -9.524 v -19.048 h 28.571 V 200 h -28.571 v -14.286 -9.524 -16.105 l 24.933,-12.467 h 51.257 v 14.286 h 28.571 v 38.771 c -8.19,2.129 -14.286,9.519 -14.286,18.371 0,10.505 8.543,19.048 19.048,19.048 10.505,0 19.048,-8.543 19.048,-19.048 0,-8.852 -6.095,-16.243 -14.286,-18.371 v -38.771 h 28.573 V 123.81 Z M 57.144,209.523 v 19.048 H 9.524 V 209.523 Z M 9.524,152.381 v -19.048 h 47.619 v 19.048 z M 147.62,42.857 c 10.505,0 19.048,8.543 19.048,19.048 0,5.957 -2.781,11.476 -7.633,15.143 l -1.89,1.424 v 7.243 h -4.762 v -10.4 c 5.529,-1.971 9.524,-7.21 9.524,-13.41 0,-7.876 -6.41,-14.286 -14.286,-14.286 -7.876,0 -14.286,6.41 -14.286,14.286 0,6.2 3.995,11.438 9.524,13.41 v 10.4 h -4.762 v -7.243 l -1.89,-1.429 c -4.852,-3.662 -7.633,-9.181 -7.633,-15.138 -0.003,-10.505 8.541,-19.048 19.046,-19.048 z m 4.761,19.048 c 0,2.629 -2.138,4.762 -4.762,4.762 -2.624,0 -4.762,-2.134 -4.762,-4.762 0,-2.629 2.138,-4.762 4.762,-4.762 2.624,0 4.762,2.133 4.762,4.762 z M 135.714,100 c -1.314,0 -2.381,-1.071 -2.381,-2.381 0,-1.31 1.067,-2.381 2.381,-2.381 h 23.81 c 1.314,0 2.381,1.071 2.381,2.381 0,1.31 -1.066,2.381 -2.381,2.381 z m 26.192,166.666 c 5.252,10e-4 9.524,4.272 9.524,9.524 0,5.252 -4.271,9.524 -9.524,9.524 h -28.571 c -5.252,0 -9.524,-4.271 -9.524,-9.524 0,-5.252 4.271,-9.524 9.524,-9.524 z m 9.524,-57.143 v 19.048 h -47.619 v -19.048 z m -23.81,-57.704 -17.924,-8.962 17.924,-8.962 17.924,8.962 z m 123.81,67.229 c 0,5.252 -4.271,9.524 -9.524,9.524 -5.253,0 -9.524,-4.271 -9.524,-9.524 0,-5.253 4.271,-9.524 9.524,-9.524 5.253,0 9.524,4.271 9.524,9.524 z m 14.284,-66.667 h -47.619 v -19.048 0 h 47.619 z"
+   id="path74143" />
+
+			<path
+   d="m 85.714,28.571 c 6.2,0 11.438,-3.995 13.41,-9.524 H 117.6 C 105.329,27.671 96.91,41.4 95.481,57.143 h -9.767 v 28.571 h 28.571 V 57.143 h -9.243 c 2.381,-21.395 20.557,-38.095 42.576,-38.095 22.019,0 40.2,16.7 42.576,38.095 h -9.243 v 28.571 h 28.571 V 57.143 h -9.767 C 198.326,41.4 189.912,27.672 177.636,19.048 h 18.476 c 1.971,5.529 7.21,9.524 13.41,9.524 7.876,0 14.286,-6.41 14.286,-14.286 C 223.809,6.41 217.401,0 209.524,0 c -6.2,0 -11.438,3.995 -13.41,9.524 H 99.124 C 97.152,3.995 91.915,0 85.714,0 77.838,0 71.428,6.41 71.428,14.286 c 0,7.876 6.411,14.285 14.286,14.285 z m 19.049,47.619 h -9.524 v -9.524 h 9.524 z m 85.714,-9.524 h 9.524 v 9.524 h -9.524 z M 209.524,9.524 c 2.624,0 4.762,2.133 4.762,4.762 0,2.629 -2.138,4.762 -4.762,4.762 -2.624,0 -4.762,-2.133 -4.762,-4.762 0.001,-2.629 2.139,-4.762 4.762,-4.762 z m -123.81,0 c 2.624,0 4.762,2.133 4.762,4.762 0,2.629 -2.138,4.762 -4.762,4.762 -2.624,0 -4.762,-2.133 -4.762,-4.762 0.001,-2.629 2.139,-4.762 4.762,-4.762 z"
+   id="path74145" />
+
+		</g>
+
+	</g>
+
+</g>
+  </g>
+</svg>
